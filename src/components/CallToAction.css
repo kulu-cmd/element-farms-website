@@ -1,0 +1,72 @@
+.cta {
+    background-color: var(--orange-main);
+    padding: 6rem 2rem;
+    color: white;
+    text-align: center;
+}
+
+.cta__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cta__pre-heading {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    align-self: flex-start;
+    margin-bottom: 2rem;
+}
+
+.cta__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.cta__description {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 3.5rem;
+}
+
+.cta__buttons-wrapper {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cta__button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 40px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.cta__button:hover {
+    background: white;
+    color: var(--orange-main);
+}
+
+@media (max-width: 768px) {
+    .cta__description br {
+        display: none;
+    }
+    
+    .cta__buttons-wrapper {
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px;
+    }
+}

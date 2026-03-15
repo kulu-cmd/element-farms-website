@@ -1,0 +1,59 @@
+/* =============================================
+   ELEMENT FARMS WEBSITE — GLOBAL STYLES
+   ============================================= */
+
+/* Color Tokens */
+:root {
+  --green-dark:    #0e5a36;
+  --green-mid:     #3fae5a;
+  --orange-main:   #f36f21;
+  --mustard:       #e0a526;
+  --cream:         #d9cdb8;
+  --charcoal:      #2b2b2b;
+  --gold:          #cdc56c;
+  --orange-warm:   #f28c28;
+  --white-warm:    #f7f5f0;
+  --off-white:     #f1eee8;
+  --light-grey:    #e6e8e6;
+  --pure-cream:    #fffcf3;
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-body:    'Source Sans 3', sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--white-warm);
+  color: var(--charcoal);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: var(--font-heading);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

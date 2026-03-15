@@ -1,0 +1,144 @@
+.erosion {
+    background-color: #f6f6f6;
+    padding-bottom: 5rem;
+}
+
+.erosion__header {
+    background-color: #e6e6e6;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.erosion__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.erosion__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.erosion__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.erosion__stat-text {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.erosion__highlight {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1;
+}
+
+.erosion__highlight-large {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: var(--orange-main);
+    margin: 1rem 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.erosion__stat-subtext {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.erosion__map-side {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.erosion__map-container {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+}
+
+.erosion__map-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply;
+}
+
+.erosion__circle {
+    position: absolute;
+    background-color: var(--orange-main);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.1rem;
+    mix-blend-mode: multiply;
+}
+
+.erosion__circle--limpopo {
+    top: 5%;
+    right: 15%;
+    width: 180px;
+    height: 180px;
+}
+
+.erosion__circle--kzn {
+    top: 45%;
+    right: 5%;
+    width: 220px;
+    height: 220px;
+}
+
+.erosion__circle--eastern-cape {
+    bottom: -5%;
+    left: 25%;
+    width: 260px;
+    height: 260px;
+}
+
+@media (max-width: 900px) {
+    .erosion__container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .erosion__stat {
+        text-align: center;
+    }
+    
+    .erosion__stat-text {
+        justify-content: center;
+    }
+}

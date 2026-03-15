@@ -1,0 +1,109 @@
+.results {
+    background-color: var(--white-warm);
+    padding-bottom: 5rem;
+}
+
+.results__header {
+    background-color: #e6e6e6;
+    padding: 2.5rem 2rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+}
+
+.results__header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.results__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 800;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.results__intro-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    margin-bottom: 4rem;
+}
+
+.results__intro-text {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    line-height: 1.6;
+}
+
+.results__cards-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+.results__card {
+    background: white;
+    border: 1.5px solid var(--orange-main);
+    border-radius: 40px;
+    padding: 3.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    min-height: 320px;
+    text-align: left;
+    max-width: 320px;
+}
+
+.results__card-value {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    margin-bottom: 3.5rem;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0.2rem;
+}
+
+.results__percent {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+.results__card-label {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--orange-main);
+    font-weight: 400;
+}
+
+.results__image-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.results__image {
+    width: 100%;
+    height: auto;
+    border-radius: 60px;
+    object-fit: cover;
+}
+
+@media (max-width: 900px) {
+    .results__cards-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
