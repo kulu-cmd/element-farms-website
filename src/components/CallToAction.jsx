@@ -20,7 +20,15 @@ const CallToAction = () => {
                 </p>
 
                 <div className="cta__buttons-wrapper">
-                    <button className="cta__button">CONTACT US FOR TRIALS</button>
+                    <a 
+                        href="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="cta__button"
+                        style={{ display: 'inline-block', textDecoration: 'none' }}
+                    >
+                        CONTACT US FOR TRIALS
+                    </a>
                     <button className="cta__button">BROWSE SOLUTIONS</button>
                 </div>
             </div>

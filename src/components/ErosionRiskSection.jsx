@@ -44,37 +44,10 @@ const ErosionRiskSection = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <img src="/erode_map.png" alt="South Africa Map with Erosion Risk" className="erosion__map-img" />
-                        
-                        <motion.div 
-                            className="erosion__circle erosion__circle--limpopo"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 0.85 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.5 }}
-                        >
-                            <span>Limpopo</span>
-                        </motion.div>
-
-                        <motion.div 
-                            className="erosion__circle erosion__circle--kzn"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 0.85 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.7 }}
-                        >
-                            <span>KZN</span>
-                        </motion.div>
-
-                        <motion.div 
-                            className="erosion__circle erosion__circle--eastern-cape"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 0.85 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.9 }}
-                        >
-                            <span>Eastern-Cape</span>
-                        </motion.div>
                     </motion.div>
+                    <p className="erosion__source" style={{ textAlign: 'right', fontSize: '0.8rem', opacity: 0.7, marginTop: '20px' }}>
+                        South African Dept. of Agriculture / Agricultural Research Council (ARC)
+                    </p>
                 </div>
             </div>
         </section>

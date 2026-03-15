@@ -46,20 +46,6 @@ const StatsSection = () => {
                         </motion.div>
                     ))}
                 </div>
-
-                <motion.div
-                    className="stats__map-wrapper"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                    <img src="/erode_map.png" alt="South Africa Soil Erosion Map" className="stats__map" />
-                </motion.div>
-
-                <p className="stats__source">
-                    South African Dept. of Agriculture / Agricultural Research Council (ARC)
-                </p>
             </div>
         </section>
     )

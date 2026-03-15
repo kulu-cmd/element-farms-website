@@ -48,9 +48,16 @@ const HeroSection = () => {
                         animate="visible"
                         custom={0.75}
                     >
-                        <button className="hero__cta" id="start-farm-trial-btn">
+                        <a 
+                            href="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hero__cta" 
+                            id="start-farm-trial-btn"
+                            style={{ display: 'inline-block', textDecoration: 'none' }}
+                        >
                             START A FARM TRIAL
-                        </button>
+                        </a>
                     </motion.div>
                 </div>
 

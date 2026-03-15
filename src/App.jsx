@@ -4,7 +4,6 @@ import HeroSection from './components/HeroSection'
 import StatsSection from './components/StatsSection'
 import ErosionRiskSection from './components/ErosionRiskSection'
 import OurApproachSection from './components/OurApproachSection'
-import ResultsSection from './components/ResultsSection'
 import CallToAction from './components/CallToAction'
 import Footer from './components/Footer'
 import './App.css'
@@ -18,7 +17,6 @@ function App() {
                 <StatsSection />
                 <ErosionRiskSection />
                 <OurApproachSection />
-                <ResultsSection />
                 <CallToAction />
             </main>
             <Footer />
