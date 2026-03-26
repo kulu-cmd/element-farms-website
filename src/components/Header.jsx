@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './Header.css'
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
-    const [dropdownOpen, setDropdownOpen] = useState(false)
+    const [solutionsOpen, setSolutionsOpen] = useState(false)
+    const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 })
+    const triggerRef = useRef(null)
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20)
@@ -12,14 +15,16 @@ const Header = () => {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    const solutions = [
-        'Land Rejuvination',
-        'Anti-Flooding Systems',
-        'Nursery Support',
-        'Pest & Sunburn',
-        'Poultry',
-        'Dairy & Cattle'
-    ]
+    const handleMouseEnter = () => {
+        if (triggerRef.current) {
+            const rect = triggerRef.current.getBoundingClientRect()
+            setDropdownPos({
+                top: rect.bottom + 8,
+                left: rect.left + rect.width / 2,
+            })
+        }
+        setSolutionsOpen(true)
+    }
 
     return (
         <motion.header
@@ -28,6 +33,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
         >
+            <div className="header__inner">
             {/* Logo */}
             <motion.div
                 className="header__logo-link"
@@ -35,12 +41,12 @@ const Header = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
             >
-                <a href="/" className="header__logo">
+                <Link to="/" className="header__logo">
                     <img
                         src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
                         alt="Element Farm Solutions"
                     />
-                </a>
+                </Link>
             </motion.div>
 
             {/* Navigation */}
@@ -57,31 +63,29 @@ const Header = () => {
                     </motion.a>
 
                     <motion.div
-                        className="header__dropdown"
+                        ref={triggerRef}
+                        className={`header__nav-dropdown-wrapper${solutionsOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.28 }}
-                        onMouseEnter={() => setDropdownOpen(true)}
-                        onMouseLeave={() => setDropdownOpen(false)}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={() => setSolutionsOpen(false)}
                     >
-                        <button className="header__nav-link">
-                            Solutions
-                            <span className={`header__dropdown-arrow ${dropdownOpen ? 'header__dropdown-arrow--open' : ''}`}>
-                                ▼
-                            </span>
-                        </button>
+                        <span className="header__nav-link header__nav-link--dropdown">
+                            Solutions <span className="header__dropdown-icon">▾</span>
+                        </span>
 
-                        {dropdownOpen && (
-                            <div className="header__dropdown-menu">
-                                {solutions.map((solution, idx) => (
-                                    <a
-                                        key={idx}
-                                        href={`#${solution.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and')}`}
-                                        className="header__dropdown-item"
-                                    >
-                                        {solution}
-                                    </a>
-                                ))}
+                        {solutionsOpen && (
+                            <div
+                                className="header__dropdown-menu header__dropdown-menu--visible"
+                                style={{ top: dropdownPos.top, left: dropdownPos.left }}
+                            >
+                                <Link to="/solutions/land-rejuvenation" className="header__dropdown-item" onClick={() => setSolutionsOpen(false)}>
+                                    Land Rejuvenation
+                                </Link>
+                                <Link to="/solutions/uv-protection" className="header__dropdown-item" onClick={() => setSolutionsOpen(false)}>
+                                    Pest & Sunburn
+                                </Link>
                             </div>
                         )}
                     </motion.div>
@@ -97,6 +101,7 @@ const Header = () => {
                     </motion.a>
                 </div>
             </nav>
+            </div>
         </motion.header>
     )
 }

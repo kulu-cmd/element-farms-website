@@ -1,0 +1,52 @@
+.land-regen__hero {
+    background-color: var(--orange-main);
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    color: white;
+}
+
+.land-regen__hero-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.land-regen__icon {
+    opacity: 0.9;
+}
+
+.land-regen__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 5vw, 3.92rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin: 0;
+}
+
+.land-regen__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.7rem, 1.2vw, 0.84rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 560px;
+    text-align: center;
+}
+
+.land-regen__problem-heading {
+    background-color: var(--off-white);
+    padding: 3rem 2rem 0;
+    text-align: center;
+}
+
+.land-regen__problem-heading h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.26rem, 2.5vw, 1.75rem);
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 auto;
+    max-width: 1050px;
+}

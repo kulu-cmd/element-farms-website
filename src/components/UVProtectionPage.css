@@ -1,0 +1,302 @@
+.uv__hero {
+    background-color: var(--off-white);
+    padding: 7rem 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.uv__hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.uv__hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.uv__hero-deco {
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* Stats */
+.uv__stats {
+    background-color: var(--off-white);
+    padding: 2rem 3rem 3rem;
+}
+
+.uv__stats-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.uv__stat-card {
+    background: white;
+    border: 2px solid var(--orange-main);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.uv__stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1.1;
+}
+
+.uv__stat-label {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Our Solution */
+.uv__solution {
+    background: white;
+    padding: 0 0 4rem;
+}
+
+.uv__solution-header {
+    background-color: #e6e6e6;
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.uv__solution-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.26rem, 2.1vw, 1.75rem);
+    font-weight: 800;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.uv__solution-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background-color: var(--orange-main);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    flex-wrap: wrap;
+}
+
+.uv__tag {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+}
+
+.uv__tag-dot {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.5rem;
+}
+
+.uv__solution-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.uv__research-text {
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    color: var(--charcoal);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.uv__highlight-50 {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 900;
+    color: var(--orange-main);
+    vertical-align: middle;
+}
+
+/* Product Row */
+.uv__product-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.uv__product-img-wrap {
+    flex-shrink: 0;
+}
+
+.uv__product-placeholder {
+    width: 160px;
+    height: 180px;
+    background: var(--off-white);
+    border: 2px dashed var(--orange-main);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--orange-main);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.uv__product-placeholder small {
+    font-size: 0.6rem;
+    color: #999;
+    font-weight: 400;
+    font-family: var(--font-body);
+}
+
+.uv__product-desc {
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+}
+
+.uv__brand {
+    color: var(--orange-main);
+    font-weight: 700;
+}
+
+/* Benefits + Thermal */
+.uv__benefits-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.uv__benefits-box {
+    background-color: var(--off-white);
+    border-radius: 20px;
+    padding: 1.8rem;
+}
+
+.uv__benefits-title {
+    font-family: var(--font-heading);
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--orange-main);
+    margin-bottom: 1.2rem;
+}
+
+.uv__benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.uv__benefit-item {
+    font-family: var(--font-body);
+    font-size: 0.665rem;
+    color: var(--charcoal);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.uv__diamond {
+    color: var(--orange-main);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Thermal comparison */
+.uv__thermal-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.uv__thermal-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.uv__thermal-img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+}
+
+.uv__thermal-caption {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    color: var(--charcoal);
+    line-height: 1.4;
+    border: 1px solid var(--orange-main);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .uv__stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .uv__benefits-row {
+        grid-template-columns: 1fr;
+    }
+
+    .uv__product-row {
+        flex-direction: column;
+    }
+
+    .uv__thermal-images {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .uv__hero,
+    .uv__stats,
+    .uv__solution-body {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .uv__solution-header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .uv__thermal-images {
+        grid-template-columns: 1fr;
+    }
+}

@@ -13,7 +13,7 @@
 
 .stats__heading {
     font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-size: clamp(1.12rem, 2.45vw, 1.68rem);
     /* Slightly smaller */
     font-weight: 800;
     color: var(--orange-main);
@@ -42,7 +42,7 @@
 
 .stats__value {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-size: clamp(1.4rem, 2.45vw, 2.24rem);
     font-weight: 900;
     color: var(--orange-main);
     margin-bottom: 1.5rem;
@@ -51,7 +51,7 @@
 
 .stats__label {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 0.665rem;
     line-height: 1.5;
     color: var(--charcoal);
     max-width: 220px;
@@ -70,7 +70,7 @@
 }
 
 .stats__source {
-    font-size: 0.65rem;
+    font-size: 0.455rem;
     color: #666;
     text-align: right;
     margin-top: 2rem;

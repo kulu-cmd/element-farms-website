@@ -12,7 +12,7 @@
 
 .erosion__title {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-size: clamp(1.26rem, 2.1vw, 1.75rem);
     font-weight: 800;
     color: var(--orange-main);
     margin: 0;
@@ -36,7 +36,7 @@
 
 .erosion__stat-text {
     font-family: var(--font-body);
-    font-size: 1.5rem;
+    font-size: 1.05rem;
     color: var(--charcoal);
     margin-bottom: 1rem;
     display: flex;
@@ -47,7 +47,7 @@
 
 .erosion__highlight {
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 2.45rem;
     font-weight: 900;
     color: var(--orange-main);
     line-height: 1;
@@ -55,7 +55,7 @@
 
 .erosion__highlight-large {
     font-family: var(--font-heading);
-    font-size: 4.5rem;
+    font-size: 3.15rem;
     font-weight: 900;
     color: var(--orange-main);
     margin: 1rem 0;
@@ -65,7 +65,7 @@
 
 .erosion__stat-subtext {
     font-family: var(--font-body);
-    font-size: 1.2rem;
+    font-size: 0.84rem;
     color: var(--charcoal);
     margin: 0;
 }
@@ -103,7 +103,7 @@
     color: white;
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 0.77rem;
     mix-blend-mode: multiply;
 }
 

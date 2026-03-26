@@ -18,7 +18,7 @@
 
 .results__title {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-size: clamp(1.75rem, 2.8vw, 2.45rem);
     font-weight: 800;
     color: var(--orange-main);
     margin: 0;
@@ -33,7 +33,7 @@
 
 .results__intro-text {
     font-family: var(--font-body);
-    font-size: 1.2rem;
+    font-size: 0.84rem;
     color: var(--charcoal);
     line-height: 1.6;
 }
@@ -65,7 +65,7 @@
 
 .results__card-value {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-size: clamp(2.1rem, 3.5vw, 3.15rem);
     font-weight: 900;
     color: var(--orange-main);
     margin-bottom: 3.5rem;
@@ -77,12 +77,12 @@
 }
 
 .results__percent {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(1.4rem, 2.8vw, 2.45rem);
 }
 
 .results__card-label {
     font-family: var(--font-body);
-    font-size: 1.1rem;
+    font-size: 0.77rem;
     line-height: 1.4;
     color: var(--orange-main);
     font-weight: 400;

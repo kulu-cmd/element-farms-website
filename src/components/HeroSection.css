@@ -46,7 +46,7 @@
 
 .hero__headline {
     font-family: var(--font-heading);
-    font-size: clamp(3rem, 5.5vw, 5.6rem);
+    font-size: clamp(2.1rem, 3.85vw, 3.92rem);
     font-weight: 800;
     line-height: 1.04;
     color: #fff;
@@ -58,7 +58,7 @@
 
 .hero__subtext {
     font-family: var(--font-body);
-    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-size: clamp(0.665rem, 1.05vw, 0.77rem);
     font-weight: 400;
     color: rgba(255, 255, 255, 0.88);
     line-height: 1.6;
@@ -74,7 +74,7 @@
     background: var(--charcoal);
     color: #fff;
     font-family: var(--font-heading);
-    font-size: 0.85rem;
+    font-size: 0.595rem;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -164,11 +164,11 @@
 
 @media (max-width: 480px) {
     .hero__headline {
-        font-size: 2.4rem;
+        font-size: 1.68rem;
     }
 
     .hero__cta {
         padding: 0.85rem 1.8rem;
-        font-size: 0.78rem;
+        font-size: 0.546rem;
     }
 }
