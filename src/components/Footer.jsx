@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 const Footer = () => {
@@ -19,20 +20,20 @@ const Footer = () => {
                 <div className="footer__col">
                     <h4 className="footer__heading">Solutions</h4>
                     <ul className="footer__links">
-                        <li><a href="#">Land Rejuvination</a></li>
-                        <li><a href="#">Anti-Flooding Systems</a></li>
-                        <li><a href="#">Nursery Support</a></li>
-                        <li><a href="#">Pest & Sunburn</a></li>
-                        <li><a href="#">Poultry</a></li>
-                        <li><a href="#">Dairy & Cattle</a></li>
+                        <li><Link to="/solutions/land-rejuvenation">Land Rejuvenation</Link></li>
+                        <li><Link to="/solutions/land-rejuvenation">Anti-Flooding Systems</Link></li>
+                        <li><a href="#contact-us">Nursery Support</a></li>
+                        <li><Link to="/solutions/uv-protection">Pest &amp; Sunburn</Link></li>
+                        <li><a href="#contact-us">Poultry</a></li>
+                        <li><a href="#contact-us">Dairy &amp; Cattle</a></li>
                     </ul>
                 </div>
 
                 <div className="footer__col">
                     <h4 className="footer__heading">Resources</h4>
                     <ul className="footer__links">
-                        <li><a href="#">Farmer Education</a></li>
-                        <li><a href="#">Contact for Trials</a></li>
+                        <li><a href="#contact-us">Farmer Education</a></li>
+                        <li><a href="#contact-us">Contact for Trials</a></li>
                     </ul>
                 </div>
 
@@ -43,10 +44,10 @@ const Footer = () => {
                             <span className="footer__icon">📍</span> South Africa
                         </li>
                         <li className="footer__contact-item">
-                            <span className="footer__icon">✉️</span> info@elementfarm.co.za
+                            <span className="footer__icon">✉️</span> <a href="mailto:info@elementfarm.co.za">info@elementfarm.co.za</a>
                         </li>
                         <li className="footer__contact-item">
-                            <span className="footer__icon">📞</span> +27 (0) 12 345 6789
+                            <span className="footer__icon">📞</span> <a href="tel:+27123456789">+27 (0) 12 345 6789</a>
                         </li>
                     </ul>
                 </div>

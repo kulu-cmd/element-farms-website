@@ -4,7 +4,7 @@ import './OurApproachSection.css'
 
 const OurApproachSection = () => {
     return (
-        <section className="approach">
+        <section className="approach" id="about-us">
             <div className="approach__header">
                 <h2 className="approach__title">Our Approach</h2>
             </div>

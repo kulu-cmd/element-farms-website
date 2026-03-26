@@ -1,6 +1,6 @@
 .land-regen__hero {
     background-color: var(--orange-main);
-    padding: 8rem 2rem 4rem;
+    padding: 6rem 2rem 3rem;
     text-align: center;
     color: white;
 }
@@ -38,7 +38,7 @@
 
 .land-regen__problem-heading {
     background-color: var(--off-white);
-    padding: 3rem 2rem 0;
+    padding: 2.5rem 2rem 0;
     text-align: center;
 }
 
@@ -48,5 +48,5 @@
     font-weight: 800;
     color: var(--charcoal);
     margin: 0 auto;
-    max-width: 1050px;
+    max-width: var(--page-max-width);
 }

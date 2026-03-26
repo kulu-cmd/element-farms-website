@@ -27,8 +27,7 @@ const HeroSection = () => {
                         animate="visible"
                         custom={0.3}
                     >
-                        Regenerating Soil,<br />
-                        Restoring Profitability.
+                        Regenerative Farming Systems
                     </motion.h1>
 
                     <motion.p

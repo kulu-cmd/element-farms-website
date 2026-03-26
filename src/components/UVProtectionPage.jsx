@@ -1,6 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Header from './Header'
+import CallToAction from './CallToAction'
+import OurApproachSection from './OurApproachSection'
 import Footer from './Footer'
 import './UVProtectionPage.css'
 
@@ -184,6 +186,8 @@ const UVProtectionPage = () => {
                 </div>
             </section>
 
+            <OurApproachSection />
+            <CallToAction />
             <Footer />
         </div>
     )

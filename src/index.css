@@ -19,6 +19,10 @@
 
   --font-heading: 'Montserrat', sans-serif;
   --font-body:    'Source Sans 3', sans-serif;
+
+  /* Layout */
+  --page-max-width: 1320px;
+  --page-side-padding: 1.25rem;
 }
 
 /* Reset */

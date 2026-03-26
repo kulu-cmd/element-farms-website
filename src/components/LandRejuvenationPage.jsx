@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import StatsSection from './StatsSection'
 import ErosionRiskSection from './ErosionRiskSection'
 import OurApproachSection from './OurApproachSection'
+import CallToAction from './CallToAction'
 import Footer from './Footer'
 import Header from './Header'
 import './LandRejuvenationPage.css'
@@ -59,6 +60,7 @@ const LandRejuvenationPage = () => {
 
             {/* Approach & rest of page */}
             <OurApproachSection />
+            <CallToAction />
             <Footer />
         </div>
     )

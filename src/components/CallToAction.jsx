@@ -1,10 +1,10 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './CallToAction.css'
 
 const CallToAction = () => {
     return (
-        <section className="cta">
+        <section className="cta" id="contact-us">
             <div className="cta__container">
                 <p className="cta__pre-heading">Element Farm Solutions</p>
                 
@@ -29,7 +29,13 @@ const CallToAction = () => {
                     >
                         CONTACT US FOR TRIALS
                     </a>
-                    <button className="cta__button">BROWSE SOLUTIONS</button>
+                    <Link
+                        to="/solutions/land-rejuvenation"
+                        className="cta__button"
+                        style={{ display: 'inline-block', textDecoration: 'none' }}
+                    >
+                        BROWSE SOLUTIONS
+                    </Link>
                 </div>
             </div>
         </section>

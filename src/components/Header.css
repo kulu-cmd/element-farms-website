@@ -8,13 +8,14 @@
 }
 
 .header__inner {
-    max-width: 1050px;
+    max-width: var(--page-max-width);
     margin: 0 auto;
     width: 100%;
-    padding: 1.5rem 1rem;
+    padding: 0.8rem var(--page-side-padding);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 63px;
 }
 
 .header--scrolled {
@@ -26,7 +27,8 @@
 
 /* Logo */
 .header__logo-link {
-    display: block;
+    display: flex;
+    align-items: center;
     text-decoration: none;
 }
 
@@ -34,12 +36,17 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    height: 58px;
+    width: 170px;
+    overflow: hidden; /* Crop whitespace inside the source PNG */
 }
 
 .header__logo img {
-    height: 44px;
-    width: auto;
+    height: 100%;
+    width: 100%;
     display: block;
+    object-fit: cover; /* Fill the wrapper box */
+    object-position: left center; /* Keep the mark on the left */
 }
 
 /* Nav */
@@ -131,11 +138,12 @@
 
 @media (max-width: 768px) {
     .header__inner {
-        padding: 1rem 1.5rem;
+        padding: 0.75rem var(--page-side-padding);
     }
 
-    .header__logo img {
-        height: 36px;
+    .header__logo {
+        height: 48px;
+        width: 140px;
     }
 
     .header__nav-link {
@@ -160,7 +168,8 @@
 }
 
 @media (max-width: 480px) {
-    .header__logo img {
-        height: 30px;
+    .header__logo {
+        height: 44px;
+        width: 120px;
     }
 }

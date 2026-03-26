@@ -6,6 +6,7 @@ import './Header.css'
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [solutionsOpen, setSolutionsOpen] = useState(false)
+    const solutionsPinnedRef = useRef(false)
     const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 })
     const triggerRef = useRef(null)
 
@@ -15,15 +16,44 @@ const Header = () => {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    const handleMouseEnter = () => {
-        if (triggerRef.current) {
-            const rect = triggerRef.current.getBoundingClientRect()
-            setDropdownPos({
-                top: rect.bottom + 8,
-                left: rect.left + rect.width / 2,
-            })
+    useEffect(() => {
+        if (!solutionsOpen) return
+
+        const onDocMouseDown = (e) => {
+            if (!triggerRef.current) return
+            if (triggerRef.current.contains(e.target)) return
+            setSolutionsOpen(false)
+            solutionsPinnedRef.current = false
         }
+
+        document.addEventListener('mousedown', onDocMouseDown)
+        return () => document.removeEventListener('mousedown', onDocMouseDown)
+    }, [solutionsOpen])
+
+    const computeDropdownPosition = () => {
+        if (!triggerRef.current) return
+        const rect = triggerRef.current.getBoundingClientRect()
+        setDropdownPos({
+            top: rect.bottom + 8,
+            left: rect.left + rect.width / 2,
+        })
+    }
+
+    const handleMouseEnter = () => {
+        computeDropdownPosition()
+        solutionsPinnedRef.current = false
         setSolutionsOpen(true)
+    }
+
+    const handleSolutionsClick = () => {
+        if (!solutionsOpen) {
+            computeDropdownPosition()
+            solutionsPinnedRef.current = true
+            setSolutionsOpen(true)
+            return
+        }
+        solutionsPinnedRef.current = false
+        setSolutionsOpen(false)
     }
 
     return (
@@ -69,7 +99,19 @@ const Header = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.28 }}
                         onMouseEnter={handleMouseEnter}
-                        onMouseLeave={() => setSolutionsOpen(false)}
+                        onMouseLeave={() => {
+                            if (solutionsPinnedRef.current) return
+                            setSolutionsOpen(false)
+                        }}
+                        onClick={handleSolutionsClick}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                handleSolutionsClick()
+                            }
+                        }}
                     >
                         <span className="header__nav-link header__nav-link--dropdown">
                             Solutions <span className="header__dropdown-icon">▾</span>
@@ -80,10 +122,24 @@ const Header = () => {
                                 className="header__dropdown-menu header__dropdown-menu--visible"
                                 style={{ top: dropdownPos.top, left: dropdownPos.left }}
                             >
-                                <Link to="/solutions/land-rejuvenation" className="header__dropdown-item" onClick={() => setSolutionsOpen(false)}>
+                                <Link
+                                    to="/solutions/land-rejuvenation"
+                                    className="header__dropdown-item"
+                                    onClick={() => {
+                                        setSolutionsOpen(false)
+                                        solutionsPinnedRef.current = false
+                                    }}
+                                >
                                     Land Rejuvenation
                                 </Link>
-                                <Link to="/solutions/uv-protection" className="header__dropdown-item" onClick={() => setSolutionsOpen(false)}>
+                                <Link
+                                    to="/solutions/uv-protection"
+                                    className="header__dropdown-item"
+                                    onClick={() => {
+                                        setSolutionsOpen(false)
+                                        solutionsPinnedRef.current = false
+                                    }}
+                                >
                                     Pest & Sunburn
                                 </Link>
                             </div>
