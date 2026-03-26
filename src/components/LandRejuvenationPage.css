@@ -1,6 +1,6 @@
 .land-regen__hero {
     background-color: var(--orange-main);
-    padding: 6rem 2rem 3rem;
+    padding: 4rem 2rem 2.5rem;
     text-align: center;
     color: white;
 }
@@ -29,16 +29,23 @@
 
 .land-regen__subtitle {
     font-family: var(--font-body);
-    font-size: clamp(0.7rem, 1.2vw, 0.84rem);
-    line-height: 1.6;
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    line-height: 1.7;
     color: rgba(255, 255, 255, 0.9);
-    max-width: 560px;
+    max-width: 620px;
     text-align: center;
+}
+
+.land-regen__hero-scroll-hint {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 0.5rem;
+    display: block;
 }
 
 .land-regen__problem-heading {
     background-color: var(--off-white);
-    padding: 2.5rem 2rem 0;
+    padding: 1.5rem 2rem 0;
     text-align: center;
 }
 
@@ -49,4 +56,33 @@
     color: var(--charcoal);
     margin: 0 auto;
     max-width: var(--page-max-width);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .land-regen__hero {
+        padding: 2.5rem 1.25rem 2rem;
+    }
+
+    .land-regen__title {
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+    }
+
+    .land-regen__subtitle {
+        font-size: clamp(0.8rem, 3.5vw, 1rem);
+    }
+
+    .land-regen__problem-heading {
+        padding: 1.25rem 1.25rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .land-regen__hero {
+        padding: 2rem 1rem 1.5rem;
+    }
+
+    .land-regen__hero-inner {
+        gap: 0.9rem;
+    }
 }

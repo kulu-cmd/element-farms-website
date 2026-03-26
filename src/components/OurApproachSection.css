@@ -1,101 +1,159 @@
 .approach {
-    background-color: white;
-    padding-bottom: 5rem;
+  background: white;
+  padding-bottom: 3rem;
 }
 
 .approach__header {
-    background-color: #e6e6e6;
-    padding: 1.5rem 2rem;
-    text-align: left;
-    margin-bottom: 4rem;
+  background-color: #e6e6e6;
+  padding: 1.25rem 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .approach__title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.26rem, 2.1vw, 1.75rem);
-    font-weight: 800;
-    color: var(--orange-main);
-    margin: 0;
-    max-width: 1200px;
-    margin: 0 auto;
+  font-family: var(--font-heading);
+  font-size: clamp(1.26rem, 2.1vw, 1.75rem);
+  font-weight: 800;
+  color: var(--orange-main);
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
-.approach__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+/* Steps row */
+.approach__steps {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
 }
 
-.approach__column {
-    display: flex;
+/* Arrow connector */
+.approach__connector {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  /* Vertically align with the top portion of the card — roughly at step number + title height */
+  margin-top: 2.75rem;
+}
+
+/* Step card */
+.approach__step {
+  flex: 1;
+  background: white;
+  border: 2px solid rgba(243, 111, 33, 0.25);
+  border-radius: 20px;
+  padding: 1.75rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  /* Prevent layout jump when description opens */
+  min-height: 110px;
+}
+
+.approach__step:hover {
+  border-color: var(--orange-main);
+  box-shadow: 0 6px 24px rgba(243, 111, 33, 0.12);
+}
+
+.approach__step--active {
+  background: var(--orange-main);
+  border-color: var(--orange-main);
+  box-shadow: 0 8px 32px rgba(243, 111, 33, 0.25);
+}
+
+/* Step number */
+.approach__step-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-main);
+  margin-bottom: 0.6rem;
+  transition: color 0.3s ease;
+}
+
+.approach__step--active .approach__step-number {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Step title */
+.approach__step-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  font-weight: 800;
+  color: var(--charcoal);
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.approach__step--active .approach__step-title {
+  color: white;
+}
+
+/* Step description (animated in/out) */
+.approach__step-desc {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  margin: 0;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.approach__step--active .approach__step-desc {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .approach__steps {
     flex-direction: column;
-    gap: 2rem;
-    flex: 1;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .approach__connector {
+    margin-top: 0;
+    padding: 0.4rem 0;
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  .approach__step {
+    min-height: auto;
+  }
 }
 
-.approach__column--center {
-    flex: 0 0 auto;
-    width: 350px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media (max-width: 640px) {
+  .approach__header {
+    padding: 1rem 1.25rem;
+  }
+
+  .approach__steps {
+    padding: 0 1.25rem 1rem;
+  }
+
+  .approach__step {
+    /* Full width is already guaranteed by flex column + align-items: stretch */
+    padding: 1.25rem 1rem;
+  }
+
+  .approach__step-title {
+    font-size: 1.1rem;
+  }
 }
 
-.approach__center-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
+@media (max-width: 400px) {
+  .approach__steps {
+    padding: 0 0.75rem 1rem;
+  }
 
-.approach__card {
-    background: white;
-    border: 2px solid var(--orange-main);
-    border-radius: 20px;
-    padding: 2rem;
-    height: 100%;
-}
-
-.approach__card-title {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: var(--orange-main);
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.approach__column--right .approach__card-title {
-    text-align: right;
-}
-
-.approach__card-text {
-    font-family: var(--font-body);
-    font-size: 0.665rem;
-    color: var(--charcoal);
-    line-height: 1.5;
-}
-
-.text-right {
-    text-align: right;
-}
-
-@media (max-width: 950px) {
-    .approach__container {
-        flex-direction: column;
-    }
-    
-    .approach__column--center {
-        order: -1;
-        width: 100%;
-        max-width: 300px;
-        margin-bottom: 2rem;
-    }
-    
-    .approach__column--right .approach__card-title,
-    .approach__column--right .approach__card-text {
-        text-align: left;
-    }
+  .approach__step {
+    padding: 1rem 0.875rem;
+  }
 }

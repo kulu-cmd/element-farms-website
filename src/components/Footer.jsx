@@ -7,14 +7,11 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer__container">
                 <div className="footer__col footer__col--brand">
-                    <img 
-                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png" 
-                        alt="Element Farm Solutions Logo" 
-                        className="footer__logo" 
+                    <img
+                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                        alt="Element Farm Solutions Logo"
+                        className="footer__logo"
                     />
-                    <p className="footer__description">
-                        Empowering South African Farmers with regenerative solutions for healthier soil, sustainable livestock management and responsible waste recycling.
-                    </p>
                 </div>
                 
                 <div className="footer__col">
@@ -44,10 +41,10 @@ const Footer = () => {
                             <span className="footer__icon">📍</span> South Africa
                         </li>
                         <li className="footer__contact-item">
-                            <span className="footer__icon">✉️</span> <a href="mailto:info@elementfarm.co.za">info@elementfarm.co.za</a>
+                            <span className="footer__icon">✉️</span> <a href="mailto:kamil@elementfarmsolutions.co.za">kamil@elementfarmsolutions.co.za</a>
                         </li>
                         <li className="footer__contact-item">
-                            <span className="footer__icon">📞</span> <a href="tel:+27123456789">+27 (0) 12 345 6789</a>
+                            <span className="footer__icon">📞</span> <a href="tel:+27613889339">061 388 9339</a>
                         </li>
                     </ul>
                 </div>

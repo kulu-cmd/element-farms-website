@@ -1,11 +1,11 @@
 .results {
     background-color: var(--white-warm);
-    padding-bottom: 5rem;
+    padding-bottom: 3rem;
 }
 
 .results__header {
     background-color: #e6e6e6;
-    padding: 2.5rem 2rem;
+    padding: 1.25rem 2rem;
     text-align: left;
     margin-bottom: 2.5rem;
 }
@@ -28,12 +28,12 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .results__intro-text {
     font-family: var(--font-body);
-    font-size: 0.84rem;
+    font-size: 0.9rem;
     color: var(--charcoal);
     line-height: 1.6;
 }
@@ -44,21 +44,21 @@
     padding: 0 2rem;
     display: flex;
     justify-content: center;
-    gap: 3rem;
-    margin-bottom: 5rem;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
 }
 
 .results__card {
     background: white;
     border: 1.5px solid var(--orange-main);
     border-radius: 40px;
-    padding: 3.5rem 2rem;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
     flex: 1;
-    min-height: 320px;
+    min-height: 200px;
     text-align: left;
     max-width: 320px;
 }
@@ -68,7 +68,7 @@
     font-size: clamp(2.1rem, 3.5vw, 3.15rem);
     font-weight: 900;
     color: var(--orange-main);
-    margin-bottom: 3.5rem;
+    margin-bottom: 1.5rem;
     line-height: 1;
     display: flex;
     align-items: baseline;

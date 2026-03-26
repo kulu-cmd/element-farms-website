@@ -1,6 +1,6 @@
 .stats {
     background-color: var(--off-white);
-    padding: 4rem 2rem;
+    padding: 2.5rem 2rem;
     display: flex;
     justify-content: center;
 }
@@ -17,7 +17,7 @@
     /* Slightly smaller */
     font-weight: 800;
     color: var(--orange-main);
-    margin-bottom: 3rem;
+    margin-bottom: 1.75rem;
     text-transform: none;
 }
 
@@ -25,19 +25,19 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .stats__card {
     background: white;
     border: 2px solid var(--orange-main);
     border-radius: 40px;
-    padding: 3rem 1.5rem;
+    padding: 1.75rem 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 280px;
+    min-height: 180px;
 }
 
 .stats__value {
@@ -51,14 +51,14 @@
 
 .stats__label {
     font-family: var(--font-body);
-    font-size: 0.665rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     color: var(--charcoal);
     max-width: 220px;
 }
 
 .stats__map-wrapper {
-    margin: 4rem auto 2rem;
+    margin: 2rem auto 1.5rem;
     max-width: 600px;
 }
 
@@ -84,6 +84,16 @@
 
     .stats__card {
         min-height: auto;
-        padding: 2.5rem 1.5rem;
+        padding: 1.5rem 1.25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .stats {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .stats__grid {
+        gap: 1rem;
     }
 }

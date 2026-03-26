@@ -1,6 +1,6 @@
 .uv__hero {
     background-color: var(--off-white);
-    padding: 5.5rem 3rem 2rem;
+    padding: 4rem 2rem 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -19,6 +19,15 @@
     font-weight: 900;
     color: var(--orange-main);
     margin: 0;
+}
+
+.uv__hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 0.6rem;
+    line-height: 1.6;
+    max-width: 480px;
 }
 
 .uv__hero-deco {
@@ -60,7 +69,7 @@
 
 .uv__stat-label {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.875rem;
     color: var(--charcoal);
     line-height: 1.5;
     margin: 0;
@@ -69,7 +78,7 @@
 /* Our Solution */
 .uv__solution {
     background: white;
-    padding: 0 0 4rem;
+    padding: 0 0 2.5rem;
 }
 
 .uv__solution-header {
@@ -80,7 +89,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1.75rem;
 }
 
 .uv__solution-title {
@@ -283,8 +292,23 @@
 }
 
 @media (max-width: 600px) {
-    .uv__hero,
-    .uv__stats,
+    .uv__hero {
+        padding: 2.5rem 1.5rem 1.5rem;
+    }
+
+    .uv__hero-inner {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .uv__hero-deco {
+        display: none;
+    }
+
+    .uv__stats {
+        padding: 1.5rem 1.5rem 2rem;
+    }
+
     .uv__solution-body {
         padding-left: 1.5rem;
         padding-right: 1.5rem;

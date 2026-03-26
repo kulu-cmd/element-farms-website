@@ -103,7 +103,9 @@
 }
 
 .header__dropdown-menu {
-    position: fixed;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 50%;
     transform: translateX(-50%);
     background: white;
     border-radius: 12px;
@@ -154,10 +156,18 @@
     .header__nav-pill {
         gap: 0;
         padding: 0.4rem 0.5rem;
+        /* Prevent pill from overflowing viewport width */
+        max-width: calc(100vw - 160px);
+        overflow: hidden;
     }
 
+    /* Anchor dropdown to the right edge so it doesn't spill off-screen */
     .header__dropdown-menu {
-        min-width: 200px;
+        left: auto;
+        right: 0;
+        transform: none;
+        min-width: 180px;
+        max-width: calc(100vw - 2rem);
         padding: 0.4rem;
     }
 
@@ -171,5 +181,29 @@
     .header__logo {
         height: 44px;
         width: 120px;
+    }
+}
+
+@media (max-width: 400px) {
+    /* Hide the nav pill entirely at very small viewports to prevent overflow.
+       No hamburger menu exists, so collapsing is the graceful fallback. */
+    .header__nav-pill {
+        display: none;
+    }
+
+    /* Ensure the logo stays visible and doesn't overflow */
+    .header__logo {
+        height: 40px;
+        width: 110px;
+        max-width: calc(100vw - 2rem);
+    }
+
+    /* If the dropdown somehow renders (e.g. JS-toggled), keep it on-screen */
+    .header__dropdown-menu {
+        left: auto;
+        right: 0;
+        transform: none;
+        min-width: 180px;
+        max-width: calc(100vw - 2rem);
     }
 }

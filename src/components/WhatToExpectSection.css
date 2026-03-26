@@ -1,0 +1,181 @@
+/* ── Sub-section A ── */
+.wte-a {
+    background-color: var(--off-white);
+    padding: 4rem 2rem;
+}
+
+.wte-a__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.wte-a__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--charcoal);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.wte-a__pills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.wte-a__pill {
+    background-color: var(--orange-main);
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.wte-a__dot {
+    color: var(--charcoal);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.wte-a__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.wte-a__card {
+    background: #ffffff;
+    border: 2px solid var(--orange-main);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.wte-a__card-year {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--orange-main);
+    margin-bottom: 0.25rem;
+}
+
+.wte-a__card-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--orange-main);
+    margin-bottom: 1rem;
+}
+
+.wte-a__card-rule {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 1rem 0;
+}
+
+.wte-a__card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.wte-a__card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--charcoal);
+}
+
+.wte-a__bullet {
+    color: var(--orange-main);
+    font-size: 0.6rem;
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+}
+
+/* ── Sub-section B ── */
+.wte-b {
+    background-color: var(--green-dark);
+    padding: 4rem 2rem;
+}
+
+.wte-b__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wte-b__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.wte-b__body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .wte-a__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wte-a__dot {
+        display: none;
+    }
+
+    .wte-a {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .wte-b {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .wte-a {
+        padding: 2rem 1rem;
+    }
+
+    .wte-b {
+        padding: 2rem 1rem;
+    }
+
+    .wte-a__card {
+        padding: 1.5rem;
+    }
+
+    .wte-a__heading {
+        font-size: clamp(1.4rem, 6vw, 1.75rem);
+        margin-bottom: 1rem;
+    }
+
+    .wte-b__heading {
+        font-size: clamp(1.4rem, 6vw, 1.75rem);
+    }
+
+    .wte-a__pills {
+        gap: 0.5rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .wte-a__card-year {
+        font-size: 1.2rem;
+    }
+}

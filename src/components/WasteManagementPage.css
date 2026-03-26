@@ -1,0 +1,415 @@
+/* ============================================================
+   WasteManagementPage — BEM prefix: .waste__
+   ============================================================ */
+
+.waste {
+    background: white;
+}
+
+/* ----------------------------------------------------------
+   Hero
+   ---------------------------------------------------------- */
+.waste__hero {
+    background-color: var(--charcoal);
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.waste__hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.waste__hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.waste__hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 520px;
+    margin-top: 0.75rem;
+    line-height: 1.6;
+}
+
+.waste__hero-deco {
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   Stats
+   ---------------------------------------------------------- */
+.waste__stats {
+    background-color: var(--off-white);
+    padding: 1.5rem 3rem 2.5rem;
+}
+
+.waste__stats-grid {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.waste__stat-card {
+    background: white;
+    border: 2px solid var(--orange-main);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.waste__stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1.1;
+}
+
+.waste__stat-label {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Mission
+   ---------------------------------------------------------- */
+.waste__mission {
+    background: white;
+    padding: 4.5rem 2rem;
+    text-align: center;
+}
+
+.waste__mission-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.waste__mission-para {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(43, 43, 43, 0.85);
+    margin: 0;
+}
+
+.waste__divider {
+    width: 48px;
+    height: 3px;
+    background: var(--orange-main);
+    margin: 1.5rem auto;
+    border: none;
+}
+
+/* ----------------------------------------------------------
+   Biogas
+   ---------------------------------------------------------- */
+.waste__biogas {
+    background: var(--green-dark);
+    padding: 4.5rem 2rem;
+}
+
+.waste__biogas-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.waste__biogas-eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.waste__biogas-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: white;
+    margin: 0 0 1.1rem;
+}
+
+.waste__biogas-text {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.waste__biogas-pills {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.waste__biogas-pill {
+    background: var(--orange-main);
+    color: white;
+    border-radius: 50px;
+    padding: 0.4rem 1.1rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.waste__biogas-img {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    width: 100%;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: white;
+}
+
+.waste__biogas-img-caption {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-align: center;
+    padding: 0 1.5rem;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Energy Independence
+   ---------------------------------------------------------- */
+.waste__energy {
+    background: white;
+    padding: 4.5rem 2rem;
+    text-align: center;
+}
+
+.waste__energy-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.waste__energy-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    color: var(--charcoal);
+    margin: 0 0 0.75rem;
+}
+
+.waste__energy-sub {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--orange-main);
+    margin-bottom: 3rem;
+}
+
+.waste__energy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 0;
+}
+
+.waste__energy-card {
+    background: var(--off-white);
+    border-radius: 14px;
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+}
+
+.waste__energy-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.waste__energy-title {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.waste__energy-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: rgba(43, 43, 43, 0.7);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Did You Know
+   ---------------------------------------------------------- */
+.waste__didyouknow {
+    background: var(--off-white);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.waste__dyk-box {
+    border: 2px solid var(--orange-main);
+    border-radius: 50px;
+    padding: 2rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.waste__dyk-eyebrow {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(43, 43, 43, 0.5);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.waste__dyk-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   CTA
+   ---------------------------------------------------------- */
+.waste__cta {
+    background: var(--green-dark);
+    padding: 4.5rem 2rem;
+    text-align: center;
+}
+
+.waste__cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.waste__cta-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: white;
+    margin: 0 0 1rem;
+}
+
+.waste__cta-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.waste__cta-btn {
+    background: var(--orange-main);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.85rem 2.25rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.waste__cta-btn:hover {
+    opacity: 0.88;
+}
+
+/* ----------------------------------------------------------
+   Responsive — 900px
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+    .waste__stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .waste__biogas-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .waste__biogas-text-col {
+        order: 1;
+    }
+
+    .waste__biogas-img {
+        order: 2;
+    }
+
+    .waste__energy-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ----------------------------------------------------------
+   Responsive — 600px
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+    .waste__hero {
+        padding: 2.5rem 1.25rem 2rem;
+    }
+
+    .waste__hero-inner {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .waste__hero-deco {
+        display: none;
+    }
+
+    .waste__stats {
+        padding: 1.5rem 1.25rem 2rem;
+    }
+
+    .waste__energy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .waste__dyk-box {
+        border-radius: 20px;
+        padding: 1.5rem;
+    }
+
+    .waste__mission {
+        padding: 3rem 1.25rem;
+    }
+
+    .waste__cta {
+        padding: 3rem 1.25rem;
+    }
+}

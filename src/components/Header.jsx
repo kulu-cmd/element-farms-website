@@ -7,7 +7,6 @@ const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [solutionsOpen, setSolutionsOpen] = useState(false)
     const solutionsPinnedRef = useRef(false)
-    const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 })
     const triggerRef = useRef(null)
 
     useEffect(() => {
@@ -30,24 +29,13 @@ const Header = () => {
         return () => document.removeEventListener('mousedown', onDocMouseDown)
     }, [solutionsOpen])
 
-    const computeDropdownPosition = () => {
-        if (!triggerRef.current) return
-        const rect = triggerRef.current.getBoundingClientRect()
-        setDropdownPos({
-            top: rect.bottom + 8,
-            left: rect.left + rect.width / 2,
-        })
-    }
-
     const handleMouseEnter = () => {
-        computeDropdownPosition()
         solutionsPinnedRef.current = false
         setSolutionsOpen(true)
     }
 
     const handleSolutionsClick = () => {
         if (!solutionsOpen) {
-            computeDropdownPosition()
             solutionsPinnedRef.current = true
             setSolutionsOpen(true)
             return
@@ -120,7 +108,6 @@ const Header = () => {
                         {solutionsOpen && (
                             <div
                                 className="header__dropdown-menu header__dropdown-menu--visible"
-                                style={{ top: dropdownPos.top, left: dropdownPos.left }}
                             >
                                 <Link
                                     to="/solutions/land-rejuvenation"
@@ -140,7 +127,27 @@ const Header = () => {
                                         solutionsPinnedRef.current = false
                                     }}
                                 >
-                                    Pest & Sunburn
+                                    UV Protection
+                                </Link>
+                                <Link
+                                    to="/solutions/anti-flooding"
+                                    className="header__dropdown-item"
+                                    onClick={() => {
+                                        setSolutionsOpen(false)
+                                        solutionsPinnedRef.current = false
+                                    }}
+                                >
+                                    Anti-Flooding
+                                </Link>
+                                <Link
+                                    to="/solutions/waste-management"
+                                    className="header__dropdown-item"
+                                    onClick={() => {
+                                        setSolutionsOpen(false)
+                                        solutionsPinnedRef.current = false
+                                    }}
+                                >
+                                    Waste Management
                                 </Link>
                             </div>
                         )}

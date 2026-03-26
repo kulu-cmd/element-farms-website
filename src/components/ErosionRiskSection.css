@@ -1,13 +1,13 @@
 .erosion {
-    background-color: #f6f6f6;
-    padding-bottom: 5rem;
+    background-color: var(--charcoal);
+    padding-bottom: 3.5rem;
 }
 
 .erosion__header {
-    background-color: #e6e6e6;
+    background-color: rgba(0, 0, 0, 0.25);
     padding: 1.5rem 2rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .erosion__title {
@@ -31,13 +31,13 @@
 .erosion__content {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2.5rem;
 }
 
 .erosion__stat-text {
     font-family: var(--font-body);
     font-size: 1.05rem;
-    color: var(--charcoal);
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
@@ -66,7 +66,7 @@
 .erosion__stat-subtext {
     font-family: var(--font-body);
     font-size: 0.84rem;
-    color: var(--charcoal);
+    color: rgba(255, 255, 255, 0.65);
     margin: 0;
 }
 
@@ -90,7 +90,8 @@
     width: 100%;
     height: auto;
     display: block;
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
+    filter: brightness(0.9) contrast(1.1);
 }
 
 .erosion__circle {
@@ -104,7 +105,8 @@
     font-family: var(--font-body);
     font-weight: 500;
     font-size: 0.77rem;
-    mix-blend-mode: multiply;
+    mix-blend-mode: normal;
+    opacity: 0.85;
 }
 
 .erosion__circle--limpopo {
@@ -133,12 +135,72 @@
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
+
     .erosion__stat {
         text-align: center;
     }
-    
+
     .erosion__stat-text {
         justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .erosion__container {
+        padding: 0 1.25rem;
+        gap: 2rem;
+    }
+
+    /* Text column first, map below */
+    .erosion__content {
+        order: 1;
+        gap: 1.75rem;
+    }
+
+    .erosion__map-side {
+        order: 2;
+        width: 100%;
+    }
+
+    .erosion__map-container {
+        max-width: 100%;
+    }
+
+    .erosion__stat-text {
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .erosion__stat-subtext {
+        text-align: center;
+    }
+
+    .erosion__highlight-large {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Shrink the absolute circles so they don't overflow */
+    .erosion__circle--limpopo {
+        width: 120px;
+        height: 120px;
+        font-size: 0.65rem;
+    }
+
+    .erosion__circle--kzn {
+        width: 150px;
+        height: 150px;
+        font-size: 0.65rem;
+    }
+
+    .erosion__circle--eastern-cape {
+        width: 170px;
+        height: 170px;
+        font-size: 0.65rem;
+    }
+
+    .erosion__header {
+        padding: 1.25rem 1rem;
     }
 }

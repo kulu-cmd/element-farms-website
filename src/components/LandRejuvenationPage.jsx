@@ -1,25 +1,35 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import StatsSection from './StatsSection'
 import ErosionRiskSection from './ErosionRiskSection'
-import OurApproachSection from './OurApproachSection'
-import CallToAction from './CallToAction'
+import ProblemSection from './ProblemSection'
+import TailoredSolutionSection from './TailoredSolutionSection'
+import VideoSection from './VideoSection'
+import WhatToExpectSection from './WhatToExpectSection'
 import Footer from './Footer'
 import Header from './Header'
 import './LandRejuvenationPage.css'
 
 const LandRejuvenationPage = () => {
+    const { scrollY } = useScroll()
+    const heroY = useTransform(scrollY, [0, 400], [0, 80])
+    const heroOpacity = useTransform(scrollY, [0, 350], [1, 0])
+
     return (
         <div className="land-regen">
             <Header />
+
             {/* Hero Banner */}
             <section className="land-regen__hero">
-                <div className="land-regen__hero-inner">
+                <motion.div
+                    className="land-regen__hero-inner"
+                    style={{ y: heroY, opacity: heroOpacity }}
+                >
                     <motion.div
                         className="land-regen__icon"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
+                        initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
+                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
                     >
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="2"/>
@@ -30,37 +40,56 @@ const LandRejuvenationPage = () => {
 
                     <motion.h1
                         className="land-regen__title"
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
+                        transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                     >
                         Land Rejuvenation
                     </motion.h1>
 
                     <motion.p
                         className="land-regen__subtitle"
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 24 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
+                        transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
                     >
-                        Not all soil is created equal. We help farms build regenerative systems that
-                        restore soil biology, unlock nutrients, and break free from chemical dependence.
+                        We teach and implement highly effective regenerative farming systems to small and mid-size farms. Our goal is to empower farmers and not rely on large corporation supply chains of expensive chemical fertiliser.
                     </motion.p>
-                </div>
+
+                    <motion.div
+                        className="land-regen__hero-scroll-hint"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                    >
+                        <motion.span
+                            animate={{ y: [0, 6, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+                        >
+                            ↓
+                        </motion.span>
+                    </motion.div>
+                </motion.div>
             </section>
 
-            {/* Soil Stats — South African Soil is under pressure */}
+            {/* Soil Stats */}
             <StatsSection />
 
-            {/* Problem heading + Erosion Risk */}
-            <div className="land-regen__problem-heading">
-                <h2>The Problem With Modern Farming</h2>
-            </div>
+            {/* Erosion Risk */}
             <ErosionRiskSection />
 
-            {/* Approach & rest of page */}
-            <OurApproachSection />
-            <CallToAction />
+            {/* Problem Stats */}
+            <ProblemSection />
+
+            {/* Our Process */}
+            <TailoredSolutionSection />
+
+            {/* Video */}
+            <VideoSection />
+
+            {/* What to Expect */}
+            <WhatToExpectSection />
+
             <Footer />
         </div>
     )
