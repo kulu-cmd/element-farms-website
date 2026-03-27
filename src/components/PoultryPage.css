@@ -1,0 +1,767 @@
+/* ============================================================
+   PoultryPage — BEM prefix: .poultry__
+   ============================================================ */
+
+.poultry {
+    background: white;
+}
+
+/* ----------------------------------------------------------
+   Hero
+   ---------------------------------------------------------- */
+.poultry__hero {
+    background-color: var(--charcoal);
+    padding: 7rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.poultry__hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.poultry__hero-text {
+    display: flex;
+    flex-direction: column;
+    max-width: 580px;
+}
+
+.poultry__hero-badge {
+    display: inline-block;
+    border: 1.5px solid var(--orange-main);
+    border-radius: 50px;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 1rem;
+    width: fit-content;
+}
+
+.poultry__hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    margin: 0;
+    line-height: 1.1;
+}
+
+.poultry__hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 520px;
+    margin-top: 0.85rem;
+    line-height: 1.6;
+}
+
+.poultry__hero-scroll-hint {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: 1.25rem;
+    display: block;
+}
+
+.poultry__hero-deco {
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   Problem Intro
+   ---------------------------------------------------------- */
+.poultry__problem {
+    background: var(--orange-main);
+    padding: 3.5rem 2rem 2rem;
+}
+
+.poultry__problem-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.poultry__problem-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 0.9rem;
+}
+
+.poultry__problem-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    font-weight: 900;
+    color: #fff;
+    margin: 0 0 1.25rem;
+    line-height: 1.25;
+}
+
+.poultry__problem-rule {
+    width: 56px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    transform-origin: left center;
+    border: none;
+}
+
+/* ----------------------------------------------------------
+   Stats
+   ---------------------------------------------------------- */
+.poultry__stats {
+    background-color: var(--orange-main);
+    padding: 0.5rem 3rem 3.5rem;
+}
+
+.poultry__stats-grid {
+    max-width: var(--page-max-width, 1100px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.poultry__stat-card {
+    background: white;
+    border: 2px solid var(--orange-main);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.poultry__stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1.1;
+}
+
+.poultry__stat-label {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Ammonia Danger
+   ---------------------------------------------------------- */
+.poultry__ammonia {
+    background-color: var(--charcoal);
+    padding: 4.5rem 2rem;
+}
+
+.poultry__ammonia-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.poultry__ammonia-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.poultry__ammonia-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.85rem;
+}
+
+.poultry__ammonia-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    color: white;
+    margin: 0 0 1.5rem;
+    line-height: 1.3;
+}
+
+.poultry__ammonia-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.poultry__ammonia-list-item {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
+.poultry__ammonia-bullet {
+    color: var(--orange-main);
+    font-weight: 900;
+    flex-shrink: 0;
+    line-height: 1.6;
+}
+
+.poultry__ammonia-visual {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--orange-main);
+    border-radius: 16px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.poultry__ammonia-symbol {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1;
+}
+
+.poultry__ammonia-visual-title {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: white;
+    margin: 0;
+}
+
+.poultry__ammonia-visual-note {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Our Solution
+   ---------------------------------------------------------- */
+.poultry__solution {
+    background: white;
+    padding: 0 0 3rem;
+}
+
+.poultry__solution-header {
+    background-color: #e6e6e6;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.poultry__solution-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.26rem, 2.1vw, 1.75rem);
+    font-weight: 800;
+    color: var(--orange-main);
+    margin: 0;
+}
+
+.poultry__solution-tags {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    background-color: var(--orange-main);
+    border-radius: 50px;
+    padding: 0.4rem 1rem;
+    flex-wrap: wrap;
+}
+
+.poultry__tag {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+}
+
+.poultry__tag-dot {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.poultry__solution-body {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.poultry__solution-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--orange-main);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+}
+
+.poultry__solution-intro {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--charcoal);
+    opacity: 0.85;
+    margin-bottom: 2rem;
+}
+
+.poultry__product-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.poultry__product-img-placeholder {
+    width: 160px;
+    height: 200px;
+    border: 2px dashed var(--orange-main);
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(243, 111, 33, 0.04);
+}
+
+.poultry__product-img-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: center;
+}
+
+.poultry__product-desc {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--charcoal);
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Trial Results
+   ---------------------------------------------------------- */
+.poultry__trials {
+    background-color: var(--charcoal);
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.poultry__trials-inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.poultry__trials-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.9rem;
+}
+
+.poultry__trials-heading {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: white;
+    margin: 0 0 2.5rem;
+    line-height: 1.2;
+}
+
+.poultry__trials-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.poultry__trial-card {
+    background: white;
+    border: 2px solid var(--orange-main);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.poultry__trial-value {
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    font-weight: 900;
+    color: var(--orange-main);
+    line-height: 1;
+}
+
+.poultry__trial-label {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    line-height: 1.55;
+    margin: 0;
+    text-align: center;
+}
+
+.poultry__trials-quote {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Application Cards
+   ---------------------------------------------------------- */
+.poultry__application {
+    background: var(--off-white);
+    padding: 4.5rem 2rem;
+}
+
+.poultry__application-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.poultry__application-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange-main);
+    margin-bottom: 0.6rem;
+}
+
+.poultry__application-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    color: var(--charcoal);
+    margin: 0 0 2.25rem;
+}
+
+.poultry__application-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.poultry__app-card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s ease;
+}
+
+.poultry__app-card:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.poultry__app-card-accent {
+    height: 6px;
+    background: var(--card-accent, var(--orange-main));
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.poultry__app-card-icon {
+    font-size: 2rem;
+    margin: 1.5rem 1.5rem 0.5rem;
+}
+
+.poultry__app-card-heading {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--charcoal);
+    margin: 0 1.5rem 0.25rem;
+}
+
+.poultry__app-card-sub {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: rgba(43, 43, 43, 0.5);
+    margin: 0 1.5rem 1rem;
+    font-style: italic;
+}
+
+.poultry__app-card-list {
+    list-style: none;
+    padding: 0 1.5rem 1.75rem;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.poultry__app-card-item {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.poultry__app-card-check {
+    color: var(--orange-main);
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1.5;
+}
+
+/* ----------------------------------------------------------
+   Image Placeholder Strip
+   ---------------------------------------------------------- */
+.poultry__images {
+    background: white;
+    padding: 4rem 2rem;
+}
+
+.poultry__images-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.poultry__images-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.poultry__image-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.poultry__img-placeholder {
+    width: 100%;
+    height: 200px;
+    background: #f0f0f0;
+    border: 2px dashed var(--orange-main);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poultry__img-placeholder-label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: center;
+    padding: 0 1rem;
+    font-style: italic;
+}
+
+.poultry__image-caption {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Did You Know
+   ---------------------------------------------------------- */
+.poultry__didyouknow {
+    background: var(--off-white);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.poultry__dyk-box {
+    border: 2px solid var(--orange-main);
+    border-radius: 50px;
+    padding: 2rem 3rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.poultry__dyk-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(43, 43, 43, 0.5);
+    margin-bottom: 0.75rem;
+}
+
+.poultry__dyk-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Responsive — 900px
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+    .poultry__stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .poultry__ammonia-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .poultry__ammonia-visual {
+        height: 220px;
+    }
+
+    .poultry__trials-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .poultry__application-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .poultry__images-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .poultry__product-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .poultry__product-img-placeholder {
+        width: 100%;
+        height: 160px;
+    }
+}
+
+/* ----------------------------------------------------------
+   Responsive — 600px
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+    .poultry__hero {
+        padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .poultry__hero-inner {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    .poultry__hero-deco {
+        display: none;
+    }
+
+    .poultry__problem {
+        padding: 2.5rem 1.5rem 1.5rem;
+    }
+
+    .poultry__stats {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .poultry__stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .poultry__ammonia {
+        padding: 3rem 1.5rem;
+    }
+
+    .poultry__solution-header {
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .poultry__solution-body {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .poultry__trials {
+        padding: 3.5rem 1.5rem;
+    }
+
+    .poultry__trials-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .poultry__application {
+        padding: 3rem 1.5rem;
+    }
+
+    .poultry__application-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .poultry__images {
+        padding: 3rem 1.5rem;
+    }
+
+    .poultry__images-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .poultry__dyk-box {
+        border-radius: 20px;
+        padding: 1.5rem;
+    }
+
+    .poultry__didyouknow {
+        padding: 3rem 1.5rem;
+    }
+}

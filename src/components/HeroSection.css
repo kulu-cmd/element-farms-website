@@ -33,7 +33,7 @@
     max-width: var(--page-max-width);
     /* Centered to match header width */
     margin: 0 auto;
-    padding: 3rem var(--page-side-padding) 2rem;
+    padding: 7rem var(--page-side-padding) 2rem;
     /* Reduced vertical and horizontal padding */
     gap: 1.5rem;
 }
@@ -137,8 +137,9 @@
 @media (max-width: 768px) {
     .hero__content {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 3.5rem 1.5rem 0;
+        align-items: center;
+        text-align: center;
+        padding: 4.5rem 2rem 0;
         gap: 0;
     }
 
@@ -146,7 +147,18 @@
         flex: none;
         width: 100%;
         max-width: 100%;
-        padding-bottom: 1.5rem;
+        padding-bottom: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__headline {
+        max-width: 100%;
+    }
+
+    .hero__subtext {
+        max-width: 480px;
     }
 
     .hero__image-wrap {
@@ -157,45 +169,43 @@
     }
 
     .hero__flower {
-        max-width: 480px;
+        max-width: 420px;
         margin: 0 auto;
     }
 }
 
 @media (max-width: 480px) {
     .hero__content {
-        padding: 2rem 1.25rem 0;
+        padding: 4rem 1.5rem 0;
     }
 
     .hero__headline {
-        font-size: 1.68rem;
+        font-size: 1.9rem;
         margin-bottom: 1rem;
+        line-height: 1.1;
     }
 
     .hero__subtext {
         font-size: 0.9rem;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.5rem;
     }
 
     .hero__cta {
-        padding: 0.85rem 1.8rem;
-        /* Fix: original 0.546rem is unreadably tiny — reset to legible size */
+        padding: 0.9rem 2rem;
         font-size: 0.75rem;
-        width: 100%;
-        justify-content: center;
     }
 
     .hero__flower {
-        max-width: 320px;
+        max-width: 300px;
     }
 }
 
 @media (max-width: 360px) {
-    .hero__headline {
-        font-size: 1.45rem;
+    .hero__content {
+        padding: 3.5rem 1.25rem 0;
     }
 
-    .hero__content {
-        padding: 1.5rem 1rem 0;
+    .hero__headline {
+        font-size: 1.6rem;
     }
 }

@@ -6,19 +6,13 @@
 }
 
 .cta__container {
-    max-width: var(--page-max-width);
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.cta__pre-heading {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    align-self: flex-start;
-    margin-bottom: 1rem;
-}
 
 .cta__heading {
     font-family: var(--font-heading);
@@ -28,12 +22,6 @@
     margin-bottom: 1.25rem;
 }
 
-.cta__description {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1.75rem;
-}
 
 .cta__buttons-wrapper {
     display: flex;
@@ -62,16 +50,6 @@
 @media (max-width: 768px) {
     .cta {
         padding: 2.5rem 1.5rem;
-    }
-
-    .cta__description br {
-        display: none;
-    }
-
-    .cta__pre-heading {
-        /* Reset left-align so it centres with the rest of the column on mobile */
-        align-self: center;
-        text-align: center;
     }
 
     .cta__buttons-wrapper {

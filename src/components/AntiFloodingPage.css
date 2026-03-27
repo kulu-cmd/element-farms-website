@@ -5,7 +5,7 @@
 /* Hero */
 .flood__hero {
     background-color: var(--charcoal);
-    padding: 4rem 2rem 3rem;
+    padding: 7rem 2rem 3rem;
     position: relative;
     overflow: hidden;
 }

@@ -1,0 +1,848 @@
+/* ============================================================
+   OrganicFarmingPage — BEM prefix: .organic__
+   ============================================================ */
+
+.organic {
+    background: white;
+}
+
+/* ----------------------------------------------------------
+   Hero
+   ---------------------------------------------------------- */
+.organic__hero {
+    background-color: var(--charcoal);
+    padding: 7rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.organic__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 80%, rgba(14, 90, 54, 0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(14, 90, 54, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.organic__hero-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.organic__hero-text {
+    max-width: 600px;
+}
+
+.organic__hero-badge {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    background: rgba(14, 90, 54, 0.15);
+    border: 1px solid rgba(14, 90, 54, 0.4);
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1.1rem;
+}
+
+.organic__hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight: 900;
+    color: white;
+    margin: 0 0 1.1rem;
+    line-height: 1.05;
+}
+
+.organic__hero-title em {
+    color: var(--orange-main);
+    font-style: normal;
+}
+
+.organic__hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.65;
+    max-width: 500px;
+    margin: 0 0 2rem;
+}
+
+.organic__hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--green-dark);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px rgba(14, 90, 54, 0.35);
+}
+
+.organic__hero-cta:hover {
+    background: var(--orange-main);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(243, 111, 33, 0.35);
+}
+
+.organic__hero-deco {
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* ----------------------------------------------------------
+   Stats / Why
+   ---------------------------------------------------------- */
+.organic__stats {
+    background-color: var(--orange-main);
+    padding: 4rem 2rem;
+}
+
+.organic__stats-intro {
+    max-width: var(--page-max-width);
+    margin: 0 auto 2.5rem;
+}
+
+.organic__stats-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.75rem;
+}
+
+.organic__stats-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+}
+
+.organic__stats-rule {
+    width: 60px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+}
+
+.organic__stats-grid {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.organic__stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.organic__stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 900;
+    color: var(--green-dark);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+}
+
+.organic__stat-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: rgba(43, 43, 43, 0.7);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Offerings
+   ---------------------------------------------------------- */
+.organic__offerings {
+    background: var(--off-white);
+    padding: 5rem 2rem;
+}
+
+.organic__offerings-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+}
+
+.organic__offerings-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 2.5rem;
+}
+
+.organic__offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.organic__offering-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.25rem;
+    border-top: 4px solid var(--card-accent, var(--green-dark));
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.organic__offering-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.organic__offering-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.organic__offering-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.organic__offering-desc {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: rgba(43, 43, 43, 0.7);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.organic__offering-points {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.organic__offering-points li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--charcoal);
+}
+
+.organic__offering-check {
+    color: var(--card-accent, var(--green-dark));
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------
+   Who it's for
+   ---------------------------------------------------------- */
+.organic__who {
+    background: var(--charcoal);
+    padding: 5rem 2rem;
+}
+
+.organic__who-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.organic__who-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 0.8rem;
+}
+
+.organic__who-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+}
+
+.organic__who-body {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.organic__who-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.organic__who-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.organic__who-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(14, 90, 54, 0.4);
+}
+
+.organic__who-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.organic__who-card-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 0.3rem;
+}
+
+.organic__who-card-desc {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Steps
+   ---------------------------------------------------------- */
+.organic__steps {
+    background: white;
+    padding: 5rem 2rem;
+}
+
+.organic__steps-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+}
+
+.organic__steps-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0 0 2.5rem;
+    text-align: center;
+}
+
+.organic__steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+}
+
+.organic__steps-grid::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 2.5rem;
+    right: 2.5rem;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.organic__step {
+    position: relative;
+    padding-top: 1rem;
+}
+
+.organic__step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--green-dark);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.organic__step-title {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin: 0 0 0.5rem;
+}
+
+.organic__step-desc {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: rgba(43, 43, 43, 0.6);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Did you know
+   ---------------------------------------------------------- */
+.organic__dyk {
+    background: var(--off-white);
+    padding: 3rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.organic__dyk-box {
+    max-width: 720px;
+    border: 2px solid var(--green-dark);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+}
+
+.organic__dyk-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 0.75rem;
+}
+
+.organic__dyk-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.organic__dyk-text strong {
+    color: var(--green-dark);
+}
+
+/* ----------------------------------------------------------
+   Form Section
+   ---------------------------------------------------------- */
+.organic__form-section {
+    background: var(--charcoal);
+    padding: 5rem 2rem;
+}
+
+.organic__form-inner {
+    max-width: var(--page-max-width);
+    margin: 0 auto;
+}
+
+.organic__form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.organic__form-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 900;
+    color: white;
+    margin: 0 0 0.75rem;
+}
+
+.organic__form-sub {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0;
+}
+
+.organic__form-body {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.organic__form-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+}
+
+.organic__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.organic__form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.organic__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.organic__form-group label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+}
+
+.organic__optional {
+    font-weight: 400;
+    text-transform: none;
+    color: rgba(43, 43, 43, 0.4);
+    font-family: var(--font-body);
+    letter-spacing: 0;
+}
+
+.organic__form-group input,
+.organic__form-group textarea {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--charcoal);
+    background: var(--off-white);
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    resize: vertical;
+}
+
+.organic__form-group input:focus,
+.organic__form-group textarea:focus {
+    border-color: var(--green-dark);
+    box-shadow: 0 0 0 3px rgba(14, 90, 54, 0.1);
+}
+
+.organic__form-group input::placeholder,
+.organic__form-group textarea::placeholder {
+    color: rgba(43, 43, 43, 0.35);
+}
+
+.organic__checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 0.25rem;
+}
+
+.organic__interest-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    background: var(--off-white);
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 50px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.organic__interest-pill:hover {
+    border-color: var(--green-dark);
+    color: var(--green-dark);
+}
+
+.organic__interest-pill--active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: white;
+}
+
+.organic__interest-check {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.organic__submit {
+    align-self: flex-start;
+    background: var(--green-dark);
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+    box-shadow: 0 4px 20px rgba(14, 90, 54, 0.3);
+    margin-top: 0.5rem;
+}
+
+.organic__submit:hover {
+    background: var(--orange-main);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(243, 111, 33, 0.35);
+}
+
+.organic__submit:active {
+    transform: translateY(0);
+}
+
+/* Success state */
+.organic__success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    gap: 1rem;
+}
+
+.organic__success-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.organic__success h3 {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--charcoal);
+    margin: 0;
+}
+
+.organic__success p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: rgba(43, 43, 43, 0.6);
+    margin: 0;
+}
+
+/* Contact info panel */
+.organic__form-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: 6rem;
+}
+
+.organic__contact-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    color: white;
+}
+
+.organic__contact-eyebrow {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 0.7rem;
+}
+
+.organic__contact-name {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0 0 0.2rem;
+}
+
+.organic__contact-role {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 0 1.4rem;
+}
+
+.organic__contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.organic__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a.organic__contact-item:hover {
+    color: var(--orange-main);
+}
+
+.organic__contact-note {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 3px solid var(--green-dark);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+}
+
+.organic__contact-note p {
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.organic__contact-note strong {
+    color: white;
+}
+
+/* ----------------------------------------------------------
+   Responsive
+   ---------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .organic__steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .organic__steps-grid::before {
+        display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .organic__offerings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .organic__who-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .organic__form-body {
+        grid-template-columns: 1fr;
+    }
+
+    .organic__form-contact {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .organic__contact-card {
+        flex: 1 1 260px;
+    }
+
+    .organic__contact-note {
+        flex: 1 1 200px;
+    }
+}
+
+@media (max-width: 640px) {
+    .organic__hero {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .organic__hero-deco {
+        display: none;
+    }
+
+    .organic__stats,
+    .organic__offerings,
+    .organic__who,
+    .organic__steps,
+    .organic__form-section {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    .organic__stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .organic__form-card {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .organic__form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .organic__submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .organic__steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .organic__form-contact {
+        flex-direction: column;
+    }
+}

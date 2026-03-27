@@ -6,8 +6,9 @@ import './Header.css'
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [solutionsOpen, setSolutionsOpen] = useState(false)
-    const solutionsPinnedRef = useRef(false)
+    const [contactOpen, setContactOpen] = useState(false)
     const triggerRef = useRef(null)
+    const contactTriggerRef = useRef(null)
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20)
@@ -16,31 +17,26 @@ const Header = () => {
     }, [])
 
     useEffect(() => {
-        if (!solutionsOpen) return
+        if (!solutionsOpen && !contactOpen) return
 
         const onDocMouseDown = (e) => {
-            if (!triggerRef.current) return
-            if (triggerRef.current.contains(e.target)) return
+            if (triggerRef.current && triggerRef.current.contains(e.target)) return
+            if (contactTriggerRef.current && contactTriggerRef.current.contains(e.target)) return
             setSolutionsOpen(false)
-            solutionsPinnedRef.current = false
+            setContactOpen(false)
         }
 
         document.addEventListener('mousedown', onDocMouseDown)
         return () => document.removeEventListener('mousedown', onDocMouseDown)
-    }, [solutionsOpen])
-
-    const handleMouseEnter = () => {
-        solutionsPinnedRef.current = false
-        setSolutionsOpen(true)
-    }
+    }, [solutionsOpen, contactOpen])
 
     const handleSolutionsClick = () => {
-        if (!solutionsOpen) {
-            solutionsPinnedRef.current = true
-            setSolutionsOpen(true)
-            return
-        }
-        solutionsPinnedRef.current = false
+        setSolutionsOpen(prev => !prev)
+        setContactOpen(false)
+    }
+
+    const handleContactClick = () => {
+        setContactOpen(prev => !prev)
         setSolutionsOpen(false)
     }
 
@@ -86,11 +82,6 @@ const Header = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.28 }}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={() => {
-                            if (solutionsPinnedRef.current) return
-                            setSolutionsOpen(false)
-                        }}
                         onClick={handleSolutionsClick}
                         role="button"
                         tabIndex={0}
@@ -106,62 +97,130 @@ const Header = () => {
                         </span>
 
                         {solutionsOpen && (
-                            <div
-                                className="header__dropdown-menu header__dropdown-menu--visible"
-                            >
-                                <Link
-                                    to="/solutions/land-rejuvenation"
-                                    className="header__dropdown-item"
-                                    onClick={() => {
-                                        setSolutionsOpen(false)
-                                        solutionsPinnedRef.current = false
-                                    }}
-                                >
-                                    Land Rejuvenation
-                                </Link>
-                                <Link
-                                    to="/solutions/uv-protection"
-                                    className="header__dropdown-item"
-                                    onClick={() => {
-                                        setSolutionsOpen(false)
-                                        solutionsPinnedRef.current = false
-                                    }}
-                                >
-                                    UV Protection
-                                </Link>
-                                <Link
-                                    to="/solutions/anti-flooding"
-                                    className="header__dropdown-item"
-                                    onClick={() => {
-                                        setSolutionsOpen(false)
-                                        solutionsPinnedRef.current = false
-                                    }}
-                                >
-                                    Anti-Flooding
-                                </Link>
-                                <Link
-                                    to="/solutions/waste-management"
-                                    className="header__dropdown-item"
-                                    onClick={() => {
-                                        setSolutionsOpen(false)
-                                        solutionsPinnedRef.current = false
-                                    }}
-                                >
-                                    Waste Management
-                                </Link>
+                            <div className="header__dropdown-menu header__dropdown-menu--wide header__dropdown-menu--visible">
+
+                                {/* Agriculture */}
+                                <div className="header__dropdown-section">
+                                    <span className="header__dropdown-section-label header__dropdown-section-label--green">
+                                        Agriculture
+                                    </span>
+                                    <Link to="/solutions/land-rejuvenation" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
+                                        <span className="header__dropdown-item-icon">🌱</span>
+                                        <span className="header__dropdown-item-body">
+                                            <strong>Land Rejuvenation</strong>
+                                            <span>Soil restoration &amp; organic matter</span>
+                                        </span>
+                                    </Link>
+                                    <Link to="/solutions/anti-flooding" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
+                                        <span className="header__dropdown-item-icon">💧</span>
+                                        <span className="header__dropdown-item-body">
+                                            <strong>Anti-Flooding Systems</strong>
+                                            <span>Water retention &amp; drainage</span>
+                                        </span>
+                                    </Link>
+                                    <Link to="/solutions/uv-protection" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
+                                        <span className="header__dropdown-item-icon">☀️</span>
+                                        <span className="header__dropdown-item-body">
+                                            <strong>Sun &amp; Pest Protection</strong>
+                                            <span>UV shielding for crops &amp; orchards</span>
+                                        </span>
+                                    </Link>
+                                </div>
+
+                                <div className="header__dropdown-divider" />
+
+                                {/* Renewable Energy */}
+                                <div className="header__dropdown-section">
+                                    <span className="header__dropdown-section-label header__dropdown-section-label--orange">
+                                        Renewable Energy
+                                    </span>
+                                    <Link to="/solutions/waste-management" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
+                                        <span className="header__dropdown-item-icon">⚡</span>
+                                        <span className="header__dropdown-item-body">
+                                            <strong>Waste Management</strong>
+                                            <span>Biogas &amp; organic fertiliser</span>
+                                        </span>
+                                    </Link>
+                                </div>
+
+                                <div className="header__dropdown-divider" />
+
+                                {/* Broiler Farms */}
+                                <div className="header__dropdown-section">
+                                    <span className="header__dropdown-section-label header__dropdown-section-label--charcoal">
+                                        Broiler Farms
+                                    </span>
+                                    <Link to="/solutions/poultry" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
+                                        <span className="header__dropdown-item-icon">🐔</span>
+                                        <span className="header__dropdown-item-body">
+                                            <strong>Poultry Solutions</strong>
+                                            <span>Ammonia control &amp; litter management</span>
+                                        </span>
+                                    </Link>
+                                </div>
+
                             </div>
                         )}
                     </motion.div>
 
-                    <motion.a
-                        href="#contact-us"
-                        className="header__nav-link"
+                    <motion.div
+                        ref={contactTriggerRef}
+                        className={`header__nav-dropdown-wrapper${contactOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.36 }}
+                        onClick={handleContactClick}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                handleContactClick()
+                            }
+                        }}
                     >
-                        Contact Us
-                    </motion.a>
+                        <span className="header__nav-link header__nav-link--dropdown">
+                            Contact Us <span className="header__dropdown-icon">▾</span>
+                        </span>
+
+                        {contactOpen && (
+                            <div className="header__dropdown-menu header__dropdown-menu--orange header__dropdown-menu--visible">
+                                <Link
+                                    to="/contact/poultry-dairy"
+                                    className="header__dropdown-item header__dropdown-item--orange"
+                                    onClick={() => setContactOpen(false)}
+                                >
+                                    <span className="header__dropdown-item-icon">🐔</span>
+                                    <span className="header__dropdown-item-body">
+                                        <strong>Poultry &amp; Dairies</strong>
+                                        <span>Biogas, broiler &amp; waste solutions</span>
+                                    </span>
+                                </Link>
+                                <Link
+                                    to="/contact/agri-farms"
+                                    className="header__dropdown-item header__dropdown-item--orange"
+                                    onClick={() => setContactOpen(false)}
+                                >
+                                    <span className="header__dropdown-item-icon">🌾</span>
+                                    <span className="header__dropdown-item-body">
+                                        <strong>Agri Farms</strong>
+                                        <span>Land, UV, flooding &amp; soil solutions</span>
+                                    </span>
+                                </Link>
+                                <Link
+                                    to="/contact/organic"
+                                    className="header__dropdown-item header__dropdown-item--orange"
+                                    onClick={() => setContactOpen(false)}
+                                >
+                                    <span className="header__dropdown-item-icon">🌿</span>
+                                    <span className="header__dropdown-item-body">
+                                        <strong>Grow Organically</strong>
+                                        <span>Natural pest control &amp; fertiliser</span>
+                                    </span>
+                                </Link>
+                            </div>
+                        )}
+                    </motion.div>
                 </div>
             </nav>
             </div>
