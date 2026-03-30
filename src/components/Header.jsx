@@ -154,6 +154,16 @@ const Header = () => {
                     </motion.div>
 
                     <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.32 }}
+                    >
+                        <Link to="/education" className="header__nav-link">
+                            Education
+                        </Link>
+                    </motion.div>
+
+                    <motion.div
                         ref={contactTriggerRef}
                         className={`header__nav-dropdown-wrapper${contactOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}
                         initial={{ opacity: 0, y: -10 }}

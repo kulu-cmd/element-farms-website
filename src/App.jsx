@@ -14,6 +14,8 @@ import WasteManagementPage from './components/WasteManagementPage'
 import PoultryPage from './components/PoultryPage'
 import ContactPage from './components/ContactPage'
 import OrganicFarmingPage from './components/OrganicFarmingPage'
+import EducationPage from './components/EducationPage'
+import ArticlePage from './components/ArticlePage'
 import './App.css'
 
 function HomePage() {
@@ -45,6 +47,8 @@ function App() {
                 <Route path="/contact/poultry-dairy" element={<ContactPage type="poultry-dairy" />} />
                 <Route path="/contact/agri-farms" element={<ContactPage type="agri-farms" />} />
                 <Route path="/contact/organic" element={<OrganicFarmingPage />} />
+                <Route path="/education" element={<EducationPage />} />
+                <Route path="/education/:slug" element={<ArticlePage />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>
         </BrowserRouter>
