@@ -22,7 +22,7 @@ const steps = [
                 <path d="M24 8 C24 8 12 22 12 30 C12 37 17.4 42 24 42 C30.6 42 36 37 36 30 C36 22 24 8 24 8Z" stroke="white" strokeWidth="2.5" strokeLinejoin="round"/>
             </svg>
         ),
-        body: 'A tailored system for your farm to treat 25% of your land, starting with highest-impact zones.',
+        body: 'A tailored system for your farm to treat ~25% of your land, starting with highest-impact zones.',
     },
     {
         id: 'recycle',

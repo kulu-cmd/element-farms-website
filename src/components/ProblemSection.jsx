@@ -4,11 +4,11 @@ import './ProblemSection.css'
 
 const stats = [
     {
-        value: '70%',
-        label: 'of SA farmland shows signs of degradation',
+        value: '~70%',
+        label: 'of South Africa farmland shows signs of degradation',
     },
     {
-        value: '2–5%',
+        value: '~2–5%',
         label: 'annual yield loss from poor soil health',
     },
     {

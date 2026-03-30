@@ -8,7 +8,7 @@ const cards = [
         label: 'Foundation',
         bullets: [
             'Targeting high-value crop zones, underperforming areas, and nursery',
-            '30% reduction in fertiliser cost on targeted land',
+            '~30% reduction in fertiliser cost on targeted land',
             'Improved yield and quality on treated zones',
         ],
     },
@@ -16,7 +16,7 @@ const cards = [
         year: 'Year 2+',
         label: 'Soil Recovery',
         bullets: [
-            'Scaling to treat larger parts of the land — up to 30%',
+            'Scaling to treat larger parts of the land — up to ~30%',
             'Soil microbiology restored and actively cycling nutrients',
             'Reduced chemical dependency across treated areas',
         ],
@@ -25,8 +25,8 @@ const cards = [
         year: 'Year 3+',
         label: 'Land Regeneration',
         bullets: [
-            'Treating 50%+ of total farmland',
-            'Up to 60% reduction in fertiliser cost',
+            'Treating ~50%+ of total farmland',
+            'Up to ~60% reduction in fertiliser cost',
             'Healthy, living soil with consistent yields season after season',
         ],
     },

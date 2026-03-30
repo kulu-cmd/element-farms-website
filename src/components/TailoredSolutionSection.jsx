@@ -7,7 +7,7 @@ const cards = [
     accentColor: '#3fae5a',
     icon: '🌱',
     label: 'ORGANIC MATTER',
-    heading: "Rebuild Your Soil's Life",
+    heading: "Rebuild Your Soil's Biodiversity",
     teaser:
       'Depleted soils lack the microbial activity needed to feed crops naturally. We restore it from the ground up.',
     modal: {
@@ -107,7 +107,7 @@ const TailoredSolutionSection = () => {
         >
           <h2 className="tailored__heading">Your Tailored Solution</h2>
           <p className="tailored__subheading">
-            Every farm is different. We identify what's holding yours back and apply the right solution.
+            We identify what's holding your farm back and apply the right solution.
           </p>
         </motion.div>
 

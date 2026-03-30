@@ -6,12 +6,12 @@ const steps = [
   {
     number: '01',
     title: 'Diagnose',
-    description: "We evaluate your farm's soil health, crop conditions, and environmental pressures — flooding, sun stress, nutrient imbalance — to understand exactly what your land needs.",
+    description: "We evaluate your farm's soil health, crop conditions, and environmental pressures including flooding, sun stress, and nutrient imbalance to understand exactly what your land needs.",
   },
   {
     number: '02',
     title: 'Design',
-    description: "Based on the diagnosis, we design a targeted regenerative plan — recommending specific soil amendments, organic inputs, and protective treatments suited to your farm.",
+    description: "Based on the diagnosis, we design a targeted regenerative plan recommending specific soil amendments, organic inputs, and protective treatments suited to your farm.",
   },
   {
     number: '03',
@@ -21,7 +21,7 @@ const steps = [
   {
     number: '04',
     title: 'Restore',
-    description: "We implement the system, monitor results, and adjust. Soil biology rebuilds season by season — reducing chemical dependency and increasing long-term farm profitability.",
+    description: "We implement the system, monitor results, and adjust. Soil biology rebuilds season by season, reducing chemical dependency and increasing long-term farm profitability.",
   },
 ]
 

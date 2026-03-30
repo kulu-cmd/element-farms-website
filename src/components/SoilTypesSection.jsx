@@ -9,7 +9,7 @@ const soilTypes = [
     color: '#b5451b',
     image: '/soils/soil-01.png',
     name: 'Deep Red Apedal Soils',
-    region: 'KZN Midlands & Highveld slopes',
+    region: 'KwaZulu-Natal Midlands & Highveld slopes',
     description: 'Deep, well-drained red soils with excellent structure — some of the most productive agricultural land in South Africa.',
     pros: ['High arable potential', 'Suits maize, soya, cane, veg & orchards'],
     cons: ['Needs regular organic matter to maintain fertility', 'Can compact under heavy machinery'],
@@ -19,7 +19,7 @@ const soilTypes = [
     color: '#c49a3c',
     image: '/soils/soil-02%20Background%20Removed.png',
     name: 'Deep Yellow & Brown Apedal',
-    region: 'KZN Cane Belt & Midlands',
+    region: 'KwaZulu-Natal Cane Belt & Midlands',
     description: 'Yellow-brown sands and loams common in the cane belt and Midlands — well-drained with good workability.',
     pros: ['Good to high arable potential', 'Easy to till and manage'],
     cons: ['Lower nutrient retention than red soils', 'Prone to leaching under heavy rain'],
@@ -39,8 +39,8 @@ const soilTypes = [
     color: '#8c7355',
     image: '/soils/soil-04%20Background%20Removed.png',
     name: 'Duplex (Textural-Contrast)',
-    region: 'Widespread across KZN',
-    description: 'Sandy or loamy topsoil sitting abruptly over a dense clay subsoil — a common challenge for KZN farmers.',
+    region: 'Widespread across KwaZulu-Natal',
+    description: 'Sandy or loamy topsoil sitting abruptly over a dense clay subsoil — a common challenge for KwaZulu-Natal farmers.',
     pros: ['Workable in dry conditions', 'Moderate arable potential with management'],
     cons: ['Prone to waterlogging & compaction', 'Topsoil crusts easily under rain'],
   },
@@ -49,7 +49,7 @@ const soilTypes = [
     color: '#7a7a7a',
     image: '/soils/soil-5%20Background%20Removed.png',
     name: 'Shallow & Rocky (Lithic)',
-    region: 'KZN Highlands & Drakensberg escarpment',
+    region: 'KwaZulu-Natal Highlands & Drakensberg escarpment',
     description: 'Thin soils over bedrock on steep or rocky terrain — limited depth for roots and water retention.',
     pros: ['Suited to grazing and some forestry', 'Low input required for ground cover'],
     cons: ['Low arable potential', 'Root depth and moisture severely restricted'],
@@ -59,8 +59,8 @@ const soilTypes = [
     color: '#c8a96e',
     image: '/soils/soil-06%20Background%20Removed.png',
     name: 'Coastal & Dune Sands',
-    region: 'KZN Coastline — Durban to Richards Bay',
-    description: 'Leached, acidic sands along the KZN coast — low in nutrients but responsive to intensive management.',
+    region: 'KwaZulu-Natal Coastline — Durban to Richards Bay',
+    description: 'Leached, acidic sands along the KwaZulu-Natal coast — low in nutrients but responsive to intensive management.',
     pros: ['Can support crops under high management', 'Good drainage and workability'],
     cons: ['Very low natural fertility', 'Requires lime, fertiliser, organic matter & irrigation'],
   },
@@ -69,7 +69,7 @@ const soilTypes = [
     color: '#3a7d5e',
     image: '/soils/soil-07%20Background%20Removed.png',
     name: 'Hydromorphic & Wetland',
-    region: 'Valley bottoms throughout KZN',
+    region: 'Valley bottoms throughout KwaZulu-Natal',
     description: 'Waterlogged, gleyed profiles found in valley bottoms and wetlands — important ecological features.',
     pros: ['Valuable for grazing in dry seasons', 'Critical for water conservation'],
     cons: ['Unsuited to conventional cropping', 'Drainage is expensive and ecologically sensitive'],
@@ -79,8 +79,8 @@ const soilTypes = [
     color: '#8fa870',
     image: '/soils/soil-08%20Background%20Removed.png',
     name: 'Calcareous & Lime-Rich',
-    region: 'Northern KZN & Zululand',
-    description: 'Soils with free lime or calcrete layers on certain KZN geologies — highly variable in farming potential.',
+    region: 'Northern KwaZulu-Natal & Zululand',
+    description: 'Soils with free lime or calcrete layers on certain KwaZulu-Natal geologies — highly variable in farming potential.',
     pros: ['Good for specific crops where soil is deep', 'Natural calcium reduces acidification'],
     cons: ['Shallow calcrete severely limits root growth', 'Variable potential — needs site assessment'],
   },
@@ -106,7 +106,7 @@ const SoilTypesSection = () => {
           transition={{ duration: 0.6 }}
         >
           <span className="soils__eyebrow">Did you know?</span>
-          <h2 className="soils__heading">There are 8 different soil types just in KZN.</h2>
+          <h2 className="soils__heading">There are 8 different soil types just in KwaZulu-Natal.</h2>
           <p className="soils__subtext">
             Each soil type has unique characteristics that affect how your farm responds to inputs, water, and management. Knowing your soil is the first step to restoring it.
           </p>

@@ -18,7 +18,7 @@ const AntiFloodingPage = () => {
         },
         {
             value: '4000+',
-            label: 'hectares of KZN farmland at high flooding risk annually',
+            label: 'hectares of KwaZulu-Natal farmland at high flooding risk annually',
         },
     ]
 
@@ -31,7 +31,7 @@ const AntiFloodingPage = () => {
             modalImage: '/hive/root%20snorkel.jpg',
             modalImageAlt: 'Root Snorkel installed in orchard soil',
             modalImageCaption: 'Root Snorkel — subsurface aeration system',
-            modalBody: 'The M-Hive Root Snorkel is designed specifically for orchard environments. Installed vertically into the root zone, it allows oxygen to reach deep into compacted, waterlogged soils — directly where fruit tree roots need it most. The honeycomb clay structure stores and slowly releases water and nutrients even during dry spells following flood events, keeping root health stable season to season. Particularly effective for mango, citrus, avocado, and stone fruit orchards across KZN.',
+            modalBody: 'The M-Hive Root Snorkel is designed specifically for orchard environments. Installed vertically into the root zone, it allows oxygen to reach deep into compacted, waterlogged soils — directly where fruit tree roots need it most. The honeycomb clay structure stores and slowly releases water and nutrients even during dry spells following flood events, keeping root health stable season to season. Particularly effective for mango, citrus, avocado, and stone fruit orchards across KwaZulu-Natal.',
         },
         {
             icon: '🌾',
@@ -41,7 +41,7 @@ const AntiFloodingPage = () => {
             modalImage: '/hive/cross-section.png',
             modalImageAlt: 'Cross-section diagram of M-Hive in field soil',
             modalImageCaption: 'Subsurface cross-section — water drainage pathway',
-            modalBody: 'For row crops like maize, soya, and vegetables, waterlogging during the KZN wet season is one of the leading causes of yield loss. M-Hive units are placed at row intervals below the plough layer, creating a subsurface drainage network that pulls excess water away from the root zone. The clay structure retains nutrients that would otherwise leach out, ensuring crops continue to access what they need even after heavy rainfall.',
+            modalBody: 'For row crops like maize, soya, and vegetables, waterlogging during the KwaZulu-Natal wet season is one of the leading causes of yield loss. M-Hive units are placed at row intervals below the plough layer, creating a subsurface drainage network that pulls excess water away from the root zone. The clay structure retains nutrients that would otherwise leach out, ensuring crops continue to access what they need even after heavy rainfall.',
         },
         {
             icon: '🌿',

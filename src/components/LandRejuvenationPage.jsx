@@ -53,7 +53,7 @@ const LandRejuvenationPage = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
                     >
-                        We teach and implement highly effective regenerative farming systems to small and mid-size farms. Our goal is to empower farmers and not rely on large corporation supply chains of expensive chemical fertiliser.
+                        We teach and implement highly effective regenerative farming systems to small and medium-sized farms. Our goal is to empower farmers and not rely on large corporation supply chains of expensive chemical fertiliser.
                     </motion.p>
 
                     <motion.div

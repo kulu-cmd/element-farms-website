@@ -18,7 +18,7 @@ const ErosionRiskSection = () => {
                         viewport={{ once: true, amount: 0.4 }}
                         transition={{ duration: 0.7 }}
                     >
-                        <p className="erosion__stat-text">Farmers can lose <span className="erosion__highlight">2–5%</span> yield annually</p>
+                        <p className="erosion__stat-text">Farmers can lose <span className="erosion__highlight">~2–5%</span> yield annually</p>
                         <p className="erosion__stat-subtext">on moderately eroding land without conservation practices.</p>
                     </motion.div>
 
@@ -45,7 +45,7 @@ const ErosionRiskSection = () => {
                     >
                         <img src="/erode_map.png" alt="South Africa Map with Erosion Risk" className="erosion__map-img" />
                     </motion.div>
-                    <p className="erosion__source" style={{ textAlign: 'right', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)', marginTop: '20px' }}>
+                    <p className="erosion__source" style={{ textAlign: 'right', fontSize: '0.8rem', color: 'rgba(43,43,43,0.45)', marginTop: '20px' }}>
                         South African Dept. of Agriculture / Agricultural Research Council (ARC)
                     </p>
                 </div>

@@ -1,5 +1,5 @@
 .cta {
-    background-color: var(--orange-main);
+    background-color: #0e5a36;
     padding: 3rem 2rem;
     color: white;
     text-align: center;
@@ -44,7 +44,7 @@
 
 .cta__button:hover {
     background: white;
-    color: var(--orange-main);
+    color: #0e5a36;
 }
 
 @media (max-width: 768px) {

@@ -66,16 +66,6 @@ const Header = () => {
             {/* Navigation */}
             <nav className="header__nav">
                 <div className="header__nav-pill">
-                    <motion.a
-                        href="#about-us"
-                        className="header__nav-link"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
-                    >
-                        About Us
-                    </motion.a>
-
                     <motion.div
                         ref={triggerRef}
                         className={`header__nav-dropdown-wrapper${solutionsOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}

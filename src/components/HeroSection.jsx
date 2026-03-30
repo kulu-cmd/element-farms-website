@@ -27,7 +27,7 @@ const HeroSection = () => {
                         animate="visible"
                         custom={0.3}
                     >
-                        Regenerative Farming Systems
+                        Regenerative<br />Farming Solutions
                     </motion.h1>
 
                     <motion.p

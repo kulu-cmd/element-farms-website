@@ -25,7 +25,7 @@ const ResultsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h3 className="results__card-value">30 - 50<span className="results__percent">%</span></h3>
+                    <h3 className="results__card-value">~30 - 50<span className="results__percent">%</span></h3>
                     <p className="results__card-label">decrease in chemical<br/>fertilizer output</p>
                 </motion.div>
 
@@ -36,7 +36,7 @@ const ResultsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <h3 className="results__card-value">+1 - 2<span className="results__percent">%</span></h3>
+                    <h3 className="results__card-value">~+1 - 2<span className="results__percent">%</span></h3>
                     <p className="results__card-label">increase in soil organic matter</p>
                 </motion.div>
 
@@ -47,7 +47,7 @@ const ResultsSection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
                 >
-                    <h3 className="results__card-value">10 - 25<span className="results__percent">%</span></h3>
+                    <h3 className="results__card-value">~10 - 25<span className="results__percent">%</span></h3>
                     <p className="results__card-label">crop yield improvement</p>
                 </motion.div>
             </div>

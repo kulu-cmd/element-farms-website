@@ -71,7 +71,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: var(--charcoal);
+    background: #0e5a36;
     color: #fff;
     font-family: var(--font-heading);
     font-size: 0.8rem;

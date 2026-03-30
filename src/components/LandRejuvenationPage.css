@@ -1,5 +1,5 @@
 .land-regen__hero {
-    background-color: var(--orange-main);
+    background-color: var(--charcoal);
     padding: 7rem 2rem 2.5rem;
     text-align: center;
     color: white;
@@ -23,7 +23,7 @@
     font-size: clamp(2.1rem, 5vw, 3.92rem);
     font-weight: 800;
     line-height: 1.1;
-    color: white;
+    color: var(--orange-main);
     margin: 0;
 }
 

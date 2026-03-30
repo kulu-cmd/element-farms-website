@@ -5,7 +5,7 @@ import './StatsSection.css'
 const StatsSection = () => {
     const stats = [
         {
-            value: '70 %',
+            value: '~70 %',
             label: "of South Africa's land surface is affected by some form of soil erosion",
         },
         {
@@ -13,7 +13,7 @@ const StatsSection = () => {
             label: 'of fertile top soil is lost annually in South Africa',
         },
         {
-            value: '> 80 %',
+            value: '> ~80 %',
             label: 'of South African soils are classified as low or moderate agricultural potential',
         },
     ]
