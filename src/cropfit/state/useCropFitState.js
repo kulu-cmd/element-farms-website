@@ -3,34 +3,28 @@
  *
  * Single source of truth for all CropFit app state.
  * Uses useState for simple values and useReducer for the inputs sub-object.
- * No localStorage — state is ephemeral per session.
+ * Analysis is performed by the backend Claude API (POST /api/cropfit/analyze).
  */
 
 import { useState, useReducer, useCallback } from 'react'
-import { scoreCrops } from '../engine/scoring.js'
 import { getRegionFromLatLng } from '../engine/regions.js'
-import { crops as allCrops } from '../data/crops.js'
 
 // ─── INPUTS REDUCER ──────────────────────────────────────────────────────
-// Manages the farmer's form inputs as a single nested object.
-// Action: { type: 'UPDATE', payload: { key: value, ... } }
-// Action: { type: 'RESET' }
-
 const DEFAULT_INPUTS = {
-  region:          '',       // archetype key
-  regionLabel:     '',       // display label for selected region
-  lat:             '',       // decimal string
-  lng:             '',       // decimal string
-  season:          '',       // 'summer' | 'autumn' | 'winter' | 'spring'
-  duration_type:   '',       // 'annual' | 'short-perennial' | 'long-perennial'
-  water_access:    '',       // 'rainfed' | 'limited-irrigation' | 'reliable-irrigation'
-  soil_type:       'unknown', // soil key or 'unknown'
-  management:      '',       // 'low' | 'moderate' | 'high'
-  market:          [],       // array of market channel keys (multi-select)
-  farm_scale:      '',       // scale key
-  frost_risk:      null,     // 'low' | 'medium' | 'high' | null
-  time_income_pref: null,    // 'fast' | 'medium' | 'long' | null
-  drainage:        null,     // 'poor' | 'moderate' | 'good' | null
+  region:           '',
+  regionLabel:      '',
+  lat:              '',
+  lng:              '',
+  season:           '',
+  duration_type:    '',
+  water_access:     '',
+  soil_type:        'unknown',
+  management:       '',
+  market:           [],
+  farm_scale:       '',
+  frost_risk:       null,
+  time_income_pref: null,
+  drainage:         null,
 }
 
 function inputsReducer(state, action) {
@@ -44,89 +38,138 @@ function inputsReducer(state, action) {
   }
 }
 
+// ─── TRANSFORM CLAUDE RECOMMENDATIONS ────────────────────────────────────
+// Maps Claude API response format to the shape ResultsView expects.
+function transformRecommendations(recommendations) {
+  return (recommendations || []).map((rec, index) => ({
+    id:              rec.crop_name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + index,
+    name:            rec.crop_name,
+    score:           rec.suitability_score,
+    category:        rec.category,
+    durationType:    null,
+    explanation:     Array.isArray(rec.reasons) ? rec.reasons.join(' ') : '',
+    waterRequirement: null,
+    soilPreference:  null,
+    timeToIncome:    rec.time_to_income || null,
+    managementLevel: rec.management_notes || null,
+    marketChannels:  rec.market_fit ? [rec.market_fit] : [],
+    notes:           null,
+    risks:           rec.warnings || [],
+    // Extended Claude fields
+    reasons:         rec.reasons || [],
+    marketFit:       rec.market_fit || null,
+    managementNotes: rec.management_notes || null,
+    band:            rec.band || 'marginal',
+  }))
+}
+
 
 // ─── MAIN HOOK ────────────────────────────────────────────────────────────
 export function useCropFitState() {
 
-  // ── Core navigation state ────────────────────────────────────────────
+  // ── Core navigation ──────────────────────────────────────────────────
   const [view, setView] = useState('planner')
-  // 'planner' | 'results' | 'compare' | 'library' | 'methodology'
 
   // ── Form wizard step ─────────────────────────────────────────────────
-  const [formStep, setFormStep] = useState(0)   // 0–3
+  const [formStep, setFormStep] = useState(0)
 
-  // ── Farmer inputs (managed by reducer) ──────────────────────────────
+  // ── Farmer inputs ────────────────────────────────────────────────────
   const [inputs, dispatchInputs] = useReducer(inputsReducer, { ...DEFAULT_INPUTS })
 
-  // ── Scoring results ───────────────────────────────────────────────────
-  const [results, setResults] = useState([])
-  // Array of: { crop, score, band, explanation, warnings, breakdown }
-
+  // ── Analysis results ─────────────────────────────────────────────────
+  const [results, setResults]       = useState([])
   const [hasResults, setHasResults] = useState(false)
 
-  // ── Results display controls ─────────────────────────────────────────
-  const [sortBy, setSortBy] = useState('suitability')
-  // 'suitability' | 'ease' | 'income' | 'market' | 'water'
+  // ── API state ────────────────────────────────────────────────────────
+  const [isLoading, setIsLoading]         = useState(false)
+  const [analysisError, setAnalysisError] = useState(null)
 
+  // ── Plan metadata (returned by backend after successful analysis) ─────
+  const [planId, setPlanId]   = useState(null)
+  const [planUrl, setPlanUrl] = useState(null)
+
+  // ── AI analysis context ──────────────────────────────────────────────
+  const [aiSummary, setAiSummary]             = useState(null)
+  const [actionPlan, setActionPlan]           = useState([])
+  const [regionalContext, setRegionalContext] = useState(null)
+  const [seasonAdvice, setSeasonAdvice]       = useState(null)
+
+  // ── Results display controls ─────────────────────────────────────────
+  const [sortBy, setSortBy]         = useState('suitability')
   const [filterBand, setFilterBand] = useState('all')
-  // 'all' | 'best-fit' | 'caution' | 'not-recommended'
 
   // ── Compare list ─────────────────────────────────────────────────────
   const [compareList, setCompareList] = useState([])
-  // Array of crop id strings (max 3)
 
   // ── Theme ─────────────────────────────────────────────────────────────
   const [theme, setTheme] = useState('light')
-  // 'light' | 'dark'
 
   // ── Location state ────────────────────────────────────────────────────
-  const [locationMethod, setLocationMethod] = useState('manual')
-  // 'auto' | 'manual'
-
+  const [locationMethod, setLocationMethod]   = useState('manual')
   const [locationLoading, setLocationLoading] = useState(false)
   const [locationError, setLocationError]     = useState(null)
 
 
   // ─── ACTION: updateInputs ─────────────────────────────────────────────
-  /**
-   * Merge one or more input fields into the inputs state.
-   * @param {Object} patch  Key–value pairs to merge into inputs
-   */
   const updateInputs = useCallback((patch) => {
     dispatchInputs({ type: 'UPDATE', payload: patch })
   }, [])
 
 
-  // ─── ACTION: runScoring ───────────────────────────────────────────────
+  // ─── ACTION: runAnalysis ──────────────────────────────────────────────
   /**
-   * Run the scoring engine against all crops with current inputs,
-   * store the results, and navigate to the results view.
+   * Submit farm inputs to the backend Claude API.
+   * Saves results to state and navigates to results view.
    */
-  const runScoring = useCallback(() => {
-    const scored = scoreCrops(inputs, allCrops)
-    setResults(scored)
-    setHasResults(true)
-    setSortBy('suitability')
-    setFilterBand('all')
-    setView('results')
+  const runAnalysis = useCallback(async () => {
+    setIsLoading(true)
+    setAnalysisError(null)
+
+    try {
+      const response = await fetch('/api/cropfit/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ inputs }),
+      })
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}))
+        throw new Error(err.error || `Server error ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      if (!data.success) {
+        throw new Error(data.error || 'Analysis failed')
+      }
+
+      const transformedResults = transformRecommendations(data.analysis.recommendations)
+
+      setResults(transformedResults)
+      setHasResults(true)
+      setPlanId(data.planId)
+      setPlanUrl(data.planUrl)
+      setAiSummary(data.analysis.summary)
+      setActionPlan(data.analysis.action_plan || [])
+      setRegionalContext(data.analysis.regional_context)
+      setSeasonAdvice(data.analysis.season_advice)
+      setSortBy('suitability')
+      setFilterBand('all')
+      setView('results')
+
+    } catch (error) {
+      setAnalysisError(error.message || 'Analysis failed. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
   }, [inputs])
 
 
   // ─── ACTION: toggleCompare ────────────────────────────────────────────
-  /**
-   * Add a crop id to the compare list (max 3) or remove it if already present.
-   * @param {string} cropId  The crop's id field
-   */
   const toggleCompare = useCallback((cropId) => {
     setCompareList(prev => {
-      if (prev.includes(cropId)) {
-        // Remove from list
-        return prev.filter(id => id !== cropId)
-      }
-      if (prev.length >= 3) {
-        // At capacity — replace the oldest entry
-        return [...prev.slice(1), cropId]
-      }
+      if (prev.includes(cropId)) return prev.filter(id => id !== cropId)
+      if (prev.length >= 3) return [...prev.slice(1), cropId]
       return [...prev, cropId]
     })
   }, [])
@@ -139,10 +182,6 @@ export function useCropFitState() {
 
 
   // ─── ACTION: detectLocation ───────────────────────────────────────────
-  /**
-   * Request browser geolocation, derive region archetype from coords,
-   * and update inputs with lat, lng, and region.
-   */
   const detectLocation = useCallback(() => {
     if (!navigator.geolocation) {
       setLocationError('Geolocation is not supported by your browser.')
@@ -184,9 +223,6 @@ export function useCropFitState() {
 
 
   // ─── ACTION: resetPlanner ─────────────────────────────────────────────
-  /**
-   * Clear all inputs and results, reset to form step 0, navigate to planner.
-   */
   const resetPlanner = useCallback(() => {
     dispatchInputs({ type: 'RESET' })
     setResults([])
@@ -197,13 +233,20 @@ export function useCropFitState() {
     setFormStep(0)
     setLocationMethod('manual')
     setLocationError(null)
+    setIsLoading(false)
+    setAnalysisError(null)
+    setPlanId(null)
+    setPlanUrl(null)
+    setAiSummary(null)
+    setActionPlan([])
+    setRegionalContext(null)
+    setSeasonAdvice(null)
     setView('planner')
   }, [])
 
 
   // ─── RETURN API ───────────────────────────────────────────────────────
   return {
-    // State
     state: {
       view,
       inputs,
@@ -217,12 +260,23 @@ export function useCropFitState() {
       locationMethod,
       locationLoading,
       locationError,
+      // API state
+      isLoading,
+      analysisError,
+      // Plan metadata
+      planId,
+      planUrl,
+      // AI analysis context
+      aiSummary,
+      actionPlan,
+      regionalContext,
+      seasonAdvice,
     },
 
     // Actions
     setView,
     updateInputs,
-    runScoring,
+    runAnalysis,
     toggleCompare,
     setSortBy,
     setFilterBand,

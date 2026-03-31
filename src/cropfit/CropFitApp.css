@@ -1824,3 +1824,129 @@
   .cf-option-grid--3col        { grid-template-columns: 1fr 1fr; }
   .cf-option-grid--2col        { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   LOADING OVERLAY — shown while Claude API is processing
+═══════════════════════════════════════════════════════════ */
+
+.cf-loading-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(27, 38, 32, 0.88);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.cf-loading-overlay__inner {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1rem; padding: 2.5rem 2rem;
+  background: var(--cf-surface); border-radius: 12px;
+  border: 1px solid var(--cf-border);
+  text-align: center; max-width: 320px; width: 90%;
+}
+
+.cf-spinner {
+  width: 42px; height: 42px;
+  border: 3px solid var(--cf-border);
+  border-top-color: var(--cf-accent);
+  border-radius: 50%;
+  animation: cf-spin 0.75s linear infinite;
+}
+
+@keyframes cf-spin { to { transform: rotate(360deg); } }
+
+.cf-loading-overlay__text {
+  font-family: var(--cf-font-heading); font-size: 1rem; font-weight: 700;
+  color: var(--cf-text); margin: 0;
+}
+
+.cf-loading-overlay__sub {
+  font-size: 0.8rem; color: var(--cf-text-2); margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   AI ANALYSIS BANNER — shown at top of results view
+═══════════════════════════════════════════════════════════ */
+
+.cf-analysis-banner {
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-border);
+  border-left: 4px solid var(--cf-accent);
+  border-radius: 8px; padding: 1.25rem 1.25rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.cf-analysis-banner__heading {
+  font-family: var(--cf-font-heading); font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--cf-accent); margin: 0 0 0.6rem;
+}
+
+.cf-analysis-banner__summary {
+  font-size: 0.9rem; line-height: 1.6;
+  color: var(--cf-text); margin: 0 0 0.6rem;
+}
+
+.cf-analysis-banner__context {
+  font-size: 0.82rem; line-height: 1.5;
+  color: var(--cf-text-2); margin: 0 0 0.5rem;
+}
+
+.cf-analysis-banner__season {
+  font-size: 0.82rem; line-height: 1.5;
+  color: var(--cf-accent);
+  background: rgba(45, 122, 74, 0.08);
+  border-radius: 4px; padding: 0.4rem 0.6rem;
+  margin: 0.25rem 0 0;
+}
+
+.cf-plan-share {
+  margin-top: 0.85rem; padding-top: 0.85rem;
+  border-top: 1px solid var(--cf-border);
+}
+
+.cf-plan-share__label {
+  display: block; font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--cf-text-2); margin-bottom: 0.4rem;
+}
+
+.cf-plan-share__row {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+}
+
+.cf-plan-share__url {
+  flex: 1; min-width: 0;
+  font-size: 0.75rem; color: var(--cf-text-2);
+  background: var(--cf-bg); border: 1px solid var(--cf-border);
+  border-radius: 4px; padding: 0.3rem 0.6rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-family: monospace;
+}
+
+.cf-plan-share__copy { flex-shrink: 0; font-size: 0.75rem; }
+
+/* ═══════════════════════════════════════════════════════════
+   ACTION PLAN — above crop results in ResultsView
+═══════════════════════════════════════════════════════════ */
+
+.cf-action-plan {
+  background: var(--cf-surface);
+  border: 1px solid var(--cf-border);
+  border-radius: 8px; padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.cf-action-plan__heading {
+  font-family: var(--cf-font-heading); font-size: 0.72rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--cf-text-2); margin: 0 0 0.75rem;
+}
+
+.cf-action-plan__list {
+  margin: 0; padding-left: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.45rem;
+}
+
+.cf-action-plan__item {
+  font-size: 0.87rem; line-height: 1.5; color: var(--cf-text);
+}

@@ -737,7 +737,7 @@ function validateStep(step, inputs) {
 
 
 // ─── MAIN COMPONENT ───────────────────────────────────────────────────────
-export function PlannerForm({ state, updateInputs, setFormStep, detectLocation, runScoring }) {
+export function PlannerForm({ state, updateInputs, setFormStep, detectLocation, runAnalysis, isLoading, analysisError }) {
   const { formStep, inputs } = state
   const [stepErrors, setStepErrors] = useState({})
 
@@ -763,7 +763,7 @@ export function PlannerForm({ state, updateInputs, setFormStep, detectLocation, 
   // ── Final submit ────────────────────────────────────────────────────
   function handleSubmit(e) {
     e.preventDefault()
-    runScoring()
+    runAnalysis()
   }
 
   // ── Render step content ─────────────────────────────────────────────
@@ -855,11 +855,18 @@ export function PlannerForm({ state, updateInputs, setFormStep, detectLocation, 
           <button
             type="submit"
             className="cf-btn cf-btn--primary cf-form-nav__submit"
+            disabled={isLoading}
           >
-            Find suitable crops →
+            {isLoading ? 'Analysing…' : 'Analyse my farm →'}
           </button>
         )}
       </div>
+
+      {analysisError && (
+        <div className="cf-validation-msg" role="alert" style={{ marginTop: '0.75rem', padding: '0.5rem 0' }}>
+          <p>{analysisError}</p>
+        </div>
+      )}
     </form>
   )
 }

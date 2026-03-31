@@ -17,6 +17,7 @@ import OrganicFarmingPage from './components/OrganicFarmingPage'
 import EducationPage from './components/EducationPage'
 import ArticlePage from './components/ArticlePage'
 import CropFitApp from './cropfit/CropFitApp'
+import CropFitPlanView from './cropfit/CropFitPlanView'
 import './App.css'
 
 function HomePage() {
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/education" element={<EducationPage />} />
                 <Route path="/education/:slug" element={<ArticlePage />} />
                 <Route path="/cropfit" element={<CropFitApp />} />
+                <Route path="/cropfit/plan/:id" element={<CropFitPlanView />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>
         </BrowserRouter>

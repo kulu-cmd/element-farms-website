@@ -103,6 +103,17 @@ export default function CropFitApp() {
         </div>
       </nav>
 
+      {/* Loading overlay — shown while Claude API processes */}
+      {state.isLoading && (
+        <div className="cf-loading-overlay" role="status" aria-live="polite">
+          <div className="cf-loading-overlay__inner">
+            <div className="cf-spinner" aria-hidden="true" />
+            <p className="cf-loading-overlay__text">Analysing your farm with Claude AI…</p>
+            <p className="cf-loading-overlay__sub">This typically takes 15–30 seconds</p>
+          </div>
+        </div>
+      )}
+
       {/* Main content */}
       <main className="cf-main">
         {state.view === 'planner' && (
@@ -113,7 +124,9 @@ export default function CropFitApp() {
                 updateInputs={cropFit.updateInputs}
                 setFormStep={cropFit.setFormStep}
                 detectLocation={cropFit.detectLocation}
-                runScoring={cropFit.runScoring}
+                runAnalysis={cropFit.runAnalysis}
+                isLoading={state.isLoading}
+                analysisError={state.analysisError}
               />
             </aside>
             <div className="cf-layout__intro">

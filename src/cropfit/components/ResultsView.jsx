@@ -158,7 +158,15 @@ export function ResultsView({ state, setView, resetPlanner, toggleCompare }) {
   const [sortBy, setSortBy] = useState('score')
   const [filterBy, setFilterBy] = useState('all')
 
-  const { results = [], compareList = [] } = state
+  const {
+    results = [],
+    compareList = [],
+    aiSummary,
+    actionPlan = [],
+    planUrl,
+    regionalContext,
+    seasonAdvice,
+  } = state
 
   const sorted = useMemo(() => {
     const arr = [...results]
@@ -224,6 +232,54 @@ export function ResultsView({ state, setView, resetPlanner, toggleCompare }) {
 
   return (
     <div className="cf-results">
+
+      {/* AI Analysis Summary */}
+      {aiSummary && (
+        <div className="cf-analysis-banner">
+          <div className="cf-analysis-banner__content">
+            <h2 className="cf-analysis-banner__heading">Farm Analysis</h2>
+            <p className="cf-analysis-banner__summary">{aiSummary}</p>
+            {regionalContext && (
+              <p className="cf-analysis-banner__context">{regionalContext}</p>
+            )}
+            {seasonAdvice && (
+              <p className="cf-analysis-banner__season">🌿 {seasonAdvice}</p>
+            )}
+          </div>
+          {planUrl && (
+            <div className="cf-plan-share">
+              <span className="cf-plan-share__label">Save &amp; share this analysis:</span>
+              <div className="cf-plan-share__row">
+                <code className="cf-plan-share__url">
+                  {typeof window !== 'undefined' ? window.location.origin : ''}{planUrl}
+                </code>
+                <button
+                  className="cf-plan-share__copy cf-btn cf-btn--secondary cf-btn--sm"
+                  onClick={() => {
+                    const url = (typeof window !== 'undefined' ? window.location.origin : '') + planUrl
+                    navigator.clipboard.writeText(url).catch(() => {})
+                  }}
+                >
+                  Copy link
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Action Plan */}
+      {actionPlan.length > 0 && (
+        <div className="cf-action-plan">
+          <h3 className="cf-action-plan__heading">Your Action Plan</h3>
+          <ol className="cf-action-plan__list">
+            {actionPlan.map((step, i) => (
+              <li key={i} className="cf-action-plan__item">{step}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+
       {/* Results header */}
       <div className="cf-results-header">
         <p className="cf-results-summary">
