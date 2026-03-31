@@ -16,6 +16,7 @@ import ContactPage from './components/ContactPage'
 import OrganicFarmingPage from './components/OrganicFarmingPage'
 import EducationPage from './components/EducationPage'
 import ArticlePage from './components/ArticlePage'
+import CropFitApp from './cropfit/CropFitApp'
 import './App.css'
 
 function HomePage() {
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/contact/organic" element={<OrganicFarmingPage />} />
                 <Route path="/education" element={<EducationPage />} />
                 <Route path="/education/:slug" element={<ArticlePage />} />
+                <Route path="/cropfit" element={<CropFitApp />} />
                 <Route path="*" element={<HomePage />} />
             </Routes>
         </BrowserRouter>
