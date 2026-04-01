@@ -27,7 +27,7 @@ const HeroSection = () => {
                         animate="visible"
                         custom={0.3}
                     >
-                        Regenerative<br />Farming Solutions
+                        Regenerative Farming Solutions
                     </motion.h1>
 
                     <motion.p
@@ -60,19 +60,6 @@ const HeroSection = () => {
                     </motion.div>
                 </div>
 
-                {/* Image side */}
-                <motion.div
-                    className="hero__image-wrap"
-                    initial={{ opacity: 0, x: 60, rotate: -4 }}
-                    animate={{ opacity: 1, x: 0, rotate: 0 }}
-                    transition={{ duration: 0.9, ease: 'easeOut', delay: 0.4 }}
-                >
-                    <img
-                        src="/1.png"
-                        alt="Flowering plant branch"
-                        className="hero__flower"
-                    />
-                </motion.div>
             </div>
         </section>
     )

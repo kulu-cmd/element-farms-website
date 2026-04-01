@@ -34,7 +34,7 @@ const MissionSection = () => {
                     style={{ textAlign: 'center' }}
                 >
                     <span className="mission__eyebrow">OUR MISSION</span>
-                    <h2 className="mission__heading">Our Mission</h2>
+                    <h2 className="mission__heading">How we help farmers</h2>
                     <div className="mission__rule" />
                     <p className="mission__intro">
                         We are agriculture farm consultants with a singular focus; <strong>rebuild South Africa's soil health at scale.</strong> Through proven regenerative systems, we help small to medium commercial farms break their dependence on chemical fertilisers, saving money each season while <strong>creating land that sustains future generations</strong>.
