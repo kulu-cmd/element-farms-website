@@ -36,7 +36,7 @@
   --cf-max-width:    1100px;
   --cf-header-h:     60px;
   --cf-nav-h:        44px;
-  --cf-sidebar-w:    320px;
+  --cf-sidebar-w:    480px;
   --cf-radius:       8px;
   --cf-radius-sm:    5px;
   --cf-radius-pill:  999px;
@@ -107,6 +107,34 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+.cf-header__home-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.cf-header__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
+/* Location row — detect button + manual input side by side */
+.cf-location-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.cf-location-row__btn {
+  flex-shrink: 0;
+}
+
+.cf-location-row__manual {
+  flex: 1;
 }
 
 .cf-header__brand-text {

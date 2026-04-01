@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useCropFitState } from './state/useCropFitState.js'
 import { PlannerForm } from './components/PlannerForm.jsx'
 import { ResultsView } from './components/ResultsView.jsx'
@@ -7,29 +8,6 @@ import { CropLibrary } from './components/CropLibrary.jsx'
 import { MethodologyView } from './components/MethodologyView.jsx'
 import './CropFitApp.css'
 
-function LeafIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="28"
-      height="28"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      {/* Stem */}
-      <path d="M12 21 L12 12" />
-      {/* Leaf shape — right lobe */}
-      <path d="M12 12 C12 6 19 4 20 8 C21 12 16 15 12 12Z" />
-      {/* Leaf shape — left lobe */}
-      <path d="M12 14 C12 8 5 6 4 10 C3 14 8 17 12 14Z" />
-    </svg>
-  )
-}
 
 const NAV_TABS = ['planner', 'results', 'compare', 'library', 'methodology']
 
@@ -68,7 +46,13 @@ export default function CropFitApp() {
       <header className="cf-header">
         <div className="cf-header__inner">
           <div className="cf-header__brand">
-            <LeafIcon />
+            <Link to="/" className="cf-header__home-logo">
+              <img
+                src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                alt="Element Farm Solutions"
+                className="cf-header__logo-img"
+              />
+            </Link>
             <div className="cf-header__brand-text">
               <span className="cf-header__title">CropFit Planner</span>
               <span className="cf-header__subtitle">

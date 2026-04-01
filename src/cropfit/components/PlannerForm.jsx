@@ -78,7 +78,7 @@
 
 import { useState } from 'react'
 import { REGION_ARCHETYPES } from '../engine/regions.js'
-import { getRegionFromLatLng, getRegionFromText } from '../engine/regions.js'
+import { getRegionFromText } from '../engine/regions.js'
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────
 
@@ -247,23 +247,6 @@ function ValidationMsg({ message }) {
 // ─── STEP 1: LOCATION & TIMING ────────────────────────────────────────────
 function Step1Location({ state, updateInputs, detectLocation }) {
   const { inputs, locationLoading, locationError, locationMethod } = state
-  const [errors, setErrors] = useState({})
-
-  // When lat/lng change, attempt to auto-derive region archetype
-  function handleLatLngChange(field, value) {
-    updateInputs({ [field]: value })
-
-    const lat = field === 'lat' ? value : inputs.lat
-    const lng = field === 'lng' ? value : inputs.lng
-
-    if (lat && lng && !isNaN(Number(lat)) && !isNaN(Number(lng))) {
-      const regionKey = getRegionFromLatLng(Number(lat), Number(lng))
-      if (regionKey) {
-        updateInputs({ region: regionKey })
-      }
-    }
-  }
-
   // When region name text field changes, try text-based lookup
   function handleRegionTextChange(value) {
     updateInputs({ regionLabel: value })
@@ -288,87 +271,42 @@ function Step1Location({ state, updateInputs, detectLocation }) {
       <div className="cf-section cf-location-section">
         <p className="cf-section__heading">Your location</p>
 
-        {/* Auto-detect button */}
-        <div className="cf-location-auto">
+        {/* Detect + manual entry row */}
+        <div className="cf-location-row">
           <button
             type="button"
-            className="cf-btn cf-btn--secondary"
+            className="cf-btn cf-btn--secondary cf-location-row__btn"
             onClick={detectLocation}
             disabled={locationLoading}
           >
             {locationLoading ? (
-              <span className="cf-location-loading">Detecting location…</span>
+              <span className="cf-location-loading">Detecting…</span>
             ) : (
               'Detect my location'
             )}
           </button>
-          {locationMethod === 'auto' && !locationLoading && inputs.lat && (
-            <span className="cf-location-pill cf-location-pill--detected">
-              GPS: {Number(inputs.lat).toFixed(3)}°S, {Number(inputs.lng).toFixed(3)}°E
-            </span>
-          )}
-        </div>
-
-        {locationError && (
-          <p className="cf-location-error">{locationError}</p>
-        )}
-
-        {/* OR divider */}
-        <div className="cf-location-divider">
-          <span>or enter manually</span>
-        </div>
-
-        {/* Manual coordinate entry */}
-        <div className="cf-location-manual">
-          <div className="cf-field-group">
-            <label className="cf-field-group__label" htmlFor="region-name">
-              Province or region name
-            </label>
+          <div className="cf-location-row__manual">
             <input
               id="region-name"
               type="text"
               className="cf-input"
-              placeholder="e.g. Limpopo, KZN coast, Western Cape"
+              placeholder="or type province / region (e.g. Limpopo)"
               value={inputs.regionLabel || ''}
               onChange={e => handleRegionTextChange(e.target.value)}
               autoComplete="off"
             />
-            <span className="cf-field-group__hint">
-              Type your province or region and we will auto-select the climate zone.
-            </span>
-          </div>
-
-          <div className="cf-location-coords">
-            <div className="cf-field-group">
-              <label className="cf-field-group__label" htmlFor="input-lat">
-                Latitude (optional)
-              </label>
-              <input
-                id="input-lat"
-                type="text"
-                className="cf-input cf-coord-input"
-                placeholder="-26.1234"
-                value={inputs.lat || ''}
-                onChange={e => handleLatLngChange('lat', e.target.value)}
-                inputMode="decimal"
-              />
-            </div>
-            <div className="cf-field-group">
-              <label className="cf-field-group__label" htmlFor="input-lng">
-                Longitude (optional)
-              </label>
-              <input
-                id="input-lng"
-                type="text"
-                className="cf-input cf-coord-input"
-                placeholder="28.5678"
-                value={inputs.lng || ''}
-                onChange={e => handleLatLngChange('lng', e.target.value)}
-                inputMode="decimal"
-              />
-            </div>
           </div>
         </div>
+
+        {locationMethod === 'auto' && !locationLoading && inputs.lat && (
+          <span className="cf-location-pill cf-location-pill--detected">
+            GPS: {Number(inputs.lat).toFixed(3)}°S, {Number(inputs.lng).toFixed(3)}°E
+          </span>
+        )}
+
+        {locationError && (
+          <p className="cf-location-error">{locationError}</p>
+        )}
 
         {/* Region archetype selector */}
         <div className="cf-field-group">

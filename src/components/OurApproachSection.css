@@ -15,12 +15,12 @@
   font-weight: 800;
   color: var(--orange-main);
   margin: 0 auto;
-  max-width: 1500px;
+  max-width: 100%;
 }
 
 /* Steps row */
 .approach__steps {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 2rem 1rem;
   display: flex;
