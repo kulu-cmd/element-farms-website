@@ -1,6 +1,6 @@
 .footer {
     background-color: var(--mustard);
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     color: white;
 }
 
@@ -19,14 +19,14 @@
 }
 
 .footer__logo {
-    max-width: 150px;
+    max-width: 300px;
     height: auto;
     margin-bottom: 0;
 }
 
 .footer__heading {
     font-family: var(--font-heading);
-    font-size: 0.84rem;
+    font-size: 1.09rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
@@ -47,7 +47,7 @@
 
 .footer__links a {
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 1.14rem;
     color: rgba(255, 255, 255, 0.9);
     transition: color 0.2s ease;
 }
@@ -68,7 +68,7 @@
 
 .footer__contact-item {
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 1.14rem;
     color: rgba(255, 255, 255, 0.9);
     display: flex;
     align-items: center;
@@ -76,7 +76,7 @@
 }
 
 .footer__icon {
-    font-size: 0.77rem;
+    font-size: 1rem;
 }
 
 @media (max-width: 1024px) {

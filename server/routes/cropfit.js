@@ -7,7 +7,7 @@ import {
   updateSubmissionError,
   getSubmissionById,
 } from '../services/database.js'
-import { sendAnalysisNotification } from '../services/email.js'
+import { sendAnalysisNotification, sendFarmerResultsEmail } from '../services/email.js'
 
 const router = Router()
 
@@ -84,6 +84,27 @@ router.get('/plan/:id', async (req, res) => {
     })
   } catch (error) {
     return res.status(404).json({ success: false, error: 'Plan not found' })
+  }
+})
+
+// POST /api/cropfit/send-farmer-email
+router.post('/send-farmer-email', async (req, res) => {
+  const { planId, email } = req.body
+
+  if (!planId || !email) {
+    return res.status(400).json({ success: false, error: 'planId and email are required' })
+  }
+
+  try {
+    const submission = await getSubmissionById(planId)
+    if (!submission?.analysis) {
+      return res.status(404).json({ success: false, error: 'Plan not found' })
+    }
+    await sendFarmerResultsEmail({ planId, email, analysis: submission.analysis, inputs: submission.inputs })
+    return res.json({ success: true })
+  } catch (error) {
+    console.error('[cropfit] send-farmer-email failed:', error.message)
+    return res.status(500).json({ success: false, error: 'Failed to send email' })
   }
 })
 

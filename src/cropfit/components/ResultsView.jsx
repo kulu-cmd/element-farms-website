@@ -1,4 +1,7 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
+
+const CONSULTANT_WHATSAPP = '27000000000' // TODO: replace with real number e.g. 27821234567
+const FARM_VISIT_FORM = 'https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/viewform'
 
 const SORT_OPTIONS = [
   { value: 'score',      label: 'Suitability' },
@@ -154,6 +157,180 @@ function CropCard({ crop, isInCompare, onToggleCompare, compareDisabled, onAdvic
   )
 }
 
+function ResultsCTA({ planUrl, topCrops }) {
+  function buildWhatsAppShareUrl() {
+    const top3 = topCrops.slice(0, 3).join(', ')
+    const planLink = planUrl
+      ? `${typeof window !== 'undefined' ? window.location.origin : ''}${planUrl}`
+      : ''
+    const text = `My CropFit crop plan is ready! Top picks: ${top3}. View full analysis: ${planLink}`
+    return `https://wa.me/?text=${encodeURIComponent(text)}`
+  }
+
+  function buildConsultantWhatsAppUrl() {
+    const planLink = planUrl
+      ? `${typeof window !== 'undefined' ? window.location.origin : ''}${planUrl}`
+      : ''
+    const text = `Hi Element Farm Solutions, I'd like to discuss my CropFit analysis: ${planLink}`
+    return `https://wa.me/${CONSULTANT_WHATSAPP}?text=${encodeURIComponent(text)}`
+  }
+
+  return (
+    <div className="cf-results-cta">
+      <h3 className="cf-results-cta__heading">What's next?</h3>
+      <div className="cf-results-cta__grid">
+        <a
+          className="cf-cta-card cf-cta-card--share"
+          href={buildWhatsAppShareUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="cf-cta-card__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.527 5.843L.057 23.5l5.823-1.527A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.36-.213-3.454.906.922-3.366-.234-.375A9.818 9.818 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/>
+            </svg>
+          </span>
+          <div>
+            <strong className="cf-cta-card__title">Share on WhatsApp</strong>
+            <span className="cf-cta-card__sub">Send your crop plan to a friend or family</span>
+          </div>
+        </a>
+
+        <a
+          className="cf-cta-card cf-cta-card--consultant"
+          href={buildConsultantWhatsAppUrl()}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="cf-cta-card__icon">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.527 5.843L.057 23.5l5.823-1.527A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.007-1.37l-.36-.213-3.454.906.922-3.366-.234-.375A9.818 9.818 0 0 1 2.182 12C2.182 6.575 6.575 2.182 12 2.182S21.818 6.575 21.818 12 17.425 21.818 12 21.818z"/>
+            </svg>
+          </span>
+          <div>
+            <strong className="cf-cta-card__title">Chat with a Consultant</strong>
+            <span className="cf-cta-card__sub">Discuss your plan with an Element Farms expert</span>
+          </div>
+        </a>
+
+        <a
+          className="cf-cta-card cf-cta-card--visit"
+          href={FARM_VISIT_FORM}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className="cf-cta-card__icon">🌾</span>
+          <div>
+            <strong className="cf-cta-card__title">Book a Farm Visit</strong>
+            <span className="cf-cta-card__sub">We'll come to you — turn this plan into action</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  )
+}
+
+const WATER_LABELS = {
+  'rainfed': { label: 'Rainfed', icon: '🌧️' },
+  'limited-irrigation': { label: 'Limited irrigation', icon: '💧' },
+  'reliable-irrigation': { label: 'Full irrigation', icon: '🚿' },
+}
+const MANAGEMENT_LABELS = {
+  'low': { label: 'Low input', icon: '🌿' },
+  'moderate': { label: 'Moderate management', icon: '⚙️' },
+  'high': { label: 'High intensity', icon: '🏭' },
+}
+const SEASON_LABELS = {
+  'summer': { label: 'Summer planting', icon: '☀️' },
+  'autumn': { label: 'Autumn planting', icon: '🍂' },
+  'winter': { label: 'Winter planting', icon: '❄️' },
+  'spring': { label: 'Spring planting', icon: '🌸' },
+}
+const DURATION_LABELS = {
+  'annual': { label: 'Annual crops', icon: '📅' },
+  'short-perennial': { label: 'Short perennial', icon: '🌱' },
+  'long-perennial': { label: 'Long perennial', icon: '🌳' },
+}
+
+function FarmInsights({ inputs, seasonAdvice }) {
+  const chips = []
+
+  if (inputs.regionLabel || inputs.region) {
+    chips.push({ icon: '📍', label: inputs.regionLabel || inputs.region })
+  }
+  if (inputs.season && SEASON_LABELS[inputs.season]) {
+    const s = SEASON_LABELS[inputs.season]
+    chips.push({ icon: s.icon, label: s.label })
+  }
+  if (inputs.water_access && WATER_LABELS[inputs.water_access]) {
+    const w = WATER_LABELS[inputs.water_access]
+    chips.push({ icon: w.icon, label: w.label })
+  }
+  if (inputs.soil_type && inputs.soil_type !== 'unknown') {
+    chips.push({ icon: '🪱', label: inputs.soil_type.replace('-', ' ') + ' soil' })
+  }
+  if (inputs.management && MANAGEMENT_LABELS[inputs.management]) {
+    const m = MANAGEMENT_LABELS[inputs.management]
+    chips.push({ icon: m.icon, label: m.label })
+  }
+  if (inputs.duration_type && DURATION_LABELS[inputs.duration_type]) {
+    const d = DURATION_LABELS[inputs.duration_type]
+    chips.push({ icon: d.icon, label: d.label })
+  }
+
+  return (
+    <div className="cf-farm-insights">
+      <div className="cf-farm-insights__chips">
+        {chips.map((c, i) => (
+          <span key={i} className="cf-insight-chip">
+            <span className="cf-insight-chip__icon">{c.icon}</span>
+            {c.label}
+          </span>
+        ))}
+      </div>
+      {seasonAdvice && (
+        <p className="cf-farm-insights__advice">🌿 {seasonAdvice}</p>
+      )}
+    </div>
+  )
+}
+
+function TopThreeHero({ crops }) {
+  const top3 = [...crops].sort((a, b) => b.score - a.score).slice(0, 3)
+  if (top3.length === 0) return null
+
+  const medals = ['#C9A84C', '#A0A0A0', '#9B6E4A']
+  const medalLabel = ['1st', '2nd', '3rd']
+
+  return (
+    <div className="cf-top3">
+      <h2 className="cf-top3__heading">Your Top Picks</h2>
+      <div className="cf-top3__grid">
+        {top3.map((crop, i) => (
+          <div key={crop.id} className={`cf-top3__card cf-top3__card--${i + 1}`}>
+            <div className="cf-top3__rank" style={{ color: medals[i] }}>{medalLabel[i]}</div>
+            <div className="cf-top3__score">{crop.score}<span>/100</span></div>
+            <h3 className="cf-top3__name">{crop.name}</h3>
+            {crop.reasons?.[0] && (
+              <p className="cf-top3__reason">{crop.reasons[0]}</p>
+            )}
+            <div className="cf-top3__meta">
+              {crop.timeToIncome && (
+                <span className="cf-top3__tag">⏱ {crop.timeToIncome}</span>
+              )}
+              {crop.category && (
+                <span className="cf-top3__tag">{crop.category}</span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function ResultsView({ state, setView, resetPlanner, toggleCompare }) {
   const [sortBy, setSortBy] = useState('score')
   const [filterBy, setFilterBy] = useState('all')
@@ -162,10 +339,9 @@ export function ResultsView({ state, setView, resetPlanner, toggleCompare }) {
     results = [],
     compareList = [],
     aiSummary,
-    actionPlan = [],
     planUrl,
-    regionalContext,
     seasonAdvice,
+    inputs = {},
   } = state
 
   const sorted = useMemo(() => {
@@ -233,52 +409,14 @@ export function ResultsView({ state, setView, resetPlanner, toggleCompare }) {
   return (
     <div className="cf-results">
 
-      {/* AI Analysis Summary */}
-      {aiSummary && (
-        <div className="cf-analysis-banner">
-          <div className="cf-analysis-banner__content">
-            <h2 className="cf-analysis-banner__heading">Farm Analysis</h2>
-            <p className="cf-analysis-banner__summary">{aiSummary}</p>
-            {regionalContext && (
-              <p className="cf-analysis-banner__context">{regionalContext}</p>
-            )}
-            {seasonAdvice && (
-              <p className="cf-analysis-banner__season">🌿 {seasonAdvice}</p>
-            )}
-          </div>
-          {planUrl && (
-            <div className="cf-plan-share">
-              <span className="cf-plan-share__label">Save &amp; share this analysis:</span>
-              <div className="cf-plan-share__row">
-                <code className="cf-plan-share__url">
-                  {typeof window !== 'undefined' ? window.location.origin : ''}{planUrl}
-                </code>
-                <button
-                  className="cf-plan-share__copy cf-btn cf-btn--secondary cf-btn--sm"
-                  onClick={() => {
-                    const url = (typeof window !== 'undefined' ? window.location.origin : '') + planUrl
-                    navigator.clipboard.writeText(url).catch(() => {})
-                  }}
-                >
-                  Copy link
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Action Plan */}
-      {actionPlan.length > 0 && (
-        <div className="cf-action-plan">
-          <h3 className="cf-action-plan__heading">Your Action Plan</h3>
-          <ol className="cf-action-plan__list">
-            {actionPlan.map((step, i) => (
-              <li key={i} className="cf-action-plan__item">{step}</li>
-            ))}
-          </ol>
-        </div>
-      )}
+      {/* Top 3 + CTA side by side */}
+      <div className="cf-hero-row">
+        <TopThreeHero crops={results} />
+        <ResultsCTA
+          planUrl={planUrl}
+          topCrops={results.slice(0, 5).map(c => c.name)}
+        />
+      </div>
 
       {/* Results header */}
       <div className="cf-results-header">

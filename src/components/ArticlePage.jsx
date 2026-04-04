@@ -51,6 +51,21 @@ const renderBlock = (block, i) => {
         </div>
       )
 
+    case 'image':
+      return (
+        <figure key={i} className="article-page__figure">
+          <img
+            src={block.src}
+            alt={block.alt || ''}
+            className="article-page__img"
+            loading="lazy"
+          />
+          {block.caption && (
+            <figcaption className="article-page__caption">{block.caption}</figcaption>
+          )}
+        </figure>
+      )
+
     case 'references':
       return (
         <div key={i} className="article-page__references">

@@ -11,11 +11,11 @@
     max-width: 100%;
     margin: 0 auto;
     width: 100%;
-    padding: 0.8rem 3rem;
+    padding: 1.4rem 3rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 63px;
+    min-height: 100px;
 }
 
 .header--scrolled {
@@ -36,8 +36,8 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    height: 58px;
-    width: 170px;
+    height: 72px;
+    width: 210px;
     overflow: hidden; /* Crop whitespace inside the source PNG */
 }
 
@@ -260,8 +260,8 @@
     }
 
     .header__logo {
-        height: 48px;
-        width: 140px;
+        height: 58px;
+        width: 170px;
     }
 
     .header__nav-link {

@@ -1,8 +1,8 @@
-import Anthropic from '@anthropic-ai/sdk'
+import OpenAI from 'openai'
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
-const MODEL = 'claude-opus-4-6'
+const MODEL = 'gpt-4o-mini'
 
 const SYSTEM_PROMPT = `You are Dr. Nolwazi Dlamini, a Senior Agricultural Consultant with 20 years of experience in South African farming systems. You specialise in crop suitability analysis, regenerative farming practices, and commercial farm planning for small to medium farms across all South African provinces.
 
@@ -36,11 +36,11 @@ export async function analyzeWithClaude(inputs) {
 LOCATION:
 - Region: ${regionLabel}
 - Region key: ${inputs.region || 'not specified'}
-${inputs.lat && inputs.lng ? `- GPS coordinates: ${inputs.lat}°S, ${inputs.lng}°E` : ''}
+${inputs.lat && inputs.lng ? `- GPS coordinates: ${inputs.lat}, ${inputs.lng}` : ''}
 
 GROWING CONDITIONS:
 - Target season: ${inputs.season || 'not specified'}
-- Crop duration preference: ${inputs.duration_type || 'not specified'} (annual = 1 season, short-perennial = 2–5 years, long-perennial = 5+ years)
+- Crop duration preference: ${inputs.duration_type || 'not specified'} (annual = 1 season, short-perennial = 1–3 years to first income, long-perennial = 3+ years investment)
 - Water access: ${inputs.water_access || 'not specified'} (rainfed = rainfall only, limited-irrigation = some supplementary water, reliable-irrigation = full irrigation available)
 - Soil type: ${inputs.soil_type || 'unknown'}
 - Frost risk: ${inputs.frost_risk || 'unknown'}
@@ -50,7 +50,7 @@ FARM OPERATIONS:
 - Management intensity: ${inputs.management || 'not specified'} (low = minimal labour/inputs, moderate = standard commercial, high = intensive specialist)
 - Farm scale: ${inputs.farm_scale || 'not specified'}
 - Target market channels: ${marketChannels}
-- Income timeline preference: ${inputs.time_income_pref || 'no preference'} (fast = <6 months, medium = 6–18 months, long = 18+ months)
+- Income timeline preference: ${inputs.time_income_pref || 'no preference'} (fast = under 3 months, medium = 3–8 months, long = 1 year or more)
 
 Return a JSON object with EXACTLY this structure:
 {
@@ -83,35 +83,32 @@ Rules:
 - Include exactly 12–15 crop recommendations
 - Order by suitability_score descending
 - Band thresholds: best-fit = 80–100, good-fit = 60–79, marginal = 40–59, not-recommended = 0–39
-- Include at least 3 crops in each of best-fit, good-fit, and marginal categories
+- Band distribution must reflect actual suitability — do not force artificial counts per band
 - Be specific: name South African varieties where relevant (e.g. "Forono Beetroot", "Caro-Gold Pumpkin", "Sugar Loaf Cabbage")
 - Action plan must have exactly 5 items
 - reasons array: 2–3 items per crop
 - warnings array: 1–2 items per crop (use empty array [] if genuinely no warnings)
 - All suitability_score values must be integers 0–100`
 
-  const message = await client.messages.create({
+  const response = await client.chat.completions.create({
     model: MODEL,
-    max_tokens: 4096,
-    system: SYSTEM_PROMPT,
-    messages: [{ role: 'user', content: userPrompt }],
+    max_tokens: 7000,
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'user', content: userPrompt },
+    ],
   })
 
   const processingMs = Date.now() - startTime
-  const rawText = message.content[0].text.trim()
+  const rawText = response.choices[0].message.content.trim()
 
-  // Parse JSON — strip any accidental markdown code fences
   let analysis
   try {
-    const cleanText = rawText
-      .replace(/^```json\s*/i, '')
-      .replace(/^```\s*/i, '')
-      .replace(/```\s*$/i, '')
-      .trim()
-    analysis = JSON.parse(cleanText)
+    analysis = JSON.parse(rawText)
   } catch (parseError) {
     throw new Error(
-      `Claude returned invalid JSON: ${parseError.message}. Raw output (first 300 chars): ${rawText.substring(0, 300)}`
+      `OpenAI returned invalid JSON: ${parseError.message}. Raw output (first 300 chars): ${rawText.substring(0, 300)}`
     )
   }
 

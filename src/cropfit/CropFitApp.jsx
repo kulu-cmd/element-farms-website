@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useCropFitState } from './state/useCropFitState.js'
 import { PlannerForm } from './components/PlannerForm.jsx'
@@ -14,6 +14,42 @@ const NAV_TABS = ['planner', 'results', 'compare', 'library', 'methodology']
 export default function CropFitApp() {
   const cropFit = useCropFitState()
   const { state } = cropFit
+
+  const [capturedEmail, setCapturedEmail] = useState('')
+  const [showEmailPrompt, setShowEmailPrompt] = useState(false)
+  const [emailSent, setEmailSent] = useState(false)
+  const loadingTimerRef = useRef(null)
+
+  // Show email prompt after 10s of loading
+  useEffect(() => {
+    if (state.isLoading) {
+      setShowEmailPrompt(false)
+      loadingTimerRef.current = setTimeout(() => setShowEmailPrompt(true), 10000)
+    } else {
+      clearTimeout(loadingTimerRef.current)
+      setShowEmailPrompt(false)
+    }
+    return () => clearTimeout(loadingTimerRef.current)
+  }, [state.isLoading])
+
+  // When a new analysis starts, reset email state
+  useEffect(() => {
+    if (state.isLoading) {
+      setEmailSent(false)
+    }
+  }, [state.isLoading])
+
+  // Send farmer email when results land and an email was captured
+  useEffect(() => {
+    if (state.hasResults && state.planId && capturedEmail && !emailSent) {
+      setEmailSent(true)
+      fetch('/api/cropfit/send-farmer-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ planId: state.planId, email: capturedEmail }),
+      }).catch(() => {})
+    }
+  }, [state.hasResults, state.planId, capturedEmail, emailSent])
 
   function isTabDisabled(tab) {
     if (tab === 'results' && !state.hasResults) return true
@@ -53,12 +89,8 @@ export default function CropFitApp() {
                 className="cf-header__logo-img"
               />
             </Link>
-            <div className="cf-header__brand-text">
-              <span className="cf-header__title">CropFit Planner</span>
-              <span className="cf-header__subtitle">
-                Crop suitability planning for real farm conditions
-              </span>
-            </div>
+            <div className="cf-header__divider" aria-hidden="true" />
+            <span className="cf-header__title">CropFit</span>
           </div>
           <button
             className="cf-theme-toggle"
@@ -87,13 +119,36 @@ export default function CropFitApp() {
         </div>
       </nav>
 
-      {/* Loading overlay — shown while Claude API processes */}
+      {/* Loading overlay — shown while API processes */}
       {state.isLoading && (
         <div className="cf-loading-overlay" role="status" aria-live="polite">
           <div className="cf-loading-overlay__inner">
             <div className="cf-spinner" aria-hidden="true" />
-            <p className="cf-loading-overlay__text">Analysing your farm with Claude AI…</p>
-            <p className="cf-loading-overlay__sub">This typically takes 15–30 seconds</p>
+            <p className="cf-loading-overlay__text">Analysing your farm…</p>
+            {showEmailPrompt && (
+              <div className="cf-email-capture">
+                <p className="cf-email-capture__text">Taking a moment — want results in your inbox?</p>
+                <div className="cf-email-capture__row">
+                  <input
+                    type="email"
+                    className="cf-email-capture__input"
+                    placeholder="your@email.com"
+                    value={capturedEmail}
+                    onChange={e => setCapturedEmail(e.target.value)}
+                    aria-label="Email address for results"
+                  />
+                  <button
+                    className="cf-email-capture__btn"
+                    onClick={() => {/* email sends automatically when results arrive */}}
+                    disabled={!capturedEmail}
+                    type="button"
+                  >
+                    Notify me
+                  </button>
+                </div>
+                <p className="cf-email-capture__hint">We'll email your plan link when it's ready</p>
+              </div>
+            )}
           </div>
         </div>
       )}

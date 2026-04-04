@@ -327,7 +327,6 @@ function Step1Location({ state, updateInputs, detectLocation }) {
           {archetypeData && (
             <p className="cf-region-description">{archetypeData.description}</p>
           )}
-          {errors.region && <ValidationMsg message={errors.region} />}
         </div>
 
         {/* Confirmed location pill */}
@@ -359,7 +358,6 @@ function Step1Location({ state, updateInputs, detectLocation }) {
               />
             ))}
           </div>
-          {errors.season && <ValidationMsg message={errors.season} />}
         </div>
       </div>
     </div>
