@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './MissionSection.css'
 
 const pillars = [
@@ -7,16 +8,19 @@ const pillars = [
         title: 'Restore Soil Health',
         body: "We rebuild depleted farmland using regenerative inputs that revive soil biology, restore organic matter, and unlock nutrients that costly fertilisers have been masking for years.",
         icon: '🌍',
+        link: '/solutions/land-rejuvenation',
     },
     {
         title: 'Empower Farmers',
         body: "We give farmers the knowledge, tools, and systems to take control of their land — creating real independence from the chemical supply chains that erode margins season after season.",
         icon: '🌱',
+        link: '/cropfit',
     },
     {
         title: 'Sustain Future Generations',
         body: "We farm for tomorrow. Our systems improve soil quality with every harvest, building land that grows more fertile, more profitable, and more resilient with each passing season.",
         icon: '🌾',
+        link: null,
     },
 ]
 
@@ -36,9 +40,10 @@ const MissionSection = () => {
                     <span className="mission__eyebrow">OUR MISSION</span>
                     <h2 className="mission__heading">How we help farmers</h2>
                     <div className="mission__rule" />
-                    <p className="mission__intro">
-                        We are agriculture farm consultants with a singular focus; <strong>rebuild South Africa's soil health at scale.</strong> Through proven regenerative systems, we help small to medium commercial farms break their dependence on chemical fertilisers, saving money each season while <strong>creating land that sustains future generations</strong>.
-                    </p>
+                    <div className="mission__intro">
+                        <p className="mission__intro-headline">Break the chemical cycle. Rebuild your soil.</p>
+                        <p className="mission__intro-body">Regenerative systems that slash input costs, restore soil biology, and make your land more productive every season.</p>
+                    </div>
                 </motion.div>
 
                 {/* Part 2 — Three pillars grid */}
@@ -51,12 +56,21 @@ const MissionSection = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.14 }}
+                            {...(pillar.link ? { as: Link, to: pillar.link } : {})}
                         >
-                            <div className="mission__pillar-icon">
-                                {pillar.icon}
-                            </div>
-                            <h3 className="mission__pillar-title">{pillar.title}</h3>
-                            <p className="mission__pillar-body">{pillar.body}</p>
+                            {pillar.link ? (
+                                <Link to={pillar.link} className="mission__pillar-link">
+                                    <div className="mission__pillar-icon">{pillar.icon}</div>
+                                    <h3 className="mission__pillar-title">{pillar.title}</h3>
+                                    <p className="mission__pillar-body">{pillar.body}</p>
+                                </Link>
+                            ) : (
+                                <>
+                                    <div className="mission__pillar-icon">{pillar.icon}</div>
+                                    <h3 className="mission__pillar-title">{pillar.title}</h3>
+                                    <p className="mission__pillar-body">{pillar.body}</p>
+                                </>
+                            )}
                         </motion.div>
                     ))}
                 </div>

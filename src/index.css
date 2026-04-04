@@ -21,7 +21,7 @@
   --font-body:    'Source Sans 3', sans-serif;
 
   /* Layout */
-  --page-max-width: 1600px;
+  --page-max-width: 100%;
   --page-side-padding: 1.5rem;
 }
 

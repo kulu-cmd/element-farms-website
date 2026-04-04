@@ -1,0 +1,350 @@
+/* CropFit Plan View — Shareable analysis page */
+
+.cpv-main {
+  background: var(--white-warm);
+  min-height: 100vh;
+}
+
+/* Loading & error states */
+.cpv-loading,
+.cpv-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--charcoal);
+}
+
+.cpv-loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--light-grey);
+  border-top-color: var(--green-dark);
+  border-radius: 50%;
+  animation: cpv-spin 0.8s linear infinite;
+}
+
+@keyframes cpv-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Hero */
+.cpv-hero {
+  background: var(--charcoal);
+  padding: 4rem var(--page-side-padding) 2.5rem;
+}
+
+.cpv-hero__inner {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+.cpv-hero__badge {
+  display: inline-block;
+  background: var(--green-dark);
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 99px;
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.cpv-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--orange-main);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.cpv-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+.cpv-hero__meta span {
+  margin-right: 1.25rem;
+}
+
+.cpv-hero__meta span::before {
+  content: '· ';
+  color: var(--green-mid);
+  margin-right: 0.15rem;
+}
+
+.cpv-hero__meta span:first-child::before {
+  content: '';
+  margin-right: 0;
+}
+
+/* Content container */
+.cpv-content {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 2.5rem var(--page-side-padding) 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Section */
+.cpv-section__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 2px solid var(--light-grey);
+}
+
+.cpv-section__count {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #888;
+  font-family: var(--font-body);
+}
+
+/* Summary */
+.cpv-summary {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin: 0 0 0.75rem;
+}
+
+.cpv-context {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 0 0.75rem;
+}
+
+.cpv-season-advice {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--green-dark);
+  background: #f0f7f2;
+  border-left: 3px solid var(--green-mid);
+  padding: 0.65rem 1rem;
+  border-radius: 0 4px 4px 0;
+  margin: 0;
+}
+
+/* Crop cards grid */
+.cpv-crops {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+}
+
+.cpv-crop-card {
+  background: white;
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  padding: 1.1rem 1.1rem 0.9rem;
+  transition: box-shadow 0.2s;
+}
+
+.cpv-crop-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.cpv-crop-card__top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.cpv-score {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 2.5rem;
+}
+
+.cpv-band {
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  font-family: var(--font-heading);
+}
+
+.cpv-category {
+  font-size: 0.72rem;
+  color: #888;
+  border: 1px solid #ddd;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+
+.cpv-crop-card__name {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin: 0 0 0.6rem;
+}
+
+.cpv-reasons {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: #555;
+  margin: 0 0 0.65rem;
+  padding-left: 1.1rem;
+}
+
+.cpv-reasons li {
+  margin-bottom: 0.2rem;
+}
+
+.cpv-crop-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.cpv-detail {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.cpv-detail__label {
+  font-weight: 700;
+  color: #777;
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.cpv-warnings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.cpv-warning-pill {
+  font-size: 0.72rem;
+  color: #a06000;
+  background: #fff8e6;
+  border: 1px solid #e0a526;
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* Action plan */
+.cpv-action-list {
+  margin: 0;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.cpv-action-item {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+/* CTA section */
+.cpv-cta-section {
+  background: var(--charcoal);
+  border-radius: 10px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.cpv-cta-section__heading {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--orange-main);
+  margin: 0 0 0.75rem;
+}
+
+.cpv-cta-section__text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--cream);
+  margin: 0 0 1.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cpv-cta-section__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.cpv-btn {
+  display: inline-block;
+  padding: 0.72rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  border: none;
+}
+
+.cpv-btn:hover { opacity: 0.85; }
+
+.cpv-btn--primary {
+  background: var(--green-dark);
+  color: white;
+}
+
+.cpv-btn--secondary {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid var(--cream);
+}
+
+.cpv-error .cpv-btn {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .cpv-hero {
+    padding: 2.5rem var(--page-side-padding) 2rem;
+  }
+
+  .cpv-crops {
+    grid-template-columns: 1fr;
+  }
+
+  .cpv-cta-section {
+    padding: 2rem var(--page-side-padding);
+  }
+}

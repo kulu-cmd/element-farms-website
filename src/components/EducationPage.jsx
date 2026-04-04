@@ -58,42 +58,43 @@ const EducationPage = () => {
           {articles.map((article, i) => (
             <motion.div
               key={article.id}
-              className="education__card"
               custom={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
               variants={cardVariants}
             >
-              {/* Thumbnail */}
-              <div
-                className="education__card-thumb"
-                style={{
-                  background: `linear-gradient(135deg, ${article.thumbnail.gradient[0]}, ${article.thumbnail.gradient[1]})`,
-                }}
+              <Link
+                to={`/education/${article.slug}`}
+                className="education__card"
+                aria-label={`Read article: ${article.title}`}
               >
-                <span className="education__card-category">{article.category}</span>
-                <span className="education__card-thumb-icon" role="img" aria-label={article.category}>
-                  {article.thumbnail.icon}
-                </span>
-              </div>
-
-              {/* Body */}
-              <div className="education__card-body">
-                <div className="education__card-title">{article.title}</div>
-                <p className="education__card-excerpt">{article.excerpt}</p>
-                <div className="education__card-meta">
-                  <span>{article.readTime}</span>
-                  <span>{article.date}</span>
-                </div>
-                <Link
-                  to={`/education/${article.slug}`}
-                  className="education__card-cta"
-                  aria-label={`Read article: ${article.title}`}
+                {/* Thumbnail */}
+                <div
+                  className="education__card-thumb"
+                  style={{
+                    background: `linear-gradient(135deg, ${article.thumbnail.gradient[0]}, ${article.thumbnail.gradient[1]})`,
+                  }}
                 >
-                  Read Article <span aria-hidden="true">→</span>
-                </Link>
-              </div>
+                  <span className="education__card-category">{article.category}</span>
+                  <span className="education__card-thumb-icon" role="img" aria-label={article.category}>
+                    {article.thumbnail.icon}
+                  </span>
+                </div>
+
+                {/* Body */}
+                <div className="education__card-body">
+                  <div className="education__card-title">{article.title}</div>
+                  <p className="education__card-excerpt">{article.excerpt}</p>
+                  <div className="education__card-meta">
+                    <span>{article.readTime}</span>
+                    <span>{article.date}</span>
+                  </div>
+                  <span className="education__card-cta">
+                    Read Article <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

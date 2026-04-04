@@ -37,8 +37,7 @@ const HeroSection = () => {
                         animate="visible"
                         custom={0.55}
                     >
-                        Transform agricultural waste into regenerative soil inputs that rebuild
-                        fertility and reduce chemical dependence.
+                        Systems to transform agricultural waste into regenerative soil inputs at scale. Reduce chemical dependence and rebuild soil biology.
                     </motion.p>
 
                     <motion.div
