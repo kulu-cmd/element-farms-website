@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { API } from '../api.js'
 import './CropFitPlanView.css'
 
 function getBandColor(band) {
@@ -82,7 +83,7 @@ export default function CropFitPlanView() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/cropfit/plan/${id}`)
+    fetch(API.plan(id))
       .then(r => r.json())
       .then(data => {
         if (data.success) setPlan(data.plan)

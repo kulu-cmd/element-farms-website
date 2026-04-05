@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useCropFitState } from './state/useCropFitState.js'
+import { API } from '../api.js'
 import { PlannerForm } from './components/PlannerForm.jsx'
 import { ResultsView } from './components/ResultsView.jsx'
 import { CompareView } from './components/CompareView.jsx'
@@ -43,7 +44,7 @@ export default function CropFitApp() {
   useEffect(() => {
     if (state.hasResults && state.planId && capturedEmail && !emailSent) {
       setEmailSent(true)
-      fetch('/api/cropfit/send-farmer-email', {
+      fetch(API.sendFarmerEmail, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ planId: state.planId, email: capturedEmail }),
