@@ -19,7 +19,10 @@ export default function CropFitApp() {
   const [capturedEmail, setCapturedEmail] = useState('')
   const [showEmailPrompt, setShowEmailPrompt] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
+  const [emailCaptured, setEmailCaptured] = useState(false)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
   const loadingTimerRef = useRef(null)
+  const successTimerRef = useRef(null)
 
   // Show email prompt after 10s of loading
   useEffect(() => {
@@ -37,12 +40,25 @@ export default function CropFitApp() {
   useEffect(() => {
     if (state.isLoading) {
       setEmailSent(false)
+      setEmailCaptured(false)
+      setShowSuccessMessage(false)
     }
   }, [state.isLoading])
 
+  // Show success message when email is captured, then hide prompt
+  useEffect(() => {
+    if (emailCaptured && !showSuccessMessage) {
+      setShowSuccessMessage(true)
+      successTimerRef.current = setTimeout(() => {
+        setShowEmailPrompt(false)
+      }, 2500)
+    }
+    return () => clearTimeout(successTimerRef.current)
+  }, [emailCaptured, showSuccessMessage])
+
   // Send farmer email when results land and an email was captured
   useEffect(() => {
-    if (state.hasResults && state.planId && capturedEmail && !emailSent) {
+    if (state.hasResults && state.planId && emailCaptured && capturedEmail && !emailSent) {
       setEmailSent(true)
       fetch(API.sendFarmerEmail, {
         method: 'POST',
@@ -50,7 +66,7 @@ export default function CropFitApp() {
         body: JSON.stringify({ planId: state.planId, email: capturedEmail }),
       }).catch(() => {})
     }
-  }, [state.hasResults, state.planId, capturedEmail, emailSent])
+  }, [state.hasResults, state.planId, capturedEmail, emailCaptured, emailSent])
 
   function isTabDisabled(tab) {
     if (tab === 'results' && !state.hasResults) return true
@@ -128,26 +144,34 @@ export default function CropFitApp() {
             <p className="cf-loading-overlay__text">Analysing your farm…</p>
             {showEmailPrompt && (
               <div className="cf-email-capture">
-                <p className="cf-email-capture__text">Taking a moment — want results in your inbox?</p>
-                <div className="cf-email-capture__row">
-                  <input
-                    type="email"
-                    className="cf-email-capture__input"
-                    placeholder="your@email.com"
-                    value={capturedEmail}
-                    onChange={e => setCapturedEmail(e.target.value)}
-                    aria-label="Email address for results"
-                  />
-                  <button
-                    className="cf-email-capture__btn"
-                    onClick={() => {/* email sends automatically when results arrive */}}
-                    disabled={!capturedEmail}
-                    type="button"
-                  >
-                    Notify me
-                  </button>
-                </div>
-                <p className="cf-email-capture__hint">We'll email your plan link when it's ready</p>
+                {showSuccessMessage ? (
+                  <div className="cf-email-success">
+                    <p className="cf-email-success__message">✓ Noted, you will be emailed shortly</p>
+                  </div>
+                ) : (
+                  <>
+                    <p className="cf-email-capture__text">Taking a moment — want results in your inbox?</p>
+                    <div className="cf-email-capture__row">
+                      <input
+                        type="email"
+                        className="cf-email-capture__input"
+                        placeholder="your@email.com"
+                        value={capturedEmail}
+                        onChange={e => setCapturedEmail(e.target.value)}
+                        aria-label="Email address for results"
+                      />
+                      <button
+                        className="cf-email-capture__btn"
+                        onClick={() => setEmailCaptured(true)}
+                        disabled={!capturedEmail}
+                        type="button"
+                      >
+                        Notify me
+                      </button>
+                    </div>
+                    <p className="cf-email-capture__hint">We'll email your plan link when it's ready</p>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -158,7 +182,18 @@ export default function CropFitApp() {
       <main className="cf-main">
         {state.view === 'planner' && (
           <div className="cf-layout">
-            <aside className="cf-layout__sidebar">
+            <div className="cf-layout__header">
+              <span className="cf-empty-state__icon" aria-hidden="true">🌱</span>
+              <h2 className="cf-empty-state__title">
+                Start planning your crop selection
+              </h2>
+              <p className="cf-empty-state__text">
+                Fill in the planner form to get ranked crop recommendations
+                based on your farm conditions. This tool provides directional
+                guidance — not a guarantee of outcome.
+              </p>
+            </div>
+            <div className="cf-layout__form">
               <PlannerForm
                 state={state}
                 updateInputs={cropFit.updateInputs}
@@ -168,19 +203,6 @@ export default function CropFitApp() {
                 isLoading={state.isLoading}
                 analysisError={state.analysisError}
               />
-            </aside>
-            <div className="cf-layout__intro">
-              <div className="cf-empty-state">
-                <span className="cf-empty-state__icon" aria-hidden="true">🌱</span>
-                <h2 className="cf-empty-state__title">
-                  Start planning your crop selection
-                </h2>
-                <p className="cf-empty-state__text">
-                  Fill in the planner form to get ranked crop recommendations
-                  based on your farm conditions. This tool provides directional
-                  guidance — not a guarantee of outcome.
-                </p>
-              </div>
             </div>
           </div>
         )}
