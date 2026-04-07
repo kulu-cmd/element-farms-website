@@ -4,19 +4,32 @@
 
 /* Hero */
 .flood__hero {
-    background-color: var(--charcoal);
-    padding: 7rem 2rem 3rem;
     position: relative;
+    background-image: url('/flood.jpg');
+    background-size: cover;
+    background-position: center center;
+    padding: 7rem 2rem 3rem;
     overflow: hidden;
 }
 
+.flood__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 20, 10, 0.62);
+    z-index: 0;
+}
+
 .flood__hero-inner {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .flood__hero-title {
@@ -29,11 +42,10 @@
 
 .flood__hero-subtitle {
     font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 520px;
-    margin-top: 0.75rem;
-    line-height: 1.6;
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 1100px;
+    line-height: 1.7;
 }
 
 .flood__hero-deco {
@@ -50,13 +62,14 @@
 
 /* Stats intro */
 .flood__stats-intro {
-    background: var(--orange-main);
+    background: var(--off-white);
     padding: 3.5rem 2rem 2.5rem;
 }
 
 .flood__stats-intro-inner {
     max-width: var(--page-max-width, 1100px);
     margin: 0 auto;
+    text-align: center;
 }
 
 .flood__stats-eyebrow {
@@ -66,30 +79,32 @@
     font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--orange-main);
     margin-bottom: 0.9rem;
 }
 
 .flood__stats-headline {
     font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-    font-weight: 900;
-    color: #fff;
+    font-size: clamp(1.12rem, 2.45vw, 1.68rem);
+    font-weight: 800;
+    color: var(--orange-main);
     margin: 0 0 1.25rem;
     line-height: 1.25;
+    text-align: center;
 }
 
 .flood__stats-rule {
     width: 56px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.5);
+    background: var(--orange-main);
     border-radius: 2px;
-    transform-origin: left center;
+    margin: 0 auto;
+    transform-origin: center center;
 }
 
 /* Stats */
 .flood__stats {
-    background-color: var(--orange-main);
+    background-color: var(--off-white);
     padding: 0.5rem 3rem 3.5rem;
 }
 
@@ -112,16 +127,17 @@
 }
 
 .flood__stat-value {
-    font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+    font-family: var(--font-body);
+    font-size: clamp(2.3rem, 3.8vw, 3.1rem);
     font-weight: 900;
     color: var(--orange-main);
     line-height: 1.1;
+    letter-spacing: -0.07em;
 }
 
 .flood__stat-label {
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: var(--charcoal);
     line-height: 1.5;
     margin: 0;

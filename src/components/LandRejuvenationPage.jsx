@@ -25,19 +25,6 @@ const LandRejuvenationPage = () => {
                     className="land-regen__hero-inner"
                     style={{ y: heroY, opacity: heroOpacity }}
                 >
-                    <motion.div
-                        className="land-regen__icon"
-                        initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
-                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                    >
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="2"/>
-                            <line x1="20" y1="10" x2="20" y2="30" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                            <line x1="10" y1="20" x2="30" y2="20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                        </svg>
-                    </motion.div>
-
                     <motion.h1
                         className="land-regen__title"
                         initial={{ opacity: 0, y: 40 }}

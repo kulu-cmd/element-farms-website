@@ -97,7 +97,7 @@
 /* Step description (animated in/out) */
 .approach__step-desc {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.65;
   color: var(--charcoal);
   margin: 0;

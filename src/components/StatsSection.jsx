@@ -5,15 +5,15 @@ import './StatsSection.css'
 const StatsSection = () => {
     const stats = [
         {
-            value: '~70 %',
+            value: '~ 70 %',
             label: "of South Africa's land surface is affected by some form of soil erosion",
         },
         {
-            value: '300-400 million tonnes',
+            value: '300 - 400 million tonnes',
             label: 'of fertile top soil is lost annually in South Africa',
         },
         {
-            value: '> ~80 %',
+            value: '> ~ 80 %',
             label: 'of South African soils are classified as low or moderate agricultural potential',
         },
     ]
@@ -28,7 +28,7 @@ const StatsSection = () => {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.7 }}
                 >
-                    South African Soil is under pressure
+                    South African soil is under pressure
                 </motion.h2>
 
                 <div className="stats__grid">

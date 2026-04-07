@@ -1,5 +1,5 @@
 .video-section {
-    background-color: var(--off-white);
+    background-color: #0e5a36;
     padding: 4rem 2rem;
 }
 
@@ -13,15 +13,15 @@
     font-family: var(--font-heading);
     font-size: clamp(1.75rem, 3vw, 2.4rem);
     font-weight: 800;
-    color: var(--charcoal);
+    color: #fffcf3;
     margin-bottom: 1rem;
 }
 
 .video-section__subtitle {
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1.075rem;
     line-height: 1.6;
-    color: rgba(43, 43, 43, 0.8);
+    color: rgba(255, 252, 243, 0.85);
     max-width: 560px;
     margin: 0 auto 2rem;
 }

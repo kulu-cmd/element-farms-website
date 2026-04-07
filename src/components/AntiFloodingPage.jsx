@@ -9,7 +9,7 @@ const AntiFloodingPage = () => {
 
     const stats = [
         {
-            value: '20–30%',
+            value: '20 – 30 %',
             label: 'reduction in compaction and waterlogging in treated soils',
         },
         {
@@ -17,7 +17,7 @@ const AntiFloodingPage = () => {
             label: 'of water stored per hectare in saturated conditions',
         },
         {
-            value: '4000+',
+            value: '4 000 +',
             label: 'hectares of KwaZulu-Natal farmland at high flooding risk annually',
         },
     ]
@@ -97,34 +97,12 @@ const AntiFloodingPage = () => {
                             >↓</motion.span>
                         </motion.div>
                     </div>
-                    <motion.div
-                        className="flood__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.6, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
                 </div>
             </section>
 
             {/* Stats intro */}
             <section className="flood__stats-intro">
                 <div className="flood__stats-intro-inner">
-                    <motion.span
-                        className="flood__stats-eyebrow"
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        The damage flooding causes
-                    </motion.span>
                     <motion.h2
                         className="flood__stats-headline"
                         initial={{ opacity: 0, y: 32 }}

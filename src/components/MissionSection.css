@@ -41,17 +41,12 @@
 
 .mission__intro {
     font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    line-height: 1.75;
     color: rgba(43, 43, 43, 0.82);
     max-width: 100%;
     margin: 0 auto 3.5rem;
     text-align: left;
-    padding: 2rem 2.5rem;
-    background: white;
-    border-radius: 12px;
-    border: 2px solid var(--orange-main);
-    box-shadow: 0 8px 32px rgba(243, 111, 33, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* --- Pillars grid --- */
@@ -101,7 +96,7 @@
 
 .mission__pillar-body {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     line-height: 1.65;
     color: rgba(43, 43, 43, 0.78);
     margin: 0;
@@ -134,9 +129,8 @@
     }
 
     .mission__intro {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         margin-bottom: 2rem;
-        padding: 1.25rem 1.5rem;
     }
 
     .mission__heading {

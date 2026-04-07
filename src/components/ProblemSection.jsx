@@ -4,15 +4,15 @@ import './ProblemSection.css'
 
 const stats = [
     {
-        value: '~70%',
+        value: '~ 70 %',
         label: 'of South Africa farmland shows signs of degradation',
     },
     {
-        value: '~2–5%',
+        value: '~ 2–5 %',
         label: 'annual yield loss from poor soil health',
     },
     {
-        value: '$68B',
+        value: '$ 68 B',
         label: 'cost of soil degradation across Africa yearly',
     },
 ]
@@ -37,10 +37,9 @@ const ProblemSection = () => {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                    Decades of synthetic fertilisers and chemical pesticides have degraded South
-                    Africa's farmland. Soil biology has been stripped, organic matter depleted, and
-                    minerals locked out of reach. The result? Farmers spend more every season on
-                    inputs that deliver diminishing returns.
+                    Decades of synthetic fertilisers and chemical pesticides have degraded South Africa's farmland.<br />
+                    Soil biology has been stripped, organic matter depleted, and minerals locked out of reach. The result?<br />
+                    Farmers spend more every season on inputs that deliver diminishing returns.
                 </motion.p>
 
                 <div className="problem-section__grid">

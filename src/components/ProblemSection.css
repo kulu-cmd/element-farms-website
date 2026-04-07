@@ -19,10 +19,10 @@
 
 .problem-section__body {
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 1.125rem;
     line-height: 1.7;
     color: var(--charcoal);
-    max-width: 700px;
+    max-width: 960px;
     margin: 0 auto 2.5rem;
     text-align: center;
 }
@@ -43,17 +43,18 @@
 }
 
 .problem-section__card-value {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-family: var(--font-body);
+    font-size: clamp(2.3rem, 3.8vw, 3.1rem);
     font-weight: 900;
     color: var(--orange-main);
     margin-bottom: 0.75rem;
     line-height: 1.1;
+    letter-spacing: -0.07em;
 }
 
 .problem-section__card-label {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1.025rem;
     line-height: 1.5;
     color: var(--charcoal);
 }

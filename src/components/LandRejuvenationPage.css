@@ -1,17 +1,36 @@
 .land-regen__hero {
-    background-color: var(--charcoal);
+    position: relative;
+    background-image: url('/field-crops.jpg');
+    background-size: cover;
+    background-position: center center;
     padding: 7rem 2rem 2.5rem;
     text-align: center;
     color: white;
+    overflow: hidden;
+}
+
+.land-regen__hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 20, 10, 0.62);
+    z-index: 0;
 }
 
 .land-regen__hero-inner {
-    max-width: 700px;
+    position: relative;
+    z-index: 1;
+}
+
+.land-regen__hero-inner {
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .land-regen__icon {
@@ -29,10 +48,10 @@
 
 .land-regen__subtitle {
     font-family: var(--font-body);
-    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.9);
-    max-width: 620px;
+    max-width: 1100px;
     text-align: center;
 }
 
