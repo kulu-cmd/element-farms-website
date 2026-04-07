@@ -43,18 +43,32 @@
   margin: 0 auto;
 }
 
-.cpv-hero__badge {
-  display: inline-block;
-  background: var(--green-dark);
+.cpv-hero__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cpv-hero__logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cpv-hero__divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.cpv-hero__brand {
   color: white;
-  font-size: 0.68rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.3rem 0.8rem;
-  border-radius: 99px;
-  margin-bottom: 1rem;
-  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
 }
 
 .cpv-hero__title {

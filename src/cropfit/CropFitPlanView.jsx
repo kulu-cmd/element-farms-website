@@ -120,7 +120,15 @@ export default function CropFitPlanView() {
             {/* Plan hero */}
             <div className="cpv-hero">
               <div className="cpv-hero__inner">
-                <div className="cpv-hero__badge">CropFit Analysis</div>
+                <div className="cpv-hero__header">
+                  <img
+                    src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                    alt="Element Farm Solutions"
+                    className="cpv-hero__logo"
+                  />
+                  <div className="cpv-hero__divider" aria-hidden="true" />
+                  <span className="cpv-hero__brand">CropFit</span>
+                </div>
                 <h1 className="cpv-hero__title">
                   {plan.farm_name || (plan.contact_name ? `${plan.contact_name}'s Farm` : 'Crop Suitability Plan')}
                 </h1>

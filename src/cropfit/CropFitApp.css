@@ -257,39 +257,22 @@
    LAYOUT — SIDEBAR + CONTENT GRID
 ----------------------------------------------- */
 .cf-layout {
-  display: grid;
-  grid-template-columns: var(--cf-sidebar-w) 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.cf-layout__sidebar {
-  position: sticky;
-  top: calc(var(--cf-header-h) + var(--cf-nav-h) + 1.5rem);
-  max-height: calc(100vh - var(--cf-header-h) - var(--cf-nav-h) - 3rem);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--cf-border) transparent;
-}
-
-.cf-layout__sidebar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.cf-layout__sidebar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.cf-layout__sidebar::-webkit-scrollbar-thumb {
-  background: var(--cf-border);
-  border-radius: 4px;
-}
-
-.cf-layout__intro {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 400px;
+  gap: 2rem;
+  padding: 0 3rem;
+}
+
+.cf-layout__header {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.cf-layout__form {
+  width: 100%;
+  max-width: var(--cf-sidebar-w);
 }
 
 /* -----------------------------------------------
@@ -297,22 +280,20 @@
 ----------------------------------------------- */
 .cf-empty-state {
   text-align: center;
-  padding: 3rem 2rem;
-  max-width: 480px;
 }
 
 .cf-empty-state__icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
   display: block;
 }
 
 .cf-empty-state__title {
   font-family: var(--cf-font-heading);
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--cf-text);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
 .cf-empty-state__text {
@@ -1946,6 +1927,29 @@
 
 .cf-email-capture__hint {
   font-size: 0.72rem; color: rgba(255,255,255,0.4); margin: 0.4rem 0 0;
+}
+
+/* Success message — shows after email submission */
+.cf-email-success {
+  animation: cf-success-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cf-email-success__message {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 600;
+}
+
+@keyframes cf-success-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useCallback } from 'react'
 
-const CONSULTANT_WHATSAPP = '27000000000' // TODO: replace with real number e.g. 27821234567
+const CONSULTANT_WHATSAPP = '27613889339'
 const FARM_VISIT_FORM = 'https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/viewform'
 
 const SORT_OPTIONS = [
