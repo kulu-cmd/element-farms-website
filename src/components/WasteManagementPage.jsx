@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import CallToAction from './CallToAction'
 import Footer from './Footer'
+import PageHero from './PageHero'
 import { Link } from 'react-router-dom'
 import './WasteManagementPage.css'
 
@@ -44,43 +45,13 @@ const WasteManagementPage = () => {
         <div className="waste">
             <Header />
 
-            {/* Hero */}
-            <section className="waste__hero">
-                <div className="waste__hero-inner">
-                    <div className="waste__hero-text">
-                        <motion.h1
-                            className="waste__hero-title"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            Waste Management
-                        </motion.h1>
-                        <motion.p
-                            className="waste__hero-subtitle"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                        >
-                            Turning agricultural waste into clean energy and premium organic
-                            fertiliser — closing the loop on your farm's most valuable resource.
-                        </motion.p>
-                    </div>
-                    <motion.div
-                        className="waste__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.6, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Solutions / Renewable Energy"
+                title="Waste __Management__"
+                subtitle="Turning agricultural waste into clean energy and premium organic fertiliser — closing the loop on your farm's most valuable resource."
+                note="Closed-loop systems."
+                tone="moss"
+            />
 
             {/* Stats */}
             <section className="waste__stats">

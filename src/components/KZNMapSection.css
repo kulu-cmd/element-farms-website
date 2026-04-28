@@ -1,0 +1,168 @@
+/* KZN Erosion Risk Map — animated SVG */
+
+.kzn-x {
+    background: var(--ink);
+    color: var(--paper-soft);
+    padding: clamp(5rem, 9vw, 8rem) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.kzn-x::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 70% 50%, rgba(243, 111, 33, 0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(63, 174, 90, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.kzn-x__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--rail-padding);
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.kzn-x__head {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.kzn-x__eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+.kzn-x__title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--paper-soft);
+}
+
+.kzn-x__title em {
+    font-style: italic;
+    color: var(--clay);
+}
+
+.kzn-x__sub {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+    line-height: 1.65;
+    color: rgba(247, 245, 240, 0.6);
+    max-width: 44ch;
+}
+
+/* Map */
+.kzn-x__map-wrap {
+    position: relative;
+}
+
+.kzn-x__svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.4));
+}
+
+/* Province fills */
+.kzn-x__province {
+    fill: var(--bone);
+    transition: fill 0.3s ease;
+}
+
+.kzn-x__province--hi {
+    fill: var(--clay);
+}
+
+.kzn-x__province--hi:hover {
+    filter: brightness(1.1);
+}
+
+/* Borders between provinces */
+.kzn-x__border {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+}
+
+/* Province name labels */
+.kzn-x__label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    fill: rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+}
+
+/* Pulse dots */
+.kzn-x__dot {
+    fill: white;
+    filter: drop-shadow(0 0 6px rgba(243, 111, 33, 0.8));
+}
+
+/* Legend */
+.kzn-x__legend {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.kzn-x__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: rgba(247, 245, 240, 0.7);
+}
+
+.kzn-x__legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.kzn-x__source {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    color: rgba(247, 245, 240, 0.35);
+    margin-top: 0.5rem;
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+    .kzn-x__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .kzn-x__svg {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .kzn-x__label {
+        font-size: 9px;
+    }
+}

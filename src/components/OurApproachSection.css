@@ -1,159 +1,264 @@
-.approach {
-  background: white;
-  padding-bottom: 3rem;
+/* APPROACH — horizontal carousel with illustrated icon frames */
+
+.approach-x {
+    position: relative;
+    background: var(--moss-deep);
+    color: var(--paper);
+    padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 10vw, 8rem);
+    overflow: hidden;
 }
 
-.approach__header {
-  background-color: #e6e6e6;
-  padding: 1.25rem 2rem;
-  margin-bottom: 2.5rem;
+.approach-x::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain-url);
+    opacity: 0.35;
+    mix-blend-mode: screen;
+    pointer-events: none;
 }
 
-.approach__title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.26rem, 2.1vw, 1.75rem);
-  font-weight: 800;
-  color: var(--orange-main);
-  margin: 0 auto;
-  max-width: 100%;
+.approach-x::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 10% 90%, rgba(243, 111, 33, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 10%, rgba(205, 197, 108, 0.12) 0%, transparent 55%);
+    pointer-events: none;
 }
 
-/* Steps row */
-.approach__steps {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 2rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
+.approach-x__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 var(--rail-padding);
 }
 
-/* Arrow connector */
-.approach__connector {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.5rem;
-  /* Vertically align with the top portion of the card — roughly at step number + title height */
-  margin-top: 2.75rem;
+.approach-x__header {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-/* Step card */
-.approach__step {
-  flex: 1;
-  background: white;
-  border: 2px solid rgba(243, 111, 33, 0.25);
-  border-radius: 20px;
-  padding: 1.75rem 1.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  /* Prevent layout jump when description opens */
-  min-height: 110px;
+.approach-x__header .section-label {
+    grid-column: 1 / 13;
+    margin-bottom: 1.5rem;
 }
 
-.approach__step:hover {
-  border-color: var(--orange-main);
-  box-shadow: 0 6px 24px rgba(243, 111, 33, 0.12);
+.approach-x__heading {
+    grid-column: 1 / 11;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--paper);
 }
 
-.approach__step--active {
-  background: var(--orange-main);
-  border-color: var(--orange-main);
-  box-shadow: 0 8px 32px rgba(243, 111, 33, 0.25);
+.approach-x__heading em {
+    font-style: italic;
+    color: var(--ochre);
+    font-weight: 500;
 }
 
-/* Step number */
-.approach__step-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--orange-main);
-  margin-bottom: 0.6rem;
-  transition: color 0.3s ease;
+/* Controls */
+.approach-x__controls {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    justify-content: flex-end;
 }
 
-.approach__step--active .approach__step-number {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Step title */
-.approach__step-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-  font-weight: 800;
-  color: var(--charcoal);
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.approach__step--active .approach__step-title {
-  color: white;
-}
-
-/* Step description (animated in/out) */
-.approach__step-desc {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  line-height: 1.65;
-  color: var(--charcoal);
-  margin: 0;
-  overflow: hidden;
-  transition: color 0.3s ease;
-}
-
-.approach__step--active .approach__step-desc {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .approach__steps {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .approach__connector {
-    margin-top: 0;
-    padding: 0.4rem 0;
-    transform: rotate(90deg);
-    align-self: center;
-  }
-
-  .approach__step {
-    min-height: auto;
-  }
-}
-
-@media (max-width: 640px) {
-  .approach__header {
-    padding: 1rem 1.25rem;
-  }
-
-  .approach__steps {
-    padding: 0 1.25rem 1rem;
-  }
-
-  .approach__step {
-    /* Full width is already guaranteed by flex column + align-items: stretch */
-    padding: 1.25rem 1rem;
-  }
-
-  .approach__step-title {
+.approach-x__ctrl {
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 239, 230, 0.28);
+    background: transparent;
+    color: var(--paper);
     font-size: 1.1rem;
-  }
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
 }
 
-@media (max-width: 400px) {
-  .approach__steps {
-    padding: 0 0.75rem 1rem;
-  }
+.approach-x__ctrl:hover:not(:disabled) {
+    background: var(--clay);
+    border-color: var(--clay);
+    transform: translateY(-1px);
+}
 
-  .approach__step {
-    padding: 1rem 0.875rem;
-  }
+.approach-x__ctrl:disabled {
+    opacity: 0.32;
+    cursor: not-allowed;
+}
+
+.approach-x__dots {
+    list-style: none;
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.approach-x__dot {
+    width: 28px;
+    height: 2px;
+    background: rgba(244, 239, 230, 0.22);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.4s ease, width 0.4s ease;
+}
+
+.approach-x__dot.is-active {
+    background: var(--clay);
+    width: 56px;
+}
+
+/* Track */
+.approach-x__track {
+    display: flex;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    margin: 0 calc(var(--rail-padding) * -1);
+    padding-left: var(--rail-padding);
+    padding-right: var(--rail-padding);
+}
+
+.approach-x__track::-webkit-scrollbar { display: none; }
+
+.approach-x__slide {
+    flex: 0 0 min(820px, 88vw);
+    scroll-snap-align: start;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: stretch;
+    background: rgba(244, 239, 230, 0.04);
+    border: 1px solid rgba(244, 239, 230, 0.12);
+    border-radius: 6px;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    transition: border-color 0.4s ease, background 0.4s ease;
+}
+
+.approach-x__slide.is-active {
+    border-color: rgba(243, 111, 33, 0.5);
+    background: rgba(244, 239, 230, 0.06);
+}
+
+/* Icon frame */
+.approach-x__icon-frame {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(160deg, rgba(63, 174, 90, 0.18) 0%, rgba(14, 90, 54, 0.4) 100%);
+    border: 1px solid rgba(205, 197, 108, 0.3);
+    border-radius: 4px;
+    padding: 1.25rem;
+    color: var(--ochre);
+    overflow: hidden;
+}
+
+.approach-x__icon-frame::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        repeating-linear-gradient(45deg, rgba(205, 197, 108, 0.06) 0 1px, transparent 1px 12px);
+    pointer-events: none;
+}
+
+.approach-x__icon-num {
+    position: relative;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--clay);
+}
+
+.approach-x__icon-glyph {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ochre);
+}
+
+.approach-x__icon-glyph svg { width: 60%; height: auto; max-width: 140px; }
+
+.approach-x__icon-caption {
+    position: relative;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 230, 0.7);
+    align-self: flex-end;
+}
+
+/* Copy */
+.approach-x__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.approach-x__step-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ochre);
+}
+
+.approach-x__step-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--paper);
+}
+
+.approach-x__step-period {
+    color: var(--clay);
+}
+
+.approach-x__step-body {
+    font-family: var(--font-sans);
+    font-size: clamp(0.98rem, 1.05vw, 1.05rem);
+    line-height: 1.65;
+    color: rgba(244, 239, 230, 0.78);
+}
+
+.approach-x__step-marker {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 230, 0.4);
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 720px) {
+    .approach-x__slide {
+        grid-template-columns: 1fr;
+        flex: 0 0 88vw;
+    }
+    .approach-x__icon-frame { aspect-ratio: 16 / 9; }
+    .approach-x__controls { justify-content: center; }
 }

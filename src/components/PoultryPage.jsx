@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
 import './PoultryPage.css'
 
 const SPRING = [0.22, 1, 0.36, 1]
@@ -78,64 +79,13 @@ const PoultryPage = () => {
         <div className="poultry">
             <Header />
 
-            {/* ── 1. Hero ── */}
-            <section className="poultry__hero">
-                <div className="poultry__hero-inner">
-                    <div className="poultry__hero-text">
-                        <motion.span
-                            className="poultry__hero-badge"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.55, delay: 0, ease: SPRING }}
-                        >
-                            NATURAL MINERAL BLEND
-                        </motion.span>
-                        <motion.h1
-                            className="poultry__hero-title"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.75, ease: SPRING }}
-                        >
-                            Poultry Farm Solutions
-                        </motion.h1>
-                        <motion.p
-                            className="poultry__hero-subtitle"
-                            initial={{ opacity: 0, y: 28 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
-                        >
-                            A scientifically formulated mineral solution that tackles ammonia,
-                            moisture, and bacteria — protecting your flock and your bottom line.
-                        </motion.p>
-                        <motion.div
-                            className="poultry__hero-scroll-hint"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1, delay: 1.1 }}
-                        >
-                            <motion.span
-                                animate={{ y: [0, 6, 0] }}
-                                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-                            >
-                                ↓
-                            </motion.span>
-                        </motion.div>
-                    </div>
-                    <motion.div
-                        className="poultry__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.6, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Solutions / Livestock"
+                title="Poultry Farm __Solutions__"
+                subtitle="A scientifically formulated mineral solution that tackles ammonia, moisture, and bacteria — protecting your flock and your bottom line."
+                note="Natural mineral blend."
+                tone="clay"
+            />
 
             {/* ── 2. Problem intro + Stats ── */}
             <section className="poultry__problem">

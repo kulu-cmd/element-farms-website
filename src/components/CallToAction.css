@@ -1,86 +1,195 @@
-.cta {
-    background-color: #0e5a36;
-    padding: 3rem 2rem;
-    color: white;
-    text-align: center;
+/* CTA — full-bleed moss, editorial closing */
+
+.cta-x {
+    position: relative;
+    background: var(--moss-deep);
+    color: var(--paper);
+    padding: clamp(6rem, 12vw, 11rem) 0 clamp(6rem, 12vw, 11rem);
+    overflow: hidden;
+    isolation: isolate;
 }
 
-.cta__container {
-    max-width: 800px;
+.cta-x::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain-url);
+    opacity: 0.35;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta-x::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 15% 100%, rgba(193, 74, 42, 0.45) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 0%, rgba(184, 130, 44, 0.2) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta-x__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1500px;
     margin: 0 auto;
+    padding: 0 var(--rail-padding);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+}
+
+.cta-x__header {
+    grid-column: 1 / 13;
+    margin-bottom: 2.5rem;
+}
+
+.cta-x__heading {
+    grid-column: 1 / 11;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 6.5vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 2rem;
+}
+
+.cta-x__heading em {
+    font-style: italic;
+    color: var(--ochre);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.cta-x__deck {
+    grid-column: 1 / 8;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.15vw, 1.15rem);
+    line-height: 1.7;
+    color: rgba(244, 239, 230, 0.82);
+    max-width: 56ch;
+    margin-bottom: 3rem;
+}
+
+.cta-x__actions {
+    grid-column: 1 / 13;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    align-items: center;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.18);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.cta-x__primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1.15rem 2rem 1.1rem;
+    background: var(--clay);
+    color: var(--paper);
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta-x__primary::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--clay-deep);
+    transform: translateY(101%);
+    transition: transform 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 0;
+}
+
+.cta-x__primary:hover::before { transform: translateY(0); }
+.cta-x__primary:hover { transform: translateY(-2px); }
+
+.cta-x__primary-text, .cta-x__primary-arrow {
+    position: relative;
+    z-index: 1;
+}
+
+.cta-x__primary-arrow {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta-x__primary:hover .cta-x__primary-arrow { transform: translateX(5px); }
+
+.cta-x__secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--paper);
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(244, 239, 230, 0.4);
+    transition: color 0.3s ease, border-color 0.3s ease, gap 0.3s ease;
+}
+
+.cta-x__secondary:hover {
+    color: var(--ochre);
+    border-color: var(--ochre);
+    gap: 1rem;
+}
+
+/* Meta grid */
+.cta-x__meta {
+    grid-column: 1 / 13;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.cta-x__meta-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 0.35rem;
 }
 
+.cta-x__meta-label {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 230, 0.5);
+}
 
-.cta__heading {
-    font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 3.5vw, 3.15rem);
+.cta-x__meta-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.4vw, 1.35rem);
     font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    color: var(--paper);
+    transition: color 0.3s ease;
 }
 
+a.cta-x__meta-value:hover { color: var(--ochre); }
 
-.cta__buttons-wrapper {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
+@media (max-width: 1024px) {
+    .cta-x__heading, .cta-x__deck { grid-column: 1 / 13; }
+    .cta-x__deck { max-width: 100%; }
+    .cta-x__meta { grid-template-columns: 1fr; gap: 1.25rem; }
 }
 
-.cta__button {
-    background: #f36f20;
-    border: 2px solid #f36f20;
-    color: white;
-    padding: 0.9rem 2rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    border-radius: 40px;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-}
-
-.cta__button:hover {
-    background: #d45c10;
-    border-color: #d45c10;
-    color: white;
-}
-
-@media (max-width: 768px) {
-    .cta {
-        padding: 2.5rem 1.5rem;
-    }
-
-    .cta__buttons-wrapper {
-        flex-direction: column;
-        width: 100%;
-        max-width: 400px;
-    }
-
-    .cta__button {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .cta {
-        padding: 2rem 1rem;
-    }
-
-    .cta__heading {
-        font-size: clamp(1.5rem, 7vw, 2rem);
-    }
-
-    .cta__buttons-wrapper {
-        /* At 320px, 400px max-width is fine — buttons are full-width anyway */
-        max-width: 100%;
-    }
-
-    .cta__button {
-        padding: 0.85rem 1.5rem;
-        font-size: 0.85rem;
-    }
+@media (max-width: 640px) {
+    .cta-x__actions { flex-direction: column; align-items: flex-start; }
+    .cta-x__primary { padding: 0.95rem 1.6rem; font-size: 0.72rem; }
 }

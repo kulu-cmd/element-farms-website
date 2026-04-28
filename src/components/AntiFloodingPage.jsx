@@ -2,23 +2,52 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
+import useCountUp from '../hooks/useCountUp'
 import './AntiFloodingPage.css'
+
+const AnimatedStat = ({ to, suffix = '', prefix = '', label, kicker, decimals = 0 }) => {
+    const [ref, value] = useCountUp(to, { decimals })
+    return (
+        <motion.div
+            ref={ref}
+            className="flood__stat-card"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+            <span className="flood__stat-kicker">{kicker}</span>
+            <span className="flood__stat-value">
+                {prefix}{value}{suffix}
+            </span>
+            <span className="flood__stat-rule" />
+            <p className="flood__stat-label">{label}</p>
+        </motion.div>
+    )
+}
 
 const AntiFloodingPage = () => {
     const [activeModal, setActiveModal] = useState(null)
 
     const stats = [
         {
-            value: '20–30%',
-            label: 'reduction in compaction and waterlogging in treated soils',
+            kicker: 'Compaction',
+            to: 30,
+            suffix: '%',
+            label: 'reduction in compaction and waterlogging in treated soils.',
         },
         {
-            value: '40 tonnes',
-            label: 'of water stored per hectare in saturated conditions',
+            kicker: 'Water stored',
+            to: 40,
+            suffix: ' t',
+            label: 'of water stored per hectare in saturated conditions.',
         },
         {
-            value: '4000+',
-            label: 'hectares of KwaZulu-Natal farmland at high flooding risk annually',
+            kicker: 'KZN at risk',
+            to: 4000,
+            suffix: '+ ha',
+            label: 'of KwaZulu-Natal farmland at high flooding risk annually.',
         },
     ]
 
@@ -65,53 +94,13 @@ const AntiFloodingPage = () => {
         <div className="flood">
             <Header />
 
-            {/* Hero */}
-            <section className="flood__hero">
-                <div className="flood__hero-inner">
-                    <div className="flood__hero-text">
-                        <motion.h1
-                            className="flood__hero-title"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            Anti-Flooding Systems
-                        </motion.h1>
-                        <motion.p
-                            className="flood__hero-subtitle"
-                            initial={{ opacity: 0, y: 28 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
-                        >
-                            Engineered to protect waterlogged farmland — draining excess water while locking in the nutrients your crops need.
-                        </motion.p>
-                        <motion.div
-                            className="flood__hero-scroll-hint"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1, delay: 1.1 }}
-                        >
-                            <motion.span
-                                animate={{ y: [0, 6, 0] }}
-                                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-                            >↓</motion.span>
-                        </motion.div>
-                    </div>
-                    <motion.div
-                        className="flood__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.6, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Solutions / Water"
+                title="Anti-Flooding __Systems__"
+                subtitle="Engineered to protect waterlogged farmland — draining excess water while locking in the nutrients your crops need."
+                note="KZN trials. 2024 — 2026."
+                tone="moss"
+            />
 
             {/* Stats intro */}
             <section className="flood__stats-intro">
@@ -148,17 +137,7 @@ const AntiFloodingPage = () => {
             <section className="flood__stats">
                 <div className="flood__stats-grid">
                     {stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className="flood__stat-card"
-                            initial={{ opacity: 0, y: 50, scale: 0.94 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <span className="flood__stat-value">{stat.value}</span>
-                            <p className="flood__stat-label">{stat.label}</p>
-                        </motion.div>
+                        <AnimatedStat key={i} {...stat} />
                     ))}
                 </div>
             </section>

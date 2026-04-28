@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
 import './OrganicFarmingPage.css'
 
 const SPRING = [0.22, 1, 0.36, 1]
@@ -82,62 +83,13 @@ const OrganicFarmingPage = () => {
         <div className="organic">
             <Header />
 
-            {/* Hero */}
-            <section className="organic__hero">
-                <div className="organic__hero-inner">
-                    <div className="organic__hero-text">
-                        <motion.span
-                            className="organic__hero-badge"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: SPRING }}
-                        >
-                            Organic Farming
-                        </motion.span>
-                        <motion.h1
-                            className="organic__hero-title"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.1, ease: SPRING }}
-                        >
-                            Grow Your Farm.<br />Naturally.
-                        </motion.h1>
-                        <motion.p
-                            className="organic__hero-subtitle"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: SPRING }}
-                        >
-                            Complete natural pest control and fertiliser systems for small to medium farms
-                            ready to break free from chemical dependency.
-                        </motion.p>
-                        <motion.a
-                            href="#organic-form"
-                            className="organic__hero-cta"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.35, ease: SPRING }}
-                        >
-                            Start Your Organic Journey →
-                        </motion.a>
-                    </div>
-                    <motion.div
-                        className="organic__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, scale: 0.85 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, delay: 0.4, ease: SPRING }}
-                    >
-                        <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
-                            <circle cx="110" cy="110" r="90" stroke="rgba(255,255,255,0.06)" strokeWidth="1.5"/>
-                            <circle cx="110" cy="110" r="65" stroke="rgba(255,255,255,0.09)" strokeWidth="1.5"/>
-                            <circle cx="110" cy="110" r="40" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5"/>
-                            <circle cx="110" cy="110" r="18" fill="rgba(14,90,54,0.5)" stroke="rgba(14,90,54,0.8)" strokeWidth="1.5"/>
-                            <text x="110" y="116" textAnchor="middle" fontSize="14" fill="white" opacity="0.8">🌿</text>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Solutions / Organic"
+                title="Grow your farm. __Naturally.__"
+                subtitle="Complete natural pest control and fertiliser systems for small to medium farms ready to break free from chemical dependency."
+                note="Chemical-free. Field-proven."
+                tone="moss"
+            />
 
             {/* Stats / Why */}
             <section className="organic__stats">

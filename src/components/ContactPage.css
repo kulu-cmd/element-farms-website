@@ -92,6 +92,32 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.07);
 }
 
+.contact-page__gform {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.contact-page__gform-intro {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    line-height: 1.55;
+    margin: 0;
+}
+
+.contact-page__gform-iframe {
+    width: 100%;
+    min-height: 1200px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--off-white, #f7f5f0);
+}
+
+@media (max-width: 600px) {
+    .contact-page__gform-iframe { min-height: 1500px; }
+}
+
 .contact-page__form {
     display: flex;
     flex-direction: column;

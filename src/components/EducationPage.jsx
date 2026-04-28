@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
+import SoilTypesSection from './SoilTypesSection'
 import { articles } from '../data/articlesData'
 import './EducationPage.css'
 
@@ -24,33 +26,13 @@ const EducationPage = () => {
     <div className="education">
       <Header />
 
-      {/* Hero */}
-      <section className="education__hero">
-        <motion.div
-          className="education__hero-inner"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <motion.h1
-            className="education__hero-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            Education &amp; Resources
-          </motion.h1>
-          <motion.p
-            className="education__hero-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22, ease: 'easeOut' }}
-          >
-            Science-grounded articles on soil health, root biology, and regenerative farming
-            — written for farmers who want to make better decisions about their land.
-          </motion.p>
-        </motion.div>
-      </section>
+      <PageHero
+        eyebrow="Knowledge / Library"
+        title="Education & __Resources__"
+        subtitle="Science-grounded articles on soil health, root biology, and regenerative farming — written for farmers who want to make better decisions about their land."
+        note="Field-tested. Plain language."
+        tone="ink"
+      />
 
       {/* Article Grid */}
       <section className="education__grid-section">
@@ -99,6 +81,9 @@ const EducationPage = () => {
           ))}
         </div>
       </section>
+
+      {/* Soil Profiles — moved from home page */}
+      <SoilTypesSection />
 
       <Footer />
     </div>

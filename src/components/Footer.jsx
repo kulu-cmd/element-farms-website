@@ -2,52 +2,72 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.css'
 
+const year = new Date().getFullYear()
+
 const Footer = () => {
     return (
-        <footer className="footer">
-            <div className="footer__container">
-                <div className="footer__col footer__col--brand">
-                    <img
-                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
-                        alt="Element Farm Solutions Logo"
-                        className="footer__logo"
-                    />
-                </div>
-                
-                <div className="footer__col">
-                    <h4 className="footer__heading">Solutions</h4>
-                    <ul className="footer__links">
-                        <li><Link to="/solutions/land-rejuvenation">Land Rejuvenation</Link></li>
-                        <li><Link to="/solutions/land-rejuvenation">Anti-Flooding Systems</Link></li>
-                        <li><a href="#contact-us">Nursery Support</a></li>
-                        <li><Link to="/solutions/uv-protection">Pest &amp; Sunburn</Link></li>
-                        <li><a href="#contact-us">Poultry</a></li>
-                        <li><a href="#contact-us">Dairy &amp; Cattle</a></li>
-                    </ul>
+        <footer className="footer-x">
+            <div className="footer-x__inner">
+                <div className="footer-x__brand">
+                    <span className="footer-x__wordmark">
+                        Element Farm<br/><em>Solutions</em>
+                    </span>
+                    <span className="footer-x__tagline">
+                        Regenerating soil.<br/>Restoring profitability.
+                    </span>
+                    <span className="footer-x__dots" aria-hidden="true">◦  ◦  ◦  ◦  ◦</span>
                 </div>
 
-                <div className="footer__col">
-                    <h4 className="footer__heading">Resources</h4>
-                    <ul className="footer__links">
-                        <li><a href="#contact-us">Farmer Education</a></li>
-                        <li><a href="#contact-us">Contact for Trials</a></li>
-                    </ul>
-                </div>
+                <nav className="footer-x__cols" aria-label="Footer">
+                    <div className="footer-x__col">
+                        <h4 className="footer-x__heading">— Solutions</h4>
+                        <ul className="footer-x__list">
+                            <li><Link to="/solutions/land-rejuvenation">Land Rejuvenation</Link></li>
+                            <li><Link to="/solutions/anti-flooding">Anti-Flooding</Link></li>
+                            <li><Link to="/solutions/uv-protection">UV & Pest Shield</Link></li>
+                            <li className="footer-x__item--disabled" aria-disabled="true">
+                                <span>Waste Management</span>
+                                <span className="footer-x__soon">Coming soon</span>
+                            </li>
+                            <li><Link to="/solutions/poultry">Poultry Solutions</Link></li>
+                        </ul>
+                    </div>
 
-                <div className="footer__col">
-                    <h4 className="footer__heading">Get In Touch</h4>
-                    <ul className="footer__contact">
-                        <li className="footer__contact-item">
-                            <span className="footer__icon">📍</span> South Africa
-                        </li>
-                        <li className="footer__contact-item">
-                            <span className="footer__icon">✉️</span> <a href="mailto:kamil@elementfarmsolutions.co.za">kamil@elementfarmsolutions.co.za</a>
-                        </li>
-                        <li className="footer__contact-item">
-                            <span className="footer__icon">📞</span> <a href="tel:+27613889339">061 388 9339</a>
-                        </li>
-                    </ul>
-                </div>
+                    <div className="footer-x__col">
+                        <h4 className="footer-x__heading">— Company</h4>
+                        <ul className="footer-x__list">
+                            <li><Link to="/education">Education</Link></li>
+                            <li><Link to="/cropfit">CropFit</Link></li>
+                            <li><Link to="/contact/agri-farms">Contact</Link></li>
+                        </ul>
+                    </div>
+
+                    <div className="footer-x__col">
+                        <h4 className="footer-x__heading">— Get in Touch</h4>
+                        <ul className="footer-x__list footer-x__list--contact">
+                            <li>
+                                <span className="footer-x__label">Write</span>
+                                <a href="mailto:kamil@elementfarmsolutions.co.za">kamil@elementfarmsolutions.co.za</a>
+                            </li>
+                            <li>
+                                <span className="footer-x__label">Call</span>
+                                <a href="tel:+27613889339">+27 61 388 9339</a>
+                            </li>
+                            <li>
+                                <span className="footer-x__label">Located</span>
+                                <span>KwaZulu-Natal, South Africa</span>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <div className="footer-x__colophon">
+                <span>© {year} Element Farm Solutions</span>
+                <span className="footer-x__colophon-rule" />
+                <span>Regenerative Agriculture · South Africa</span>
+                <span className="footer-x__colophon-rule" />
+                <span><em>Soil is a long-term asset.</em></span>
             </div>
         </footer>
     )

@@ -2,24 +2,16 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
 import './ContactPage.css'
 
 const PAGE_CONFIG = {
-    'poultry-dairy': {
-        badge: 'POULTRY & DAIRY',
-        title: 'Poultry & Dairy Solutions',
-        subtitle: 'Tell us about your operation and we\'ll put together a tailored solution for your farm.',
-        interests: [
-            'Biogas / Renewable Energy',
-            'Broiler Farm Solutions',
-            'Organic Waste Management',
-            'Dairy Waste Management',
-        ],
-    },
     'agri-farms': {
-        badge: 'AGRI FARMS',
-        title: 'Agri Farm Solutions',
-        subtitle: 'Tell us about your land and we\'ll design the right regenerative solution for your operation.',
+        badge: 'COMMERCIAL AGRICULTURE FARMS',
+        title: 'Commercial Agriculture Farms',
+        heroTitle: 'Commercial Agriculture __Farms__',
+        subtitle: 'If you wish to book a farm visit please fill in the form below and we will get back to you shortly.',
+        useGoogleForm: true,
         interests: [
             'Land Rejuvenation',
             'UV & Sunburn Protection',
@@ -27,7 +19,33 @@ const PAGE_CONFIG = {
             'Waste Management',
         ],
     },
+    'dairy-horses': {
+        badge: 'DAIRY & HORSES',
+        title: 'Dairy and Horses',
+        heroTitle: 'Dairy and __Horses__',
+        subtitle: 'Tell us about your operation and we\'ll put together a tailored solution for your farm.',
+        interests: [
+            'Pasture Health',
+            'Manure Management',
+            'Hoof Health',
+            'Water Management',
+        ],
+    },
+    'poultry': {
+        badge: 'POULTRY FARMS',
+        title: 'Poultry Farms',
+        heroTitle: 'Poultry __Farms__',
+        subtitle: 'Tell us about your operation and we\'ll put together a tailored solution for your farm.',
+        interests: [
+            'Biogas / Renewable Energy',
+            'Broiler Farm Solutions',
+            'Organic Waste Management',
+            'Litter Management',
+        ],
+    },
 }
+
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/viewform?embedded=true'
 
 const SPRING = [0.22, 1, 0.36, 1]
 
@@ -68,50 +86,13 @@ const ContactPage = ({ type }) => {
         <div className="contact-page">
             <Header />
 
-            {/* Hero */}
-            <section className="contact-page__hero">
-                <div className="contact-page__hero-inner">
-                    <div className="contact-page__hero-text">
-                        <motion.span
-                            className="contact-page__hero-badge"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: SPRING }}
-                        >
-                            {config.badge}
-                        </motion.span>
-                        <motion.h1
-                            className="contact-page__hero-title"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.1, ease: SPRING }}
-                        >
-                            {config.title}
-                        </motion.h1>
-                        <motion.p
-                            className="contact-page__hero-subtitle"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: SPRING }}
-                        >
-                            {config.subtitle}
-                        </motion.p>
-                    </div>
-                    <motion.div
-                        className="contact-page__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.5, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow={`Contact / ${config.badge}`}
+                title={config.heroTitle || config.title}
+                subtitle={config.subtitle}
+                note="Reply within 24 hrs. KZN."
+                tone="moss"
+            />
 
             {/* Body */}
             <section className="contact-page__body">
@@ -125,7 +106,24 @@ const ContactPage = ({ type }) => {
                         viewport={{ once: true, amount: 0.1 }}
                         transition={{ duration: 0.7, ease: SPRING }}
                     >
-                        {submitted ? (
+                        {config.useGoogleForm ? (
+                            <div className="contact-page__gform">
+                                <p className="contact-page__gform-intro">
+                                    If you wish to book a farm visit please fill in this form and we will get back to you shortly.
+                                </p>
+                                <iframe
+                                    src={GOOGLE_FORM_URL}
+                                    title="Commercial Agriculture Farms enquiry form"
+                                    className="contact-page__gform-iframe"
+                                    loading="lazy"
+                                    frameBorder="0"
+                                    marginHeight="0"
+                                    marginWidth="0"
+                                >
+                                    Loading…
+                                </iframe>
+                            </div>
+                        ) : submitted ? (
                             <div className="contact-page__success">
                                 <motion.div
                                     className="contact-page__success-icon"

@@ -2,21 +2,48 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
+import useCountUp from '../hooks/useCountUp'
 import './UVProtectionPage.css'
+
+const UVStat = ({ kicker, to, suffix = '%', label }) => {
+    const [ref, value] = useCountUp(to)
+    return (
+        <motion.div
+            ref={ref}
+            className="uv__stat-card"
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+            <span className="uv__stat-kicker">{kicker}</span>
+            <span className="uv__stat-value">{value}{suffix}</span>
+            <span className="uv__stat-rule" />
+            <p className="uv__stat-label">{label}</p>
+        </motion.div>
+    )
+}
 
 const UVProtectionPage = () => {
     const stats = [
         {
-            value: '6–30%',
-            label: 'of fruit yield is lost globally to sunburn',
+            kicker: 'Global yield loss',
+            to: 30,
+            suffix: '%',
+            label: 'of fruit yield can be lost globally to sunburn each season.',
         },
         {
-            value: '~10%',
-            label: 'of exportable mango crops from SA is lost due to sunburn',
+            kicker: 'SA mangoes',
+            to: 10,
+            suffix: '%',
+            label: 'of exportable mango crops from SA are lost due to sunburn.',
         },
         {
-            value: '20%',
-            label: "of 'Golden Delicious' apples may be rejected due to sunburn",
+            kicker: 'Apple rejection',
+            to: 20,
+            suffix: '%',
+            label: "of 'Golden Delicious' apples may be rejected due to sunburn.",
         },
     ]
 
@@ -30,58 +57,19 @@ const UVProtectionPage = () => {
         <div className="uv">
             <Header />
 
-            {/* Hero */}
-            <section className="uv__hero">
-                <div className="uv__hero-inner">
-                    <div className="uv__hero-text">
-                        <motion.h1
-                            className="uv__hero-title"
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            UV Protection
-                        </motion.h1>
-                        <motion.p
-                            className="uv__hero-subtitle"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                        >
-                            Protecting your harvest from harsh UV stress — safely, naturally, and at scale.
-                        </motion.p>
-                    </div>
-                    <motion.div
-                        className="uv__hero-deco"
-                        aria-hidden="true"
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 0.6, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <rect x="2" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none"/>
-                            <rect x="22" y="22" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.25)" strokeWidth="2" fill="none"/>
-                            <rect x="42" y="2" width="36" height="36" rx="4" stroke="rgba(255,255,255,0.15)" strokeWidth="2" fill="none"/>
-                        </svg>
-                    </motion.div>
-                </div>
-            </section>
+            <PageHero
+                eyebrow="Solutions / Sun & Pest Shield"
+                title="UV __Protection__"
+                subtitle="Protecting your harvest from harsh UV stress — safely, naturally, and at scale."
+                note="Field trials. KZN orchards."
+                tone="clay"
+            />
 
             {/* Stats */}
             <section className="uv__stats">
                 <div className="uv__stats-grid">
                     {stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className="uv__stat-card"
-                            initial={{ opacity: 0, y: 50, scale: 0.94 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <span className="uv__stat-value">{stat.value}</span>
-                            <p className="uv__stat-label">{stat.label}</p>
-                        </motion.div>
+                        <UVStat key={i} {...stat} />
                     ))}
                 </div>
             </section>

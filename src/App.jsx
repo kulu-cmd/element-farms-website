@@ -27,7 +27,6 @@ function HomePage() {
             <main>
                 <HeroSection />
                 <MissionSection />
-                <SoilTypesSection />
                 <OurApproachSection />
                 <CallToAction />
             </main>
@@ -46,8 +45,10 @@ function App() {
                 <Route path="/solutions/anti-flooding" element={<AntiFloodingPage />} />
                 <Route path="/solutions/waste-management" element={<WasteManagementPage />} />
                 <Route path="/solutions/poultry" element={<PoultryPage />} />
-                <Route path="/contact/poultry-dairy" element={<ContactPage type="poultry-dairy" />} />
                 <Route path="/contact/agri-farms" element={<ContactPage type="agri-farms" />} />
+                <Route path="/contact/dairy-horses" element={<ContactPage type="dairy-horses" />} />
+                <Route path="/contact/poultry" element={<ContactPage type="poultry" />} />
+                <Route path="/contact/poultry-dairy" element={<ContactPage type="dairy-horses" />} />
                 <Route path="/contact/organic" element={<OrganicFarmingPage />} />
                 <Route path="/education" element={<EducationPage />} />
                 <Route path="/education/:slug" element={<ArticlePage />} />
