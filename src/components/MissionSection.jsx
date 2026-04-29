@@ -4,11 +4,73 @@ import { Link } from 'react-router-dom'
 import SectionLabel from './ui/SectionLabel'
 import './MissionSection.css'
 
+// Each goal carries its own glyph (drawn inline so we control stroke / colour)
+// and a tiny italic gloss that gives the row some editorial breathing room.
 const goals = [
-    'To rejuvenate heavily eroded soils',
-    'Break the chemical cycle',
-    'Supercharge your nurseries',
-    'Turn farm waste into rich fertile inputs',
+    {
+        title: 'Rejuvenate heavily eroded soils',
+        gloss: 'Restore biology, structure, and mineral balance.',
+        glyph: (
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                {/* horizon */}
+                <path d="M4 30 Q 24 22 44 30" />
+                {/* roots radiating down */}
+                <path d="M24 30 L 24 42" />
+                <path d="M24 32 L 16 40" />
+                <path d="M24 32 L 32 40" />
+                <path d="M24 34 L 12 41" opacity="0.55" />
+                <path d="M24 34 L 36 41" opacity="0.55" />
+                {/* sprout */}
+                <path d="M24 30 Q 22 22 18 22" />
+                <path d="M24 30 Q 26 24 30 22" />
+                <circle cx="18" cy="22" r="1.5" fill="currentColor" stroke="none" />
+                <circle cx="30" cy="22" r="1.5" fill="currentColor" stroke="none" />
+            </svg>
+        ),
+    },
+    {
+        title: 'Break the chemical cycle',
+        gloss: 'Move farms off synthetic dependency.',
+        glyph: (
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                {/* broken chain */}
+                <path d="M10 22 a6 6 0 0 1 6 -6 h4 a6 6 0 0 1 6 6 v4" />
+                <path d="M38 26 a6 6 0 0 1 -6 6 h-4 a6 6 0 0 1 -6 -6 v-4" />
+                {/* slash */}
+                <line x1="14" y1="38" x2="34" y2="10" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+        ),
+    },
+    {
+        title: 'Supercharge your nurseries',
+        gloss: 'Stronger root mass from day one.',
+        glyph: (
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                {/* pot */}
+                <path d="M14 28 L 16 42 H 32 L 34 28 Z" />
+                <line x1="12" y1="28" x2="36" y2="28" />
+                {/* sprout — three leaves */}
+                <path d="M24 28 Q 24 16 16 12" />
+                <path d="M24 28 Q 24 18 30 14" />
+                <path d="M24 28 L 24 8" />
+                <circle cx="24" cy="6" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+        ),
+    },
+    {
+        title: 'Turn farm waste into rich fertile inputs',
+        gloss: 'Closed-loop systems — manure, compost, biogas.',
+        glyph: (
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+                {/* circular flow */}
+                <path d="M38 24 a14 14 0 1 0 -4 9.9" />
+                <polyline points="32,28 34,34 40,32" />
+                {/* leaf at center */}
+                <path d="M24 18 Q 30 22 24 30 Q 18 22 24 18 Z" />
+                <line x1="24" y1="20" x2="24" y2="28" opacity="0.6" />
+            </svg>
+        ),
+    },
 ]
 
 const pillars = [
@@ -73,16 +135,30 @@ const MissionSection = () => {
 
                 <motion.ul
                     className="mission-x__goals"
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, delay: 0.18 }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+                    }}
                 >
                     {goals.map((goal, i) => (
-                        <li key={i} className="mission-x__goal">
+                        <motion.li
+                            key={goal.title}
+                            className="mission-x__goal"
+                            variants={{
+                                hidden: { opacity: 0, y: 24 },
+                                visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+                            }}
+                        >
                             <span className="mission-x__goal-n">0{i + 1}</span>
-                            <span>{goal}</span>
-                        </li>
+                            <span className="mission-x__goal-glyph" aria-hidden="true">{goal.glyph}</span>
+                            <span className="mission-x__goal-text">
+                                <span className="mission-x__goal-title">{goal.title}</span>
+                                <span className="mission-x__goal-gloss">{goal.gloss}</span>
+                            </span>
+                        </motion.li>
                     ))}
                 </motion.ul>
 

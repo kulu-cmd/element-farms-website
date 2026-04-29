@@ -1,4 +1,4 @@
-/* WHAT TO EXPECT — editorial pullquote + phase rows (mirrors MissionSection recipe) */
+/* WHAT TO EXPECT — soil-health growth-curve timeline */
 
 .wte-x {
     background: var(--paper-soft);
@@ -8,19 +8,19 @@
     overflow: hidden;
 }
 
-/* Decorative watermark — massive italic "04" */
+/* Decorative italic "04" watermark */
 .wte-x::before {
     content: "04";
     position: absolute;
-    right: -4vw;
-    top: -4vw;
+    right: -3vw;
+    bottom: -8vw;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(22rem, 40vw, 48rem);
+    font-size: clamp(20rem, 36vw, 42rem);
     line-height: 0.8;
     color: var(--clay);
-    opacity: 0.06;
+    opacity: 0.05;
     letter-spacing: -0.05em;
     pointer-events: none;
 }
@@ -29,157 +29,263 @@
     max-width: 1500px;
     margin: 0 auto;
     padding: 0 var(--rail-padding);
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.5rem;
     position: relative;
     z-index: 1;
 }
 
 .wte-x__header {
-    grid-column: 1 / 13;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.25rem;
 }
 
-.wte-x__quote {
-    grid-column: 1 / 11;
+/* ---- intro block ---- */
+.wte-x__intro {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: end;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.wte-x__heading {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(2.2rem, 5.5vw, 5.4rem);
-    line-height: 1.04;
+    font-size: clamp(2rem, 4.6vw, 4.4rem);
+    line-height: 1.05;
     letter-spacing: -0.025em;
     color: var(--ink);
-    margin-bottom: 1.75rem;
+    margin: 0;
+    max-width: 18ch;
 }
 
-.wte-x__quote em {
+.wte-x__heading em {
     font-style: italic;
     color: var(--clay);
-}
-
-.wte-x__drop {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 1.15em;
-    line-height: 0.9;
-    color: var(--clay);
-    letter-spacing: -0.05em;
-    margin-right: 0.02em;
 }
 
 .wte-x__deck {
-    grid-column: 4 / 11;
     font-family: var(--font-sans);
-    font-size: clamp(1rem, 1.15vw, 1.15rem);
-    line-height: 1.7;
+    font-size: clamp(1rem, 1.05vw, 1.05rem);
+    line-height: 1.65;
     color: var(--ink-soft);
-    margin-bottom: clamp(3rem, 6vw, 5rem);
-    max-width: 62ch;
+    margin: 0;
+    max-width: 38ch;
+    padding-bottom: 0.4rem;
 }
 
-/* Phase rows */
-.wte-x__pillars {
-    grid-column: 1 / 13;
-    border-top: 1px solid var(--ink);
-}
+/* ============= CHART ============= */
 
-.wte-x__row {
-    display: grid;
-    grid-template-columns: 70px minmax(260px, 1.4fr) 2fr;
-    gap: 2.5rem;
-    align-items: start;
-    padding: 2.25rem 0;
-    border-bottom: 1px solid var(--ink-rule);
-    cursor: pointer;
+.wte-x__chart-wrap {
     position: relative;
-    transition: padding 0.4s ease;
+    margin: 0 calc(-1 * var(--rail-padding)) clamp(3rem, 5vw, 4.5rem);
+    padding: 1.5rem clamp(0.5rem, 2vw, 2rem) 0;
+    background:
+        linear-gradient(180deg,
+            rgba(241, 238, 232, 0.0) 0%,
+            rgba(241, 238, 232, 0.6) 100%);
+    border-top: 1px solid var(--ink-rule);
+    border-bottom: 1px solid var(--ink-rule);
 }
 
-.wte-x__row:hover,
-.wte-x__row.is-open {
-    padding-left: 0.75rem;
+.wte-x__chart {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
 }
 
-.wte-x__row::before {
+.wte-x__grid {
+    stroke: rgba(43, 43, 43, 0.06);
+    stroke-width: 1;
+    stroke-dasharray: 1 4;
+}
+
+.wte-x__axis {
+    stroke: var(--ink);
+    stroke-width: 1.5;
+}
+
+.wte-x__tick {
+    stroke: var(--ink);
+    stroke-width: 1.5;
+}
+
+.wte-x__axis-label {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+}
+
+.wte-x__axis-title {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+}
+
+.wte-x__curve {
+    fill: none;
+    stroke: var(--clay);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.wte-x__curve-fill {
+    fill: var(--clay);
+    fill-opacity: 0.07;
+}
+
+.wte-x__dropline {
+    stroke: var(--ink);
+    stroke-width: 1;
+    stroke-dasharray: 2 4;
+    opacity: 0.35;
+}
+
+.wte-x__node-halo {
+    fill: var(--paper-soft);
+    stroke: var(--clay);
+    stroke-width: 1.5;
+}
+
+.wte-x__node-core {
+    fill: var(--clay);
+}
+
+.wte-x__node-metric {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    fill: var(--ink);
+    letter-spacing: -0.02em;
+}
+
+.wte-x__node-metric-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    fill: var(--ink-faint);
+}
+
+/* ============= PHASE CARDS ============= */
+
+.wte-x__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.wte-x__card {
+    padding: 2rem 1.75rem;
+    background: var(--paper);
+    border: 1px solid var(--ink-rule);
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.4s ease,
+                box-shadow 0.5s ease;
+}
+
+.wte-x__card::before {
     content: "";
     position: absolute;
-    left: 0; top: 0;
+    top: 0;
+    left: 0;
+    height: 2px;
     width: 0;
-    height: 1px;
     background: var(--clay);
     transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.wte-x__row.is-open::before,
-.wte-x__row:hover::before { width: 100%; }
+.wte-x__card:hover {
+    transform: translateY(-4px);
+    border-color: var(--ink);
+    box-shadow: 0 24px 48px -32px rgba(43, 43, 43, 0.25);
+}
 
-.wte-x__row-num {
+.wte-x__card:hover::before {
+    width: 100%;
+}
+
+.wte-x__card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+}
+
+.wte-x__card-num {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(2.8rem, 5vw, 4rem);
-    line-height: 0.9;
+    font-size: 1.6rem;
     color: var(--clay);
-    letter-spacing: -0.04em;
-    padding-top: 0.2rem;
+    line-height: 1;
+    letter-spacing: -0.03em;
 }
 
-.wte-x__row-head {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding-top: 0.85rem;
+.wte-x__card-rule {
+    flex: 1;
+    height: 1px;
+    background: var(--ink-rule);
 }
 
-.wte-x__row-kicker {
+.wte-x__card-kicker {
     font-family: var(--font-sans);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-faint);
 }
 
-.wte-x__row-title {
+.wte-x__card-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+    font-size: clamp(1.6rem, 2.2vw, 2.1rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--ink);
+    margin: 0 0 0.85rem;
 }
 
-.wte-x__row-teaser {
+.wte-x__card-teaser {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+    font-weight: 300;
+    font-size: clamp(1.05rem, 1.2vw, 1.2rem);
     line-height: 1.4;
     color: var(--ink-soft);
-    padding-top: 1.1rem;
-    grid-column: 3;
+    margin: 0 0 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--ink-rule);
 }
 
-.wte-x__row-body {
-    grid-column: 2 / 4;
-    overflow: hidden;
+.wte-x__card-bullets {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
 }
 
-.wte-x__row-body li {
+.wte-x__card-bullets li {
     font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 0.92rem;
+    line-height: 1.55;
     color: var(--ink-soft);
-    padding-left: 1.2rem;
+    padding-left: 1.1rem;
     position: relative;
 }
 
-.wte-x__row-body li::before {
+.wte-x__card-bullets li::before {
     content: "—";
     position: absolute;
     left: 0;
@@ -187,18 +293,34 @@
     font-weight: 300;
 }
 
+/* ============= responsive ============= */
+
 @media (max-width: 1024px) {
-    .wte-x__quote { grid-column: 1 / 13; }
-    .wte-x__deck { grid-column: 1 / 13; }
-    .wte-x__row { grid-template-columns: 50px 1fr; gap: 1rem 1.25rem; }
-    .wte-x__row-teaser { grid-column: 2; padding-top: 0.25rem; }
-    .wte-x__row-body { grid-column: 2; }
+    .wte-x__intro {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .wte-x__cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .wte-x__node-metric {
+        font-size: 16px;
+    }
+    .wte-x__node-metric-label {
+        font-size: 7px;
+    }
 }
 
 @media (max-width: 640px) {
-    .wte-x__drop { font-size: 1em; }
-    .wte-x__row { grid-template-columns: 1fr; }
-    .wte-x__row-teaser { grid-column: 1; }
-    .wte-x__row-body { grid-column: 1; }
-    .wte-x__row-num { font-size: 2.2rem; }
+    .wte-x__chart-wrap {
+        margin: 0 calc(-1 * var(--rail-padding)) 2.5rem;
+        padding: 1rem 0.5rem 0;
+    }
+
+    .wte-x__axis-label {
+        font-size: 9px;
+    }
 }
