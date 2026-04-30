@@ -46,10 +46,8 @@ const WasteManagementPage = () => {
             <Header />
 
             <PageHero
-                eyebrow="Solutions / Renewable Energy"
                 title="Waste __Management__"
                 subtitle="Turning agricultural waste into clean energy and premium organic fertiliser — closing the loop on your farm's most valuable resource."
-                note="Closed-loop systems."
                 tone="moss"
             />
 

@@ -9,13 +9,14 @@ const Footer = () => {
         <footer className="footer-x">
             <div className="footer-x__inner">
                 <div className="footer-x__brand">
-                    <span className="footer-x__wordmark">
-                        Element Farm<br/><em>Solutions</em>
-                    </span>
+                    <img
+                        className="footer-x__logo"
+                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                        alt="Element Farm Solutions"
+                    />
                     <span className="footer-x__tagline">
                         Regenerating soil.<br/>Restoring profitability.
                     </span>
-                    <span className="footer-x__dots" aria-hidden="true">◦  ◦  ◦  ◦  ◦</span>
                 </div>
 
                 <nav className="footer-x__cols" aria-label="Footer">

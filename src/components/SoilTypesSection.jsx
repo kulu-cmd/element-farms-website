@@ -109,7 +109,7 @@ const SoilTypesSection = () => {
         <section className="soil-x" id="soils">
             <div className="soil-x__inner">
                 <header className="soil-x__header">
-                    <SectionLabel number="04" label="Soil Profiles" />
+                    <SectionLabel label="Soil Profiles" />
                     <motion.h2
                         className="soil-x__heading"
                         initial={{ opacity: 0, y: 24 }}

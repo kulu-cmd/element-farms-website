@@ -1,343 +1,224 @@
 import React, { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import SectionLabel from './ui/SectionLabel'
 import './KZNMapSection.css'
 
 /**
- * Editorial erosion-risk panel for South Africa.
+ * Erosion-hotspot map of South Africa.
  *
- * Approach: instead of attempting hand-drawn province polygons (which read
- * as inaccurate), we treat this as a piece of editorial infographic.
- *  – A simplified, recognisable SA outline (single path, bone fill).
- *  – Three radial-gradient "heat zones" where erosion is most severe.
- *  – Editorial labels with hairline connector lines.
- *  – A right-hand data ledger that does the credibility work.
+ * Renders a recognisable SA outline with the nine provinces as subtle
+ * hairline dividers, then animates three orange "vibration" hotspots
+ * over Limpopo, KwaZulu-Natal and the Eastern Cape as the user scrolls
+ * the section into view. No statistics, no bar charts — just the map
+ * and the three pulses.
  */
 
-const HOT_ZONES = [
-    {
-        id: 'limpopo',
-        name: 'Limpopo',
-        share: '76%',
-        copy: 'Northern bushveld — overgrazing and soil capping at scale.',
-        cx: 388,
-        cy: 118,
-        radius: 70,
-        labelX: 540,
-        labelY: 112,
-        anchor: 'start',
-    },
-    {
-        id: 'kzn',
-        name: 'KwaZulu-Natal',
-        share: '71%',
-        copy: 'Sub-tropical hill country — runoff and gully formation.',
-        cx: 470,
-        cy: 312,
-        radius: 64,
-        labelX: 555,
-        labelY: 305,
-        anchor: 'start',
-    },
-    {
-        id: 'eastern-cape',
-        name: 'Eastern Cape',
-        share: '68%',
-        copy: 'Communal lands — historic over-cultivation and topsoil loss.',
-        cx: 348,
-        cy: 442,
-        radius: 72,
-        labelX: 110,
-        labelY: 488,
-        anchor: 'end',
-    },
-]
-
-const LEDGER = [
-    { label: 'Limpopo', value: 76, source: 'DAFF land-care audit' },
-    { label: 'KwaZulu-Natal', value: 71, source: 'ARC erosion atlas' },
-    { label: 'Eastern Cape', value: 68, source: 'NRF / WRC mapping' },
-    { label: 'National avg.', value: 47, source: 'DFFE, 2022', muted: true },
-]
-
-// Simplified-but-recognisable SA outline. Single closed path drawn from
-// approximate geographic anchors (NW corner clockwise to Cape Point).
+/* ----------------------------------------------------------------------------
+   SVG paths — viewBox 0 0 760 700, clockwise from NW corner
+   --------------------------------------------------------------------------- */
 const SA_OUTLINE =
-    'M 90 152 ' +
-    'C 130 138, 178 130, 218 128 ' +
-    'L 252 96 ' +
-    'C 304 84, 360 80, 416 86 ' +
-    'L 478 78 ' +
-    'C 522 92, 552 118, 568 158 ' +
-    'L 575 196 ' +
-    'C 568 218, 548 230, 530 244 ' +
-    'L 530 268 ' +
-    'C 548 290, 552 318, 540 348 ' +
-    'C 525 380, 510 408, 488 432 ' +
-    'C 460 458, 428 478, 392 488 ' +
-    'L 358 498 ' +
-    'C 318 510, 274 514, 232 502 ' +
-    'C 190 488, 154 462, 128 428 ' +
-    'C 100 392, 82 348, 76 302 ' +
-    'C 72 258, 76 212, 90 168 ' +
-    'Z'
+  'M 22 322 ' +
+  'L 30 282 ' +
+  'L 52 232 ' +
+  'L 92 196 ' +
+  'L 142 184 ' +
+  'L 204 178 ' +
+  'L 282 178 ' +
+  'L 348 192 ' +
+  'L 416 178 ' +
+  'L 478 162 ' +
+  'L 542 96 ' +
+  'C 562 64, 580 32, 598 12 ' +
+  'L 642 30 ' +
+  'L 690 80 ' +
+  'L 696 152 ' +
+  'L 706 222 ' +
+  'L 728 282 ' +
+  'L 700 318 ' +
+  'L 690 342 ' +
+  'L 650 374 ' +
+  'L 600 412 ' +
+  'L 514 480 ' +
+  'L 412 542 ' +
+  'L 348 590 ' +
+  'L 250 608 ' +
+  'L 156 612 ' +
+  'L 90 592 ' +
+  'L 82 562 ' +
+  'L 58 510 ' +
+  'L 36 420 ' +
+  'L 26 364 ' +
+  'Z'
 
-// Lesotho — the doughnut hole inside KZN/Free-State/EC.
+/* Lesotho — enclosed by KZN / Free State / Eastern Cape */
 const LESOTHO =
-    'M 408 318 ' +
-    'C 432 308, 458 314, 470 332 ' +
-    'C 478 350, 470 368, 452 372 ' +
-    'C 428 374, 408 364, 402 346 ' +
-    'C 398 332, 400 322, 408 318 Z'
+  'M 488 338 ' +
+  'C 510 326, 540 332, 550 354 ' +
+  'C 558 380, 548 402, 526 410 ' +
+  'C 500 414, 478 400, 476 376 ' +
+  'C 476 354, 480 344, 488 338 Z'
+
+/* Suggested province dividers — hairline strokes that imply the 9 provinces.
+   Drawn loose; the country outline carries the real geographic weight. */
+const PROVINCE_LINES = [
+  // Western Cape / Northern Cape (Karoo line)
+  'M 60 502 L 200 502 L 326 528 L 412 542',
+  // Northern Cape / Free State (vertical-ish through middle)
+  'M 412 542 L 470 480 L 478 376 L 478 240 L 478 178',
+  // North West / Free State / Gauteng (horizontal mid-north)
+  'M 282 178 L 360 240 L 478 240',
+  // North West / Limpopo (sloping from top to mid-east)
+  'M 416 178 L 490 200 L 542 96',
+  // Limpopo / Mpumalanga (around Polokwane south)
+  'M 542 96 L 580 165 L 650 200',
+  // Mpumalanga / Gauteng (small stub)
+  'M 478 200 L 580 165',
+  // Mpumalanga / KZN (Eswatini area)
+  'M 650 200 L 706 222 L 700 318',
+  // KZN / Free State (around Lesotho east)
+  'M 700 318 L 600 412 L 550 354',
+  // Free State / Eastern Cape (around Lesotho south)
+  'M 488 338 L 470 480 L 412 542',
+  // KZN / Eastern Cape (south of Lesotho)
+  'M 526 410 L 514 480 L 412 542',
+]
+
+/* Hotspot positions, expressed as percentages of the SVG viewBox so the
+   HTML overlay stays in lock-step with the map at any size. */
+const HOTSPOTS = [
+  {
+    id: 'limpopo',
+    name: 'Limpopo',
+    leftPct: 71,
+    topPct: 12,
+  },
+  {
+    id: 'kzn',
+    name: 'KZN',
+    leftPct: 83,
+    topPct: 43,
+  },
+  {
+    id: 'eastern-cape',
+    name: 'Eastern Cape',
+    leftPct: 56,
+    topPct: 73,
+  },
+]
 
 const KZNMapSection = () => {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, amount: 0.25 })
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.25 })
 
-    return (
-        <section className="kzn-x" ref={ref}>
-            <div className="kzn-x__inner">
-                {/* LEFT — editorial header + ledger */}
-                <motion.div
-                    className="kzn-x__head"
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <span className="kzn-x__eyebrow">Erosion Risk · 2022</span>
-                    <h3 className="kzn-x__title">
-                        Where the topsoil is <em>going</em> first.
-                    </h3>
-                    <p className="kzn-x__sub">
-                        Three provinces carry the bulk of South Africa's most severely
-                        degraded farmland. Limpopo, KwaZulu-Natal and the Eastern Cape
-                        are losing topsoil at <em>five times</em> the global average.
-                    </p>
+  return (
+    <section className="erosion" ref={ref}>
+      <div className="erosion__inner">
+        {/* LEFT — editorial header */}
+        <motion.div
+          className="erosion__head"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <SectionLabel label="Erosion Hotspots" />
+          <h3 className="erosion__title">
+            Where the topsoil is <em>going</em> first.
+          </h3>
+          <p className="erosion__sub">
+            Three provinces carry South Africa's most degraded farmland.
+            Limpopo, KwaZulu-Natal and the Eastern Cape are losing topsoil
+            at <em>five times</em> the global average — the heat-spots that
+            need rebuilding now.
+          </p>
+        </motion.div>
 
-                    <div className="kzn-x__ledger" role="table" aria-label="Share of degraded farmland by province">
-                        {LEDGER.map((row, i) => (
-                            <motion.div
-                                key={row.label}
-                                className={`kzn-x__ledger-row${row.muted ? ' is-muted' : ''}`}
-                                initial={{ opacity: 0, x: -16 }}
-                                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                transition={{ duration: 0.6, delay: 0.6 + i * 0.1 }}
-                            >
-                                <span className="kzn-x__ledger-label">{row.label}</span>
-                                <div className="kzn-x__ledger-bar-wrap">
-                                    <motion.div
-                                        className="kzn-x__ledger-bar"
-                                        initial={{ scaleX: 0 }}
-                                        animate={isInView ? { scaleX: row.value / 100 } : {}}
-                                        transition={{ duration: 1.1, delay: 0.7 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                                    />
-                                </div>
-                                <span className="kzn-x__ledger-value">{row.value}%</span>
-                            </motion.div>
-                        ))}
-                        <p className="kzn-x__source">
-                            Sources: DFFE 2022 · ARC erosion atlas · WRC / NRF mapping
-                        </p>
-                    </div>
-                </motion.div>
+        {/* RIGHT — map + animated hotspots */}
+        <div className="erosion__map">
+          <svg
+            viewBox="0 0 760 700"
+            className="erosion__svg"
+            aria-label="Map of South Africa with Limpopo, KwaZulu-Natal and Eastern Cape highlighted as erosion hotspots"
+            role="img"
+          >
+            {/* faint grain — atmospheric */}
+            <defs>
+              <filter id="erosion-soft" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="0.4" />
+              </filter>
+            </defs>
 
-                {/* RIGHT — map */}
-                <div className="kzn-x__map-wrap">
-                    <svg
-                        viewBox="0 0 720 580"
-                        className="kzn-x__svg"
-                        aria-label="Map of South Africa highlighting Limpopo, KwaZulu-Natal and Eastern Cape as highest erosion-risk provinces"
-                        role="img"
-                    >
-                        <defs>
-                            {HOT_ZONES.map((z) => (
-                                <radialGradient
-                                    key={`grad-${z.id}`}
-                                    id={`heat-${z.id}`}
-                                    cx="50%"
-                                    cy="50%"
-                                    r="50%"
-                                >
-                                    <stop offset="0%" stopColor="var(--clay)" stopOpacity="0.95" />
-                                    <stop offset="45%" stopColor="var(--clay)" stopOpacity="0.55" />
-                                    <stop offset="100%" stopColor="var(--clay)" stopOpacity="0" />
-                                </radialGradient>
-                            ))}
-                            <pattern
-                                id="kzn-grain"
-                                x="0"
-                                y="0"
-                                width="3"
-                                height="3"
-                                patternUnits="userSpaceOnUse"
-                            >
-                                <circle cx="0.5" cy="0.5" r="0.4" fill="rgba(255,255,255,0.06)" />
-                            </pattern>
-                        </defs>
+            {/* country outline — bold ink */}
+            <motion.path
+              d={SA_OUTLINE}
+              className="erosion__outline"
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+              transition={{
+                pathLength: { duration: 2.0, ease: [0.22, 1, 0.36, 1] },
+                opacity: { duration: 0.4 },
+              }}
+            />
 
-                        {/* faint contour rings — atmospheric */}
-                        {[180, 240, 300].map((r, i) => (
-                            <motion.circle
-                                key={r}
-                                cx="320"
-                                cy="290"
-                                r={r}
-                                fill="none"
-                                stroke="rgba(247,245,240,0.05)"
-                                strokeWidth="1"
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ duration: 1.4, delay: 0.2 + i * 0.12 }}
-                            />
-                        ))}
+            {/* paper fill applied after stroke draws */}
+            <motion.path
+              d={SA_OUTLINE}
+              className="erosion__country-fill"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.7, delay: 1.4 }}
+            />
 
-                        {/* country outline */}
-                        <motion.path
-                            d={SA_OUTLINE}
-                            className="kzn-x__country"
-                            initial={{ pathLength: 0, opacity: 0 }}
-                            animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                            transition={{ pathLength: { duration: 1.6, ease: [0.22, 1, 0.36, 1] }, opacity: { duration: 0.4 } }}
-                        />
+            {/* province dividers — drawn after the country outline finishes */}
+            <motion.g
+              className="erosion__provinces"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 0.55 } : {}}
+              transition={{ duration: 1.0, delay: 1.4 }}
+            >
+              {PROVINCE_LINES.map((d, i) => (
+                <motion.path
+                  key={i}
+                  d={d}
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { pathLength: 1 } : {}}
+                  transition={{ duration: 1.2, delay: 1.5 + i * 0.05 }}
+                />
+              ))}
+            </motion.g>
 
-                        {/* fill — applied after outline draws */}
-                        <motion.path
-                            d={SA_OUTLINE}
-                            className="kzn-x__country-fill"
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 0.8, delay: 1.2 }}
-                        />
+            {/* Lesotho — enclosed cut-out */}
+            <motion.path
+              d={LESOTHO}
+              className="erosion__lesotho"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 2.0 }}
+            />
+          </svg>
 
-                        {/* grain overlay clipped to country */}
-                        <motion.path
-                            d={SA_OUTLINE}
-                            fill="url(#kzn-grain)"
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 0.6, delay: 1.4 }}
-                        />
-
-                        {/* Lesotho cut-out */}
-                        <motion.path
-                            d={LESOTHO}
-                            className="kzn-x__lesotho"
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 0.6, delay: 1.5 }}
-                        />
-
-                        {/* heat zones */}
-                        {HOT_ZONES.map((z, i) => (
-                            <motion.circle
-                                key={z.id}
-                                cx={z.cx}
-                                cy={z.cy}
-                                r={z.radius}
-                                fill={`url(#heat-${z.id})`}
-                                style={{ mixBlendMode: 'screen' }}
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ duration: 1.0, delay: 1.6 + i * 0.18, ease: [0.22, 1, 0.36, 1] }}
-                            />
-                        ))}
-
-                        {/* pulse cores */}
-                        {HOT_ZONES.map((z, i) => (
-                            <g key={`core-${z.id}`}>
-                                <motion.circle
-                                    cx={z.cx}
-                                    cy={z.cy}
-                                    r="4"
-                                    fill="var(--clay)"
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                                    transition={{ duration: 0.4, delay: 2.0 + i * 0.18 }}
-                                />
-                                <motion.circle
-                                    cx={z.cx}
-                                    cy={z.cy}
-                                    r="4"
-                                    fill="none"
-                                    stroke="var(--clay)"
-                                    strokeWidth="1.5"
-                                    initial={{ scale: 1, opacity: 0 }}
-                                    animate={isInView ? { scale: [1, 4], opacity: [0.7, 0] } : {}}
-                                    transition={{ duration: 2.4, delay: 2.2 + i * 0.18, repeat: Infinity, repeatDelay: 0.8 }}
-                                />
-                            </g>
-                        ))}
-
-                        {/* connector lines + labels */}
-                        {HOT_ZONES.map((z, i) => {
-                            const x1 = z.cx
-                            const y1 = z.cy
-                            const x2 = z.labelX
-                            const y2 = z.labelY
-                            return (
-                                <g key={`label-${z.id}`}>
-                                    <motion.line
-                                        x1={x1}
-                                        y1={y1}
-                                        x2={x2}
-                                        y2={y2}
-                                        stroke="rgba(247,245,240,0.4)"
-                                        strokeWidth="1"
-                                        strokeDasharray="2 3"
-                                        initial={{ pathLength: 0, opacity: 0 }}
-                                        animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                                        transition={{ duration: 0.7, delay: 2.2 + i * 0.18 }}
-                                    />
-                                    <motion.text
-                                        x={x2}
-                                        y={y2 - 6}
-                                        textAnchor={z.anchor}
-                                        className="kzn-x__label-name"
-                                        initial={{ opacity: 0, y: -4 }}
-                                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                                        transition={{ duration: 0.5, delay: 2.5 + i * 0.18 }}
-                                    >
-                                        {z.name}
-                                    </motion.text>
-                                    <motion.text
-                                        x={x2}
-                                        y={y2 + 16}
-                                        textAnchor={z.anchor}
-                                        className="kzn-x__label-share"
-                                        initial={{ opacity: 0 }}
-                                        animate={isInView ? { opacity: 1 } : {}}
-                                        transition={{ duration: 0.5, delay: 2.65 + i * 0.18 }}
-                                    >
-                                        {z.share} degraded
-                                    </motion.text>
-                                </g>
-                            )
-                        })}
-
-                        {/* compass + scale, decorative */}
-                        <motion.g
-                            initial={{ opacity: 0 }}
-                            animate={isInView ? { opacity: 1 } : {}}
-                            transition={{ duration: 0.6, delay: 3.0 }}
-                        >
-                            <text x="640" y="540" className="kzn-x__compass-n" textAnchor="middle">N</text>
-                            <line x1="640" y1="510" x2="640" y2="528" stroke="rgba(247,245,240,0.5)" strokeWidth="1" />
-                            <polygon points="636,514 640,506 644,514" fill="rgba(247,245,240,0.7)" />
-                        </motion.g>
-                    </svg>
-
-                    <motion.div
-                        className="kzn-x__map-caption"
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : {}}
-                        transition={{ duration: 0.6, delay: 2.8 }}
-                    >
-                        <span className="kzn-x__caption-dot" />
-                        <span>Highest erosion risk · share of provincial farmland degraded</span>
-                    </motion.div>
-                </div>
+          {/* Animated hotspot overlays — pure CSS pulses */}
+          {HOTSPOTS.map((h, i) => (
+            <div
+              key={h.id}
+              className={`erosion__spot${isInView ? ' is-active' : ''}`}
+              style={{
+                left: `${h.leftPct}%`,
+                top: `${h.topPct}%`,
+                '--spot-delay': `${i * 0.5 + 2.2}s`,
+              }}
+              aria-hidden="true"
+            >
+              <span className="erosion__ring erosion__ring--1" />
+              <span className="erosion__ring erosion__ring--2" />
+              <span className="erosion__ring erosion__ring--3" />
+              <span className="erosion__core" />
+              <span className="erosion__spot-label">{h.name}</span>
             </div>
-        </section>
-    )
+          ))}
+        </div>
+      </div>
+    </section>
+  )
 }
 
 export default KZNMapSection

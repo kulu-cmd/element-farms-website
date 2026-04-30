@@ -115,10 +115,6 @@ const WhatToExpectSection = () => {
                     <h2 className="wte-x__heading">
                         Soil doesn't recover overnight — <em>but it compounds.</em>
                     </h2>
-                    <p className="wte-x__deck">
-                        Three measurable phases. Each one builds on the last. By year three the
-                        ground is doing the work that fertiliser used to.
-                    </p>
                 </motion.div>
 
                 {/* === Growth-curve chart === */}

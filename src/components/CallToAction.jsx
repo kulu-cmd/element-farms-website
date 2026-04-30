@@ -9,7 +9,7 @@ const CallToAction = () => {
         <section className="cta-x" id="contact-us">
             <div className="cta-x__inner">
                 <header className="cta-x__header">
-                    <SectionLabel number="05" label="Begin the trial" tone="paper" />
+                    <SectionLabel label="Begin the trial" tone="paper" />
                 </header>
 
                 <motion.h2

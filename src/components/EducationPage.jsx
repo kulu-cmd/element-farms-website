@@ -27,10 +27,8 @@ const EducationPage = () => {
       <Header />
 
       <PageHero
-        eyebrow="Knowledge / Library"
         title="Education & __Resources__"
         subtitle="Science-grounded articles on soil health, root biology, and regenerative farming — written for farmers who want to make better decisions about their land."
-        note="Field-tested. Plain language."
         tone="ink"
       />
 

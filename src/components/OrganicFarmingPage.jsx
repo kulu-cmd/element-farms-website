@@ -84,10 +84,8 @@ const OrganicFarmingPage = () => {
             <Header />
 
             <PageHero
-                eyebrow="Solutions / Organic"
                 title="Grow your farm. __Naturally.__"
                 subtitle="Complete natural pest control and fertiliser systems for small to medium farms ready to break free from chemical dependency."
-                note="Chemical-free. Field-proven."
                 tone="moss"
             />
 

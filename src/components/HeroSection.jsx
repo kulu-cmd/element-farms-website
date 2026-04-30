@@ -66,8 +66,6 @@ const HeroSection = () => {
                     transition={{ duration: 0.9, delay: 0.2 }}
                 >
                     <span className="hero-x__eyebrow-mark">◦</span>
-                    <span>Element Farm Solutions</span>
-                    <span className="hero-x__eyebrow-rule" />
                     <span>Regenerative Agriculture, est. KZN · Free State · Gauteng</span>
                 </motion.div>
 
@@ -91,8 +89,9 @@ const HeroSection = () => {
                     transition={{ duration: 0.9, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <p className="hero-x__body">
-                        We turn agricultural waste into regenerative inputs at farm scale — rebuilding soil
-                        biology, cutting chemical dependence, and making each season more profitable than the last.
+                        We use innovative regenerative farming techniques to help farms — whether it is
+                        rebuilding soil biology, reducing chemical dependence to protecting from drought,
+                        flood or sunburn.
                     </p>
                     <a
                         href="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"
@@ -106,29 +105,6 @@ const HeroSection = () => {
                     </a>
                 </motion.div>
 
-                {/* Right rail — vertical caption */}
-                <motion.div
-                    className="hero-x__rail"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1.1, delay: 1.2 }}
-                >
-                    <span className="hero-x__rail-line" />
-                    <span className="hero-x__rail-text">
-                        Field data, South Africa. <em>2023 — 2026.</em>
-                    </span>
-                </motion.div>
-
-                {/* Scroll cue */}
-                <motion.div
-                    className="hero-x__scroll"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1.4 }}
-                >
-                    <span className="hero-x__scroll-label">Scroll</span>
-                    <span className="hero-x__scroll-line" />
-                </motion.div>
             </motion.div>
 
             {/* Marquee ticker */}

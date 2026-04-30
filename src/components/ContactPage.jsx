@@ -87,10 +87,8 @@ const ContactPage = ({ type }) => {
             <Header />
 
             <PageHero
-                eyebrow={`Contact / ${config.badge}`}
                 title={config.heroTitle || config.title}
                 subtitle={config.subtitle}
-                note="Reply within 24 hrs. KZN."
                 tone="moss"
             />
 

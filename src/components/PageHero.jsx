@@ -6,12 +6,10 @@ import './PageHero.css'
  * PageHero — editorial dark photo hero, ochre italic accent, parallax.
  *
  * Props:
- *   eyebrow:  string ("— Solutions / Land")
  *   title:    string. Use double-underscores around the italic accent word, e.g.
  *             "Regenerating __soil__"  →  "Regenerating <em>soil</em>"
  *   subtitle: string
  *   image:    background image url (defaults to /orange-orchard.jpg)
- *   note:     short caption shown on right rail (optional)
  *   tone:     'moss' (default) | 'clay' | 'ink'  — overlay tint preset
  */
 
@@ -60,11 +58,9 @@ const renderTitle = (title, prefersReduced) => {
 }
 
 const PageHero = ({
-    eyebrow,
     title,
     subtitle,
     image = '/orange-orchard.jpg',
-    note,
     tone = 'moss',
 }) => {
     const heroRef = useRef(null)
@@ -99,19 +95,6 @@ const PageHero = ({
                 className="page-hero__grid"
                 style={prefersReduced ? undefined : { y: textY }}
             >
-                {eyebrow && (
-                    <motion.div
-                        className="page-hero__eyebrow"
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.18 }}
-                    >
-                        <span className="page-hero__eyebrow-mark">◦</span>
-                        <span>{eyebrow}</span>
-                        <span className="page-hero__eyebrow-rule" />
-                    </motion.div>
-                )}
-
                 <h1 className="page-hero__headline">
                     {renderTitle(title, prefersReduced)}
                 </h1>
@@ -127,18 +110,6 @@ const PageHero = ({
                     </motion.p>
                 )}
 
-                {note && (
-                    <motion.div
-                        className="page-hero__rail"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1.1, delay: 1.1 }}
-                        aria-hidden="true"
-                    >
-                        <span className="page-hero__rail-line" />
-                        <span className="page-hero__rail-text">{note}</span>
-                    </motion.div>
-                )}
             </motion.div>
         </section>
     )

@@ -11,8 +11,8 @@ const SectionLabel = ({ number, label, align = 'left', tone = 'ink' }) => {
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-            <span className="section-label__num">{number}</span>
-            <span className="section-label__rule" aria-hidden="true" />
+            {number && <span className="section-label__num">{number}</span>}
+            {number && <span className="section-label__rule" aria-hidden="true" />}
             <span className="section-label__text">{label}</span>
         </motion.div>
     )

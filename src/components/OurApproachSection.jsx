@@ -112,7 +112,7 @@ const OurApproachSection = () => {
         <section className="approach-x" id="about-us">
             <div className="approach-x__inner">
                 <header className="approach-x__header">
-                    <SectionLabel number="03" label="Our Approach" tone="paper" />
+                    <SectionLabel label="Our Approach" tone="paper" />
                     <motion.h2
                         className="approach-x__heading"
                         initial={{ opacity: 0, y: 30 }}

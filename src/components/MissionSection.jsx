@@ -103,76 +103,57 @@ const pillars = [
 const MissionSection = () => {
     const [open, setOpen] = useState(0)
 
+    const slideIn = {
+        hidden: { opacity: 0, x: -80 },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    }
+
     return (
         <section className="mission-x" id="mission">
             <div className="mission-x__inner">
-                <header className="mission-x__header">
-                    <SectionLabel number="02" label="The Mission" />
-                </header>
-
-                <motion.blockquote
-                    className="mission-x__quote"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-                >
-                    <span className="mission-x__drop">W</span>e are on a mission to empower farms<br/>
-                    <em>to adopt regenerative farming systems.</em>
-                </motion.blockquote>
-
-                <motion.p
-                    className="mission-x__intro"
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.8, delay: 0.1 }}
-                >
-                    No-one likes being forced to use chemicals and we want to help farmers take their
-                    produce to the next level — whether it's rejuvenating land, protecting from sunburn
-                    or pests.
-                </motion.p>
-
-                <motion.ul
-                    className="mission-x__goals"
+                <motion.div
+                    className="mission-x__reveal"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.25 }}
                     variants={{
                         hidden: {},
-                        visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
+                        visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
                     }}
                 >
-                    {goals.map((goal, i) => (
-                        <motion.li
-                            key={goal.title}
-                            className="mission-x__goal"
-                            variants={{
-                                hidden: { opacity: 0, y: 24 },
-                                visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
-                            }}
-                        >
-                            <span className="mission-x__goal-n">0{i + 1}</span>
-                            <span className="mission-x__goal-glyph" aria-hidden="true">{goal.glyph}</span>
-                            <span className="mission-x__goal-text">
-                                <span className="mission-x__goal-title">{goal.title}</span>
-                                <span className="mission-x__goal-gloss">{goal.gloss}</span>
-                            </span>
-                        </motion.li>
-                    ))}
-                </motion.ul>
+                    <motion.header className="mission-x__header" variants={slideIn}>
+                        <SectionLabel label="The Mission" />
+                    </motion.header>
 
-                <motion.p
-                    className="mission-x__deck"
-                    initial={{ opacity: 0, y: 18 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ duration: 0.8, delay: 0.25 }}
-                >
-                    We build regenerative systems designed to restore soil biology and mineral content,
-                    making your land more productive every season. Taking your waste and turning it into
-                    organic gold — the perfect closed loop — whilst slashing input chemical fertilizer costs.
-                </motion.p>
+                    <motion.blockquote className="mission-x__quote" variants={slideIn}>
+                        <span className="mission-x__quote-lede">We are on a mission to empower farms</span>
+                        <em className="mission-x__quote-line">to adopt</em>
+                        <em className="mission-x__quote-line">regenerative</em>
+                        <em className="mission-x__quote-line">farming systems.</em>
+                    </motion.blockquote>
+
+                    <motion.ul
+                        className="mission-x__goals"
+                        variants={{
+                            hidden: {},
+                            visible: { transition: { staggerChildren: 0.08 } },
+                        }}
+                    >
+                        {goals.map((goal) => (
+                            <motion.li
+                                key={goal.title}
+                                className="mission-x__goal"
+                                variants={slideIn}
+                            >
+                                <span className="mission-x__goal-glyph" aria-hidden="true">{goal.glyph}</span>
+                                <span className="mission-x__goal-text">
+                                    <span className="mission-x__goal-title">{goal.title}</span>
+                                    <span className="mission-x__goal-gloss">{goal.gloss}</span>
+                                </span>
+                            </motion.li>
+                        ))}
+                    </motion.ul>
+                </motion.div>
 
                 <div className="mission-x__pillars" role="list">
                     {pillars.map((pillar, i) => {
@@ -189,8 +170,6 @@ const MissionSection = () => {
                                 onClick={() => setOpen(i)}
                                 role="listitem"
                             >
-                                <span className="mission-x__row-num">0{i + 1}</span>
-
                                 <div className="mission-x__row-head">
                                     <span className="mission-x__row-kicker">{pillar.kicker}</span>
                                     <h3 className="mission-x__row-title">{pillar.title}</h3>

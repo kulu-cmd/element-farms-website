@@ -15,10 +15,8 @@ const LandRejuvenationPage = () => {
             <Header />
 
             <PageHero
-                eyebrow="Solutions / Land"
                 title="Land __Rejuvenation__"
                 subtitle="We teach and implement highly effective regenerative farming systems to small and medium-sized farms. Our goal is to empower farmers and not rely on large corporation supply chains of expensive chemical fertiliser."
-                note="Field data, KZN. 2023 — 2026."
                 tone="moss"
             />
 

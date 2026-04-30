@@ -80,10 +80,8 @@ const PoultryPage = () => {
             <Header />
 
             <PageHero
-                eyebrow="Solutions / Livestock"
                 title="Poultry Farm __Solutions__"
                 subtitle="A scientifically formulated mineral solution that tackles ammonia, moisture, and bacteria — protecting your flock and your bottom line."
-                note="Natural mineral blend."
                 tone="clay"
             />
 
