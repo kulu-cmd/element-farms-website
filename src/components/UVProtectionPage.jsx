@@ -233,11 +233,6 @@ const UVProtectionPage = () => {
             <h2 className="uv__pillars-heading">
               Two products. <em>One mineral family.</em>
             </h2>
-            <p className="uv__pillars-deck">
-              M-GeoShade and M-Defend are physical, mineral-based foliar coatings — no
-              synthetic chemistry, no resistance build-up, safe for bees and pollinators.
-              Mix into water, spray onto the canopy, the crop carries the protection.
-            </p>
           </motion.div>
 
           <div className="uv__pillars-grid">

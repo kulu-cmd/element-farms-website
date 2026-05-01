@@ -4,6 +4,7 @@ import KZNMapSection from './KZNMapSection'
 import TailoredSolutionSection from './TailoredSolutionSection'
 import VideoSection from './VideoSection'
 import WhatToExpectSection from './WhatToExpectSection'
+import FAQSection from './FAQSection'
 import Footer from './Footer'
 import Header from './Header'
 import PageHero from './PageHero'
@@ -34,6 +35,9 @@ const LandRejuvenationPage = () => {
 
             {/* What to Expect */}
             <WhatToExpectSection />
+
+            {/* FAQs */}
+            <FAQSection />
 
             <Footer />
         </div>

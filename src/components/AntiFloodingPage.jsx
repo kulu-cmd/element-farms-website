@@ -108,7 +108,7 @@ const AntiFloodingPage = () => {
           >
             <SectionLabel label="Meet M-Hive" />
             <h2 className="flood__intro-statement">
-              A LECA ball, engineered for farms with <em>waterlogged soils</em> — and crops that crave aeration.
+              Our LECA ball, engineered for farms with <em>waterlogged soils</em> — and crops that crave aeration.
             </h2>
             <p className="flood__intro-deck">
               M-Hive is a permanent addition to your soil. Each ball stores water and fertiliser
@@ -155,6 +155,28 @@ const AntiFloodingPage = () => {
             </motion.div>
           </div>
         </div>
+
+        {/* LECA ball size strip — small / medium / large */}
+        <motion.div
+          className="flood__leca-strip"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <figure className="flood__leca-cell">
+            <img src="/hive/small.jpg" alt="Small LECA ball aggregate" loading="lazy" />
+            <figcaption>Small</figcaption>
+          </figure>
+          <figure className="flood__leca-cell">
+            <img src="/hive/medium.jpg" alt="Medium LECA ball aggregate" loading="lazy" />
+            <figcaption>Medium</figcaption>
+          </figure>
+          <figure className="flood__leca-cell">
+            <img src="/hive/large.jpg" alt="Large LECA ball aggregate" loading="lazy" />
+            <figcaption>Large</figcaption>
+          </figure>
+        </motion.div>
       </section>
 
       {/* ──────────────────────────────────────────────────────────────
@@ -318,7 +340,7 @@ const AntiFloodingPage = () => {
             </p>
           </motion.div>
 
-          <div className="flood__detail-photos flood__detail-photos--four">
+          <div className="flood__detail-photos flood__detail-photos--three">
             <figure className="flood__detail-photo">
               <img src="/hive/root snorkel.jpg" alt="M-Hive Root Snorkel installed at orchard tree base" />
               <figcaption>Root Snorkel installed under the canopy.</figcaption>
@@ -330,10 +352,6 @@ const AntiFloodingPage = () => {
             <figure className="flood__detail-photo">
               <img src="/hive/root_snorkel_baby.png" alt="Young tree planted into M-Hive Root Snorkel" />
               <figcaption>Young trees planted directly into the snorkel.</figcaption>
-            </figure>
-            <figure className="flood__detail-photo">
-              <img src="/hive/cross-section.png" alt="Cross-section view showing snorkel and M-Hive root home below soil surface" />
-              <figcaption>Cross-section — what's happening under the soil.</figcaption>
             </figure>
           </div>
 

@@ -999,3 +999,266 @@
     gap: 0.35rem;
   }
 }
+
+/* =====================================================================
+   Flyer v2 — single-column 1-pager (Organic Matter / Mineral Deficiencies)
+   Lede + 3 pillars + body copy + dark stat block + CTA
+   ===================================================================== */
+
+.flyer--card-v2 {
+  gap: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+.flyer__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+  border-bottom: 1px solid var(--ink-rule);
+}
+
+.flyer__topbar .flyer__kicker {
+  margin-bottom: 0;
+}
+
+.flyer__brandmark {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  letter-spacing: -0.01em;
+}
+
+.flyer__lede {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 60ch;
+}
+
+.flyer__lede-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3.4vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.flyer__lede-deck {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.45;
+  color: var(--flyer-accent);
+  margin: 0;
+}
+
+.flyer__lede-deck em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.flyer__pillars--card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
+  border-top: 1px solid var(--ink-rule);
+  border-bottom: 1px solid var(--ink-rule);
+  margin: 0;
+}
+
+.flyer--card-v2 .flyer__pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 clamp(0.5rem, 1.2vw, 1rem);
+  border-right: 1px solid var(--ink-rule);
+}
+
+.flyer--card-v2 .flyer__pillar:last-child {
+  border-right: none;
+}
+
+.flyer--card-v2 .flyer__pillar-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--flyer-accent);
+  letter-spacing: 0.04em;
+}
+
+.flyer--card-v2 .flyer__pillar h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0.15rem 0 0.35rem;
+}
+
+.flyer--card-v2 .flyer__pillar p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.flyer__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  max-width: 70ch;
+}
+
+.flyer__body p {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.flyer__body p strong {
+  color: var(--flyer-accent);
+  font-weight: 600;
+}
+
+/* Dark stat block at the bottom */
+.flyer__statblock {
+  background: var(--ink, #1a1f1c);
+  color: var(--paper, #f7f5f0);
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.flyer__statblock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 0% 0%, var(--flyer-accent-soft) 0%, transparent 55%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.flyer__statblock-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
+  z-index: 1;
+}
+
+.flyer__statblock-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.flyer__statblock-tag {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--flyer-accent);
+}
+
+.flyer__statblock-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flyer__statblock-col li {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: rgba(244, 239, 230, 0.78);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.flyer__statblock-col li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--flyer-accent);
+}
+
+.flyer__statblock-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding-top: clamp(1.25rem, 2vw, 1.5rem);
+  border-top: 1px solid rgba(244, 239, 230, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.flyer__statblock-num {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--flyer-accent);
+  margin-bottom: 0.45rem;
+}
+
+.flyer__statblock-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 230, 0.55);
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .flyer__pillars--card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .flyer--card-v2 .flyer__pillar {
+    border-right: none;
+    border-bottom: 1px solid var(--ink-rule);
+    padding: 0 0 1.25rem;
+  }
+  .flyer--card-v2 .flyer__pillar:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .flyer__statblock-cols {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .flyer__statblock-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .flyer__topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+}

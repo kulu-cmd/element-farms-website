@@ -1,28 +1,11 @@
-/* WHAT TO EXPECT — soil-health growth-curve timeline */
+/* WHAT TO EXPECT — single editorial statement, full-width */
 
 .wte-x {
     background: var(--paper-soft);
     color: var(--ink);
-    padding: clamp(5rem, 10vw, 9rem) 0 clamp(5rem, 10vw, 8rem);
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(3rem, 6vw, 5rem);
     position: relative;
     overflow: hidden;
-}
-
-/* Decorative italic "04" watermark */
-.wte-x::before {
-    content: "04";
-    position: absolute;
-    right: -3vw;
-    bottom: -8vw;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(20rem, 36vw, 42rem);
-    line-height: 0.8;
-    color: var(--clay);
-    opacity: 0.05;
-    letter-spacing: -0.05em;
-    pointer-events: none;
 }
 
 .wte-x__inner {
@@ -34,27 +17,23 @@
 }
 
 .wte-x__header {
-    margin-bottom: 2.25rem;
+    margin-bottom: 1.75rem;
 }
 
-/* ---- intro block ---- */
 .wte-x__intro {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: clamp(2rem, 5vw, 5rem);
-    align-items: end;
-    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+    display: block;
+    margin: 0;
 }
 
 .wte-x__heading {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(2rem, 4.6vw, 4.4rem);
-    line-height: 1.05;
+    font-size: clamp(2rem, 5.2vw, 5.2rem);
+    line-height: 1.04;
     letter-spacing: -0.025em;
     color: var(--ink);
     margin: 0;
-    max-width: 18ch;
+    max-width: none;
 }
 
 .wte-x__heading em {
@@ -62,265 +41,8 @@
     color: var(--clay);
 }
 
-.wte-x__deck {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 1.05vw, 1.05rem);
-    line-height: 1.65;
-    color: var(--ink-soft);
-    margin: 0;
-    max-width: 38ch;
-    padding-bottom: 0.4rem;
-}
-
-/* ============= CHART ============= */
-
-.wte-x__chart-wrap {
-    position: relative;
-    margin: 0 calc(-1 * var(--rail-padding)) clamp(3rem, 5vw, 4.5rem);
-    padding: 1.5rem clamp(0.5rem, 2vw, 2rem) 0;
-    background:
-        linear-gradient(180deg,
-            rgba(241, 238, 232, 0.0) 0%,
-            rgba(241, 238, 232, 0.6) 100%);
-    border-top: 1px solid var(--ink-rule);
-    border-bottom: 1px solid var(--ink-rule);
-}
-
-.wte-x__chart {
-    width: 100%;
-    height: auto;
-    display: block;
-    overflow: visible;
-}
-
-.wte-x__grid {
-    stroke: rgba(43, 43, 43, 0.06);
-    stroke-width: 1;
-    stroke-dasharray: 1 4;
-}
-
-.wte-x__axis {
-    stroke: var(--ink);
-    stroke-width: 1.5;
-}
-
-.wte-x__tick {
-    stroke: var(--ink);
-    stroke-width: 1.5;
-}
-
-.wte-x__axis-label {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    fill: var(--ink-faint);
-}
-
-.wte-x__axis-title {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    fill: var(--ink-faint);
-}
-
-.wte-x__curve {
-    fill: none;
-    stroke: var(--clay);
-    stroke-width: 3;
-    stroke-linecap: round;
-}
-
-.wte-x__curve-fill {
-    fill: var(--clay);
-    fill-opacity: 0.07;
-}
-
-.wte-x__dropline {
-    stroke: var(--ink);
-    stroke-width: 1;
-    stroke-dasharray: 2 4;
-    opacity: 0.35;
-}
-
-.wte-x__node-halo {
-    fill: var(--paper-soft);
-    stroke: var(--clay);
-    stroke-width: 1.5;
-}
-
-.wte-x__node-core {
-    fill: var(--clay);
-}
-
-.wte-x__node-metric {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 22px;
-    fill: var(--ink);
-    letter-spacing: -0.02em;
-}
-
-.wte-x__node-metric-label {
-    font-family: var(--font-sans);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    fill: var(--ink-faint);
-}
-
-/* ============= PHASE CARDS ============= */
-
-.wte-x__cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 2.5vw, 2.5rem);
-}
-
-.wte-x__card {
-    padding: 2rem 1.75rem;
-    background: var(--paper);
-    border: 1px solid var(--ink-rule);
-    position: relative;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.4s ease,
-                box-shadow 0.5s ease;
-}
-
-.wte-x__card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2px;
-    width: 0;
-    background: var(--clay);
-    transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.wte-x__card:hover {
-    transform: translateY(-4px);
-    border-color: var(--ink);
-    box-shadow: 0 24px 48px -32px rgba(43, 43, 43, 0.25);
-}
-
-.wte-x__card:hover::before {
-    width: 100%;
-}
-
-.wte-x__card-head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.2rem;
-}
-
-.wte-x__card-num {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.6rem;
-    color: var(--clay);
-    line-height: 1;
-    letter-spacing: -0.03em;
-}
-
-.wte-x__card-rule {
-    flex: 1;
-    height: 1px;
-    background: var(--ink-rule);
-}
-
-.wte-x__card-kicker {
-    font-family: var(--font-sans);
-    font-size: 0.66rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-}
-
-.wte-x__card-title {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.6rem, 2.2vw, 2.1rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 0 0 0.85rem;
-}
-
-.wte-x__card-teaser {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(1.05rem, 1.2vw, 1.2rem);
-    line-height: 1.4;
-    color: var(--ink-soft);
-    margin: 0 0 1.25rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--ink-rule);
-}
-
-.wte-x__card-bullets {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.wte-x__card-bullets li {
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    line-height: 1.55;
-    color: var(--ink-soft);
-    padding-left: 1.1rem;
-    position: relative;
-}
-
-.wte-x__card-bullets li::before {
-    content: "—";
-    position: absolute;
-    left: 0;
-    color: var(--clay);
-    font-weight: 300;
-}
-
-/* ============= responsive ============= */
-
 @media (max-width: 1024px) {
-    .wte-x__intro {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .wte-x__cards {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-
-    .wte-x__node-metric {
-        font-size: 16px;
-    }
-    .wte-x__node-metric-label {
-        font-size: 7px;
-    }
-}
-
-@media (max-width: 640px) {
-    .wte-x__chart-wrap {
-        margin: 0 calc(-1 * var(--rail-padding)) 2.5rem;
-        padding: 1rem 0.5rem 0;
-    }
-
-    .wte-x__axis-label {
-        font-size: 9px;
+    .wte-x__heading {
+        font-size: clamp(1.9rem, 6vw, 3.4rem);
     }
 }

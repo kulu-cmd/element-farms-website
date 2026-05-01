@@ -48,29 +48,26 @@ const Placeholder = ({ tone = 'moss', label, aspect = '4 / 3', className = '' })
 )
 
 /* ----------------------------------------------------------------------------
-   FLYER CONTENT — Vermicompost (Card 0)
-   Sourced from Chemical NPK Vermicompost Flyer + Organic Farms Vermicompost Flyer
+   FLYER CONTENT — Organic Matter (Card 0)
    --------------------------------------------------------------------------- */
 const vermicompostFlyer = (
-  <div className="flyer flyer--moss">
-    {/* Hero strip */}
-    <div className="flyer__hero">
-      <div className="flyer__hero-copy">
-        <span className="flyer__kicker">Element Farm Solutions · 1-Pager</span>
-        <h2 className="flyer__hero-title">
-          Vermicompost.<br/><em>Black gold, made on your farm.</em>
-        </h2>
-        <p className="flyer__hero-deck">
-          A closed-loop, farm-scale system that turns your manure, crop residues and organic
-          waste into living, plant-available worm castings — rebuilding soil biology season
-          after season.
-        </p>
-      </div>
-      <Placeholder tone="moss" label="Hero — vermicompost beds at full production" aspect="4 / 5" />
+  <div className="flyer flyer--moss flyer--card-v2">
+    <div className="flyer__topbar">
+      <span className="flyer__kicker">Organic Matter · 1-Pager</span>
+      <span className="flyer__brandmark">Element Farm Solutions</span>
     </div>
 
-    {/* Pillars row — what's in it */}
-    <div className="flyer__pillars">
+    <div className="flyer__lede">
+      <h2 className="flyer__lede-title">
+        We are here to help you set up a regenerative system to recycle your own farm
+        waste — and produce your own potent bio-fertilisers.
+      </h2>
+      <p className="flyer__lede-deck">
+        <em>If you currently use chemical fertilisers, manure, or regular compost — this is for you. Level up your fertiliser game.</em>
+      </p>
+    </div>
+
+    <div className="flyer__pillars flyer__pillars--card">
       <div className="flyer__pillar">
         <span className="flyer__pillar-num">01</span>
         <h3>Living biology</h3>
@@ -88,112 +85,56 @@ const vermicompostFlyer = (
       </div>
     </div>
 
-    {/* Two-column: NPK comparison */}
-    <div className="flyer__compare">
-      <div className="flyer__compare-col flyer__compare-col--chemical">
-        <span className="flyer__compare-tag">Synthetic NPK</span>
-        <ul>
-          <li>Three nutrients, fast release</li>
-          <li>Salt build-up, biology suppressed</li>
-          <li>Yield stays the same — input cost climbs</li>
-          <li>Soil thins each season</li>
-        </ul>
-      </div>
-      <div className="flyer__compare-col flyer__compare-col--vermi">
-        <span className="flyer__compare-tag">Vermicompost</span>
-        <ul>
-          <li>Full nutrient profile + microbiome</li>
-          <li>Slow release, no salt loading</li>
-          <li>Yield compounds — input cost drops</li>
-          <li>Soil thickens, holds more water</li>
-        </ul>
-      </div>
+    <div className="flyer__body">
+      <p>
+        Chemical fertilisers are getting expensive. Farms who <strong>produce their own in-house fertiliser</strong> reduce an otherwise hefty fertiliser bill.
+      </p>
+      <p>
+        Farms who directly spread manure risk soil-burn if not handled or over-applied. Regular compost lacks the mineral and nutrient profile for proper fertilising.
+      </p>
+      <p>
+        We work with curated farms — empowering them with knowledge, training and setup of their own organic fertiliser production area. Using farm waste and organic material we work with you to turn this into a variety of potent organic inoculants.
+      </p>
+      <p>
+        We target heavily distressed soils and your nursery first. Ensuring the babies of today become champions for the future — giving priority to your most eroded farmland.
+      </p>
     </div>
 
-    {/* Process strip — 4 stages */}
-    <div className="flyer__process">
-      <span className="flyer__section-label">— The Process</span>
-      <div className="flyer__process-steps">
-        <div className="flyer__process-step">
-          <Placeholder tone="moss" label="Stage 1 — windrow + manure intake" aspect="1 / 1" />
-          <span className="flyer__process-step-num">01</span>
-          <h4>Intake</h4>
-          <p>Manure, crop residue, organic waste — pre-conditioned and stacked.</p>
-        </div>
-        <div className="flyer__process-step">
-          <Placeholder tone="moss" label="Stage 2 — worm inoculation" aspect="1 / 1" />
-          <span className="flyer__process-step-num">02</span>
-          <h4>Inoculate</h4>
-          <p>Eisenia fetida cultures introduced into managed beds.</p>
-        </div>
-        <div className="flyer__process-step">
-          <Placeholder tone="moss" label="Stage 3 — castings building up" aspect="1 / 1" />
-          <span className="flyer__process-step-num">03</span>
-          <h4>Convert</h4>
-          <p>60–90 days. Worms digest, microbes proliferate, castings build.</p>
-        </div>
-        <div className="flyer__process-step">
-          <Placeholder tone="moss" label="Stage 4 — harvested castings ready for application" aspect="1 / 1" />
-          <span className="flyer__process-step-num">04</span>
-          <h4>Apply</h4>
-          <p>Side-dress, broadcast, or brewed into a liquid drench at planting.</p>
-        </div>
-      </div>
-    </div>
-
-    {/* Use cases — chemical farms vs organic farms */}
-    <div className="flyer__usecases">
-      <span className="flyer__section-label">— Where It Fits</span>
-      <div className="flyer__usecase-grid">
-        <div className="flyer__usecase">
-          <h4>Chemical / NPK farms</h4>
-          <p>
-            Layer vermicompost alongside your existing programme. We typically see input
-            costs drop 25–40% inside two seasons while yield holds or improves — biology
-            does the work fertiliser was masking.
-          </p>
+    <div className="flyer__statblock">
+      <div className="flyer__statblock-cols">
+        <div className="flyer__statblock-col">
+          <span className="flyer__statblock-tag">Chemical / NPK Burns</span>
           <ul>
-            <li>Reduced fertiliser bill, season on season</li>
-            <li>Healthier crop response in dry weeks</li>
-            <li>Soil structure rebuilds without taking land out of production</li>
+            <li>Salt build-up, biology suppressed</li>
+            <li>Yield ceiling stays the same — input cost climbs</li>
+            <li>Soil thins each season</li>
           </ul>
         </div>
-        <div className="flyer__usecase">
-          <h4>Organic farms</h4>
-          <p>
-            Vermicompost replaces or amplifies your compost programme — denser nutrient
-            content, higher microbial counts, and a closed-loop system that turns farm
-            waste into your most valuable input.
-          </p>
+        <div className="flyer__statblock-col">
+          <span className="flyer__statblock-tag">Organic Gains</span>
           <ul>
-            <li>On-farm production from existing waste streams</li>
-            <li>Stronger seedling establishment and root depth</li>
-            <li>Premium-grade castings for high-value crops</li>
+            <li>Microbiome restored, slow-release nutrients</li>
+            <li>Yield compounds, input cost drops</li>
+            <li>Soil thickens, holds more water</li>
           </ul>
         </div>
       </div>
-    </div>
-
-    {/* Proof bar */}
-    <div className="flyer__proof">
-      <Placeholder tone="moss" label="Field photo — KZN trial site, year 2 results" aspect="16 / 9" className="flyer__proof-photo" />
-      <div className="flyer__proof-stats">
+      <div className="flyer__statblock-stats">
         <div>
-          <span className="flyer__proof-num">25–40%</span>
-          <span className="flyer__proof-label">drop in chemical input cost</span>
+          <span className="flyer__statblock-num">25–40%</span>
+          <span className="flyer__statblock-label">drop in chemical input cost</span>
         </div>
         <div>
-          <span className="flyer__proof-num">+30%</span>
-          <span className="flyer__proof-label">water-holding capacity gain</span>
+          <span className="flyer__statblock-num">+30%</span>
+          <span className="flyer__statblock-label">water-holding capacity gain</span>
         </div>
         <div>
-          <span className="flyer__proof-num">2 seasons</span>
-          <span className="flyer__proof-label">to visible soil-structure recovery</span>
+          <span className="flyer__statblock-num">2 seasons</span>
+          <span className="flyer__statblock-label">to visible soil-structure recovery</span>
         </div>
       </div>
     </div>
 
-    {/* CTA */}
     <div className="flyer__cta">
       <p><em>"Stop feeding the plant. Feed the soil — and the soil will feed everything else."</em></p>
       <a className="flyer__cta-btn" href="/contact/agri-farms">Book a farm assessment →</a>
@@ -202,125 +143,93 @@ const vermicompostFlyer = (
 )
 
 /* ----------------------------------------------------------------------------
-   FLYER CONTENT — M-TerraBoost (Card 1)
-   Sourced from M-TerraBoost_Flyer.pdf
+   FLYER CONTENT — Mineral Deficiencies (Card 1)
    --------------------------------------------------------------------------- */
 const mineralFlyer = (
-  <div className="flyer flyer--ochre">
-    {/* Hero */}
-    <div className="flyer__hero">
-      <div className="flyer__hero-copy">
-        <span className="flyer__kicker">Element Farm Solutions · 1-Pager</span>
-        <h2 className="flyer__hero-title">
-          M-TerraBoost.<br/><em>The four minerals your soil is missing.</em>
-        </h2>
-        <p className="flyer__hero-deck">
-          A scientifically formulated silica-rich mineral blend that targets the most
-          common deficiencies eroding South African yields — silica, calcium, magnesium
-          and sulphur, in a stable, plant-available form.
-        </p>
-      </div>
-      <Placeholder tone="ochre" label="Hero — M-TerraBoost product shot in field" aspect="4 / 5" />
+  <div className="flyer flyer--ochre flyer--card-v2">
+    <div className="flyer__topbar">
+      <span className="flyer__kicker">Mineral Deficiencies · 1-Pager</span>
+      <span className="flyer__brandmark">Element Farm Solutions</span>
     </div>
 
-    {/* Four mineral pillars */}
-    <div className="flyer__minerals">
-      <span className="flyer__section-label">— What's Inside</span>
-      <div className="flyer__minerals-grid">
-        <div className="flyer__mineral">
-          <span className="flyer__mineral-symbol">Si</span>
-          <h4>Silica</h4>
-          <p>
-            Strengthens cell walls. Drives drought and disease resistance. Improves water-use
-            efficiency in dry conditions.
-          </p>
-        </div>
-        <div className="flyer__mineral">
-          <span className="flyer__mineral-symbol">Ca</span>
-          <h4>Calcium</h4>
-          <p>
-            Essential for root architecture and cell integrity. Reduces soil acidity and
-            unlocks micronutrient uptake.
-          </p>
-        </div>
-        <div className="flyer__mineral">
-          <span className="flyer__mineral-symbol">Mg</span>
-          <h4>Magnesium</h4>
-          <p>
-            The core atom of chlorophyll. Powers photosynthesis, energy transfer, and
-            phosphorus mobility.
-          </p>
-        </div>
-        <div className="flyer__mineral">
-          <span className="flyer__mineral-symbol">S</span>
-          <h4>Sulphur</h4>
-          <p>
-            Builds proteins. Triggers enzyme function and dramatically improves nitrogen
-            efficiency — less waste, more yield.
-          </p>
-        </div>
+    <div className="flyer__lede">
+      <h2 className="flyer__lede-title">
+        Soil isn't just dirt with NPK in it — it's a mineral matrix, and most South
+        African soils are missing the four pieces that matter most.
+      </h2>
+      <p className="flyer__lede-deck">
+        <em>If your yields have plateaued and your fertiliser bill keeps climbing — your soil is missing minerals, not nitrogen. M-TerraBoost restores what's been lost.</em>
+      </p>
+    </div>
+
+    <div className="flyer__pillars flyer__pillars--card">
+      <div className="flyer__pillar">
+        <span className="flyer__pillar-num">Si</span>
+        <h3>Silica</h3>
+        <p>Strengthens cell walls — drives drought and disease resistance, lifts water-use efficiency.</p>
+      </div>
+      <div className="flyer__pillar">
+        <span className="flyer__pillar-num">Ca</span>
+        <h3>Calcium</h3>
+        <p>Builds root architecture and cell integrity. Reduces soil acidity, unlocks micronutrient uptake.</p>
+      </div>
+      <div className="flyer__pillar">
+        <span className="flyer__pillar-num">Mg</span>
+        <h3>Magnesium &amp; Sulphur</h3>
+        <p>The chlorophyll core + protein builder. Powers photosynthesis and unlocks nitrogen efficiency.</p>
       </div>
     </div>
 
-    {/* Why silica matters */}
-    <div className="flyer__compare">
-      <div className="flyer__compare-col flyer__compare-col--chemical">
-        <span className="flyer__compare-tag">Without M-TerraBoost</span>
-        <ul>
-          <li>Weaker cell walls — more lodging, more disease</li>
-          <li>Mineral lock-out keeps nutrients unavailable</li>
-          <li>Heavy reliance on synthetic NPK to compensate</li>
-          <li>Yield ceiling stays where it is</li>
-        </ul>
-      </div>
-      <div className="flyer__compare-col flyer__compare-col--vermi">
-        <span className="flyer__compare-tag">With M-TerraBoost</span>
-        <ul>
-          <li>Structural integrity — crops stand up to weather</li>
-          <li>Mineral balance restored, uptake unlocked</li>
-          <li>Lower fertiliser load, higher response</li>
-          <li>Yield ceiling lifts, season after season</li>
-        </ul>
-      </div>
+    <div className="flyer__body">
+      <p>
+        Soil mineral imbalances silently reduce yields, water retention, and crop quality. Most growers don't see the cost — they just keep adding NPK to mask it.
+      </p>
+      <p>
+        <strong>M-TerraBoost is a silica-rich mineral blend</strong> targeting the four deficiencies eroding South African yields most. Slow-release, plant-available, formulated for our soils.
+      </p>
+      <p>
+        We start with a soil-test review of your fields, identify the missing pieces, and prescribe the right rate per crop. Broadcast pre-plant, banded under orchards, mixed into nursery media — the application meets the operation.
+      </p>
+      <p>
+        Within two seasons, growers typically report stronger root systems, less lodging, better stress tolerance, and a lower fertiliser load. The minerals do the work the NPK was masking.
+      </p>
     </div>
 
-    {/* Application table */}
-    <div className="flyer__application">
-      <span className="flyer__section-label">— How It's Applied</span>
-      <div className="flyer__app-table">
-        <div className="flyer__app-row flyer__app-row--head">
-          <span>Crop type</span><span>Application</span><span>Timing</span>
+    <div className="flyer__statblock">
+      <div className="flyer__statblock-cols">
+        <div className="flyer__statblock-col">
+          <span className="flyer__statblock-tag">Without M-TerraBoost</span>
+          <ul>
+            <li>Weaker cell walls — more lodging, more disease</li>
+            <li>Mineral lock-out keeps nutrients unavailable</li>
+            <li>Heavy reliance on synthetic NPK to compensate</li>
+          </ul>
         </div>
-        <div className="flyer__app-row">
-          <span>Row crops</span><span>Broadcast + incorporate</span><span>Pre-plant</span>
+        <div className="flyer__statblock-col">
+          <span className="flyer__statblock-tag">With M-TerraBoost</span>
+          <ul>
+            <li>Structural integrity — crops stand up to weather</li>
+            <li>Mineral balance restored, uptake unlocked</li>
+            <li>Lower fertiliser load, higher response</li>
+          </ul>
         </div>
-        <div className="flyer__app-row">
-          <span>Orchards</span><span>Banded under canopy</span><span>Late winter / early spring</span>
+      </div>
+      <div className="flyer__statblock-stats">
+        <div>
+          <span className="flyer__statblock-num">4 minerals</span>
+          <span className="flyer__statblock-label">Si · Ca · Mg · S — the missing pieces</span>
         </div>
-        <div className="flyer__app-row">
-          <span>Vegetable nurseries</span><span>Mixed into media</span><span>At seeding</span>
+        <div>
+          <span className="flyer__statblock-num">2 seasons</span>
+          <span className="flyer__statblock-label">to a measurable yield-ceiling lift</span>
         </div>
-        <div className="flyer__app-row">
-          <span>Pasture / lucerne</span><span>Surface broadcast</span><span>After cut, before rain</span>
+        <div>
+          <span className="flyer__statblock-num">Lower</span>
+          <span className="flyer__statblock-label">NPK load, higher fertiliser response</span>
         </div>
       </div>
     </div>
 
-    {/* Soil-test before/after photos */}
-    <div className="flyer__beforeafter">
-      <div>
-        <span className="flyer__beforeafter-tag">Before</span>
-        <Placeholder tone="ochre" label="Soil test result — pre-application baseline" aspect="4 / 3" />
-        <p>Imbalanced minerals, low silica, locked phosphorus.</p>
-      </div>
-      <div>
-        <span className="flyer__beforeafter-tag flyer__beforeafter-tag--after">After 2 seasons</span>
-        <Placeholder tone="ochre" label="Soil test result — post-application 2 seasons" aspect="4 / 3" />
-        <p>Mineral balance restored, biology returning, water retention improved.</p>
-      </div>
-    </div>
-
-    {/* CTA */}
     <div className="flyer__cta">
       <p><em>"Soil isn't just dirt with NPK in it. It's a mineral matrix — and it's missing pieces."</em></p>
       <a className="flyer__cta-btn" href="/contact/agri-farms">Request a soil-test review →</a>
