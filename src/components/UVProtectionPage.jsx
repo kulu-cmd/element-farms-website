@@ -301,10 +301,9 @@ const UVProtectionPage = () => {
           </motion.div>
 
           <div className="uv__detail-product">
-            <Placeholder
-              tone="clay"
-              label="M-GeoShade product bag — front label"
-              aspect="4 / 5"
+            <img
+              src="/geoshield/apple_covered.png"
+              alt="Apple coated with M-GeoShade — visible reflective mineral layer on the fruit skin"
               className="uv__detail-product-img"
             />
             <div className="uv__detail-product-copy">
@@ -470,10 +469,9 @@ const UVProtectionPage = () => {
                 without an insecticide spray.
               </p>
             </div>
-            <Placeholder
-              tone="moss"
-              label="Citrus leaf miner damage on young flush leaves — before / after M-Defend"
-              aspect="4 / 3"
+            <img
+              src="/geoshield/defend_before_After.png"
+              alt="Before / after M-Defend application — visible mineral coating on fruit"
               className="uv__headline-pest-img"
             />
           </div>

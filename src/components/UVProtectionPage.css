@@ -423,7 +423,13 @@
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.uv__detail-product-img { max-width: 360px; }
+.uv__detail-product-img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border-radius: 4px;
+}
 
 .uv__detail-product-copy {
   display: flex;
@@ -708,6 +714,10 @@
 .uv__headline-pest-img {
   position: relative;
   z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
 }
 
 /* Specific named pests grid */

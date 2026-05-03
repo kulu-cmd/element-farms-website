@@ -1,767 +1,1230 @@
 /* ============================================================
-   PoultryPage — BEM prefix: .poultry__
+   POULTRY  ·  M-LitterGuard
+   Editorial rebuild — same typography, palette and rhythm as
+   UVProtectionPage / ProblemSection / TailoredSolutionSection.
    ============================================================ */
 
 .poultry {
-    background: white;
+  background: var(--paper);
+  color: var(--ink);
 }
 
-/* ----------------------------------------------------------
-   Hero
-   ---------------------------------------------------------- */
-.poultry__hero {
-    background-color: var(--charcoal);
-    padding: 7rem 2rem 3rem;
-    position: relative;
-    overflow: hidden;
+.poultry section {
+  padding: clamp(5rem, 10vw, 8.5rem) 0;
+  position: relative;
 }
 
-.poultry__hero-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+.poultry section + section {
+  border-top: 1px solid var(--ink-rule);
 }
 
-.poultry__hero-text {
-    display: flex;
-    flex-direction: column;
-    max-width: 580px;
+.poultry__facts-inner,
+.poultry__nh3-inner,
+.poultry__pillars-inner,
+.poultry__detail-inner,
+.poultry__application-inner,
+.poultry__images-inner,
+.poultry__dyk-inner,
+.poultry__cta-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 var(--rail-padding);
+  position: relative;
+  z-index: 1;
 }
 
-.poultry__hero-badge {
-    display: inline-block;
-    border: 1.5px solid var(--orange-main);
-    border-radius: 50px;
-    color: white;
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.85rem;
-    margin-bottom: 1rem;
-    width: fit-content;
+/* ============================================================
+   1.  Editorial facts
+   ============================================================ */
+.poultry__facts {
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
 }
 
-.poultry__hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.1rem, 5vw, 3.5rem);
-    font-weight: 900;
-    color: var(--orange-main);
-    margin: 0;
-    line-height: 1.1;
+.poultry__facts::before {
+  content: "NH₃";
+  position: absolute;
+  left: -2vw;
+  top: -4vw;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(18rem, 34vw, 40rem);
+  line-height: 0.8;
+  color: var(--clay);
+  opacity: 0.04;
+  letter-spacing: -0.05em;
+  pointer-events: none;
 }
 
-.poultry__hero-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 520px;
-    margin-top: 0.85rem;
-    line-height: 1.6;
+.poultry__facts-inner {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
 }
 
-.poultry__hero-scroll-hint {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.45);
-    margin-top: 1.25rem;
-    display: block;
+.poultry__facts-header {
+  grid-column: 1 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
-.poultry__hero-deco {
-    opacity: 0.6;
-    flex-shrink: 0;
+.poultry__facts-statement {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 22ch;
 }
 
-/* ----------------------------------------------------------
-   Problem Intro
-   ---------------------------------------------------------- */
-.poultry__problem {
-    background: var(--orange-main);
-    padding: 3.5rem 2rem 2rem;
+.poultry__facts-statement em {
+  font-style: italic;
+  color: var(--clay);
 }
 
-.poultry__problem-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+.poultry__facts-index {
+  grid-column: 1 / 13;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--ink);
 }
 
-.poultry__problem-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.75);
-    margin-bottom: 0.9rem;
+.poultry__facts-row {
+  display: grid;
+  grid-template-columns: 60px minmax(220px, 1.2fr) 2.6fr;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  padding: 2.75rem 0;
+  border-bottom: 1px solid var(--ink-rule);
+  position: relative;
+  transition: padding 0.4s ease;
 }
 
-.poultry__problem-headline {
-    font-family: var(--font-heading);
-    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-    font-weight: 900;
-    color: #fff;
-    margin: 0 0 1.25rem;
-    line-height: 1.25;
+.poultry__facts-row:hover { padding-left: 0.5rem; }
+
+.poultry__facts-row::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0;
+  width: 0;
+  height: 1px;
+  background: var(--clay);
+  transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.poultry__problem-rule {
-    width: 56px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 2px;
-    transform-origin: left center;
-    border: none;
+.poultry__facts-row:hover::before { width: 100%; }
+
+.poultry__facts-row-n {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--ink-faint);
+  align-self: start;
+  padding-top: 0.7rem;
 }
 
-/* ----------------------------------------------------------
-   Stats
-   ---------------------------------------------------------- */
-.poultry__stats {
-    background-color: var(--orange-main);
-    padding: 0.5rem 3rem 3.5rem;
+.poultry__facts-row-figures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: baseline;
 }
 
-.poultry__stats-grid {
-    max-width: var(--page-max-width, 1100px);
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+.poultry__facts-row-value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(3.4rem, 8vw, 7rem);
+  line-height: 0.9;
+  color: var(--clay);
+  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
 }
 
-.poultry__stat-card {
-    background: white;
-    border: 2px solid var(--orange-main);
-    border-radius: 24px;
-    padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.poultry__facts-row-prefix {
+  font-style: italic;
+  font-size: 0.55em;
+  color: var(--ink-soft);
+  margin-right: 0.1em;
 }
 
-.poultry__stat-value {
-    font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.5vw, 2.1rem);
-    font-weight: 900;
-    color: var(--orange-main);
-    line-height: 1.1;
+.poultry__facts-row-suffix {
+  font-style: italic;
+  margin-left: 0.05em;
+  font-size: 0.55em;
+  color: var(--ink-soft);
 }
 
-.poultry__stat-label {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: var(--charcoal);
-    line-height: 1.5;
-    margin: 0;
+.poultry__facts-row-word {
+  font-style: italic;
+  font-size: 0.55em;
+  color: var(--clay);
+  letter-spacing: -0.01em;
 }
 
-/* ----------------------------------------------------------
-   Ammonia Danger
-   ---------------------------------------------------------- */
-.poultry__ammonia {
-    background-color: var(--charcoal);
-    padding: 4.5rem 2rem;
+.poultry__facts-row-unit {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--ink-rule);
+  padding-top: 0.55rem;
+  width: 100%;
 }
 
-.poultry__ammonia-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-    align-items: center;
+.poultry__facts-row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
-.poultry__ammonia-text {
-    display: flex;
-    flex-direction: column;
+.poultry__facts-row-label {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.55vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--ink);
+  font-weight: 400;
+  margin: 0;
+  max-width: 56ch;
 }
 
-.poultry__ammonia-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 0.85rem;
+.poultry__facts-row-source {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
-.poultry__ammonia-heading {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: clamp(1.3rem, 2.5vw, 2rem);
-    color: white;
-    margin: 0 0 1.5rem;
-    line-height: 1.3;
+/* ============================================================
+   2.  NH₃ headline callout — dark band
+   ============================================================ */
+.poultry__nh3 {
+  background: var(--paper);
 }
 
-.poultry__ammonia-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
+.poultry__nh3-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
-.poultry__ammonia-list-item {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.82);
-    line-height: 1.6;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
+.poultry__nh3-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-.poultry__ammonia-bullet {
-    color: var(--orange-main);
-    font-weight: 900;
-    flex-shrink: 0;
-    line-height: 1.6;
+.poultry__nh3-card::after {
+  content: "";
+  position: absolute;
+  bottom: -50%;
+  right: -10%;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(243, 111, 33, 0.32) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-.poultry__ammonia-visual {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid var(--orange-main);
-    border-radius: 16px;
-    height: 280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    padding: 1.5rem;
-    text-align: center;
+.poultry__nh3-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.poultry__ammonia-symbol {
-    font-family: var(--font-heading);
-    font-size: 4rem;
-    font-weight: 900;
-    color: var(--orange-main);
-    line-height: 1;
+.poultry__nh3-tag {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ochre);
 }
 
-.poultry__ammonia-visual-title {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: white;
-    margin: 0;
+.poultry__nh3-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin: 0;
+  max-width: 22ch;
 }
 
-.poultry__ammonia-visual-note {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.4);
-    margin: 0;
+.poultry__nh3-heading em {
+  font-style: italic;
+  color: var(--ochre);
+  font-weight: 300;
 }
 
-/* ----------------------------------------------------------
-   Our Solution
-   ---------------------------------------------------------- */
-.poultry__solution {
-    background: white;
-    padding: 0 0 3rem;
+.poultry__nh3-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  max-width: 56ch;
 }
 
-.poultry__solution-header {
-    background-color: #e6e6e6;
-    padding: 1rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.75rem;
+.poultry__nh3-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.78);
 }
 
-.poultry__solution-title {
-    font-family: var(--font-heading);
-    font-size: clamp(1.26rem, 2.1vw, 1.75rem);
-    font-weight: 800;
-    color: var(--orange-main);
-    margin: 0;
+.poultry__nh3-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 10px;
+  height: 1px;
+  background: var(--clay);
 }
 
-.poultry__solution-tags {
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
-    background-color: var(--orange-main);
-    border-radius: 50px;
-    padding: 0.4rem 1rem;
-    flex-wrap: wrap;
+.poultry__nh3-list strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--paper);
 }
 
-.poultry__tag {
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    font-weight: 600;
-    color: white;
-    white-space: nowrap;
+.poultry__nh3-visual {
+  position: relative;
+  z-index: 1;
 }
 
-.poultry__tag-dot {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
+.poultry__nh3-glyph {
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(4rem, 7vw, 6rem);
+  letter-spacing: -0.04em;
+  color: var(--ochre);
+  opacity: 0.85;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  z-index: 2;
 }
 
-.poultry__solution-body {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 3rem;
+/* ============================================================
+   3.  Three-job pillars
+   ============================================================ */
+.poultry__pillars {
+  background: var(--paper-soft);
+  position: relative;
 }
 
-.poultry__solution-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--orange-main);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin-bottom: 0.75rem;
+.poultry__pillars::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
-.poultry__solution-intro {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: var(--charcoal);
-    opacity: 0.85;
-    margin-bottom: 2rem;
+.poultry__pillars-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 880px;
 }
 
-.poultry__product-row {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
+.poultry__pillars-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 22ch;
 }
 
-.poultry__product-img-placeholder {
-    width: 160px;
-    height: 200px;
-    border: 2px dashed var(--orange-main);
-    border-radius: 12px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(243, 111, 33, 0.04);
+.poultry__pillars-heading em {
+  font-style: italic;
+  color: var(--clay);
+  font-weight: 300;
 }
 
-.poultry__product-img-label {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    color: rgba(0, 0, 0, 0.35);
-    text-align: center;
+.poultry__pillars-deck {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.1vw, 1.08rem);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 60ch;
 }
 
-.poultry__product-desc {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: var(--charcoal);
-    line-height: 1.75;
-    margin: 0;
+.poultry__pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-/* ----------------------------------------------------------
-   Trial Results
-   ---------------------------------------------------------- */
-.poultry__trials {
-    background-color: var(--charcoal);
-    padding: 5rem 2rem;
-    text-align: center;
+.poultry__pillar {
+  --pillar-accent: var(--clay);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.75rem, 3.2vw, 2.75rem);
+  background: #fff;
+  border: 1px solid var(--ink-rule);
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  overflow: hidden;
 }
 
-.poultry__trials-inner {
-    max-width: 900px;
-    margin: 0 auto;
+.poultry__pillar::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--pillar-accent);
 }
 
-.poultry__trials-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 0.9rem;
+.poultry__pillar:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(14, 24, 18, 0.12);
+  border-color: var(--pillar-accent);
 }
 
-.poultry__trials-heading {
-    font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    color: white;
-    margin: 0 0 2.5rem;
-    line-height: 1.2;
+.poultry__pillar--clay { --pillar-accent: var(--clay); }
+.poultry__pillar--moss { --pillar-accent: var(--moss-deep); }
+.poultry__pillar--ink  { --pillar-accent: var(--ink); }
+
+.poultry__pillar-num {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.4rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--pillar-accent);
 }
 
-.poultry__trials-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.75rem;
-    margin-bottom: 2rem;
+.poultry__pillar-tag {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--pillar-accent);
 }
 
-.poultry__trial-card {
-    background: white;
-    border: 2px solid var(--orange-main);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+.poultry__pillar-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1;
 }
 
-.poultry__trial-value {
-    font-family: var(--font-heading);
-    font-size: clamp(3.5rem, 6vw, 5rem);
-    font-weight: 900;
-    color: var(--orange-main);
-    line-height: 1;
+.poultry__pillar-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.poultry__pillar-link {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink-rule);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pillar-accent);
+}
+
+/* ============================================================
+   4.  Detail band — M-LitterGuard product card + trial proof
+   ============================================================ */
+.poultry__detail {
+  scroll-margin-top: 120px;
+  background: var(--paper-deep);
+  position: relative;
+}
+
+.poultry__detail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.poultry__detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 880px;
+}
+
+.poultry__detail-banner {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  background: var(--clay);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.poultry__detail-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 22ch;
+}
+
+.poultry__detail-heading em {
+  font-style: italic;
+  color: var(--clay);
+  font-weight: 300;
+}
+
+.poultry__detail-deck {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.1vw, 1.08rem);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.poultry__detail-product {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.5fr;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.poultry__detail-product-img { max-width: 360px; }
+
+.poultry__detail-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.poultry__detail-product-tag {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.poultry__detail-product-name {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.poultry__detail-product-copy p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.poultry__detail-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.poultry__detail-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.poultry__detail-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 10px;
+  height: 1px;
+  background: var(--clay);
+}
+
+.poultry__detail-list strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Trial proof */
+.poultry__trial {
+  border-top: 1px solid var(--ink-rule);
+  padding-top: clamp(2rem, 4vw, 3rem);
 }
 
 .poultry__trial-label {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--charcoal);
-    line-height: 1.55;
-    margin: 0;
-    text-align: center;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
 }
 
-.poultry__trials-quote {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
+.poultry__trial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-bottom: 1.5rem;
 }
 
-/* ----------------------------------------------------------
-   Application Cards
-   ---------------------------------------------------------- */
+.poultry__trial-card {
+  margin: 0;
+  padding: clamp(1.5rem, 2.5vw, 2.25rem);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.poultry__trial-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.16;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.poultry__trial-tag {
+  position: relative;
+  align-self: flex-start;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(243, 111, 33, 0.18);
+  color: var(--ochre);
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.poultry__trial-value {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(3.5rem, 7vw, 6rem);
+  line-height: 0.9;
+  color: var(--ochre);
+  letter-spacing: -0.04em;
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums;
+}
+
+.poultry__trial-suffix {
+  font-style: italic;
+  font-size: 0.55em;
+  margin-left: 0.05em;
+  color: var(--paper);
+  opacity: 0.65;
+}
+
+.poultry__trial-card figcaption {
+  position: relative;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(247, 245, 240, 0.82);
+  margin: 0;
+  max-width: 36ch;
+}
+
+.poultry__trial-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 0;
+  text-align: right;
+  max-width: 60ch;
+  margin-left: auto;
+}
+
+/* ============================================================
+   5.  Application guide — three modes
+   ============================================================ */
 .poultry__application {
-    background: var(--off-white);
-    padding: 4.5rem 2rem;
+  background: var(--paper);
 }
 
-.poultry__application-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.poultry__application-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--orange-main);
-    margin-bottom: 0.6rem;
+.poultry__application-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  max-width: 880px;
 }
 
 .poultry__application-heading {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: clamp(1.4rem, 2.8vw, 2rem);
-    color: var(--charcoal);
-    margin: 0 0 2.25rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 22ch;
+}
+
+.poultry__application-heading em {
+  font-style: italic;
+  color: var(--clay);
+  font-weight: 300;
+}
+
+.poultry__application-deck {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.1vw, 1.08rem);
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin: 0;
+  max-width: 60ch;
 }
 
 .poultry__application-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: stretch;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .poultry__app-card {
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.2s ease;
+  --card-accent: var(--clay);
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--ink-rule);
+  border-radius: 10px;
+  padding: clamp(1.75rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.poultry__app-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--card-accent);
 }
 
 .poultry__app-card:hover {
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(14, 24, 18, 0.12);
+  border-color: var(--card-accent);
 }
 
-.poultry__app-card-accent {
-    height: 6px;
-    background: var(--card-accent, var(--orange-main));
-    width: 100%;
-    flex-shrink: 0;
-}
+.poultry__app-card--clay { --card-accent: var(--clay); }
+.poultry__app-card--moss { --card-accent: var(--moss-deep); }
+.poultry__app-card--ink  { --card-accent: var(--ink); }
 
-.poultry__app-card-icon {
-    font-size: 2rem;
-    margin: 1.5rem 1.5rem 0.5rem;
-}
-
-.poultry__app-card-heading {
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--charcoal);
-    margin: 0 1.5rem 0.25rem;
+.poultry__app-card-num {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.4rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--card-accent);
 }
 
 .poultry__app-card-sub {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    color: rgba(43, 43, 43, 0.5);
-    margin: 0 1.5rem 1rem;
-    font-style: italic;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--card-accent);
+}
+
+.poultry__app-card-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1;
 }
 
 .poultry__app-card-list {
-    list-style: none;
-    padding: 0 1.5rem 1.75rem;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    flex: 1;
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  border-top: 1px solid var(--ink-rule);
+  padding-top: 1rem;
 }
 
-.poultry__app-card-item {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--charcoal);
-    line-height: 1.5;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+.poultry__app-card-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
 }
 
-.poultry__app-card-check {
-    color: var(--orange-main);
-    font-weight: 700;
-    flex-shrink: 0;
-    line-height: 1.5;
+.poultry__app-card-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 10px;
+  height: 1px;
+  background: var(--card-accent);
 }
 
-/* ----------------------------------------------------------
-   Image Placeholder Strip
-   ---------------------------------------------------------- */
+/* ============================================================
+   6.  Field photos
+   ============================================================ */
 .poultry__images {
-    background: white;
-    padding: 4rem 2rem;
+  background: var(--paper-deep);
+  position: relative;
 }
 
-.poultry__images-inner {
-    max-width: 1100px;
-    margin: 0 auto;
+.poultry__images::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.poultry__images-label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 1.5rem;
 }
 
 .poultry__images-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .poultry__image-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.poultry__img-placeholder {
-    width: 100%;
-    height: 200px;
-    background: #f0f0f0;
-    border: 2px dashed var(--orange-main);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ============================================================
+   7.  Did You Know — closing insight
+   ============================================================ */
+.poultry__dyk {
+  background: var(--paper);
 }
 
-.poultry__img-placeholder-label {
-    font-family: var(--font-body);
-    font-size: 0.78rem;
-    color: rgba(0, 0, 0, 0.35);
-    text-align: center;
-    padding: 0 1rem;
-    font-style: italic;
+.poultry__dyk-card {
+  position: relative;
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow: hidden;
 }
 
-.poultry__image-caption {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
-    color: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    margin: 0;
+.poultry__dyk-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
-/* ----------------------------------------------------------
-   Did You Know
-   ---------------------------------------------------------- */
-.poultry__didyouknow {
-    background: var(--off-white);
-    padding: 4rem 2rem;
-    text-align: center;
+.poultry__dyk-card::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(205, 197, 108, 0.22) 0%, transparent 60%);
+  pointer-events: none;
 }
 
-.poultry__dyk-box {
-    border: 2px solid var(--orange-main);
-    border-radius: 50px;
-    padding: 2rem 3rem;
-    max-width: 700px;
-    margin: 0 auto;
+.poultry__dyk-tag {
+  position: relative;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ochre);
 }
 
-.poultry__dyk-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: rgba(43, 43, 43, 0.5);
-    margin-bottom: 0.75rem;
+.poultry__dyk-heading {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin: 0;
+  max-width: 22ch;
+}
+
+.poultry__dyk-heading em {
+  font-style: italic;
+  color: var(--ochre);
+  font-weight: 300;
 }
 
 .poultry__dyk-text {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--charcoal);
-    line-height: 1.7;
-    margin: 0;
+  position: relative;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(247, 245, 240, 0.85);
+  margin: 0;
+  max-width: 60ch;
 }
 
-/* ----------------------------------------------------------
-   Responsive — 900px
-   ---------------------------------------------------------- */
-@media (max-width: 900px) {
-    .poultry__stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .poultry__ammonia-inner {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-    }
-
-    .poultry__ammonia-visual {
-        height: 220px;
-    }
-
-    .poultry__trials-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .poultry__application-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .poultry__images-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .poultry__product-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .poultry__product-img-placeholder {
-        width: 100%;
-        height: 160px;
-    }
+/* ============================================================
+   8.  CTA banner
+   ============================================================ */
+.poultry__cta {
+  background: var(--clay);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ----------------------------------------------------------
-   Responsive — 600px
-   ---------------------------------------------------------- */
-@media (max-width: 600px) {
-    .poultry__hero {
-        padding: 2.5rem 1.5rem 2rem;
-    }
+.poultry__cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
 
-    .poultry__hero-inner {
-        flex-direction: column;
-        gap: 1.25rem;
-    }
+.poultry__cta::after {
+  content: "";
+  position: absolute;
+  bottom: -40%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(205, 197, 108, 0.28) 0%, transparent 60%);
+  pointer-events: none;
+}
 
-    .poultry__hero-deco {
-        display: none;
-    }
+.poultry__cta-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+  position: relative;
+  z-index: 1;
+}
 
-    .poultry__problem {
-        padding: 2.5rem 1.5rem 1.5rem;
-    }
+.poultry__cta-statement {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin: 0;
+  max-width: 24ch;
+}
 
-    .poultry__stats {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
+.poultry__cta-statement em {
+  font-style: italic;
+  color: var(--ochre);
+  font-weight: 300;
+}
 
-    .poultry__stats-grid {
-        grid-template-columns: 1fr;
-    }
+.poultry__cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
 
-    .poultry__ammonia {
-        padding: 3rem 1.5rem;
-    }
+.poultry__cta-prompt {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(247, 245, 240, 0.85);
+  margin: 0;
+  max-width: 44ch;
+}
 
-    .poultry__solution-header {
-        padding: 1rem 1.5rem;
-        flex-direction: column;
-        align-items: flex-start;
-    }
+.poultry__cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
 
-    .poultry__solution-body {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
+.poultry__cta-btn {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(247, 245, 240, 0.45);
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
 
-    .poultry__trials {
-        padding: 3.5rem 1.5rem;
-    }
+.poultry__cta-btn:hover {
+  background: var(--paper);
+  color: var(--clay);
+  border-color: var(--paper);
+  transform: translateY(-2px);
+}
 
-    .poultry__trials-cards {
-        grid-template-columns: 1fr;
-    }
+.poultry__cta-btn--primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  font-weight: 600;
+}
 
-    .poultry__application {
-        padding: 3rem 1.5rem;
-    }
+.poultry__cta-btn--primary:hover {
+  background: var(--ochre);
+  border-color: var(--ochre);
+  color: var(--ink);
+}
 
-    .poultry__application-grid {
-        grid-template-columns: 1fr;
-    }
+/* ============================================================
+   Photo placeholder — corner-bracket style
+   ============================================================ */
+.poultry__placeholder {
+  position: relative;
+  width: 100%;
+  background:
+    repeating-linear-gradient(45deg, rgba(43, 43, 43, 0.04) 0 1px, transparent 1px 12px),
+    rgba(243, 111, 33, 0.08);
+  border: 1px dashed var(--clay);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  padding: 1.25rem;
+  color: var(--clay);
+}
 
-    .poultry__images {
-        padding: 3rem 1.5rem;
-    }
+.poultry__placeholder--moss {
+  background:
+    repeating-linear-gradient(45deg, rgba(43, 43, 43, 0.04) 0 1px, transparent 1px 12px),
+    rgba(14, 90, 54, 0.08);
+  border-color: var(--moss-deep);
+  color: var(--moss-deep);
+}
 
-    .poultry__images-grid {
-        grid-template-columns: 1fr;
-    }
+.poultry__placeholder--ink {
+  background:
+    repeating-linear-gradient(45deg, rgba(247, 245, 240, 0.06) 0 1px, transparent 1px 12px),
+    rgba(247, 245, 240, 0.04);
+  border-color: rgba(247, 245, 240, 0.45);
+  color: var(--paper);
+}
 
-    .poultry__dyk-box {
-        border-radius: 20px;
-        padding: 1.5rem;
-    }
+.poultry__placeholder-corner {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-style: solid;
+  border-color: currentColor;
+  border-width: 0;
+}
+.poultry__placeholder-corner--tl { top: 6px; left: 6px;     border-top-width: 2px;    border-left-width: 2px; }
+.poultry__placeholder-corner--tr { top: 6px; right: 6px;    border-top-width: 2px;    border-right-width: 2px; }
+.poultry__placeholder-corner--bl { bottom: 6px; left: 6px;  border-bottom-width: 2px; border-left-width: 2px; }
+.poultry__placeholder-corner--br { bottom: 6px; right: 6px; border-bottom-width: 2px; border-right-width: 2px; }
 
-    .poultry__didyouknow {
-        padding: 3rem 1.5rem;
-    }
+.poultry__placeholder-mark {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.poultry__placeholder-caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 32ch;
+  line-height: 1.4;
+}
+
+.poultry__placeholder--ink .poultry__placeholder-caption {
+  color: rgba(247, 245, 240, 0.75);
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 1024px) {
+  .poultry__pillars-grid,
+  .poultry__application-grid,
+  .poultry__images-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .poultry__nh3-card,
+  .poultry__detail-product,
+  .poultry__trial-grid,
+  .poultry__cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .poultry__facts-row {
+    grid-template-columns: 40px 1fr;
+    grid-template-areas:
+      "n   figs"
+      ".   text";
+    gap: 1rem 1.5rem;
+  }
+  .poultry__facts-row-n       { grid-area: n; }
+  .poultry__facts-row-figures { grid-area: figs; }
+  .poultry__facts-row-text    { grid-area: text; }
+}
+
+@media (max-width: 640px) {
+  .poultry__pillars-grid,
+  .poultry__application-grid,
+  .poultry__images-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .poultry__facts-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "figs"
+      "text";
+    gap: 1rem;
+    padding: 2rem 0;
+  }
+  .poultry__facts-row-n { display: none; }
+  .poultry__facts-row-value { font-size: 3.2rem; }
+
+  .poultry__nh3-glyph { font-size: 3rem; top: 0.25rem; right: 0.5rem; }
+
+  .poultry__trial-quote { text-align: left; margin-left: 0; }
 }
