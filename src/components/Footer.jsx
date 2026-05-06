@@ -26,10 +26,6 @@ const Footer = () => {
                             <li><Link to="/solutions/land-rejuvenation">Land Rejuvenation</Link></li>
                             <li><Link to="/solutions/anti-flooding">Anti-Flooding</Link></li>
                             <li><Link to="/solutions/uv-protection">UV & Pest Shield</Link></li>
-                            <li className="footer-x__item--disabled" aria-disabled="true">
-                                <span>Waste Management</span>
-                                <span className="footer-x__soon">Coming soon</span>
-                            </li>
                             <li><Link to="/solutions/poultry">Poultry Solutions</Link></li>
                         </ul>
                     </div>

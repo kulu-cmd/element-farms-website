@@ -10,7 +10,6 @@ import Footer from './components/Footer'
 import LandRejuvenationPage from './components/LandRejuvenationPage'
 import UVProtectionPage from './components/UVProtectionPage'
 import AntiFloodingPage from './components/AntiFloodingPage'
-import WasteManagementPage from './components/WasteManagementPage'
 import PoultryPage from './components/PoultryPage'
 import ContactPage from './components/ContactPage'
 import OrganicFarmingPage from './components/OrganicFarmingPage'
@@ -43,7 +42,6 @@ function App() {
                 <Route path="/solutions/land-rejuvenation" element={<LandRejuvenationPage />} />
                 <Route path="/solutions/uv-protection" element={<UVProtectionPage />} />
                 <Route path="/solutions/anti-flooding" element={<AntiFloodingPage />} />
-                <Route path="/solutions/waste-management" element={<WasteManagementPage />} />
                 <Route path="/solutions/poultry" element={<PoultryPage />} />
                 <Route path="/contact/agri-farms" element={<ContactPage type="agri-farms" />} />
                 <Route path="/contact/dairy-horses" element={<ContactPage type="dairy-horses" />} />

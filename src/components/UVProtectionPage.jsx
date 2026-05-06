@@ -63,31 +63,6 @@ const facts = [
     label: 'reduction in sunburn incidence per tree, with measured canopy and fruit-surface temperature drops.',
     source: 'Citrus mitigation trials',
   },
-  {
-    value: 40,
-    display: '40',
-    prefix: '20–',
-    suffix: '%',
-    unit: 'global yield loss',
-    label: 'of every season\'s yield is lost to pest damage — across cereals, fruit and vegetables.',
-    source: 'FAO, 2021',
-  },
-  {
-    value: 140,
-    display: '140',
-    suffix: '+',
-    unit: 'pest species',
-    label: 'controlled by M-Defend — a physical, non-chemical foliar coating with no resistance build-up.',
-    source: 'EFS pitch deck',
-  },
-  {
-    value: 0,
-    display: '0',
-    suffix: '',
-    unit: 'chemical additives',
-    label: 'No synthetics, no toxins. Inert and harmless to humans, bees and pollinators — pests cannot develop immunity.',
-    source: 'M-Defend product spec',
-  },
 ]
 
 /* ----------------------------------------------------------------------------
@@ -108,19 +83,15 @@ const pestCategories = [
 /* ----------------------------------------------------------------------------
    Specific named pests M-Defend protects against in SA
    --------------------------------------------------------------------------- */
-const namedPests = [
-  { name: 'Stalk Borer', tag: 'Maize / cereal' },
-  { name: 'False Codling Moth', tag: 'Citrus' },
-  { name: 'Citrus Leafhopper', tag: 'Citrus' },
-  { name: 'Olive Fly', tag: 'Orchard' },
-  { name: 'Cherry Fly', tag: 'Orchard' },
-  { name: 'Apple Aphid', tag: 'Apple' },
-  { name: 'Peach Aphid', tag: 'Stone fruit' },
-  { name: 'Apple Psyllid', tag: 'Apple' },
-  { name: 'Vine Leafhopper', tag: 'Vine' },
-  { name: 'Plum Aphid', tag: 'Stone fruit' },
-  { name: 'Mango Mealybug', tag: 'Mango' },
-  { name: 'Macadamia Nut Borer', tag: 'Macadamia' },
+const pestsByCrop = [
+  { crop: 'Citrus',     pests: ['False Codling Moth', 'Citrus Leafhopper', 'Citrus Leaf Miner'] },
+  { crop: 'Orchard',   pests: ['Cherry Fly', 'Olive Fly'] },
+  { crop: 'Apple',     pests: ['Apple Aphid', 'Apple Psyllid'] },
+  { crop: 'Stone Fruit', pests: ['Peach Aphid', 'Plum Aphid'] },
+  { crop: 'Vine',      pests: ['Vine Leafhopper'] },
+  { crop: 'Mango',     pests: ['Mango Mealybug'] },
+  { crop: 'Macadamia', pests: ['Macadamia Nut Borer'] },
+  { crop: 'Maize / Cereal', pests: ['Stalk Borer'] },
 ]
 
 /* ----------------------------------------------------------------------------
@@ -222,19 +193,6 @@ const UVProtectionPage = () => {
           ────────────────────────────────────────────────────────────── */}
       <section className="uv__pillars">
         <div className="uv__pillars-inner">
-          <motion.div
-            className="uv__pillars-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.7 }}
-          >
-            <SectionLabel label="Our Solution" />
-            <h2 className="uv__pillars-heading">
-              Two products. <em>One mineral family.</em>
-            </h2>
-          </motion.div>
-
           <div className="uv__pillars-grid">
             <motion.a
               href="#shade"
@@ -476,27 +434,30 @@ const UVProtectionPage = () => {
             />
           </div>
 
-          {/* Specific named pests */}
+          {/* Pests by crop type */}
           <div className="uv__pests">
-            <span className="uv__pests-label">— Other pests M-Defend controls in SA</span>
-            <div className="uv__pests-grid">
-              {namedPests.map((p) => (
+            <span className="uv__pests-label">— Pests M-Defend controls, by crop</span>
+            <div className="uv__crop-groups">
+              {pestsByCrop.map((group, i) => (
                 <motion.div
-                  key={p.name}
-                  className="uv__pest-card"
-                  initial={{ opacity: 0, y: 14 }}
+                  key={group.crop}
+                  className="uv__crop-group"
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.5, delay: i * 0.06 }}
                 >
-                  <span className="uv__pest-name">{p.name}</span>
-                  <span className="uv__pest-tag">{p.tag}</span>
+                  <span className="uv__crop-name">{group.crop}</span>
+                  <ul className="uv__crop-pests">
+                    {group.pests.map((pest) => (
+                      <li key={pest} className="uv__crop-pest">{pest}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               ))}
             </div>
             <p className="uv__pests-footnote">
-              + 128 more species across orchard, vine, cereal and vegetable systems.
-              Full list available on request.
+              Full species list available on request.
             </p>
           </div>
 

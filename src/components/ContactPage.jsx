@@ -16,7 +16,6 @@ const PAGE_CONFIG = {
             'Land Rejuvenation',
             'UV & Sunburn Protection',
             'Anti-Flooding Systems',
-            'Waste Management',
         ],
     },
     'dairy-horses': {
@@ -37,10 +36,8 @@ const PAGE_CONFIG = {
         heroTitle: 'Poultry __Farms__',
         subtitle: 'Tell us about your operation and we\'ll put together a tailored solution for your farm.',
         interests: [
-            'Biogas / Renewable Energy',
-            'Broiler Farm Solutions',
-            'Organic Waste Management',
-            'Litter Management',
+            'Bedding Treatment',
+            'Bulk Orders',
         ],
     },
 }

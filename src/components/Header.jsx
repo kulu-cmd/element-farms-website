@@ -14,17 +14,10 @@ const solutionGroups = [
         ],
     },
     {
-        label: 'Renewable Energy',
-        tone: 'clay',
-        items: [
-            { to: '/solutions/waste-management', title: 'Waste Management', hint: 'Biogas & organic fertiliser', disabled: true },
-        ],
-    },
-    {
         label: 'Livestock',
         tone: 'ochre',
         items: [
-            { to: '/solutions/poultry', title: 'Poultry Solutions', hint: 'Ammonia control & litter management' },
+            { to: '/solutions/poultry', title: 'Poultry Solutions', hint: 'Mineral bedding treatment' },
         ],
     },
 ]
