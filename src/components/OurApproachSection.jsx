@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import SectionLabel from './ui/SectionLabel'
 import './OurApproachSection.css'
 
@@ -9,104 +9,34 @@ const steps = [
         label: 'Diagnose',
         kicker: 'The land first',
         body: "We walk the fields. We sample the soil. We assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. Nothing is prescribed before the diagnosis is honest.",
-        icon: 'magnifier',
+        image: '/approach/diagnose.jpg',
     },
     {
         num: '02',
         label: 'Design',
         kicker: 'A plan, not a product',
         body: "From the diagnosis we design a regenerative plan — targeted soil amendments, biological inputs, protective treatments, and sequencing — shaped by what this specific land needs to return to health.",
-        icon: 'compass',
+        image: '/approach/design.jpg',
     },
     {
         num: '03',
         label: 'Recycle',
         kicker: 'Close the nutrient loop',
         body: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. The nutrient loop closes, the input bill falls, and the farm begins to feed itself.",
-        icon: 'loop',
+        image: '/approach/recycle.jpg',
     },
     {
         num: '04',
         label: 'Restore',
         kicker: 'Compound the gains',
         body: "We implement, monitor, and adjust. Soil biology rebuilds season by season. Chemical dependence drops. Resilience — and profitability — compounds year over year.",
-        icon: 'sprout',
+        image: '/approach/restore.jpg',
     },
 ]
 
-const StepIcon = ({ name }) => {
-    const common = { width: 64, height: 64, viewBox: '0 0 64 64', fill: 'none', stroke: 'currentColor', strokeWidth: 1.4, strokeLinecap: 'round', strokeLinejoin: 'round' }
-    switch (name) {
-        case 'magnifier':
-            return (
-                <svg {...common}>
-                    <circle cx="27" cy="27" r="14" />
-                    <path d="M37 37 L52 52" />
-                    <path d="M21 27 H33 M27 21 V33" />
-                </svg>
-            )
-        case 'compass':
-            return (
-                <svg {...common}>
-                    <circle cx="32" cy="32" r="22" />
-                    <path d="M32 14 L38 32 L32 50 L26 32 Z" />
-                    <circle cx="32" cy="32" r="2" fill="currentColor" />
-                </svg>
-            )
-        case 'loop':
-            return (
-                <svg {...common}>
-                    <path d="M14 32 a18 18 0 0 1 36 0" />
-                    <path d="M50 32 a18 18 0 0 1 -36 0" />
-                    <path d="M44 22 L50 22 L50 16" />
-                    <path d="M20 42 L14 42 L14 48" />
-                </svg>
-            )
-        case 'sprout':
-            return (
-                <svg {...common}>
-                    <path d="M32 52 V30" />
-                    <path d="M32 32 C20 32 16 22 16 14 C28 14 32 22 32 30" />
-                    <path d="M32 30 C44 30 48 20 48 12 C36 12 32 20 32 28" />
-                    <path d="M16 52 H48" />
-                </svg>
-            )
-        default:
-            return null
-    }
-}
-
 const OurApproachSection = () => {
-    const trackRef = useRef(null)
     const [active, setActive] = useState(0)
-
-    const scrollToIndex = useCallback((i) => {
-        const el = trackRef.current
-        if (!el) return
-        const slide = el.querySelector('.approach-x__slide')
-        if (!slide) return
-        const w = slide.getBoundingClientRect().width
-        const gap = parseFloat(getComputedStyle(el).columnGap || 0) || 0
-        el.scrollTo({ left: i * (w + gap), behavior: 'smooth' })
-    }, [])
-
-    const goPrev = () => scrollToIndex(Math.max(0, active - 1))
-    const goNext = () => scrollToIndex(Math.min(steps.length - 1, active + 1))
-
-    useEffect(() => {
-        const el = trackRef.current
-        if (!el) return
-        const onScroll = () => {
-            const slide = el.querySelector('.approach-x__slide')
-            if (!slide) return
-            const w = slide.getBoundingClientRect().width
-            const gap = parseFloat(getComputedStyle(el).columnGap || 0) || 0
-            const i = Math.round(el.scrollLeft / (w + gap))
-            setActive(Math.min(steps.length - 1, Math.max(0, i)))
-        }
-        el.addEventListener('scroll', onScroll, { passive: true })
-        return () => el.removeEventListener('scroll', onScroll)
-    }, [])
+    const step = steps[active]
 
     return (
         <section className="approach-x" id="about-us">
@@ -125,47 +55,47 @@ const OurApproachSection = () => {
                     </motion.h2>
                 </header>
 
-                <div className="approach-x__controls" role="group" aria-label="Approach steps navigation">
-                    <button
-                        type="button"
-                        className="approach-x__ctrl"
-                        onClick={goPrev}
-                        disabled={active === 0}
-                        aria-label="Previous step"
-                    >
-                        ←
-                    </button>
-                    <ul className="approach-x__dots" aria-hidden="true">
-                        {steps.map((s, i) => (
-                            <li key={s.num}>
-                                <button
-                                    type="button"
-                                    className={`approach-x__dot ${active === i ? 'is-active' : ''}`}
-                                    onClick={() => scrollToIndex(i)}
-                                    aria-label={`Go to step ${i + 1}: ${s.label}`}
+                <div className="approach-x__tabs" role="tablist" aria-label="Approach steps">
+                    {steps.map((s, i) => (
+                        <button
+                            key={s.num}
+                            type="button"
+                            role="tab"
+                            aria-selected={active === i}
+                            className={`approach-x__tab ${active === i ? 'is-active' : ''}`}
+                            onClick={() => setActive(i)}
+                        >
+                            <span className="approach-x__tab-num">{s.num}</span>
+                            <span className="approach-x__tab-label">{s.label}</span>
+                            {active === i && (
+                                <motion.span
+                                    className="approach-x__tab-bar"
+                                    layoutId="approach-tab-bar"
+                                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                                 />
-                            </li>
-                        ))}
-                    </ul>
-                    <button
-                        type="button"
-                        className="approach-x__ctrl"
-                        onClick={goNext}
-                        disabled={active === steps.length - 1}
-                        aria-label="Next step"
-                    >
-                        →
-                    </button>
+                            )}
+                        </button>
+                    ))}
                 </div>
 
-                <div className="approach-x__track" ref={trackRef}>
-                    {steps.map((step, i) => (
-                        <article key={step.num} className={`approach-x__slide ${active === i ? 'is-active' : ''}`}>
+                <div className="approach-x__panel" role="tabpanel">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={step.num}
+                            className="approach-x__slide is-active"
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -12 }}
+                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        >
                             <div className="approach-x__icon-frame">
+                                <img
+                                    className="approach-x__icon-photo"
+                                    src={step.image}
+                                    alt={`${step.label} — Element Farm Solutions approach step`}
+                                    loading="lazy"
+                                />
                                 <span className="approach-x__icon-num">{step.num}</span>
-                                <div className="approach-x__icon-glyph">
-                                    <StepIcon name={step.icon} />
-                                </div>
                                 <span className="approach-x__icon-caption">{step.label}</span>
                             </div>
                             <div className="approach-x__copy">
@@ -176,8 +106,8 @@ const OurApproachSection = () => {
                                 <p className="approach-x__step-body">{step.body}</p>
                                 <span className="approach-x__step-marker">— {step.num} / 04</span>
                             </div>
-                        </article>
-                    ))}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </section>

@@ -406,6 +406,12 @@ a.flood__system-card:hover::before {
 
 .flood__system-icon svg { width: 36px; height: 36px; }
 
+.flood__system-icon--emoji {
+  background: transparent;
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
 .flood__system-card h3 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -486,7 +492,8 @@ a.flood__system-card:hover::before {
   letter-spacing: -0.025em;
   color: var(--ink);
   margin: 0;
-  max-width: 22ch;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .flood__detail-heading em {

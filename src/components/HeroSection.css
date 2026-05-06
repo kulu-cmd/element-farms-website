@@ -100,12 +100,12 @@
 
 /* Headline */
 .hero-x__headline {
-    grid-column: 1 / 11;
+    grid-column: 1 / 13;
     grid-row: 2;
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(3rem, 9vw, 10rem);
-    line-height: 0.92;
+    font-size: clamp(2.4rem, 7.2vw, 7.5rem);
+    line-height: 0.95;
     letter-spacing: -0.035em;
     color: var(--paper);
     font-variation-settings: "opsz" 144;
@@ -114,6 +114,7 @@
 
 .hero-x__line {
     display: block;
+    white-space: nowrap;
 }
 
 .hero-x__mask {
@@ -136,45 +137,35 @@
     font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
-/* Deck — body + CTA */
+/* Deck — CTA */
 .hero-x__deck {
     grid-column: 1 / 8;
     grid-row: 3;
-    display: grid;
-    grid-template-columns: 1.4fr auto;
-    gap: 3rem;
-    align-items: end;
-    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 2.5rem;
     padding-top: 1.75rem;
     border-top: 1px solid rgba(244, 239, 230, 0.18);
-}
-
-.hero-x__body {
-    font-family: var(--font-sans);
-    font-size: clamp(0.95rem, 1.1vw, 1.125rem);
-    line-height: 1.55;
-    color: rgba(244, 239, 230, 0.82);
-    max-width: 52ch;
-    margin: 0;
 }
 
 .hero-x__cta {
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 1.75rem 0.95rem;
-    background: var(--paper);
-    color: var(--ink);
+    gap: 1rem;
+    padding: 1.35rem 2.4rem 1.3rem;
+    background: #f36f21;
+    color: #fffcf3;
     border-radius: 999px;
     font-family: var(--font-sans);
     font-weight: 600;
-    font-size: 0.82rem;
-    letter-spacing: 0.08em;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease, color 0.4s ease;
     white-space: nowrap;
+    align-self: flex-start;
 }
 
 .hero-x__cta::before {

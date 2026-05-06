@@ -18,15 +18,6 @@ const HeadlineWord = ({ children, delay, italic }) => {
     )
 }
 
-const marqueeItems = [
-    '47% YIELD LIFT',
-    '9 SOIL PROFILES',
-    '230 HA UNDER TRIAL',
-    'CLOSED-LOOP INPUTS',
-    'ZERO SYNTHETIC RESIDUES',
-    'KZN MIDLANDS — 2023→2026',
-]
-
 const HeroSection = () => {
     const heroRef = useRef(null)
     const prefersReduced = useReducedMotion()
@@ -81,18 +72,13 @@ const HeroSection = () => {
                     </span>
                 </h1>
 
-                {/* Body + CTA */}
+                {/* CTA */}
                 <motion.div
                     className="hero-x__deck"
                     initial={{ opacity: 0, y: 18 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9, delay: 1.0, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <p className="hero-x__body">
-                        We use innovative regenerative farming techniques to help farms — whether it is
-                        rebuilding soil biology, reducing chemical dependence to protecting from drought,
-                        flood or sunburn.
-                    </p>
                     <a
                         href="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"
                         target="_blank"
@@ -106,18 +92,6 @@ const HeroSection = () => {
                 </motion.div>
 
             </motion.div>
-
-            {/* Marquee ticker */}
-            <div className="hero-x__marquee" aria-hidden="true">
-                <div className="hero-x__marquee-track">
-                    {[...marqueeItems, ...marqueeItems].map((item, i) => (
-                        <span key={i} className="hero-x__marquee-item">
-                            <em>{item}</em>
-                            <span className="hero-x__marquee-dot">◦</span>
-                        </span>
-                    ))}
-                </div>
-            </div>
         </section>
     )
 }

@@ -5,7 +5,6 @@ import HeroSection from './components/HeroSection'
 import MissionSection from './components/MissionSection'
 import SoilTypesSection from './components/SoilTypesSection'
 import OurApproachSection from './components/OurApproachSection'
-import CallToAction from './components/CallToAction'
 import Footer from './components/Footer'
 import LandRejuvenationPage from './components/LandRejuvenationPage'
 import UVProtectionPage from './components/UVProtectionPage'
@@ -28,7 +27,6 @@ function HomePage() {
                 <HeroSection />
                 <MissionSection />
                 <OurApproachSection />
-                <CallToAction />
             </main>
             <Footer />
         </div>

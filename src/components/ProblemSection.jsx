@@ -39,10 +39,11 @@ const stats = [
 ]
 
 /* ---- count-up component ---- */
-const CountUp = ({ to, duration = 1.6, decimals = 0, delay = 0, isInView }) => {
+const CountUp = ({ to, duration = 1.8, decimals = 0, delay = 0 }) => {
+    const ref = useRef(null)
+    const isInView = useInView(ref, { once: true, amount: 0.5 })
     const mv = useMotionValue(0)
     const rounded = useTransform(mv, (v) => v.toFixed(decimals))
-    const ref = useRef(null)
 
     React.useEffect(() => {
         if (!isInView) return
@@ -64,11 +65,8 @@ const CountUp = ({ to, duration = 1.6, decimals = 0, delay = 0, isInView }) => {
 }
 
 const ProblemSection = () => {
-    const sectionRef = useRef(null)
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-
     return (
-        <section className="problem-x" id="problem" ref={sectionRef}>
+        <section className="problem-x" id="problem">
             <div className="problem-x__inner">
                 <div className="problem-x__header">
                     <SectionLabel label="The Problem" />
@@ -102,8 +100,7 @@ const ProblemSection = () => {
                                         <CountUp
                                             to={stat.value}
                                             decimals={decimals}
-                                            delay={0.3 + i * 0.1}
-                                            isInView={isInView}
+                                            delay={0.15}
                                         />
                                         <span className="problem-x__row-suffix">{stat.suffix}</span>
                                     </span>

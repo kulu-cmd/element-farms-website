@@ -35,7 +35,7 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-x__col">
-                        <h4 className="footer-x__heading">— Company</h4>
+                        <h4 className="footer-x__heading">— Resources</h4>
                         <ul className="footer-x__list">
                             <li><Link to="/education">Education</Link></li>
                             <li><Link to="/cropfit">CropFit</Link></li>

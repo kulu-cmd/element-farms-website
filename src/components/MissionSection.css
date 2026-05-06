@@ -31,35 +31,48 @@
 }
 
 .mission-x__quote {
-    font-family: var(--font-display);
-    font-weight: 300;
-    color: var(--ink);
-    margin: 0 0 clamp(2rem, 4vw, 3.25rem);
-    font-variation-settings: "opsz" 144;
+    margin: 0 0 clamp(2.5rem, 5vw, 4rem);
     display: flex;
     flex-direction: column;
-    gap: 0.15em;
+    gap: clamp(1.25rem, 2vw, 1.75rem);
 }
 
-.mission-x__quote-lede {
+.mission-x__quote-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
     font-family: var(--font-sans);
-    font-weight: 400;
-    font-size: clamp(1.2rem, 2vw, 1.7rem);
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-    margin-bottom: 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
 }
 
-.mission-x__quote-line {
+.mission-x__quote-rule {
+    width: 36px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.mission-x__quote-heading {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+    text-wrap: balance;
+}
+
+.mission-x__quote-heading em {
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(3rem, 9vw, 7.5rem);
-    line-height: 0.94;
-    letter-spacing: -0.04em;
     color: var(--clay);
     font-variation-settings: "opsz" 144, "SOFT" 100;
-    display: block;
 }
 
 .mission-x__goals {
@@ -108,25 +121,14 @@
 
 .mission-x__goal-glyph {
     grid-row: 1;
-    width: 44px;
-    height: 44px;
-    color: var(--ink);
     display: block;
+    font-size: 2.4rem;
+    line-height: 1;
     margin-bottom: 0.4rem;
-}
-
-.mission-x__goal-glyph svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    transition: color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .mission-x__goal:hover .mission-x__goal-glyph {
-    color: var(--clay);
-}
-
-.mission-x__goal:hover .mission-x__goal-glyph svg {
     transform: translateY(-2px);
 }
 
@@ -213,7 +215,7 @@
     font-size: clamp(1.6rem, 2.6vw, 2.3rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    color: var(--ink);
+    color: #0e5a36;
 }
 
 .mission-x__row-teaser {

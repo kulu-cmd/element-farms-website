@@ -27,14 +27,14 @@ const LandRejuvenationPage = () => {
             {/* KZN map below problem */}
             <KZNMapSection />
 
+            {/* Soil doesn't recover overnight */}
+            <WhatToExpectSection />
+
             {/* Tailored Solution: 2 features + nursery reveal */}
             <TailoredSolutionSection />
 
             {/* Video */}
             <VideoSection />
-
-            {/* What to Expect */}
-            <WhatToExpectSection />
 
             {/* FAQs */}
             <FAQSection />
