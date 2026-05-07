@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import EnquiryButton from './ui/EnquiryButton'
 import './TailoredSolutionSection.css'
 
 const SproutIcon = () => (
@@ -138,6 +139,7 @@ const vermicompostFlyer = (
     <div className="flyer__cta">
       <p><em>"Stop feeding the plant. Feed the soil — and the soil will feed everything else."</em></p>
       <a className="flyer__cta-btn" href="/contact/agri-farms">Book a farm assessment →</a>
+      <EnquiryButton product="Regenerative Systems" tone="moss" />
     </div>
   </div>
 )
@@ -233,6 +235,7 @@ const mineralFlyer = (
     <div className="flyer__cta">
       <p><em>"Soil isn't just dirt with NPK in it. It's a mineral matrix — and it's missing pieces."</em></p>
       <a className="flyer__cta-btn" href="/contact/agri-farms">Request a soil-test review →</a>
+      <EnquiryButton product="M-TerraBoost" />
     </div>
   </div>
 )
@@ -359,6 +362,7 @@ const TailoredSolutionSection = () => {
                   ornamentals — the same stimulus medium accelerates every nursery stage.
                 </li>
               </ul>
+              <EnquiryButton product="Nursery Systems" />
             </div>
             <div className="tailored__nursery-visual">
               <figure className="nursery-img-frame">

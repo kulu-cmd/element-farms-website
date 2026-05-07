@@ -1,0 +1,108 @@
+/* Enquiry CTA — inline product enquiry bar */
+
+.enquiry {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    flex-wrap: wrap;
+    padding-top: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.enquiry__label {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+}
+
+.enquiry__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.enquiry__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.enquiry__btn:hover {
+    transform: translateY(-1px);
+}
+
+.enquiry__icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* WhatsApp button */
+.enquiry__btn--wa {
+    background: #25d366;
+    color: #fff;
+}
+
+.enquiry__btn--wa:hover {
+    background: #1fb855;
+}
+
+/* Email button */
+.enquiry__btn--email {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--ink-rule);
+}
+
+.enquiry__btn--email:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
+/* Light tone — for dark section backgrounds */
+.enquiry--light .enquiry__label {
+    color: rgba(244, 239, 230, 0.5);
+}
+
+.enquiry--light .enquiry__btn--email {
+    color: rgba(244, 239, 230, 0.75);
+    border-color: rgba(244, 239, 230, 0.2);
+}
+
+.enquiry--light .enquiry__btn--email:hover {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+}
+
+/* Moss tone — for green-accented sections */
+.enquiry--moss .enquiry__btn--wa {
+    background: var(--moss-deep);
+}
+
+.enquiry--moss .enquiry__btn--wa:hover {
+    background: var(--moss);
+}
+
+@media (max-width: 640px) {
+    .enquiry {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+}

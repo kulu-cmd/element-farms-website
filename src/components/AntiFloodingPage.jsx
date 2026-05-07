@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
 import CTABand from './CTABand'
+import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
 import './AntiFloodingPage.css'
 
@@ -178,6 +179,10 @@ const AntiFloodingPage = () => {
             <figcaption>Large</figcaption>
           </figure>
         </motion.div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1.5rem' }}>
+          <EnquiryButton product="M-Hive" />
+        </div>
       </section>
 
       {/* ──────────────────────────────────────────────────────────────
@@ -359,6 +364,8 @@ const AntiFloodingPage = () => {
               <p>Nutrients lock into the M-Hive cavities instead of leaching past the root zone.</p>
             </div>
           </div>
+
+          <EnquiryButton product="M-Hive for Orchards" />
         </div>
       </section>
 
@@ -410,6 +417,7 @@ const AntiFloodingPage = () => {
               <p>Stable aeration and water-holding for the crops where every plant counts.</p>
             </div>
           </div>
+
         </div>
       </section>
 

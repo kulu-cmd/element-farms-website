@@ -5,6 +5,7 @@ import Footer from './Footer'
 import PageHero from './PageHero'
 import CTABand from './CTABand'
 import SectionLabel from './ui/SectionLabel'
+import EnquiryButton from './ui/EnquiryButton'
 import './PoultryPage.css'
 
 const SPRING = [0.22, 1, 0.36, 1]
@@ -79,39 +80,11 @@ const PoultryPage = () => {
               </div>
             </div>
           </div>
+
+          <EnquiryButton product="M-TerraDry" />
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────────────────────────
-          Closing CTA
-          ────────────────────────────────────────────────────────────── */}
-      <section className="poultry__cta">
-        <motion.div
-          className="poultry__cta-inner"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.85, ease: SPRING }}
-        >
-          <h2 className="poultry__cta-statement">
-            Interested in <em>M-TerraDry?</em>
-          </h2>
-
-          <div className="poultry__cta-actions">
-            <p className="poultry__cta-prompt">
-              Get in touch for pricing, availability, and bulk orders.
-            </p>
-            <div className="poultry__cta-buttons">
-              <a className="poultry__cta-btn poultry__cta-btn--primary" href="/contact/agri-farms">
-                Get in touch →
-              </a>
-              <a className="poultry__cta-btn" href="/">
-                Browse other solutions
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
       <CTABand
         heading="Upgrade your poultry operation."
@@ -122,6 +95,7 @@ const PoultryPage = () => {
         secondaryTo="/"
         tone="clay"
       />
+
 
       <Footer />
     </div>
