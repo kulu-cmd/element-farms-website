@@ -1,7 +1,8 @@
 /* =============================================
-   OUR APPROACH — photo cards with hover reveal
-   resting:  big label at bottom, plain kicker top-right
-   hover:    body text fills the whole card
+   OUR APPROACH — photo cards with hover flip
+   FRONT (resting): photo + dark gradient
+                    big number TL · kicker TR · centred title with underline
+   BACK  (hover):   moss panel + meta header + body with highlights
    ============================================= */
 
 .approach-x {
@@ -91,26 +92,25 @@
     display: block;
     transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
                 filter 0.6s ease;
-    filter: brightness(0.85);
+    filter: brightness(0.78);
 }
 
 .approach-x__card:hover .approach-x__card-photo {
     transform: scale(1.04);
-    filter: brightness(0.55) saturate(0.9);
+    filter: brightness(0.45) saturate(0.85);
 }
 
-/* Gradient overlay — fades out on hover so the reveal panel reads cleanly */
+/* Front gradient overlay — fades on hover */
 .approach-x__card-overlay {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.42) 0%,
-            rgba(0, 0, 0, 0.05) 32%,
-            rgba(0, 0, 0, 0.18) 55%,
-            rgba(0, 0, 0, 0.85) 100%
-        );
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.05) 32%,
+        rgba(0, 0, 0, 0.18) 55%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
@@ -119,25 +119,26 @@
     opacity: 0;
 }
 
-/* ── RESTING STATE ── */
-.approach-x__card-default {
+/* ── FRONT (resting) ── */
+.approach-x__card-front {
     position: absolute;
     inset: 0;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: clamp(1.25rem, 2.2vw, 1.6rem);
-    color: #fff;
+    padding: clamp(1.4rem, 2.4vw, 1.9rem);
+    color: var(--paper);
     transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.approach-x__card:hover .approach-x__card-default {
+.approach-x__card:hover .approach-x__card-front {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-6px);
     pointer-events: none;
 }
 
-/* Top row — number + plain uppercase kicker */
+/* Top row — big number left + kicker right */
 .approach-x__card-top {
     display: flex;
     align-items: flex-start;
@@ -148,10 +149,10 @@
 .approach-x__card-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(2.6rem, 4.4vw, 4.2rem);
+    font-size: clamp(3.2rem, 5.4vw, 5rem);
     line-height: 0.85;
     letter-spacing: -0.03em;
-    color: rgba(255, 255, 255, 0.95);
+    color: var(--paper);
     font-variation-settings: "opsz" 144;
 }
 
@@ -161,99 +162,106 @@
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(244, 239, 230, 0.78);
     line-height: 1.4;
     text-align: right;
     max-width: 60%;
-    padding-top: 0.4rem;
+    padding-top: 0.55rem;
 }
 
-/* Big bottom label */
+/* Centred title with underline at bottom */
+.approach-x__card-titleblock {
+    text-align: center;
+    margin-bottom: clamp(0.5rem, 1vw, 1rem);
+}
+
 .approach-x__card-label {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    font-size: clamp(2.4rem, 4.4vw, 3.8rem);
     line-height: 1;
     letter-spacing: -0.03em;
-    color: #fff;
-    text-align: center;
+    color: var(--paper);
     margin: 0;
     font-variation-settings: "opsz" 144;
-    align-self: center;
-    width: 100%;
+    display: inline-block;
+    padding-bottom: clamp(0.55rem, 1vw, 0.85rem);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.4);
 }
 
-/* ── HOVER REVEAL ── */
-.approach-x__card-reveal {
+/* ── BACK (hover) — moss panel + meta + body ── */
+.approach-x__card-back {
     position: absolute;
     inset: 0;
+    z-index: 3;
     background: linear-gradient(
         180deg,
         rgba(14, 90, 54, 0.94) 0%,
         rgba(8, 60, 38, 0.97) 100%
     );
-    z-index: 2;
+    color: var(--paper);
+    padding: clamp(1.4rem, 2.6vw, 2rem);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: clamp(1rem, 1.8vw, 1.4rem);
+    text-align: center;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
 
-.approach-x__card:hover .approach-x__card-reveal {
+.approach-x__card:hover .approach-x__card-back {
     opacity: 1;
     pointer-events: auto;
 }
 
-.approach-x__card-reveal-inner {
-    width: 100%;
-    height: 100%;
-    padding: clamp(1.5rem, 3vw, 2.4rem);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: clamp(0.85rem, 1.5vw, 1.2rem);
-    text-align: center;
-    color: var(--paper);
-}
-
-.approach-x__card-reveal-meta {
+.approach-x__card-back-meta {
     display: flex;
     align-items: baseline;
-    gap: 0.85rem;
+    gap: clamp(0.55rem, 1vw, 0.85rem);
+    padding-bottom: clamp(0.85rem, 1.4vw, 1.1rem);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.28);
+    width: 100%;
+    max-width: 18ch;
     justify-content: center;
 }
 
-.approach-x__card-reveal-num {
+.approach-x__card-back-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
     color: var(--ochre);
     font-variation-settings: "opsz" 144;
 }
 
-.approach-x__card-reveal-label {
+.approach-x__card-back-label {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: rgba(244, 239, 230, 0.95);
+    font-size: clamp(2rem, 3.4vw, 2.9rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--paper);
     font-variation-settings: "opsz" 144;
 }
 
-.approach-x__card-reveal-body {
+.approach-x__card-body {
     font-family: var(--font-sans);
-    font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+    font-size: clamp(0.92rem, 1.1vw, 1.1rem);
     line-height: 1.6;
-    color: rgba(244, 239, 230, 0.95);
+    color: rgba(244, 239, 230, 0.85);
     margin: 0;
-    max-width: 36ch;
+    max-width: 38ch;
     text-wrap: balance;
+}
+
+.approach-x__card-body mark {
+    background: transparent;
+    color: var(--ochre);
+    font-weight: 500;
 }
 
 /* ── RESPONSIVE ── */
@@ -264,15 +272,7 @@
     }
 
     .approach-x__card {
-        aspect-ratio: 4 / 3;
-    }
-
-    .approach-x__card-label {
-        font-size: clamp(2.4rem, 5.2vw, 3.6rem);
-    }
-
-    .approach-x__card-reveal-body {
-        font-size: clamp(1rem, 1.4vw, 1.15rem);
+        aspect-ratio: 4 / 3.6;
     }
 }
 
@@ -288,14 +288,14 @@
 }
 
 /* On touch devices the hover state can't be reached, so always show
-   the body text (the resting label still reads the photo for context). */
+   the back so the body and highlights are still readable. */
 @media (hover: none) {
-    .approach-x__card-reveal {
+    .approach-x__card-back {
         opacity: 1;
         pointer-events: auto;
     }
 
-    .approach-x__card-default {
+    .approach-x__card-front {
         opacity: 0;
     }
 }

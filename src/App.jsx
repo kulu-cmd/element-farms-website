@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import MissionSection from './components/MissionSection'
@@ -42,9 +42,19 @@ function HomePage() {
     )
 }
 
+function ScrollToTop() {
+    const { pathname, hash } = useLocation()
+    useEffect(() => {
+        if (hash) return
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }, [pathname, hash])
+    return null
+}
+
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/solutions/land-rejuvenation" element={<LandRejuvenationPage />} />

@@ -28,17 +28,6 @@ const VideoSection = () => {
           </p>
 
           <div className="vid-x__rule" aria-hidden="true" />
-
-          <div className="vid-x__meta">
-            <span className="vid-x__meta-item">
-              <span className="vid-x__meta-label">Topic</span>
-              <span>Regenerative Farming in Practice</span>
-            </span>
-            <span className="vid-x__meta-item">
-              <span className="vid-x__meta-label">By</span>
-              <span>Element Farm Solutions</span>
-            </span>
-          </div>
         </motion.div>
 
         {/* RIGHT — video frame */}

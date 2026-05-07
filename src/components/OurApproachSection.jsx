@@ -8,28 +8,44 @@ const steps = [
         num: '01',
         label: 'Diagnose',
         kicker: 'Pinpoint Issues',
-        body: "We walk the fields, sample the soil, assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. Nothing is prescribed before the diagnosis.",
+        body: (
+            <>
+                We walk the fields, sample the soil, assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. <mark>Nothing is prescribed before the diagnosis.</mark>
+            </>
+        ),
         image: '/approach/diagnose.jpg',
     },
     {
         num: '02',
         label: 'Design',
         kicker: 'A plan, not a product',
-        body: "From the diagnosis we design a regenerative plan — targeted soil amendments, biological inputs and protective treatments — shaped by what this specific land needs to return to health.",
+        body: (
+            <>
+                From the diagnosis we design a regenerative plan — <mark>targeted soil amendments, biological inputs and protective treatments</mark> — shaped by what this specific land needs to return to health.
+            </>
+        ),
         image: '/approach/design.jpg',
     },
     {
         num: '03',
         label: 'Recycle',
         kicker: 'Close the nutrient loop',
-        body: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. The nutrient loop closes, the input cost decreases, and the farm begins to feed itself.",
+        body: (
+            <>
+                Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. <mark>The nutrient loop closes, the input cost decreases, and the farm begins to feed itself.</mark>
+            </>
+        ),
         image: '/approach/recycle.jpg',
     },
     {
         num: '04',
         label: 'Restore',
         kicker: 'Sustainable Farming',
-        body: "We implement, monitor, and adjust so that soil biology rebuilds season by season. Chemical dependence drops; resilience and profitability compounds year over year.",
+        body: (
+            <>
+                We implement, monitor, and adjust so that soil biology rebuilds season by season. <mark>Chemical dependence drops; resilience and profitability compounds year over year.</mark>
+            </>
+        ),
         image: '/approach/restore.jpg',
     },
 ]
@@ -76,27 +92,28 @@ const OurApproachSection = () => {
                                 loading="lazy"
                             />
 
-                            {/* Dark gradient overlay */}
+                            {/* Dark gradient overlay (front) */}
                             <div className="approach-x__card-overlay" aria-hidden="true" />
 
-                            {/* DEFAULT (resting) state */}
-                            <div className="approach-x__card-default">
+                            {/* FRONT (resting) */}
+                            <div className="approach-x__card-front">
                                 <div className="approach-x__card-top">
                                     <span className="approach-x__card-num">{step.num}</span>
                                     <span className="approach-x__card-kicker">{step.kicker}</span>
                                 </div>
-                                <h3 className="approach-x__card-label">{step.label}</h3>
+
+                                <div className="approach-x__card-titleblock">
+                                    <h3 className="approach-x__card-label">{step.label}</h3>
+                                </div>
                             </div>
 
-                            {/* HOVER reveal — body fills the card */}
-                            <div className="approach-x__card-reveal" aria-hidden="true">
-                                <div className="approach-x__card-reveal-inner">
-                                    <div className="approach-x__card-reveal-meta">
-                                        <span className="approach-x__card-reveal-num">{step.num}</span>
-                                        <span className="approach-x__card-reveal-label">{step.label}</span>
-                                    </div>
-                                    <p className="approach-x__card-reveal-body">{step.body}</p>
+                            {/* BACK (hover) — moss panel + body */}
+                            <div className="approach-x__card-back" aria-hidden="true">
+                                <div className="approach-x__card-back-meta">
+                                    <span className="approach-x__card-back-num">{step.num}</span>
+                                    <span className="approach-x__card-back-label">{step.label}</span>
                                 </div>
+                                <p className="approach-x__card-body">{step.body}</p>
                             </div>
                         </motion.div>
                     ))}

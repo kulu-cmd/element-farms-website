@@ -115,9 +115,7 @@
     font-variation-settings: "opsz" 144;
 }
 
-.mission-x__goal:nth-child(1) .mission-x__goal-num { color: var(--clay); }
-.mission-x__goal:nth-child(2) .mission-x__goal-num { color: #0e5a36; }
-.mission-x__goal:nth-child(3) .mission-x__goal-num { color: var(--ochre); }
+.mission-x__goal-num { color: var(--clay); }
 
 /* Goal body — emoji + title + gloss, all centered */
 .mission-x__goal-body {
