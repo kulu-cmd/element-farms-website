@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import SectionLabel from './ui/SectionLabel'
+import React from 'react'
+import { motion } from 'framer-motion'
 import './OurApproachSection.css'
 
 const steps = [
@@ -35,80 +34,67 @@ const steps = [
 ]
 
 const OurApproachSection = () => {
-    const [active, setActive] = useState(0)
-    const step = steps[active]
-
     return (
         <section className="approach-x" id="about-us">
             <div className="approach-x__inner">
-                <header className="approach-x__header">
-                    <SectionLabel label="Our Approach" tone="paper" />
-                    <motion.h2
-                        className="approach-x__heading"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        A four-step <em>method</em><br/>
-                        built for the long <em>view</em>.
-                    </motion.h2>
-                </header>
 
-                <div className="approach-x__tabs" role="tablist" aria-label="Approach steps">
-                    {steps.map((s, i) => (
-                        <button
-                            key={s.num}
-                            type="button"
-                            role="tab"
-                            aria-selected={active === i}
-                            className={`approach-x__tab ${active === i ? 'is-active' : ''}`}
-                            onClick={() => setActive(i)}
+                {/* Header */}
+                <motion.header
+                    className="approach-x__header"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <span className="approach-x__eyebrow">— Our Approach</span>
+                    <h2 className="approach-x__heading">
+                        A four-step <em>method</em><br />
+                        built for the long <em>view</em>.
+                    </h2>
+                </motion.header>
+
+                {/* Photo cards grid */}
+                <div className="approach-x__cards">
+                    {steps.map((step, i) => (
+                        <motion.div
+                            key={step.num}
+                            className="approach-x__card"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.18 }}
+                            transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            <span className="approach-x__tab-num">{s.num}</span>
-                            <span className="approach-x__tab-label">{s.label}</span>
-                            {active === i && (
-                                <motion.span
-                                    className="approach-x__tab-bar"
-                                    layoutId="approach-tab-bar"
-                                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                                />
-                            )}
-                        </button>
+                            {/* Full-bleed photo */}
+                            <img
+                                src={step.image}
+                                alt={`${step.label} — Element Farm Solutions`}
+                                className="approach-x__card-photo"
+                                loading="lazy"
+                            />
+
+                            {/* Dark gradient overlay */}
+                            <div className="approach-x__card-overlay" aria-hidden="true" />
+
+                            {/* Card content */}
+                            <div className="approach-x__card-content">
+                                {/* Top row: number + kicker / label */}
+                                <div className="approach-x__card-top">
+                                    <span className="approach-x__card-num">{step.num}</span>
+                                    <div className="approach-x__card-meta">
+                                        <span className="approach-x__card-kicker">{step.kicker}</span>
+                                        <span className="approach-x__card-label">{step.label}</span>
+                                    </div>
+                                </div>
+
+                                {/* Bottom: description */}
+                                <div className="approach-x__card-bottom">
+                                    <p className="approach-x__card-body">{step.body}</p>
+                                </div>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className="approach-x__panel" role="tabpanel">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={step.num}
-                            className="approach-x__slide is-active"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -12 }}
-                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <div className="approach-x__icon-frame">
-                                <img
-                                    className="approach-x__icon-photo"
-                                    src={step.image}
-                                    alt={`${step.label} — Element Farm Solutions approach step`}
-                                    loading="lazy"
-                                />
-                                <span className="approach-x__icon-num">{step.num}</span>
-                                <span className="approach-x__icon-caption">{step.label}</span>
-                            </div>
-                            <div className="approach-x__copy">
-                                <span className="approach-x__step-kicker">{step.kicker}</span>
-                                <h3 className="approach-x__step-title">
-                                    {step.label}<span className="approach-x__step-period">.</span>
-                                </h3>
-                                <p className="approach-x__step-body">{step.body}</p>
-                                <span className="approach-x__step-marker">— {step.num} / 04</span>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
             </div>
         </section>
     )

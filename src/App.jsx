@@ -5,7 +5,6 @@ import HeroSection from './components/HeroSection'
 import MissionSection from './components/MissionSection'
 import SoilTypesSection from './components/SoilTypesSection'
 import OurApproachSection from './components/OurApproachSection'
-import ResultsMetrics from './components/ResultsMetrics'
 import CTABand from './components/CTABand'
 import Footer from './components/Footer'
 import LandRejuvenationPage from './components/LandRejuvenationPage'
@@ -27,7 +26,6 @@ function HomePage() {
             <main>
                 <HeroSection />
                 <MissionSection />
-                <ResultsMetrics />
                 <OurApproachSection />
                 <CTABand
                     heading="Ready to regenerate your land?"
