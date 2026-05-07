@@ -7,9 +7,9 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     overflow: hidden;
-    padding-top: 280px;
+    padding-top: 120px;
     background: var(--ink);
     color: var(--paper);
     isolation: isolate;
@@ -63,11 +63,10 @@
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto auto;
     gap: 0;
-    padding: 3rem var(--rail-padding) 6rem;
-    flex: 1;
-    align-content: end;
+    padding: 3rem var(--rail-padding);
+    align-content: center;
     will-change: transform;
 }
 

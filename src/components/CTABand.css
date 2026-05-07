@@ -120,15 +120,16 @@
 .cta-band__btn {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.85rem;
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.95rem 1.4rem;
+  padding: 1.1rem 2rem;
   border: 1px solid transparent;
+  border-radius: 999px;
   transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.3s ease;
   cursor: pointer;
   text-decoration: none;
@@ -136,53 +137,33 @@
 }
 
 .cta-band__btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-/* Primary */
-.cta-band--moss .cta-band__btn--primary {
-  background: var(--paper);
-  color: var(--moss-deep);
-  border-color: var(--paper);
+/* Primary — orange pill matching the hero "Start a farm trial" CTA */
+.cta-band__btn--primary {
+  background: #f36f21;
+  color: #fffcf3;
+  border-color: #f36f21;
 }
-.cta-band--moss .cta-band__btn--primary:hover {
-  background: transparent;
+
+.cta-band__btn--primary:hover {
+  background: var(--clay);
+  border-color: var(--clay);
   color: var(--paper);
-  border-color: rgba(244, 239, 230, 0.55);
 }
 
-.cta-band--clay .cta-band__btn--primary {
-  background: var(--paper);
-  color: var(--clay-deep);
-  border-color: var(--paper);
-}
-.cta-band--clay .cta-band__btn--primary:hover {
-  background: transparent;
-  color: var(--paper);
-  border-color: rgba(255, 255, 255, 0.55);
-}
-
-.cta-band--ink .cta-band__btn--primary {
-  background: var(--moss);
-  color: var(--paper);
-  border-color: var(--moss);
-}
-.cta-band--ink .cta-band__btn--primary:hover {
-  background: var(--moss-deep);
-  border-color: var(--moss-deep);
-}
-
-/* Secondary */
+/* Secondary — outlined ghost pill */
 .cta-band__btn--secondary {
   background: transparent;
-  color: rgba(244, 239, 230, 0.65);
-  border-color: rgba(244, 239, 230, 0.2);
-  justify-content: center;
+  color: rgba(244, 239, 230, 0.85);
+  border-color: rgba(244, 239, 230, 0.4);
 }
 
 .cta-band__btn--secondary:hover {
-  border-color: rgba(244, 239, 230, 0.5);
+  border-color: var(--paper);
   color: var(--paper);
+  background: rgba(244, 239, 230, 0.06);
 }
 
 /* Arrow */
@@ -209,11 +190,6 @@
 
   .cta-band__btn {
     flex: 1;
-    justify-content: center;
-  }
-
-  .cta-band__btn--primary {
-    justify-content: space-between;
   }
 }
 

@@ -29,12 +29,12 @@ function HomePage() {
                 <OurApproachSection />
                 <CTABand
                     heading="Ready to regenerate your land?"
-                    subtext="Start with a no-obligation farm assessment. We walk the fields, read the soil, and map a clear path forward."
+                    subtext="Start with a no-obligation farm assessment."
                     primaryLabel="Start a farm trial"
                     primaryTo="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"
                     secondaryLabel="Talk to us first"
                     secondaryTo="/contact/agri-farms"
-                    tone="clay"
+                    tone="moss"
                 />
             </main>
             <Footer />

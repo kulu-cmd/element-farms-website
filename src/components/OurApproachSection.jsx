@@ -6,29 +6,29 @@ const steps = [
     {
         num: '01',
         label: 'Diagnose',
-        kicker: 'The land first',
-        body: "We walk the fields. We sample the soil. We assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. Nothing is prescribed before the diagnosis is honest.",
+        kicker: 'Pinpoint Issues',
+        body: "We walk the fields, sample the soil, assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. Nothing is prescribed before the diagnosis.",
         image: '/approach/diagnose.jpg',
     },
     {
         num: '02',
         label: 'Design',
         kicker: 'A plan, not a product',
-        body: "From the diagnosis we design a regenerative plan — targeted soil amendments, biological inputs, protective treatments, and sequencing — shaped by what this specific land needs to return to health.",
+        body: "From the diagnosis we design a regenerative plan — targeted soil amendments, biological inputs and protective treatments — shaped by what this specific land needs to return to health.",
         image: '/approach/design.jpg',
     },
     {
         num: '03',
         label: 'Recycle',
         kicker: 'Close the nutrient loop',
-        body: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. The nutrient loop closes, the input bill falls, and the farm begins to feed itself.",
+        body: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. The nutrient loop closes, the input cost decreases, and the farm begins to feed itself.",
         image: '/approach/recycle.jpg',
     },
     {
         num: '04',
         label: 'Restore',
-        kicker: 'Compound the gains',
-        body: "We implement, monitor, and adjust. Soil biology rebuilds season by season. Chemical dependence drops. Resilience — and profitability — compounds year over year.",
+        kicker: 'Sustainable Farming',
+        body: "We implement, monitor, and adjust so that soil biology rebuilds season by season. Chemical dependence drops; resilience and profitability compounds year over year.",
         image: '/approach/restore.jpg',
     },
 ]
@@ -48,8 +48,8 @@ const OurApproachSection = () => {
                 >
                     <span className="approach-x__eyebrow">— Our Approach</span>
                     <h2 className="approach-x__heading">
-                        A four-step <em>method</em><br />
-                        built for the long <em>view</em>.
+                        A practical four-step <em>framework</em><br />
+                        for the long <em>run</em>.
                     </h2>
                 </motion.header>
 
