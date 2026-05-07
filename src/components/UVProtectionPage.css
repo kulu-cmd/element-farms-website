@@ -511,15 +511,55 @@
   padding-top: clamp(2rem, 4vw, 3rem);
 }
 
-.uv__thermal-label {
-  display: inline-block;
+.uv__thermal-header {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.uv__thermal-header-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uv__thermal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--moss-deep, #0e5a36);
+  color: #ffffff;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.26em;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-bottom: 1.5rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.uv__thermal-header-rule {
+  flex: 1 1 auto;
+  height: 1px;
+  background: var(--ink-rule, rgba(14,24,18,0.12));
+  max-width: 200px;
+}
+
+.uv__thermal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin: 0;
+}
+
+.uv__thermal-title em {
+  font-style: italic;
+  color: var(--moss-deep, #0e5a36);
+  font-weight: 400;
 }
 
 .uv__thermal-grid {
@@ -778,6 +818,45 @@
 }
 
 .uv__app-note p em {
+  font-style: italic;
+  color: var(--moss-deep, #0e5a36);
+}
+
+.uv__app-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.uv__app-steps li {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.uv__app-step-n {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  color: var(--moss-deep, #0e5a36);
+  line-height: 1.6;
+  padding-top: 0.05em;
+}
+
+.uv__app-step-text {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.uv__app-step-text em {
   font-style: italic;
   color: var(--moss-deep, #0e5a36);
 }
