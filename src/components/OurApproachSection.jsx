@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import { CircleDots } from './BrandMotifs'
 import './OurApproachSection.css'
 
@@ -35,12 +35,6 @@ const steps = [
 ]
 
 const OurApproachSection = () => {
-    const [openIndex, setOpenIndex] = useState(null)
-
-    const handleToggle = (i) => {
-        setOpenIndex((prev) => (prev === i ? null : i))
-    }
-
     return (
         <section className="approach-x" id="about-us">
             <div className="approach-x__inner">
@@ -61,90 +55,49 @@ const OurApproachSection = () => {
                         A practical <em>four-step framework</em><br />
                         for the <em>long run</em>.
                     </h2>
-                    <p className="approach-x__hint">
-                        <span className="approach-x__hint-dot" aria-hidden="true">＋</span>
-                        Tap any card to read the detail
-                    </p>
                 </motion.header>
 
                 {/* Photo cards grid */}
                 <div className="approach-x__cards">
-                    {steps.map((step, i) => {
-                        const isOpen = openIndex === i
-                        return (
-                            <motion.button
-                                key={step.num}
-                                type="button"
-                                onClick={() => handleToggle(i)}
-                                aria-expanded={isOpen}
-                                aria-label={`${step.label} — ${isOpen ? 'hide' : 'reveal'} detail`}
-                                className={`approach-x__card ${isOpen ? 'is-open' : ''}`}
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.18 }}
-                                transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                {/* Full-bleed photo */}
-                                <img
-                                    src={step.image}
-                                    alt={`${step.label} — Element Farm Solutions`}
-                                    className="approach-x__card-photo"
-                                    loading="lazy"
-                                />
+                    {steps.map((step, i) => (
+                        <motion.div
+                            key={step.num}
+                            className="approach-x__card"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.18 }}
+                            transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            {/* Full-bleed photo */}
+                            <img
+                                src={step.image}
+                                alt={`${step.label} — Element Farm Solutions`}
+                                className="approach-x__card-photo"
+                                loading="lazy"
+                            />
 
-                                {/* Dark gradient overlay */}
-                                <div className="approach-x__card-overlay" aria-hidden="true" />
+                            {/* Dark gradient overlay */}
+                            <div className="approach-x__card-overlay" aria-hidden="true" />
 
-                                {/* DEFAULT (closed) state */}
-                                <div className="approach-x__card-default">
-                                    <div className="approach-x__card-top">
-                                        <span className="approach-x__card-num">{step.num}</span>
-                                        <span className="approach-x__card-kicker-frame">
-                                            <span className="approach-x__card-kicker">{step.kicker}</span>
-                                        </span>
-                                    </div>
-                                    <h3 className="approach-x__card-label">{step.label}</h3>
-                                    <span className="approach-x__card-cue" aria-hidden="true">
-                                        <span className="approach-x__card-cue-mark">+</span>
-                                        Read more
-                                    </span>
+                            {/* DEFAULT (resting) state */}
+                            <div className="approach-x__card-default">
+                                <div className="approach-x__card-top">
+                                    <span className="approach-x__card-num">{step.num}</span>
+                                    <span className="approach-x__card-kicker">{step.kicker}</span>
                                 </div>
+                                <h3 className="approach-x__card-label">{step.label}</h3>
+                            </div>
 
-                                {/* REVEAL (open) state */}
-                                <AnimatePresence>
-                                    {isOpen && (
-                                        <motion.div
-                                            className="approach-x__card-reveal"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                                        >
-                                            <div className="approach-x__card-reveal-inner">
-                                                <div className="approach-x__card-reveal-meta">
-                                                    <span className="approach-x__card-reveal-num">{step.num}</span>
-                                                    <span className="approach-x__card-reveal-divider" aria-hidden="true" />
-                                                    <span className="approach-x__card-reveal-label">{step.label}</span>
-                                                </div>
-                                                <motion.p
-                                                    className="approach-x__card-reveal-body"
-                                                    initial={{ opacity: 0, y: 12 }}
-                                                    animate={{ opacity: 1, y: 0 }}
-                                                    transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                                                >
-                                                    {step.body}
-                                                </motion.p>
-                                                <span className="approach-x__card-reveal-close" aria-hidden="true">
-                                                    <span className="approach-x__card-reveal-close-mark">×</span>
-                                                    Close
-                                                </span>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.button>
-                        )
-                    })}
+                            {/* HOVER reveal — body fills the card */}
+                            <div className="approach-x__card-reveal" aria-hidden="true">
+                                <div className="approach-x__card-reveal-inner">
+                                    <span className="approach-x__card-reveal-num">{step.num}</span>
+                                    <p className="approach-x__card-reveal-body">{step.body}</p>
+                                    <span className="approach-x__card-reveal-label">{step.label}</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
             </div>
