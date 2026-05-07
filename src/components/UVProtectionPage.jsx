@@ -3,6 +3,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'framer
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
 import './UVProtectionPage.css'
 
@@ -289,6 +290,7 @@ const UVProtectionPage = () => {
                   or ripening impact.
                 </li>
               </ul>
+              <EnquiryButton product="M-GeoShade" />
             </div>
           </div>
 
@@ -385,6 +387,7 @@ const UVProtectionPage = () => {
                   withdrawal period.
                 </li>
               </ul>
+              <EnquiryButton product="M-Defend" tone="moss" />
             </div>
           </div>
 
@@ -407,13 +410,6 @@ const UVProtectionPage = () => {
               ))}
             </div>
           </div>
-
-          {/* Before / after photo */}
-          <img
-            src="/geoshield/defend_before_After.png"
-            alt="Before / after M-Defend application — visible mineral coating on fruit"
-            className="uv__headline-pest-img"
-          />
 
           {/* Pests by crop type */}
           <div className="uv__pests">
@@ -442,16 +438,25 @@ const UVProtectionPage = () => {
             </p>
           </div>
 
-          {/* Application note */}
-          <aside className="uv__app-note">
-            <span className="uv__app-note-label">— Application</span>
-            <p>
-              Mix M-Defend into water. Spray onto the canopy through standard foliar
-              equipment. A visible white mineral layer settles on the leaves and fruit
-              — that's the working barrier. M-Defend functions until the coating is no
-              longer visible.
-            </p>
-          </aside>
+          {/* Application note + before/after photo */}
+          <div className="uv__apply-row">
+            <aside className="uv__app-note">
+              <span className="uv__app-note-label">— Application</span>
+              <p>
+                Mix M-Defend into water. Spray onto the canopy through standard foliar
+                equipment. A visible white mineral layer settles on the leaves and fruit
+                — that's the working barrier. M-Defend functions until the coating is no
+                longer visible.
+              </p>
+            </aside>
+            <figure className="uv__apply-figure">
+              <img
+                src="/geoshield/defend_before_After.png"
+                alt="Before / after M-Defend application — visible mineral coating on fruit"
+              />
+              <figcaption>Before · After M-Defend</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 

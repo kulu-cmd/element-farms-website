@@ -17,8 +17,7 @@
   border-top: 1px solid var(--ink-rule);
 }
 
-.poultry__detail-inner,
-.poultry__cta-inner {
+.poultry__detail-inner {
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 var(--rail-padding);
@@ -140,121 +139,6 @@
 }
 
 /* ============================================================
-   CTA banner
-   ============================================================ */
-.poultry__cta {
-  background: var(--clay);
-  color: var(--paper);
-  position: relative;
-  overflow: hidden;
-}
-
-.poultry__cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain-url);
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.poultry__cta::after {
-  content: "";
-  position: absolute;
-  bottom: -40%;
-  right: -10%;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(205, 197, 108, 0.28) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.poultry__cta-inner {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: end;
-  position: relative;
-  z-index: 1;
-}
-
-.poultry__cta-statement {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2rem, 4vw, 3.8rem);
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  color: var(--paper);
-  margin: 0;
-  max-width: 24ch;
-}
-
-.poultry__cta-statement em {
-  font-style: italic;
-  color: var(--ochre);
-  font-weight: 300;
-}
-
-.poultry__cta-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding-top: 1rem;
-}
-
-.poultry__cta-prompt {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  color: rgba(247, 245, 240, 0.85);
-  margin: 0;
-  max-width: 44ch;
-}
-
-.poultry__cta-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  align-items: flex-start;
-}
-
-.poultry__cta-btn {
-  display: inline-block;
-  padding: 0.85rem 1.5rem;
-  background: transparent;
-  border: 1px solid rgba(247, 245, 240, 0.45);
-  color: var(--paper);
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 999px;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
-}
-
-.poultry__cta-btn:hover {
-  background: var(--paper);
-  color: var(--clay);
-  border-color: var(--paper);
-  transform: translateY(-2px);
-}
-
-.poultry__cta-btn--primary {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
-  font-weight: 600;
-}
-
-.poultry__cta-btn--primary:hover {
-  background: var(--ochre);
-  border-color: var(--ochre);
-  color: var(--ink);
-}
-
 /* ============================================================
    Photo placeholder — corner-bracket style
    ============================================================ */
@@ -310,8 +194,7 @@
    Responsive
    ============================================================ */
 @media (max-width: 1024px) {
-  .poultry__detail-product,
-  .poultry__cta-inner {
+  .poultry__detail-product {
     grid-template-columns: 1fr;
   }
 }
