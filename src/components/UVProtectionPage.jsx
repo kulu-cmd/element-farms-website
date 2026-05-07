@@ -42,7 +42,6 @@ const facts = [
   {
     value: 40,
     display: '40',
-    prefix: 'up to ',
     suffix: '%',
     unit: 'Granny Smith rejection',
     label: 'of \'Granny Smith\' apples cannot be exported due to sunburn — climate volatility makes this worse every season.',
@@ -57,13 +56,21 @@ const facts = [
     source: 'Hortgro / EFS deck',
   },
   {
-    value: 50,
-    display: '50',
-    prefix: '~',
+    value: 10,
+    display: '10',
+    prefix: '>',
     suffix: '%',
-    unit: 'sunburn cut',
-    label: 'reduction in sunburn incidence per tree, with measured canopy and fruit-surface temperature drops.',
-    source: 'Citrus mitigation trials',
+    unit: 'primary crop loss',
+    label: 'of apple crops are regularly lost to sunburn — often the leading cause of fruit cullage in high-radiation climates.',
+    source: 'WSU Tree Fruit Extension',
+  },
+  {
+    value: 20,
+    display: '20',
+    suffix: '%',
+    unit: 'FCM yield loss',
+    label: 'of a citrus crop can be destroyed by False Codling Moth — costing South Africa\'s industry an estimated US$14 million per year.',
+    source: 'IAEA / USDA',
   },
 ]
 
@@ -297,7 +304,13 @@ const UVProtectionPage = () => {
 
           {/* Thermal proof images */}
           <div className="uv__thermal">
-            <span className="uv__thermal-label">— Thermal-imaging proof</span>
+            <div className="uv__thermal-header">
+              <div className="uv__thermal-header-top">
+                <span className="uv__thermal-badge" aria-hidden="true">● Field Data</span>
+                <span className="uv__thermal-header-rule" aria-hidden="true" />
+              </div>
+              <h3 className="uv__thermal-title">Thermal-Imaging <em>Proof</em></h3>
+            </div>
             <div className="uv__thermal-grid">
               <motion.figure
                 className="uv__thermal-card"
@@ -306,10 +319,10 @@ const UVProtectionPage = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
               >
-                <img src="/geoshield/uv-1.jpg" alt="Higher fruit-surface temperatures without M-GeoShade applied" />
+                <img src="/geoshield/uv-1.jpg" alt="Lower fruit-surface temperatures with M-GeoShade applied" />
                 <figcaption>
-                  <span className="uv__thermal-tag uv__thermal-tag--hot">Without M-GeoShade</span>
-                  Higher fruit-surface temperatures — sunburn risk peaks here.
+                  <span className="uv__thermal-tag uv__thermal-tag--cool">With M-GeoShade</span>
+                  Lower fruit-surface temperatures — sunburn incidence drops by half.
                 </figcaption>
               </motion.figure>
               <motion.figure
@@ -319,10 +332,10 @@ const UVProtectionPage = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
               >
-                <img src="/geoshield/uv-2.jpg" alt="Lower fruit-surface temperatures with M-GeoShade applied" />
+                <img src="/geoshield/uv-2.jpg" alt="Higher fruit-surface temperatures without M-GeoShade applied" />
                 <figcaption>
-                  <span className="uv__thermal-tag uv__thermal-tag--cool">With M-GeoShade</span>
-                  Lower fruit-surface temperatures — sunburn incidence drops by half.
+                  <span className="uv__thermal-tag uv__thermal-tag--hot">Without M-GeoShade</span>
+                  Higher fruit-surface temperatures — sunburn risk peaks here.
                 </figcaption>
               </motion.figure>
             </div>
@@ -443,12 +456,20 @@ const UVProtectionPage = () => {
           <div className="uv__apply-row">
             <aside className="uv__app-note">
               <span className="uv__app-note-label">— Application</span>
-              <p>
-                Mix M-Defend into water. Spray onto the canopy through standard foliar
-                equipment. A visible white mineral layer settles on the leaves and fruit
-                — that's the working barrier. M-Defend functions until the coating is no
-                longer visible.
-              </p>
+              <ol className="uv__app-steps">
+                <li>
+                  <span className="uv__app-step-n">01</span>
+                  <span className="uv__app-step-text">Mix M-Defend concentrate into water at the recommended dilution rate.</span>
+                </li>
+                <li>
+                  <span className="uv__app-step-n">02</span>
+                  <span className="uv__app-step-text">Spray onto the canopy using standard foliar equipment until coverage is complete.</span>
+                </li>
+                <li>
+                  <span className="uv__app-step-n">03</span>
+                  <span className="uv__app-step-text">A visible white mineral layer settles on leaves and fruit — <em>the coating is the working barrier.</em> Re-apply when no longer visible.</span>
+                </li>
+              </ol>
             </aside>
             <figure className="uv__apply-figure">
               <img
