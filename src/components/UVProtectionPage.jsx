@@ -55,13 +55,12 @@ const facts = [
     source: 'Hortgro / EFS deck',
   },
   {
-    value: 10,
-    display: '10',
-    prefix: '>',
+    value: 50,
+    display: '50',
     suffix: '%',
-    unit: 'primary crop loss',
-    label: 'of apple crops are regularly lost to sunburn — often the leading cause of fruit cullage in high-radiation climates.',
-    source: 'WSU Tree Fruit Extension',
+    unit: 'grape harvest value lost',
+    label: 'of a sunburned grape harvest\'s commercial value can be wiped out — A-grade fruit downgraded to C/D-grade in high-radiation vintages.',
+    source: 'Gambetta et al., 2021 — Frontiers in Plant Science',
   },
   {
     value: 20,
