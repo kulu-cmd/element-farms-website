@@ -11,17 +11,6 @@
     overflow: hidden;
 }
 
-/* Background motif — argyle diamond drifting in the bottom-left */
-.mission-x__motif {
-    position: absolute;
-    z-index: 0;
-    pointer-events: none;
-    bottom: -40px;
-    left: -60px;
-    opacity: 0.85;
-    transform: rotate(-8deg);
-}
-
 /* Inner — true asymmetric split */
 .mission-x__inner {
     max-width: 1500px;
@@ -177,13 +166,6 @@
 
     .mission-x__lede {
         position: static;
-    }
-
-    .mission-x__motif {
-        opacity: 0.55;
-        bottom: auto;
-        top: 50%;
-        left: -80px;
     }
 }
 

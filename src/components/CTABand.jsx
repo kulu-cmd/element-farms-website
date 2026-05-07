@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { ArgyleDiamond, CircleDots } from './BrandMotifs'
+import { CircleDots } from './BrandMotifs'
 import './CTABand.css'
 
 /**
@@ -31,13 +31,7 @@ const CTABand = ({
       <div className="cta-band__grain" aria-hidden="true" />
       <div className="cta-band__glow" aria-hidden="true" />
 
-      {/* Brand motif accents */}
-      <ArgyleDiamond
-        className="cta-band__motif cta-band__motif--diamond"
-        size={320}
-        color="rgba(244, 239, 230, 0.09)"
-        strokeWidth={2}
-      />
+      {/* Brand motif accent */}
       <CircleDots
         className="cta-band__motif cta-band__motif--circle"
         size={48}

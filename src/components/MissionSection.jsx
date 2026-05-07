@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CircleDots, ArgyleDiamond } from './BrandMotifs'
+import { CircleDots } from './BrandMotifs'
 import './MissionSection.css'
 
 const goals = [
@@ -15,8 +15,8 @@ const goals = [
         glyph: '🧪',
     },
     {
-        title: 'Turn farm waste into rich fertile inputs',
-        gloss: 'Closed-loop systems — manure, compost, biogas.',
+        title: 'Empower farms to be self-sufficient',
+        gloss: 'Closed-loop systems for long term sustainability.',
         glyph: '♻️',
     },
 ]
@@ -29,14 +29,6 @@ const MissionSection = () => {
 
     return (
         <section className="mission-x" id="mission">
-            {/* Soft background motifs — visual rhyme with the logo */}
-            <ArgyleDiamond
-                className="mission-x__motif mission-x__motif--diamond"
-                size={260}
-                color="rgba(193, 158, 100, 0.18)"
-                strokeWidth={2}
-            />
-
             <div className="mission-x__inner">
                 {/* LEFT — eyebrow + display heading */}
                 <motion.div
