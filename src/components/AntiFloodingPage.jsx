@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import CTABand from './CTABand'
 import SectionLabel from './ui/SectionLabel'
 import './AntiFloodingPage.css'
 
@@ -447,6 +448,16 @@ const AntiFloodingPage = () => {
           </div>
         </motion.div>
       </section>
+
+      <CTABand
+        heading="Secure your soil against the next flood."
+        subtext="We design water-management systems that work with your terrain — protecting yield, soil structure, and infrastructure together."
+        primaryLabel="Book an assessment"
+        primaryTo="/contact/agri-farms"
+        secondaryLabel="All solutions"
+        secondaryTo="/"
+        tone="moss"
+      />
 
       <Footer />
     </div>
