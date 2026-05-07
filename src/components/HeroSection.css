@@ -144,7 +144,7 @@
     grid-row: 3;
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: clamp(5rem, 12vh, 11rem);
     padding-top: 1.75rem;
     border-top: 1px solid rgba(244, 239, 230, 0.18);
 }

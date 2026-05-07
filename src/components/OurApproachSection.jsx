@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { CircleDots } from './BrandMotifs'
 import './OurApproachSection.css'
 
 const steps = [
@@ -46,10 +47,13 @@ const OurApproachSection = () => {
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <span className="approach-x__eyebrow">— Our Approach</span>
+                    <span className="approach-x__eyebrow">
+                        <CircleDots size={22} strokeWidth={11} />
+                        Our Approach
+                    </span>
                     <h2 className="approach-x__heading">
-                        A practical four-step <em>framework</em><br />
-                        for the long <em>run</em>.
+                        A practical <em>four-step framework</em><br />
+                        for the <em>long run</em>.
                     </h2>
                 </motion.header>
 

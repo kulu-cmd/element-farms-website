@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
+import { CircleDots } from './BrandMotifs'
 import './HeroSection.css'
 
 /* Split headline — each word renders as a rising mask reveal */
@@ -56,7 +57,12 @@ const HeroSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9, delay: 0.2 }}
                 >
-                    <span className="hero-x__eyebrow-mark">◦</span>
+                    <CircleDots
+                        size={20}
+                        ringColor="rgba(244, 239, 230, 0.55)"
+                        dotColor="var(--clay)"
+                        strokeWidth={11}
+                    />
                     <span>Regenerative Agriculture, est. KZN · Free State · Gauteng</span>
                 </motion.div>
 

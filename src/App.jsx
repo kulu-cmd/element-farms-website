@@ -28,7 +28,7 @@ function HomePage() {
                 <MissionSection />
                 <OurApproachSection />
                 <CTABand
-                    heading="Ready to regenerate your land?"
+                    heading={<>Ready to <em>regenerate</em><br />your land?</>}
                     subtext="Start with a no-obligation farm assessment."
                     primaryLabel="Start a farm trial"
                     primaryTo="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"

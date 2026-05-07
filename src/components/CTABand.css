@@ -43,6 +43,25 @@
   background: radial-gradient(ellipse at 50% 100%, rgba(63, 174, 90, 0.12) 0%, transparent 55%);
 }
 
+/* Brand motifs */
+.cta-band__motif {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-band__motif--diamond {
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%) rotate(8deg);
+}
+
+.cta-band__motif--circle {
+  left: clamp(2rem, 5vw, 5rem);
+  top: clamp(1.75rem, 3vw, 2.5rem);
+  opacity: 0.85;
+}
+
 /* Diagonal decorative rule */
 .cta-band__rule {
   position: absolute;
@@ -78,16 +97,19 @@
 .cta-band__heading {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: clamp(1.8rem, 4vw, 3.8rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
   color: inherit;
   margin: 0;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
 }
 
 .cta-band__heading em {
   font-style: italic;
   font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 
 .cta-band--moss .cta-band__heading em { color: var(--ochre); }
