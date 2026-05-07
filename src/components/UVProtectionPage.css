@@ -634,12 +634,47 @@
 }
 
 /* Headline pest callout — Citrus Leaf Miner */
-.uv__headline-pest-img {
+.uv__apply-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  border-top: 1px solid var(--ink-rule);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.uv__apply-figure {
+  display: block;
+}
+
+.uv__apply-figure img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 6px;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.uv__apply-figure figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.uv__apply-figure figcaption::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 /* Specific named pests grid */
@@ -717,11 +752,10 @@
 
 /* Application aside */
 .uv__app-note {
-  border-top: 1px solid var(--ink-rule);
-  padding-top: clamp(2rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  justify-content: center;
 }
 
 .uv__app-note-label {
@@ -752,40 +786,44 @@
    5.  CTA banner
    ============================================================ */
 .uv__cta {
-  background: var(--clay);
+  background: var(--ink);
   color: var(--paper);
   position: relative;
   overflow: hidden;
 }
 
-.uv__cta::before {
-  content: "";
+.uv__cta__grain {
   position: absolute;
   inset: 0;
   background-image: var(--grain-url);
-  opacity: 0.18;
+  opacity: 0.14;
   mix-blend-mode: screen;
   pointer-events: none;
 }
 
-.uv__cta::after {
-  content: "";
+.uv__cta__glow {
   position: absolute;
   bottom: -40%;
   right: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(205, 197, 108, 0.28) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(63, 174, 90, 0.18) 0%, transparent 60%);
   pointer-events: none;
 }
 
 .uv__cta-inner {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.4fr 1fr;
   gap: clamp(2rem, 5vw, 5rem);
-  align-items: end;
+  align-items: center;
   position: relative;
   z-index: 1;
+}
+
+.uv__cta-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .uv__cta-statement {
@@ -796,43 +834,37 @@
   letter-spacing: -0.025em;
   color: var(--paper);
   margin: 0;
-  max-width: 24ch;
 }
 
 .uv__cta-statement em {
   font-style: italic;
-  color: var(--ochre, #cdc56c);
+  color: var(--moss, #3fae5a);
   font-weight: 300;
-}
-
-.uv__cta-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding-top: 1rem;
 }
 
 .uv__cta-prompt {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
-  color: rgba(244, 239, 230, 0.85);
+  color: rgba(244, 239, 230, 0.72);
   margin: 0;
-  max-width: 44ch;
+  max-width: 52ch;
 }
 
 .uv__cta-buttons {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.65rem;
   align-items: flex-start;
 }
 
 .uv__cta-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 0.85rem 1.5rem;
   background: transparent;
-  border: 1px solid rgba(244, 239, 230, 0.45);
+  border: 1px solid rgba(244, 239, 230, 0.3);
   color: var(--paper);
   font-family: var(--font-sans);
   font-size: 0.78rem;
@@ -844,24 +876,51 @@
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
+.uv__cta-btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
 .uv__cta-btn:hover {
-  background: var(--paper);
-  color: var(--clay);
-  border-color: var(--paper);
-  transform: translateY(-2px);
+  background: rgba(244, 239, 230, 0.1);
+  border-color: rgba(244, 239, 230, 0.6);
+  transform: translateY(-1px);
 }
 
 .uv__cta-btn--primary {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  border-color: var(--paper);
+  color: var(--ink);
   font-weight: 600;
 }
 
 .uv__cta-btn--primary:hover {
-  background: var(--ochre, #cdc56c);
-  border-color: var(--ochre, #cdc56c);
-  color: var(--ink);
+  background: var(--moss, #3fae5a);
+  border-color: var(--moss, #3fae5a);
+  color: var(--paper);
+}
+
+.uv__cta-btn--wa {
+  background: #25d366;
+  border-color: #25d366;
+  color: #fff;
+}
+
+.uv__cta-btn--wa:hover {
+  background: #1fb855;
+  border-color: #1fb855;
+  color: #fff;
+}
+
+.uv__cta-btn--email {
+  border-color: rgba(244, 239, 230, 0.3);
+  color: var(--paper);
+}
+
+.uv__cta-btn--email:hover {
+  background: rgba(244, 239, 230, 0.1);
+  border-color: rgba(244, 239, 230, 0.6);
 }
 
 /* ============================================================
@@ -952,6 +1011,10 @@
 @media (max-width: 640px) {
   .uv__pest-cats-grid,
   .uv__crop-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .uv__apply-row {
     grid-template-columns: 1fr;
   }
 
