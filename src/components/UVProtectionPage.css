@@ -634,90 +634,12 @@
 }
 
 /* Headline pest callout — Citrus Leaf Miner */
-.uv__headline-pest {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: center;
-  padding: clamp(2rem, 4vw, 3rem);
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 8px;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.uv__headline-pest::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: var(--grain-url);
-  opacity: 0.18;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.uv__headline-pest::after {
-  content: "";
-  position: absolute;
-  bottom: -50%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(14, 90, 54, 0.32) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.uv__headline-pest-text {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.uv__headline-pest-tag {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ochre, #cdc56c);
-}
-
-.uv__headline-pest h3 {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--paper);
-  margin: 0;
-}
-
-.uv__headline-pest h3 em {
-  font-style: italic;
-  color: var(--ochre, #cdc56c);
-  font-weight: 300;
-}
-
-.uv__headline-pest p {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.7;
-  color: rgba(244, 239, 230, 0.82);
-  margin: 0;
-  max-width: 56ch;
-}
-
 .uv__headline-pest-img {
-  position: relative;
-  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 6px;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 /* Specific named pests grid */
@@ -1008,7 +930,6 @@
   .uv__pillars-grid,
   .uv__detail-product,
   .uv__thermal-grid,
-  .uv__headline-pest,
   .uv__cta-inner {
     grid-template-columns: 1fr;
   }

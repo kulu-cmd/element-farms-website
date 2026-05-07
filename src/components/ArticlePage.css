@@ -160,13 +160,6 @@
   margin-left: 1.2rem;
 }
 
-/* Coming soon placeholder */
-.article-page__coming-soon {
-  color: rgba(43, 43, 43, 0.5);
-  font-style: italic;
-  padding: 2rem 0;
-}
-
 /* Sidebar */
 .article-page__sidebar {
   position: sticky;

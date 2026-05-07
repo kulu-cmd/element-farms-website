@@ -154,7 +154,6 @@ const Header = () => {
                                                             <span className="ef-mega__link-body">
                                                                 <span className="ef-mega__link-title">
                                                                     {item.title}
-                                                                    <span className="ef-mega__link-soon">Coming soon</span>
                                                                 </span>
                                                                 <span className="ef-mega__link-hint">{item.hint}</span>
                                                             </span>

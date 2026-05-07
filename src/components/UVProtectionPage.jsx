@@ -408,31 +408,12 @@ const UVProtectionPage = () => {
             </div>
           </div>
 
-          {/* Headline pest callout — Citrus Leaf Miner */}
-          <div className="uv__headline-pest">
-            <div className="uv__headline-pest-text">
-              <span className="uv__headline-pest-tag">Headline use-case · South Africa</span>
-              <h3>
-                Citrus <em>Leaf Miner.</em>
-              </h3>
-              <p>
-                One of the most damaging pests in South African citrus orchards. The
-                female moth lays eggs on young flush leaves; the larva tunnels through
-                the leaf, scarring foliage, weakening the tree, and opening doors to
-                citrus canker.
-              </p>
-              <p>
-                A foliar layer of M-Defend prevents the moth from depositing viable eggs
-                on the leaf surface. The next generation collapses before it begins —
-                without an insecticide spray.
-              </p>
-            </div>
-            <img
-              src="/geoshield/defend_before_After.png"
-              alt="Before / after M-Defend application — visible mineral coating on fruit"
-              className="uv__headline-pest-img"
-            />
-          </div>
+          {/* Before / after photo */}
+          <img
+            src="/geoshield/defend_before_After.png"
+            alt="Before / after M-Defend application — visible mineral coating on fruit"
+            className="uv__headline-pest-img"
+          />
 
           {/* Pests by crop type */}
           <div className="uv__pests">
@@ -468,8 +449,7 @@ const UVProtectionPage = () => {
               Mix M-Defend into water. Spray onto the canopy through standard foliar
               equipment. A visible white mineral layer settles on the leaves and fruit
               — that's the working barrier. M-Defend functions until the coating is no
-              longer visible, at which point you simply reapply. <em>No
-              calendar-spray dependency. No resistance management programme.</em>
+              longer visible.
             </p>
           </aside>
         </div>

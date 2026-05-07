@@ -27,7 +27,52 @@
 }
 
 .mission-x__header {
-    margin-bottom: 2.5rem;
+    margin-bottom: clamp(2rem, 4vw, 3.25rem);
+}
+
+.mission-x__stamp {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.85rem, 1.4vw, 1.25rem);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.mission-x__stamp-glyph {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: var(--clay);
+    letter-spacing: 0;
+    line-height: 1;
+    transform: translateY(-1px);
+}
+
+.mission-x__stamp-label {
+    color: var(--ink);
+}
+
+.mission-x__stamp-rule {
+    flex: 1 1 auto;
+    height: 1px;
+    background: var(--ink-rule);
+    max-width: clamp(80px, 14vw, 220px);
+}
+
+.mission-x__stamp-tag {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--clay);
+    font-variation-settings: "opsz" 36, "SOFT" 100;
 }
 
 .mission-x__quote {
@@ -35,25 +80,6 @@
     display: flex;
     flex-direction: column;
     gap: clamp(1.25rem, 2vw, 1.75rem);
-}
-
-.mission-x__quote-kicker {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-}
-
-.mission-x__quote-rule {
-    width: 36px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.55;
 }
 
 .mission-x__quote-heading {
@@ -292,4 +318,7 @@
     .mission-x__goals { grid-template-columns: 1fr; }
     .mission-x__goal { border-right: none; border-bottom: 1px solid var(--ink-rule); }
     .mission-x__goal:last-child { border-bottom: none; }
+    .mission-x__stamp { flex-wrap: wrap; gap: 0.6rem 0.85rem; }
+    .mission-x__stamp-rule { display: none; }
+    .mission-x__stamp-tag { flex-basis: 100%; }
 }

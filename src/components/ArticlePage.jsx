@@ -139,13 +139,7 @@ const ArticlePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
         >
-          {content.length > 0 ? (
-            content.map((block, i) => renderBlock(block, i))
-          ) : (
-            <p className="article-page__coming-soon">
-              Full article content is being prepared. Check back soon.
-            </p>
-          )}
+          {content.map((block, i) => renderBlock(block, i))}
         </motion.article>
 
         <aside className="article-page__sidebar">

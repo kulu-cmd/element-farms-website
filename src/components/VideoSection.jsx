@@ -29,8 +29,7 @@ const VideoSection = () => {
                         <circle cx="28" cy="28" r="26" stroke="rgba(255,255,255,0.5)" strokeWidth="2"/>
                         <polygon points="22,18 42,28 22,38" fill="rgba(255,255,255,0.6)"/>
                     </svg>
-                    <span className="video-section__coming-soon">Video Coming Soon</span>
-                    <span className="video-section__subtext">
+<span className="video-section__subtext">
                         A short talk on the importance of land rejuvenation and what chemicals have done
                         to our soil.
                     </span>

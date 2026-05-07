@@ -282,7 +282,8 @@ const AntiFloodingPage = () => {
               <span className="flood__system-link">Read more ↓</span>
             </motion.a>
 
-            <motion.div
+            <motion.a
+              href="#herbs"
               className="flood__system-card"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -290,21 +291,6 @@ const AntiFloodingPage = () => {
               transition={{ duration: 0.7, delay: 0.18 }}
             >
               <span className="flood__system-num">02</span>
-              <div className="flood__system-icon flood__system-icon--emoji">🌱</div>
-              <h3>Field Crops</h3>
-              <p>Sugarcane, maize, lucerne and pasture — protect waterlogged or compacted ground without taking land out of production.</p>
-              <span className="flood__system-link flood__system-link--soft">Coming next →</span>
-            </motion.div>
-
-            <motion.a
-              href="#herbs"
-              className="flood__system-card"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: 0.31 }}
-            >
-              <span className="flood__system-num">03</span>
               <div className="flood__system-icon flood__system-icon--emoji">🌿</div>
               <h3>Herbs, Tunnels & Nurseries</h3>
               <p>High-value herbs, flowers and aromatics in tunnels or raised beds — re-usable, weather-proof, permanent.</p>

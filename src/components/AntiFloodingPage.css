@@ -441,9 +441,6 @@ a.flood__system-card:hover::before {
   border-top: 1px solid var(--ink-rule);
 }
 
-.flood__system-link--soft {
-  color: var(--ink-faint);
-}
 
 /* ============================================================
    4–5.  Detail bands (Orchards / Herbs)

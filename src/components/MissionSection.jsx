@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import SectionLabel from './ui/SectionLabel'
 import './MissionSection.css'
 
 const goals = [
@@ -46,14 +45,15 @@ const MissionSection = () => {
                     }}
                 >
                     <motion.header className="mission-x__header" variants={slideIn}>
-                        <SectionLabel label="The Mission" />
+                        <span className="mission-x__stamp" aria-label="Mission">
+                            <span className="mission-x__stamp-glyph" aria-hidden="true">§</span>
+                            <span className="mission-x__stamp-label">Mission</span>
+                            <span className="mission-x__stamp-rule" aria-hidden="true" />
+                            <span className="mission-x__stamp-tag">A regenerative imperative</span>
+                        </span>
                     </motion.header>
 
                     <motion.blockquote className="mission-x__quote" variants={slideIn}>
-                        <span className="mission-x__quote-kicker">
-                            <span className="mission-x__quote-rule" aria-hidden="true" />
-                            <span>We are on a mission</span>
-                        </span>
                         <h2 className="mission-x__quote-heading">
                             To empower farms to adopt<br /><em>regenerative</em> farming systems.
                         </h2>
