@@ -36,8 +36,9 @@
 
 /* ── INTRO ── */
 .wte-x__intro {
-  margin-bottom: clamp(3.5rem, 7vw, 6rem);
-  max-width: 780px;
+  margin: 0 auto;
+  max-width: 980px;
+  text-align: center;
 }
 
 .wte-x__eyebrow {

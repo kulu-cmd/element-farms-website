@@ -18,7 +18,7 @@ const LandRejuvenationPage = () => {
 
             <PageHero
                 title="Land __Rejuvenation__"
-                subtitle="We teach and implement highly effective regenerative farming systems to small and medium-sized farms. Our goal is to empower farmers and not rely on large corporation supply chains of expensive chemical fertiliser."
+                subtitle="Regenerative farming systems for small and medium-sized farms — empowering growers to step off the expensive chemical fertiliser supply chain."
                 tone="moss"
             />
 

@@ -91,9 +91,11 @@ const OurApproachSection = () => {
                             {/* HOVER reveal — body fills the card */}
                             <div className="approach-x__card-reveal" aria-hidden="true">
                                 <div className="approach-x__card-reveal-inner">
-                                    <span className="approach-x__card-reveal-num">{step.num}</span>
+                                    <div className="approach-x__card-reveal-meta">
+                                        <span className="approach-x__card-reveal-num">{step.num}</span>
+                                        <span className="approach-x__card-reveal-label">{step.label}</span>
+                                    </div>
                                     <p className="approach-x__card-reveal-body">{step.body}</p>
-                                    <span className="approach-x__card-reveal-label">{step.label}</span>
                                 </div>
                             </div>
                         </motion.div>
