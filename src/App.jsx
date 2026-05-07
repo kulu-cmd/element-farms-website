@@ -1,11 +1,10 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import MissionSection from './components/MissionSection'
 import SoilTypesSection from './components/SoilTypesSection'
 import OurApproachSection from './components/OurApproachSection'
-import ResultsMetrics from './components/ResultsMetrics'
 import CTABand from './components/CTABand'
 import Footer from './components/Footer'
 import LandRejuvenationPage from './components/LandRejuvenationPage'
@@ -27,16 +26,15 @@ function HomePage() {
             <main>
                 <HeroSection />
                 <MissionSection />
-                <ResultsMetrics />
                 <OurApproachSection />
                 <CTABand
-                    heading="Ready to regenerate your land?"
-                    subtext="Start with a no-obligation farm assessment. We walk the fields, read the soil, and map a clear path forward."
+                    heading={<>Ready to <em>regenerate</em><br />your land?</>}
+                    subtext="Start with a no-obligation farm assessment."
                     primaryLabel="Start a farm trial"
                     primaryTo="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"
                     secondaryLabel="Talk to us first"
                     secondaryTo="/contact/agri-farms"
-                    tone="clay"
+                    tone="moss"
                 />
             </main>
             <Footer />
@@ -44,9 +42,19 @@ function HomePage() {
     )
 }
 
+function ScrollToTop() {
+    const { pathname, hash } = useLocation()
+    useEffect(() => {
+        if (hash) return
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }, [pathname, hash])
+    return null
+}
+
 function App() {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/solutions/land-rejuvenation" element={<LandRejuvenationPage />} />

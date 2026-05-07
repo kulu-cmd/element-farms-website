@@ -35,7 +35,7 @@ const HOTSPOTS = [
 
 const KZNMapSection = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.25 })
+  const isInView = useInView(ref, { once: true, amount: 0, margin: '0px 0px -10% 0px' })
 
   return (
     <section className="erosion" ref={ref}>

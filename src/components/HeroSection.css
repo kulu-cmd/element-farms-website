@@ -7,9 +7,9 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     overflow: hidden;
-    padding-top: 280px;
+    padding-top: 120px;
     background: var(--ink);
     color: var(--paper);
     isolation: isolate;
@@ -63,18 +63,18 @@
     z-index: 2;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: auto auto auto;
     gap: 0;
-    padding: 3rem var(--rail-padding) 4rem;
-    flex: 1;
-    align-content: space-between;
+    padding: 3rem var(--rail-padding);
+    align-content: center;
     will-change: transform;
 }
 
 .hero-x__eyebrow {
-    grid-column: 1 / 9;
+    grid-column: 1 / 13;
     grid-row: 1;
-    display: inline-flex;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.8rem;
     font-family: var(--font-sans);
@@ -110,6 +110,7 @@
     color: var(--paper);
     font-variation-settings: "opsz" 144;
     margin: 1rem 0 0;
+    text-align: center;
 }
 
 .hero-x__line {
@@ -139,11 +140,11 @@
 
 /* Deck — CTA */
 .hero-x__deck {
-    grid-column: 1 / 8;
+    grid-column: 1 / 13;
     grid-row: 3;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 2.5rem;
+    justify-content: center;
+    margin-top: clamp(5rem, 12vh, 11rem);
     padding-top: 1.75rem;
     border-top: 1px solid rgba(244, 239, 230, 0.18);
 }

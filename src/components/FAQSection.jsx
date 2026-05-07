@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import SectionLabel from './ui/SectionLabel'
 import './FAQSection.css'
 
 const faqs = [
@@ -43,7 +42,6 @@ const FAQSection = () => {
         <section className="faq-x" id="faqs">
             <div className="faq-x__inner">
                 <header className="faq-x__header">
-                    <SectionLabel label="Frequently Asked" />
                     <motion.h2
                         className="faq-x__heading"
                         initial={{ opacity: 0, y: 20 }}
@@ -51,7 +49,7 @@ const FAQSection = () => {
                         viewport={{ once: true, amount: 0.5 }}
                         transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        Real questions <em>from real farmers.</em>
+                        Frequently asked questions
                     </motion.h2>
                 </header>
 

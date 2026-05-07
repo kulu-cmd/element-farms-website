@@ -1,114 +1,124 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import SectionLabel from './ui/SectionLabel'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { CircleDots } from './BrandMotifs'
 import './OurApproachSection.css'
 
 const steps = [
     {
         num: '01',
         label: 'Diagnose',
-        kicker: 'The land first',
-        body: "We walk the fields. We sample the soil. We assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. Nothing is prescribed before the diagnosis is honest.",
+        kicker: 'Pinpoint Issues',
+        body: (
+            <>
+                We walk the fields, sample the soil, assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. <mark>Nothing is prescribed before the diagnosis.</mark>
+            </>
+        ),
         image: '/approach/diagnose.jpg',
     },
     {
         num: '02',
         label: 'Design',
         kicker: 'A plan, not a product',
-        body: "From the diagnosis we design a regenerative plan — targeted soil amendments, biological inputs, protective treatments, and sequencing — shaped by what this specific land needs to return to health.",
+        body: (
+            <>
+                From the diagnosis we design a regenerative plan — <mark>targeted soil amendments, biological inputs and protective treatments</mark> — shaped by what this specific land needs to return to health.
+            </>
+        ),
         image: '/approach/design.jpg',
     },
     {
         num: '03',
         label: 'Recycle',
         kicker: 'Close the nutrient loop',
-        body: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. The nutrient loop closes, the input bill falls, and the farm begins to feed itself.",
+        body: (
+            <>
+                Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. <mark>The nutrient loop closes, the input cost decreases, and the farm begins to feed itself.</mark>
+            </>
+        ),
         image: '/approach/recycle.jpg',
     },
     {
         num: '04',
         label: 'Restore',
-        kicker: 'Compound the gains',
-        body: "We implement, monitor, and adjust. Soil biology rebuilds season by season. Chemical dependence drops. Resilience — and profitability — compounds year over year.",
+        kicker: 'Sustainable Farming',
+        body: (
+            <>
+                We implement, monitor, and adjust so that soil biology rebuilds season by season. <mark>Chemical dependence drops; resilience and profitability compounds year over year.</mark>
+            </>
+        ),
         image: '/approach/restore.jpg',
     },
 ]
 
 const OurApproachSection = () => {
-    const [active, setActive] = useState(0)
-    const step = steps[active]
-
     return (
         <section className="approach-x" id="about-us">
             <div className="approach-x__inner">
-                <header className="approach-x__header">
-                    <SectionLabel label="Our Approach" tone="paper" />
-                    <motion.h2
-                        className="approach-x__heading"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.4 }}
-                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        A four-step <em>method</em><br/>
-                        built for the long <em>view</em>.
-                    </motion.h2>
-                </header>
 
-                <div className="approach-x__tabs" role="tablist" aria-label="Approach steps">
-                    {steps.map((s, i) => (
-                        <button
-                            key={s.num}
-                            type="button"
-                            role="tab"
-                            aria-selected={active === i}
-                            className={`approach-x__tab ${active === i ? 'is-active' : ''}`}
-                            onClick={() => setActive(i)}
+                {/* Header */}
+                <motion.header
+                    className="approach-x__header"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <span className="approach-x__eyebrow">
+                        <CircleDots size={22} strokeWidth={11} />
+                        Our Approach
+                    </span>
+                    <h2 className="approach-x__heading">
+                        A practical <em>four-step framework</em><br />
+                        for the <em>long run</em>.
+                    </h2>
+                </motion.header>
+
+                {/* Photo cards grid */}
+                <div className="approach-x__cards">
+                    {steps.map((step, i) => (
+                        <motion.div
+                            key={step.num}
+                            className="approach-x__card"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.18 }}
+                            transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                         >
-                            <span className="approach-x__tab-num">{s.num}</span>
-                            <span className="approach-x__tab-label">{s.label}</span>
-                            {active === i && (
-                                <motion.span
-                                    className="approach-x__tab-bar"
-                                    layoutId="approach-tab-bar"
-                                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
-                                />
-                            )}
-                        </button>
+                            {/* Full-bleed photo */}
+                            <img
+                                src={step.image}
+                                alt={`${step.label} — Element Farm Solutions`}
+                                className="approach-x__card-photo"
+                                loading="lazy"
+                            />
+
+                            {/* Dark gradient overlay (front) */}
+                            <div className="approach-x__card-overlay" aria-hidden="true" />
+
+                            {/* FRONT (resting) */}
+                            <div className="approach-x__card-front">
+                                <div className="approach-x__card-top">
+                                    <span className="approach-x__card-num">{step.num}</span>
+                                    <span className="approach-x__card-kicker">{step.kicker}</span>
+                                </div>
+
+                                <div className="approach-x__card-titleblock">
+                                    <h3 className="approach-x__card-label">{step.label}</h3>
+                                </div>
+                            </div>
+
+                            {/* BACK (hover) — moss panel + body */}
+                            <div className="approach-x__card-back" aria-hidden="true">
+                                <div className="approach-x__card-back-meta">
+                                    <span className="approach-x__card-back-num">{step.num}</span>
+                                    <span className="approach-x__card-back-label">{step.label}</span>
+                                </div>
+                                <p className="approach-x__card-body">{step.body}</p>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className="approach-x__panel" role="tabpanel">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={step.num}
-                            className="approach-x__slide is-active"
-                            initial={{ opacity: 0, y: 16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -12 }}
-                            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <div className="approach-x__icon-frame">
-                                <img
-                                    className="approach-x__icon-photo"
-                                    src={step.image}
-                                    alt={`${step.label} — Element Farm Solutions approach step`}
-                                    loading="lazy"
-                                />
-                                <span className="approach-x__icon-num">{step.num}</span>
-                                <span className="approach-x__icon-caption">{step.label}</span>
-                            </div>
-                            <div className="approach-x__copy">
-                                <span className="approach-x__step-kicker">{step.kicker}</span>
-                                <h3 className="approach-x__step-title">
-                                    {step.label}<span className="approach-x__step-period">.</span>
-                                </h3>
-                                <p className="approach-x__step-body">{step.body}</p>
-                                <span className="approach-x__step-marker">— {step.num} / 04</span>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
-                </div>
             </div>
         </section>
     )

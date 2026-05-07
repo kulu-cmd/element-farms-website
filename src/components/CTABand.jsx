@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { CircleDots } from './BrandMotifs'
 import './CTABand.css'
 
 /**
@@ -29,6 +30,15 @@ const CTABand = ({
       {/* background texture */}
       <div className="cta-band__grain" aria-hidden="true" />
       <div className="cta-band__glow" aria-hidden="true" />
+
+      {/* Brand motif accent */}
+      <CircleDots
+        className="cta-band__motif cta-band__motif--circle"
+        size={48}
+        ringColor="rgba(244, 239, 230, 0.35)"
+        dotColor="var(--clay)"
+        strokeWidth={7}
+      />
 
       <div className="cta-band__inner">
         <motion.div
