@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import './TailoredSolutionSection.css'
 
 const SproutIcon = () => (
@@ -241,50 +241,36 @@ const cards = [
   {
     accentColor: '#3fae5a',
     Icon: SproutIcon,
-    image: '/land_rejuv/microbiology.jpeg',
-    label: 'ORGANIC MATTER',
-    heading: "Rebuild Your Soil's Biodiversity",
+    image: '/land_rejuv/solution1.jpg',
+    label: 'For organic matter',
+    product: 'Regenerative Systems',
     teaser:
-      'Depleted soils lack the microbial activity needed to feed crops naturally. We restore it from the ground up — closed-loop, farm-scale, season after season.',
-    flyer: vermicompostFlyer,
+      "A living, closed-loop compost that rebuilds the microbial life depleted soils need to feed crops naturally — produced on-farm, applied season after season.",
+    bullets: [
+      'Reactivates microbial biology',
+      'Closes the on-farm nutrient loop',
+      'Pairs with any cropping system',
+    ],
+    cta: 'Learn about vermicompost',
   },
   {
     accentColor: '#cdc56c',
     Icon: MineralIcon,
-    image: '/land_rejuv/mineral_science.png',
-    label: 'MINERAL DEFICIENCIES',
-    heading: "Restore What's Missing",
+    image: '/land_rejuv/solution2.png',
+    label: 'For mineral deficiencies',
+    product: 'M-TerraBoost',
     teaser:
-      'Soil mineral imbalances silently reduce yields, water retention, and crop quality. M-TerraBoost targets the root cause with four critical minerals.',
-    flyer: mineralFlyer,
+      "A targeted mineral blend — silica, calcium, magnesium and iron — that corrects the imbalances silently dragging down yield, water retention and crop quality.",
+    bullets: [
+      'Addresses four critical minerals',
+      'Improves water retention & cell strength',
+      'Backed by independent soil-test review',
+    ],
+    cta: 'Learn about M-TerraBoost',
   },
 ]
 
 const TailoredSolutionSection = () => {
-  const [activeModal, setActiveModal] = useState(null)
-
-  const openModal = (key) => setActiveModal(key)
-  const closeModal = () => setActiveModal(null)
-
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (activeModal !== null) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [activeModal])
-
-  // Close on Escape
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === 'Escape') closeModal() }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
-  const activeCard = typeof activeModal === 'number' ? cards[activeModal] : null
-
   return (
     <section className="tailored">
       <div className="tailored__inner">
@@ -297,48 +283,37 @@ const TailoredSolutionSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <span className="tailored__eyebrow">— Your Tailored Solution</span>
-          <h2 className="tailored__heading">Two pillars of <em>regenerative</em> soil.</h2>
+          <span className="tailored__eyebrow">— Our Solutions</span>
+          <h2 className="tailored__heading">Our solutions for <em>regeneration.</em></h2>
           <p className="tailored__subheading">
-            We identify what's holding your farm back and apply the right solution.
+            Meet the on-farm system we use to identify what's holding your farm back.
           </p>
         </motion.div>
 
         {/* Two main feature cards */}
         <div className="tailored__features">
           {cards.map((card, index) => (
-            <motion.button
-              type="button"
+            <motion.div
               key={card.label}
-              className="tailored__feature"
+              className={`tailored__feature tailored__feature--${index}`}
               initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: index * 0.12 }}
-              onClick={() => openModal(index)}
-              style={{ '--feature-accent': card.accentColor }}
             >
-              <div className="tailored__feature-frame">
-                {card.image ? (
-                  <img
-                    className="tailored__feature-photo"
-                    src={card.image}
-                    alt={card.heading}
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="tailored__feature-icon">
-                    <card.Icon />
-                  </div>
-                )}
-              </div>
-              <div className="tailored__feature-body">
-                <span className="tailored__feature-label">{card.label}</span>
-                <h3 className="tailored__feature-heading">{card.heading}</h3>
-                <p className="tailored__feature-teaser">{card.teaser}</p>
-                <span className="tailored__feature-link">Open the 1-pager →</span>
-              </div>
-            </motion.button>
+              <span className="tailored__feature-watermark" aria-hidden="true">0{index + 1}</span>
+              <header className="tailored__feature-head">
+                <span className="tailored__feature-num">0{index + 1}</span>
+                <span className="tailored__feature-product">{card.product}</span>
+              </header>
+              <h3 className="tailored__feature-heading">{card.label}</h3>
+              <p className="tailored__feature-teaser">{card.teaser}</p>
+              <ul className="tailored__feature-bullets">
+                {card.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </motion.div>
           ))}
         </div>
 
@@ -350,26 +325,24 @@ const TailoredSolutionSection = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="tailored__nursery-divider">
-            <span className="tailored__nursery-divider-line" />
-            <span className="tailored__nursery-divider-label">Then — at the seedling stage</span>
-            <span className="tailored__nursery-divider-line" />
-          </div>
-
+          <span className="tailored__nursery-watermark" aria-hidden="true">03</span>
           <div className="tailored__nursery-content">
             <div className="tailored__nursery-copy">
-              <span className="tailored__feature-label" style={{ color: '#f36f21' }}>NURSERY ROOTS</span>
+              <header className="tailored__nursery-head">
+                <span className="tailored__nursery-num">03</span>
+                <span className="tailored__nursery-label-tag">Combining Systems</span>
+              </header>
               <h3 className="tailored__nursery-heading">
-                Supercharge <em>early growth.</em>
+                Supercharge your <em>nurseries.</em>
               </h3>
               <p className="tailored__nursery-lede">
                 The first 30 days of root development determine the entire season. We combine
-                vermicompost and M-TerraBoost into a nursery-stage stimulus medium that gives
+                composting systems and M-TerraBoost into a nursery-stage stimulus medium that gives
                 seedlings the strongest possible start.
               </p>
               <ul className="tailored__nursery-list">
                 <li>
-                  <strong>Biology activates instantly.</strong> Worm-casting microbes colonise
+                  <strong>Biology activates instantly.</strong> Microbes colonise
                   the root zone the day a seedling is potted.
                 </li>
                 <li>
@@ -388,55 +361,18 @@ const TailoredSolutionSection = () => {
               </ul>
             </div>
             <div className="tailored__nursery-visual">
-              <div className="nursery-collage" style={{ aspectRatio: '4 / 5' }} aria-label="Nursery growth photos: roots, cabbage, basil comparison">
+              <figure className="nursery-img-frame">
                 <span className="nursery-collage__corner nursery-collage__corner--tl" />
                 <span className="nursery-collage__corner nursery-collage__corner--tr" />
                 <span className="nursery-collage__corner nursery-collage__corner--bl" />
                 <span className="nursery-collage__corner nursery-collage__corner--br" />
-                <figure className="nursery-collage__cell nursery-collage__cell--hero">
-                  <img src="/land_rejuv/nursery_roots.png" alt="Seedling root system at 14 days" loading="lazy" />
-                </figure>
-                <figure className="nursery-collage__cell nursery-collage__cell--top">
-                  <img src="/land_rejuv/cabbage.jpg" alt="Cabbage grown with EFS stimulus medium" loading="lazy" />
-                </figure>
-                <figure className="nursery-collage__cell nursery-collage__cell--bottom">
-                  <img src="/land_rejuv/basil_comparison.png" alt="Basil growth comparison" loading="lazy" />
-                </figure>
-              </div>
+                <img src="/land_rejuv/nurseries.png" alt="Nursery seedlings" loading="lazy" />
+              </figure>
             </div>
           </div>
         </motion.div>
 
       </div>
-
-      {/* Flyer modal — full-screen 1-pager */}
-      <AnimatePresence>
-        {activeCard && (
-          <motion.div
-            className="tailored__overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={closeModal}
-          >
-            <motion.div
-              className="tailored__flyer-modal"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 40 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button className="tailored__modal-close" onClick={closeModal} aria-label="Close 1-pager">
-                <span aria-hidden="true">✕</span>
-                <span className="tailored__modal-close-label">Close</span>
-              </button>
-              {activeCard.flyer}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }

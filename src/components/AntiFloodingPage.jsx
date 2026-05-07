@@ -276,7 +276,7 @@ const AntiFloodingPage = () => {
               transition={{ duration: 0.7, delay: 0.05 }}
             >
               <span className="flood__system-num">01</span>
-              <div className="flood__system-icon"><OrchardIcon /></div>
+              <div className="flood__system-icon flood__system-icon--emoji">🌳</div>
               <h3>Orchards & Tree Crops</h3>
               <p>Avocado, citrus, dragon fruit, macadamia — deep root systems that need long-term aeration and a permanent root home.</p>
               <span className="flood__system-link">Read more ↓</span>
@@ -290,7 +290,7 @@ const AntiFloodingPage = () => {
               transition={{ duration: 0.7, delay: 0.18 }}
             >
               <span className="flood__system-num">02</span>
-              <div className="flood__system-icon"><FieldIcon /></div>
+              <div className="flood__system-icon flood__system-icon--emoji">🌱</div>
               <h3>Field Crops</h3>
               <p>Sugarcane, maize, lucerne and pasture — protect waterlogged or compacted ground without taking land out of production.</p>
               <span className="flood__system-link flood__system-link--soft">Coming next →</span>
@@ -305,7 +305,7 @@ const AntiFloodingPage = () => {
               transition={{ duration: 0.7, delay: 0.31 }}
             >
               <span className="flood__system-num">03</span>
-              <div className="flood__system-icon"><HerbsIcon /></div>
+              <div className="flood__system-icon flood__system-icon--emoji">🌿</div>
               <h3>Herbs, Tunnels & Nurseries</h3>
               <p>High-value herbs, flowers and aromatics in tunnels or raised beds — re-usable, weather-proof, permanent.</p>
               <span className="flood__system-link">Read more ↓</span>
@@ -329,7 +329,7 @@ const AntiFloodingPage = () => {
           >
             <span className="flood__detail-banner">For Orchards &amp; Tree Crops</span>
             <h2 className="flood__detail-heading">
-              One install. Decades of <em>flood-protection.</em>
+              One install.<br />Decades of <em>flood-protection.</em>
             </h2>
             <p className="flood__detail-deck">
               For orchards with crops that produce fruit for more than five years, M-Hive is a

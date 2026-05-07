@@ -7,10 +7,6 @@ const WhatToExpectSection = () => {
     return (
         <section className="wte-x" id="what-to-expect">
             <div className="wte-x__inner">
-                <header className="wte-x__header">
-                    <SectionLabel label="What to Expect" />
-                </header>
-
                 <motion.div
                     className="wte-x__intro"
                     initial={{ opacity: 0, y: 24 }}
