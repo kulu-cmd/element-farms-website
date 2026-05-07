@@ -5,7 +5,7 @@
 
 .page-hero {
     position: relative;
-    min-height: 55vh;
+    min-height: 65vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -145,22 +145,22 @@
 
 /* Subtitle */
 .page-hero__subtitle {
-    grid-column: 1 / 13;
+    grid-column: 1 / 8;
     grid-row: 3;
     margin: 2.25rem 0 0;
     padding-top: 1.5rem;
     border-top: 1px solid rgba(244, 239, 230, 0.18);
     font-family: var(--font-sans), system-ui, sans-serif;
     font-size: clamp(0.95rem, 1.05vw, 1.08rem);
-    line-height: 1.6;
-    color: rgba(244, 239, 230, 0.82);
-    max-width: none;
+    line-height: 1.7;
+    color: rgba(244, 239, 230, 0.75);
+    max-width: 64ch;
 }
 
 @media (max-width: 900px) {
-    .page-hero { padding-top: 140px; min-height: 45vh; }
+    .page-hero { padding-top: 140px; min-height: 52vh; }
     .page-hero__headline { grid-column: 1 / 13; }
-    .page-hero__subtitle { grid-column: 1 / 13; }
+    .page-hero__subtitle { grid-column: 1 / 13; max-width: 100%; }
 }
 
 @media (max-width: 600px) {

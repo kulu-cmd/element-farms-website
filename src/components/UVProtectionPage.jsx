@@ -3,6 +3,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'framer
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import CTABand from './CTABand'
 import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
 import './UVProtectionPage.css'
@@ -493,6 +494,16 @@ const UVProtectionPage = () => {
           </div>
         </motion.div>
       </section>
+
+      <CTABand
+        heading="Protect your crop this season."
+        subtext="Talk to us about a GeoShield application plan tailored to your orchard or field crop — before the UV damage starts."
+        primaryLabel="Get a protection plan"
+        primaryTo="/contact/agri-farms"
+        secondaryLabel="Our approach"
+        secondaryTo="/#about-us"
+        tone="ink"
+      />
 
       <Footer />
     </div>

@@ -5,6 +5,7 @@ import TailoredSolutionSection from './TailoredSolutionSection'
 import VideoSection from './VideoSection'
 import WhatToExpectSection from './WhatToExpectSection'
 import FAQSection from './FAQSection'
+import CTABand from './CTABand'
 import Footer from './Footer'
 import Header from './Header'
 import PageHero from './PageHero'
@@ -27,7 +28,7 @@ const LandRejuvenationPage = () => {
             {/* KZN map below problem */}
             <KZNMapSection />
 
-            {/* Soil doesn't recover overnight */}
+            {/* Soil doesn't recover overnight — timeline */}
             <WhatToExpectSection />
 
             {/* Tailored Solution: 2 features + nursery reveal */}
@@ -38,6 +39,17 @@ const LandRejuvenationPage = () => {
 
             {/* FAQs */}
             <FAQSection />
+
+            {/* CTA before footer */}
+            <CTABand
+                heading="Book a farm assessment."
+                subtext="We walk your fields, read your soil tests, and design a regenerative system built around your specific land — no generic prescriptions."
+                primaryLabel="Book an assessment"
+                primaryTo="/contact/agri-farms"
+                secondaryLabel="Learn about our process"
+                secondaryTo="/#about-us"
+                tone="moss"
+            />
 
             <Footer />
         </div>

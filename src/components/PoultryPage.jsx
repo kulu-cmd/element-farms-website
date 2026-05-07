@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import CTABand from './CTABand'
 import SectionLabel from './ui/SectionLabel'
 import EnquiryButton from './ui/EnquiryButton'
 import './PoultryPage.css'
@@ -83,6 +84,18 @@ const PoultryPage = () => {
           <EnquiryButton product="M-TerraDry" />
         </div>
       </section>
+
+
+      <CTABand
+        heading="Upgrade your poultry operation."
+        subtext="Get a tailored M-TerraDry application plan — designed for your shed size, stocking density, and manure cycle."
+        primaryLabel="Contact us"
+        primaryTo="/contact/poultry"
+        secondaryLabel="All solutions"
+        secondaryTo="/"
+        tone="clay"
+      />
+
 
       <Footer />
     </div>

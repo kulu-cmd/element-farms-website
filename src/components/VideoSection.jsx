@@ -3,40 +3,80 @@ import { motion } from 'framer-motion'
 import './VideoSection.css'
 
 const VideoSection = () => {
-    return (
-        <motion.section
-            className="video-section"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-            <div className="video-section__inner">
-                <h2 className="video-section__heading">Why Land Rejuvenation Matters</h2>
-                <p className="video-section__subtitle">
-                    Hear directly from our team about the importance of regenerative farming and what
-                    decades of chemical dependence have done to our soil.
-                </p>
+  return (
+    <section className="vid-x">
+      <div className="vid-x__inner">
 
-                <div className="video-section__placeholder">
-                    <svg
-                        width="56"
-                        height="56"
-                        viewBox="0 0 56 56"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <circle cx="28" cy="28" r="26" stroke="rgba(255,255,255,0.5)" strokeWidth="2"/>
-                        <polygon points="22,18 42,28 22,38" fill="rgba(255,255,255,0.6)"/>
-                    </svg>
-<span className="video-section__subtext">
-                        A short talk on the importance of land rejuvenation and what chemicals have done
-                        to our soil.
-                    </span>
-                </div>
-            </div>
-        </motion.section>
-    )
+        {/* LEFT — editorial copy */}
+        <motion.div
+          className="vid-x__copy"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="vid-x__eyebrow">— Why It Matters</span>
+
+          <h2 className="vid-x__heading">
+            The case for <em>soil&#8209;first</em><br /> farming.
+          </h2>
+
+          <p className="vid-x__body">
+            Hear directly from our team about the true cost of chemical
+            dependence — and what a regenerative transition looks like on
+            a working South African farm.
+          </p>
+
+          <div className="vid-x__rule" aria-hidden="true" />
+
+          <div className="vid-x__meta">
+            <span className="vid-x__meta-item">
+              <span className="vid-x__meta-label">Topic</span>
+              <span>Regenerative Farming in Practice</span>
+            </span>
+            <span className="vid-x__meta-item">
+              <span className="vid-x__meta-label">By</span>
+              <span>Element Farm Solutions</span>
+            </span>
+          </div>
+        </motion.div>
+
+        {/* RIGHT — video frame */}
+        <motion.div
+          className="vid-x__frame-wrap"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          <figure className="vid-x__frame">
+            {/* Bracket corners */}
+            <span className="vid-x__corner vid-x__corner--tl" aria-hidden="true" />
+            <span className="vid-x__corner vid-x__corner--tr" aria-hidden="true" />
+            <span className="vid-x__corner vid-x__corner--bl" aria-hidden="true" />
+            <span className="vid-x__corner vid-x__corner--br" aria-hidden="true" />
+
+            {/* Background texture */}
+            <div className="vid-x__frame-bg" aria-hidden="true" />
+
+            {/* Play button */}
+            <button className="vid-x__play" type="button" aria-label="Play video — regenerative farming talk">
+              <span className="vid-x__play-ring" aria-hidden="true" />
+              <svg className="vid-x__play-icon" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <polygon points="18,13 38,24 18,35" fill="currentColor" />
+              </svg>
+            </button>
+
+            <figcaption className="vid-x__frame-caption">
+              <span>Watch the talk</span>
+              <span className="vid-x__frame-arrow" aria-hidden="true">→</span>
+            </figcaption>
+          </figure>
+        </motion.div>
+
+      </div>
+    </section>
+  )
 }
 
 export default VideoSection
