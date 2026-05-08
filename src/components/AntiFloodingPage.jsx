@@ -421,41 +421,6 @@ const AntiFloodingPage = () => {
         </div>
       </section>
 
-      {/* ──────────────────────────────────────────────────────────────
-          6.  Closing CTA banner
-          ────────────────────────────────────────────────────────────── */}
-      <section className="flood__cta">
-        <motion.div
-          className="flood__cta-inner"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <h2 className="flood__cta-statement">
-            Ensure your soil is aerated, your roots well-sheltered, and your crops safe from
-            flood risk for their <em>entire lifespan.</em>
-          </h2>
-
-          <div className="flood__cta-actions">
-            <p className="flood__cta-prompt">
-              Keen to trial M-Hive on your farm or learn more? Get in touch — we'll start with a
-              site assessment and design a system around your crop.
-            </p>
-            <div className="flood__cta-buttons">
-              <a className="flood__cta-btn flood__cta-btn--primary" href="/contact/agri-farms">
-                Request a trial →
-              </a>
-              <a className="flood__cta-btn" href="mailto:kamil@elementfarmsolutions.co.za">
-                kamil@elementfarmsolutions.co.za
-              </a>
-              <a className="flood__cta-btn" href="https://wa.me/27613889339">
-                WhatsApp +27 61 388 9339
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
       <CTABand
         heading="Secure your soil against the next flood."

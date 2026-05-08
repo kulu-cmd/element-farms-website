@@ -9,12 +9,12 @@
   color: var(--ink);
 }
 
-.uv section {
+.uv section:not(.page-hero) {
   padding: clamp(5rem, 10vw, 8.5rem) 0;
   position: relative;
 }
 
-.uv section + section {
+.uv section + section:not(.page-hero) {
   border-top: 1px solid var(--ink-rule);
 }
 

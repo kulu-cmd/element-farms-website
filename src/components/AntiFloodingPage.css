@@ -9,13 +9,13 @@
   color: var(--ink);
 }
 
-/* Shared section rhythm */
-.flood section {
+/* Shared section rhythm — exclude the page hero so it keeps its own padding */
+.flood section:not(.page-hero) {
   padding: clamp(5rem, 10vw, 8.5rem) 0;
   position: relative;
 }
 
-.flood section + section {
+.flood section + section:not(.page-hero) {
   border-top: 1px solid var(--ink-rule);
 }
 

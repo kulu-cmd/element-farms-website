@@ -1,5 +1,43 @@
 import React from 'react'
+import EnquiryButton from './ui/EnquiryButton'
 import './MTerraBoostSection.css'
+
+const APPLICATIONS = [
+    {
+        n: '01',
+        title: 'Around the root zone',
+        body: 'Sprinkle a handful of granules at the drip line of each tree, vine, or row crop. Work lightly into the topsoil and water in.',
+    },
+    {
+        n: '02',
+        title: 'Broadcast & incorporate',
+        body: 'Pre-plant, spread evenly over the bed at 200–400 kg/ha and till into the top 15 cm so minerals sit where roots forage.',
+    },
+    {
+        n: '03',
+        title: 'Banded under rows',
+        body: 'Apply in a narrow band beneath orchard rows or vine lines, then cover with 5 cm of soil before planting or replanting.',
+    },
+]
+
+const BENEFITS = [
+    {
+        title: 'Strengthens cell walls',
+        body: 'Silica drives drought and disease resistance, lifts water-use efficiency.',
+    },
+    {
+        title: 'Builds root architecture',
+        body: 'Calcium reduces soil acidity and unlocks micronutrient uptake.',
+    },
+    {
+        title: 'Powers photosynthesis',
+        body: 'Magnesium and sulphur drive chlorophyll production and nitrogen efficiency.',
+    },
+    {
+        title: 'Lowers fertiliser load',
+        body: 'The minerals do the work NPK was masking — fewer inputs, stronger response.',
+    },
+]
 
 const MTerraBoostSection = () => {
     return (
@@ -7,40 +45,99 @@ const MTerraBoostSection = () => {
             <div className="mtb__inner">
 
                 <div className="mtb__product">
-                    <figure className="mtb__photo">
-                        <img
-                            src="/land_rejuv/M-Terraboost.png"
-                            alt="M-TerraBoost — slow-release mineral blend"
-                            loading="lazy"
-                        />
-                    </figure>
+
+                    <div className="mtb__media">
+                        <figure className="mtb__photo">
+                            <img
+                                src="/land_rejuv/M-Terraboost.png"
+                                alt="M-TerraBoost — slow-release mineral blend"
+                                loading="lazy"
+                            />
+                        </figure>
+
+                        <svg className="mtb__seal" viewBox="0 0 160 160" aria-hidden="true">
+                            <defs>
+                                <path
+                                    id="mtb-seal-path"
+                                    d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"
+                                />
+                            </defs>
+                            <circle cx="80" cy="80" r="74" className="mtb__seal-ring" />
+                            <circle cx="80" cy="80" r="60" className="mtb__seal-ring mtb__seal-ring--inner" />
+                            <text className="mtb__seal-text">
+                                <textPath href="#mtb-seal-path" startOffset="0">
+                                    100% NATURAL · MINERAL BLEND · NO SYNTHETICS ·
+                                </textPath>
+                            </text>
+                            <g className="mtb__seal-mark">
+                                <path d="M80 56 L92 80 L80 104 L68 80 Z" />
+                                <circle cx="80" cy="80" r="5" />
+                            </g>
+                        </svg>
+                    </div>
+
                     <div className="mtb__product-copy">
-                        <span className="mtb__product-tag">Mineral Blend · Pre-plant &amp; Banded</span>
+                        <div className="mtb__tags">
+                            <span className="mtb__product-tag">Mineral Blend · Pre-plant &amp; Banded</span>
+                            <span className="mtb__origin">
+                                <span className="mtb__origin-dot" aria-hidden="true" />
+                                Built for South African soils
+                            </span>
+                        </div>
+
                         <h3 className="mtb__product-name">M-TerraBoost</h3>
-                        <p>
-                            Apply pre-plant, band under orchards, or mix into nursery media — the
-                            application meets the operation. Slow-release granules release silica,
-                            calcium, magnesium and sulphur at the rate roots can absorb them, so
-                            none is leached and none is wasted.
+
+                        <p className="mtb__lede">
+                            A granular mineral blend formulated for the leached, acidic,
+                            mineral-poor soils that dominate South African farmland.
+                            Slow-release silica, calcium, magnesium and sulphur — in forms
+                            roots can actually absorb — to put back what decades of NPK has
+                            stripped out.
                         </p>
-                        <ul className="mtb__list">
-                            <li>
-                                <strong>Strengthens cell walls.</strong> Silica drives drought and
-                                disease resistance, lifts water-use efficiency.
-                            </li>
-                            <li>
-                                <strong>Builds root architecture.</strong> Calcium reduces soil
-                                acidity and unlocks micronutrient uptake.
-                            </li>
-                            <li>
-                                <strong>Powers photosynthesis.</strong> Magnesium and sulphur drive
-                                chlorophyll production and nitrogen efficiency.
-                            </li>
-                            <li>
-                                <strong>Lowers fertiliser load.</strong> The minerals do the work
-                                NPK was masking — fewer inputs, stronger response.
-                            </li>
-                        </ul>
+
+                        <div className="mtb__deficiency">
+                            <span className="mtb__deficiency-eyebrow">Targets SA's most common deficiencies</span>
+                            <p className="mtb__deficiency-body">
+                                Calcium, magnesium and sulphur are three of the most widely
+                                depleted minerals across South Africa's acidic, leached
+                                soils. M-TerraBoost replaces all three — and adds plant-available
+                                silica for crop resilience.
+                            </p>
+                            <ul className="mtb__minerals" aria-label="Minerals included">
+                                <li><span>Ca</span>Calcium</li>
+                                <li><span>Mg</span>Magnesium</li>
+                                <li><span>S</span>Sulphur</li>
+                                <li><span>Si</span>Silica</li>
+                            </ul>
+                        </div>
+
+                        <div className="mtb__how">
+                            <span className="mtb__section-eyebrow">How to apply</span>
+                            <ol className="mtb__steps">
+                                {APPLICATIONS.map((a) => (
+                                    <li key={a.n} className="mtb__step">
+                                        <span className="mtb__step-num">{a.n}</span>
+                                        <div className="mtb__step-body">
+                                            <h4 className="mtb__step-title">{a.title}</h4>
+                                            <p>{a.body}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ol>
+                        </div>
+
+                        <div className="mtb__benefits">
+                            <span className="mtb__section-eyebrow">What it does in the soil</span>
+                            <ul className="mtb__list">
+                                {BENEFITS.map((b) => (
+                                    <li key={b.title}>
+                                        <strong>{b.title}.</strong> {b.body}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <EnquiryButton product="M-TerraBoost" tone="moss" />
                     </div>
                 </div>
 
