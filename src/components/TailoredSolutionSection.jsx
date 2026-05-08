@@ -1,8 +1,27 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CircleDots } from './BrandMotifs'
 import './TailoredSolutionSection.css'
+
+const NURSERY_BULLETS = [
+    {
+        title: 'Biology activates instantly.',
+        body: 'Microbes colonise the root zone the day a seedling is potted.',
+    },
+    {
+        title: 'Minerals build the structure.',
+        body: 'Silica and calcium drive cell division and root-wall integrity from day one.',
+    },
+    {
+        title: 'Roots go deeper, faster.',
+        body: 'Plants leave the nursery with the root system of a much older seedling — transplant shock drops, survival rates rise.',
+    },
+    {
+        title: 'Works across all crop types.',
+        body: 'Vegetables, orchards, lucerne, ornamentals — the same stimulus medium accelerates every nursery stage.',
+    },
+]
 
 const items = [
     {
@@ -12,7 +31,6 @@ const items = [
             title: 'On-farm composting that closes the loop.',
             body: 'Closed-loop compost that rebuilds microbial life — produced on-farm from your own waste.',
             href: '/contact/agri-farms',
-            isExternal: false,
         },
     },
     {
@@ -22,7 +40,6 @@ const items = [
             title: 'A mineral blend built for our soils.',
             body: 'A slow-release blend restoring the four minerals South African soils are missing.',
             href: '#mterra-detail',
-            isExternal: false,
             isAnchor: true,
         },
     },
@@ -32,30 +49,128 @@ const items = [
             tag: 'Combined System',
             title: 'A nursery-stage stimulus medium.',
             body: 'Compost biology + M-TerraBoost minerals — deeper roots, less transplant shock.',
-            href: '/contact/agri-farms',
-            isExternal: false,
+            isModal: true,
         },
     },
 ]
 
-const FindOutMore = ({ href, isAnchor }) => {
+const FindOutMore = ({ href, isAnchor, isModal, onOpen }) => {
+    const arrow = <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
+    if (isModal) {
+        return (
+            <button type="button" className="solutions-x__more" onClick={onOpen}>
+                <span>Find out more</span>
+                {arrow}
+            </button>
+        )
+    }
     if (isAnchor) {
         return (
             <a href={href} className="solutions-x__more">
                 <span>Find out more</span>
-                <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
+                {arrow}
             </a>
         )
     }
     return (
         <Link to={href} className="solutions-x__more">
             <span>Find out more</span>
-            <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
+            {arrow}
         </Link>
     )
 }
 
+const NurseryModal = ({ open, onClose }) => {
+    useEffect(() => {
+        if (!open) return
+        const onKey = (e) => {
+            if (e.key === 'Escape') onClose()
+        }
+        document.body.style.overflow = 'hidden'
+        window.addEventListener('keydown', onKey)
+        return () => {
+            document.body.style.overflow = ''
+            window.removeEventListener('keydown', onKey)
+        }
+    }, [open, onClose])
+
+    return (
+        <AnimatePresence>
+            {open && (
+                <motion.div
+                    className="nursery-modal"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={onClose}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="nursery-modal-title"
+                >
+                    <motion.div
+                        className="nursery-modal__panel"
+                        initial={{ opacity: 0, y: 30, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 30, scale: 0.97 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            type="button"
+                            className="nursery-modal__close"
+                            onClick={onClose}
+                            aria-label="Close"
+                        >
+                            <span>Close</span>
+                            <span aria-hidden="true">×</span>
+                        </button>
+
+                        <div className="nursery-modal__grid">
+                            <div className="nursery-modal__copy">
+                                <header className="nursery-modal__head">
+                                    <span className="nursery-modal__num">03</span>
+                                    <span className="nursery-modal__rule" aria-hidden="true" />
+                                    <span className="nursery-modal__tag">Combined System</span>
+                                </header>
+
+                                <h2 id="nursery-modal-title" className="nursery-modal__title">
+                                    Supercharge your <em>nurseries.</em>
+                                </h2>
+
+                                <p className="nursery-modal__lede">
+                                    The first 30 days of root development determine the entire
+                                    season. We combine composting systems and M-TerraBoost into a
+                                    nursery-stage stimulus medium that gives seedlings the strongest
+                                    possible start.
+                                </p>
+
+                                <ul className="nursery-modal__list">
+                                    {NURSERY_BULLETS.map((b) => (
+                                        <li key={b.title}>
+                                            <strong>{b.title}</strong> {b.body}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <figure className="nursery-modal__figure">
+                                <img
+                                    src="/land_rejuv/nurseries.png"
+                                    alt="Nursery seedlings — root development"
+                                    loading="lazy"
+                                />
+                            </figure>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    )
+}
+
 const TailoredSolutionSection = () => {
+    const [modalOpen, setModalOpen] = useState(false)
     const slideIn = {
         hidden: { opacity: 0, y: 32 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
@@ -118,7 +233,12 @@ const TailoredSolutionSection = () => {
                                     <h3 className="solutions-x__col-title">{item.solution.title}</h3>
                                     <p className="solutions-x__col-body">{item.solution.body}</p>
                                     <div className="solutions-x__col-cta">
-                                        <FindOutMore href={item.solution.href} isAnchor={item.solution.isAnchor} />
+                                        <FindOutMore
+                                            href={item.solution.href}
+                                            isAnchor={item.solution.isAnchor}
+                                            isModal={item.solution.isModal}
+                                            onOpen={() => setModalOpen(true)}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +247,8 @@ const TailoredSolutionSection = () => {
                 </motion.ol>
 
             </div>
+
+            <NurseryModal open={modalOpen} onClose={() => setModalOpen(false)} />
         </section>
     )
 }
