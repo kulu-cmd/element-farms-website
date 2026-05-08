@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import SectionEyebrow from './SectionEyebrow'
 import './ContactPage.css'
 
 const PAGE_CONFIG = {
@@ -222,7 +223,7 @@ const ContactPage = ({ type }) => {
                         transition={{ duration: 0.7, delay: 0.15, ease: SPRING }}
                     >
                         <div className="contact-page__info-card">
-                            <span className="contact-page__info-eyebrow">Direct Contact</span>
+                            <SectionEyebrow label="Direct Contact" tone="clay" size={20} className="contact-page__info-eyebrow" />
                             <h3 className="contact-page__info-name">Kamil</h3>
                             <p className="contact-page__info-role">Element Farm Solutions</p>
                             <div className="contact-page__info-items">

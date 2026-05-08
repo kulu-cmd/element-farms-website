@@ -310,13 +310,6 @@
 }
 
 .contact-page__info-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--orange-main);
     margin-bottom: 0.75rem;
 }
 

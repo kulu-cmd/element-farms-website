@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
+import SectionEyebrow from './SectionEyebrow'
 import './ResultsMetrics.css'
 
 /* Animated count-up number */
@@ -75,7 +76,7 @@ const ResultsMetrics = () => {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="rm-x__eyebrow">— Outcomes</span>
+          <SectionEyebrow label="Outcomes" tone="clay" />
           <h2 className="rm-x__heading">Numbers that hold.</h2>
         </motion.header>
 

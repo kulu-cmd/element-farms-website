@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import SectionEyebrow from './SectionEyebrow'
 import './OrganicFarmingPage.css'
 
 const SPRING = [0.22, 1, 0.36, 1]
@@ -92,15 +93,15 @@ const OrganicFarmingPage = () => {
             {/* Stats / Why */}
             <section className="organic__stats">
                 <div className="organic__stats-intro">
-                    <motion.span
+                    <motion.div
                         className="organic__stats-eyebrow"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
                     >
-                        Why Go Organic?
-                    </motion.span>
+                        <SectionEyebrow label="Why Go Organic?" tone="light" />
+                    </motion.div>
                     <motion.h2
                         className="organic__stats-headline"
                         initial={{ opacity: 0, y: 20 }}
@@ -181,7 +182,7 @@ const OrganicFarmingPage = () => {
                         viewport={{ once: true, amount: 0.25 }}
                         transition={{ duration: 0.7, ease: SPRING }}
                     >
-                        <span className="organic__who-eyebrow">Designed For</span>
+                        <SectionEyebrow label="Designed For" tone="clay" className="organic__who-eyebrow" />
                         <h2 className="organic__who-heading">Built for small to<br />medium farms.</h2>
                         <p className="organic__who-body">
                             We don't work with large corporate operations. Our systems are built for the farmer
@@ -250,7 +251,7 @@ const OrganicFarmingPage = () => {
                     viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.7, ease: SPRING }}
                 >
-                    <span className="organic__dyk-eyebrow">Did you know...</span>
+                    <SectionEyebrow label="Did you know..." tone="clay" className="organic__dyk-eyebrow" />
                     <p className="organic__dyk-text">
                         Healthy soil with just <strong>1% more organic matter</strong> can hold an additional
                         170,000 litres of water per hectare — reducing irrigation costs and making your farm
@@ -345,7 +346,7 @@ const OrganicFarmingPage = () => {
                             transition={{ duration: 0.7, delay: 0.15, ease: SPRING }}
                         >
                             <div className="organic__contact-card">
-                                <span className="organic__contact-eyebrow">Speak Directly</span>
+                                <SectionEyebrow label="Speak Directly" tone="clay" size={20} className="organic__contact-eyebrow" />
                                 <h3 className="organic__contact-name">Kamil</h3>
                                 <p className="organic__contact-role">Element Farm Solutions</p>
                                 <div className="organic__contact-items">

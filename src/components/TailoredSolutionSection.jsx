@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CircleDots } from './BrandMotifs'
+import NurseryDetailModal from './NurseryDetailModal'
 import './TailoredSolutionSection.css'
 
 const items = [
@@ -32,13 +33,26 @@ const items = [
             tag: 'Combined System',
             title: 'A nursery-stage stimulus medium.',
             body: 'Compost biology + M-TerraBoost minerals — deeper roots, less transplant shock.',
-            href: '/contact/agri-farms',
+            href: '#nursery-detail',
             isExternal: false,
+            isModal: true,
         },
     },
 ]
 
-const FindOutMore = ({ href, isAnchor }) => {
+const FindOutMore = ({ href, isAnchor, isModal, onModalOpen }) => {
+    if (isModal) {
+        return (
+            <button
+                type="button"
+                className="solutions-x__more"
+                onClick={onModalOpen}
+            >
+                <span>Find out more</span>
+                <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
+            </button>
+        )
+    }
     if (isAnchor) {
         return (
             <a href={href} className="solutions-x__more">
@@ -56,6 +70,8 @@ const FindOutMore = ({ href, isAnchor }) => {
 }
 
 const TailoredSolutionSection = () => {
+    const [nurseryOpen, setNurseryOpen] = useState(false)
+
     const slideIn = {
         hidden: { opacity: 0, y: 32 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
@@ -118,7 +134,12 @@ const TailoredSolutionSection = () => {
                                     <h3 className="solutions-x__col-title">{item.solution.title}</h3>
                                     <p className="solutions-x__col-body">{item.solution.body}</p>
                                     <div className="solutions-x__col-cta">
-                                        <FindOutMore href={item.solution.href} isAnchor={item.solution.isAnchor} />
+                                        <FindOutMore
+                                            href={item.solution.href}
+                                            isAnchor={item.solution.isAnchor}
+                                            isModal={item.solution.isModal}
+                                            onModalOpen={() => setNurseryOpen(true)}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -127,6 +148,8 @@ const TailoredSolutionSection = () => {
                 </motion.ol>
 
             </div>
+
+            <NurseryDetailModal open={nurseryOpen} onClose={() => setNurseryOpen(false)} />
         </section>
     )
 }

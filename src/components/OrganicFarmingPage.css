@@ -120,13 +120,6 @@
 }
 
 .organic__stats-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 0.75rem;
 }
 
@@ -287,13 +280,6 @@
 }
 
 .organic__who-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green-dark);
     margin-bottom: 0.8rem;
 }
 
@@ -455,13 +441,6 @@
 }
 
 .organic__dyk-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--green-dark);
     margin-bottom: 0.75rem;
 }
 
@@ -698,13 +677,6 @@
 }
 
 .organic__contact-eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--green-dark);
     margin-bottom: 0.7rem;
 }
 

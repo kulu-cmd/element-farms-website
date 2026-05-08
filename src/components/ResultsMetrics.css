@@ -44,20 +44,14 @@
 .rm-x__header {
   margin-bottom: clamp(3rem, 6vw, 5rem);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: clamp(1.5rem, 3vw, 3rem);
   border-bottom: 1px solid rgba(244, 239, 230, 0.15);
   padding-bottom: clamp(1.5rem, 2.5vw, 2rem);
+  flex-wrap: wrap;
 }
 
-.rm-x__eyebrow {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ochre);
-  white-space: nowrap;
+.rm-x__header .se {
   flex-shrink: 0;
 }
 
