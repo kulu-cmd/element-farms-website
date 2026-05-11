@@ -287,6 +287,7 @@ const AntiFloodingPage = () => {
             <h2 className="flood__systems-heading">
               Built for two <em>kinds of land.</em>
             </h2>
+
             <p className="flood__systems-deck">
               Two M-Hive systems, each engineered for a different rhythm of crop — one
               permanent, one re-usable. Pick the path that fits your operation.
@@ -372,50 +373,60 @@ const AntiFloodingPage = () => {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="flood__detail-banner">For Orchards &amp; Tree Crops</span>
-            <h2 className="flood__detail-heading">
-              One install.<br />Decades of <em>flood-protection.</em>
+            <span className="flood__detail-banner flood__detail-banner--header">For Orchards &amp; Tree Crops</span>
+            <h2 className="flood__detail-heading flood__detail-heading--inline">
+              One install. Decades of <em>flood-protection.</em>
             </h2>
             <p className="flood__detail-deck">
-              For orchards with crops that produce fruit for more than five years, M-Hive is a
-              one-time treatment that protects your crop from flood and compaction risk for
-              its entire commercial lifespan. Installed beneath the canopy at the root zone,
-              the M-Hive Root Snorkel delivers air, water and biology directly where your
-              roots are working.
+              For crops bearing fruit for more than five years, M-Hive is a one-time
+              install that protects against flood and compaction for the orchard's full
+              commercial lifespan — air, water and biology delivered straight to the root zone.
             </p>
           </motion.div>
 
-          <div className="flood__detail-photos flood__detail-photos--three">
-            <figure className="flood__detail-photo">
-              <img src="/hive/root snorkel.jpg" alt="M-Hive Root Snorkel installed at orchard tree base" />
-              <figcaption>Root Snorkel installed under the canopy.</figcaption>
-            </figure>
-            <figure className="flood__detail-photo">
-              <img src="/hive/snorkel_Dragonfruit.png" alt="Snorkel installed at dragon fruit base" />
-              <figcaption>Dragon fruit — flood-prone crop, permanent fix.</figcaption>
-            </figure>
-            <figure className="flood__detail-photo">
-              <img src="/hive/root_snorkel_baby.png" alt="Young tree planted into M-Hive Root Snorkel" />
-              <figcaption>Young trees planted directly into the snorkel.</figcaption>
-            </figure>
-          </div>
-
           <div className="flood__detail-bullets">
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">01</span>
               <h4>Permanent root home</h4>
               <p>Once installed, M-Hive stays in the soil for the life of the tree.</p>
             </div>
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">02</span>
               <h4>Zero compaction risk</h4>
               <p>The structure resists collapse — air space stays open, year after year.</p>
             </div>
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">03</span>
               <h4>Fertiliser stays put</h4>
               <p>Nutrients lock into the M-Hive cavities instead of leaching past the root zone.</p>
             </div>
+          </div>
+
+          <div className="flood__detail-photos flood__detail-photos--three">
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/root snorkel.jpg" alt="M-Hive Root Snorkel installed at orchard tree base" />
+              <figcaption>Root Snorkel installed under the canopy.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/snorkel_Dragonfruit.png" alt="Snorkel installed at dragon fruit base" />
+              <figcaption>Dragon fruit — flood-prone crop, permanent fix.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/root_snorkel_baby.png" alt="Young tree planted into M-Hive Root Snorkel" />
+              <figcaption>Young trees planted directly into the snorkel.</figcaption>
+            </figure>
           </div>
 
           <EnquiryButton product="M-Hive for Orchards" />
@@ -434,7 +445,7 @@ const AntiFloodingPage = () => {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="flood__detail-banner">For Herbs, Tunnels &amp; Nurseries</span>
+            <span className="flood__detail-banner flood__detail-banner--header">For Herbs, Tunnels &amp; Nurseries</span>
             <h2 className="flood__detail-heading">
               Re-usable. Weatherproof. <em>Permanent.</em>
             </h2>
@@ -447,28 +458,49 @@ const AntiFloodingPage = () => {
             </p>
           </motion.div>
 
-          <div className="flood__detail-photos flood__detail-photos--three">
-            <PhotoPlaceholder label="Tunnel raised bed with M-Hive in production" aspect="4 / 5" />
-            <PhotoPlaceholder label="Herbs in green planter — M-Hive locked into soil medium" aspect="4 / 5" />
-            <PhotoPlaceholder label="M-Hive being filtered for re-use into next batch" aspect="4 / 5" />
-          </div>
-
           <div className="flood__detail-bullets">
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">01</span>
               <h4>Built to last</h4>
               <p>UV-stable, weatherproof — won't break down in the tunnel environment.</p>
             </div>
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">02</span>
               <h4>100% re-usable</h4>
               <p>Filter, rinse, drop into the next planting cycle. Indefinite working life.</p>
             </div>
             <div>
-              <span className="flood__detail-bullet-num">→</span>
+              <span className="flood__detail-bullet-num">03</span>
               <h4>High-value crops, low-risk medium</h4>
               <p>Stable aeration and water-holding for the crops where every plant counts.</p>
             </div>
+          </div>
+
+          <div className="flood__detail-photos flood__detail-photos--three">
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/herbs.jpg" alt="Herbs grown with M-Hive medium" />
+              <figcaption>Herbs — high-value crops, low-risk medium.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/proteas.jpg" alt="Proteas grown in M-Hive medium" />
+              <figcaption>Proteas — stable aeration, all-weather rooting.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/canna.jpg" alt="Canna grown in M-Hive medium" />
+              <figcaption>Canna — long-season production, permanent medium.</figcaption>
+            </figure>
           </div>
 
         </div>

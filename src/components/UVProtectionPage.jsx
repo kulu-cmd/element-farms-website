@@ -122,8 +122,12 @@ const Placeholder = ({ tone = 'clay', label, aspect = '4 / 3', className = '' })
 )
 
 const UVProtectionPage = () => {
-  const factsRef = useRef(null)
-  const factsInView = useInView(factsRef, { once: true, amount: 0.15 })
+  const shadeRef = useRef(null)
+  const shadeInView = useInView(shadeRef, { once: true, amount: 0.3 })
+  const defendRef = useRef(null)
+  const defendInView = useInView(defendRef, { once: true, amount: 0.3 })
+  const pillarsRef = useRef(null)
+  const pillarsInView = useInView(pillarsRef, { once: true, amount: 0.3 })
 
   return (
     <div className="uv">
@@ -136,70 +140,9 @@ const UVProtectionPage = () => {
       />
 
       {/* ──────────────────────────────────────────────────────────────
-          1.  Editorial facts — same row layout as ProblemSection
+          1.  Two-pillar overview — sunburn vs pest
           ────────────────────────────────────────────────────────────── */}
-      <section className="uv__facts" ref={factsRef}>
-        <div className="uv__facts-inner">
-          <div className="uv__facts-header">
-            <SectionLabel label="The Problem" />
-            <motion.h2
-              className="uv__facts-statement"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            >
-              The sun and the swarm — <em>two silent</em> tax-collectors on every harvest.
-            </motion.h2>
-          </div>
-
-          <ol className="uv__facts-index">
-            {facts.map((stat, i) => {
-              const decimals = String(stat.display).includes('.') ? 1 : 0
-              return (
-                <motion.li
-                  key={`${stat.display}-${i}`}
-                  className="uv__facts-row"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.75, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="uv__facts-row-n">0{i + 1}</span>
-
-                  <div className="uv__facts-row-figures">
-                    <span className="uv__facts-row-value">
-                      {stat.prefix && (
-                        <span className="uv__facts-row-prefix">{stat.prefix}</span>
-                      )}
-                      <CountUp
-                        to={stat.value}
-                        decimals={decimals}
-                        delay={0.3 + i * 0.08}
-                        isInView={factsInView}
-                      />
-                      {stat.suffix && (
-                        <span className="uv__facts-row-suffix">{stat.suffix}</span>
-                      )}
-                    </span>
-                    <span className="uv__facts-row-unit">{stat.unit}</span>
-                  </div>
-
-                  <div className="uv__facts-row-text">
-                    <p className="uv__facts-row-label">{stat.label}</p>
-                    <span className="uv__facts-row-source">— {stat.source}</span>
-                  </div>
-                </motion.li>
-              )
-            })}
-          </ol>
-        </div>
-      </section>
-
-      {/* ──────────────────────────────────────────────────────────────
-          2.  Two-pillar overview — sunburn vs pest
-          ────────────────────────────────────────────────────────────── */}
-      <section className="uv__pillars">
+      <section className="uv__pillars" ref={pillarsRef}>
         <div className="uv__pillars-inner">
           <div className="uv__pillars-grid">
             <motion.a
@@ -210,15 +153,33 @@ const UVProtectionPage = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.05 }}
             >
-              <span className="uv__pillar-num">01</span>
-              <span className="uv__pillar-tag">For Sunburn</span>
-              <h3 className="uv__pillar-name">M-GeoShade</h3>
-              <p className="uv__pillar-desc">
-                A reflective mineral sunscreen — drops fruit-surface temperature,
-                prevents UV scarring, and protects exportable grade. ~50% sunburn
-                reduction in trial.
-              </p>
-              <span className="uv__pillar-link">Read more ↓</span>
+              <figure className="uv__pillar-photo">
+                <img src="/geoshield/M-Geoshade.png" alt="M-GeoShade product bag" loading="lazy" />
+              </figure>
+
+              <div className="uv__pillar-copy">
+                <header className="uv__pillar-head">
+                  <span className="uv__pillar-num">01</span>
+                  <span className="uv__pillar-rule" aria-hidden="true" />
+                  <span className="uv__pillar-tag">For Sunburn</span>
+                </header>
+
+                <h3 className="uv__pillar-name">M-GeoShade</h3>
+
+                <p className="uv__pillar-desc">
+                  A reflective mineral sunscreen — drops fruit-surface temperature,
+                  prevents UV scarring, and protects exportable grade.{' '}
+                  <strong>
+                    ~<CountUp to={50} isInView={pillarsInView} duration={1.6} delay={0.25} />%
+                  </strong>{' '}
+                  sunburn reduction in trial.
+                </p>
+
+                <span className="uv__pillar-link">
+                  Read more
+                  <span className="uv__pillar-link-arrow" aria-hidden="true">↓</span>
+                </span>
+              </div>
             </motion.a>
 
             <motion.a
@@ -229,14 +190,33 @@ const UVProtectionPage = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.18 }}
             >
-              <span className="uv__pillar-num">02</span>
-              <span className="uv__pillar-tag">For Pest Protection</span>
-              <h3 className="uv__pillar-name">M-Defend</h3>
-              <p className="uv__pillar-desc">
-                A physical pest dehydrator — pests landing on the coating lose moisture
-                rapidly. Works on 140+ species. No immunity, no withdrawal period.
-              </p>
-              <span className="uv__pillar-link">Read more ↓</span>
+              <figure className="uv__pillar-photo">
+                <img src="/geoshield/M-Defend.png" alt="M-Defend product bag" loading="lazy" />
+              </figure>
+
+              <div className="uv__pillar-copy">
+                <header className="uv__pillar-head">
+                  <span className="uv__pillar-num">02</span>
+                  <span className="uv__pillar-rule" aria-hidden="true" />
+                  <span className="uv__pillar-tag">For Pest Protection</span>
+                </header>
+
+                <h3 className="uv__pillar-name">M-Defend</h3>
+
+                <p className="uv__pillar-desc">
+                  A physical pest dehydrator — pests landing on the coating lose moisture
+                  rapidly. Works on{' '}
+                  <strong>
+                    <CountUp to={140} isInView={pillarsInView} duration={1.8} delay={0.3} />+ species
+                  </strong>
+                  . No immunity, no withdrawal period.
+                </p>
+
+                <span className="uv__pillar-link">
+                  Read more
+                  <span className="uv__pillar-link-arrow" aria-hidden="true">↓</span>
+                </span>
+              </div>
             </motion.a>
           </div>
         </div>
@@ -245,7 +225,7 @@ const UVProtectionPage = () => {
       {/* ──────────────────────────────────────────────────────────────
           3.  M-GeoShade detail (Sunburn)
           ────────────────────────────────────────────────────────────── */}
-      <section className="uv__detail uv__detail--shade" id="shade">
+      <section className="uv__detail uv__detail--shade" id="shade" ref={shadeRef}>
         <div className="uv__detail-inner">
           <motion.div
             className="uv__detail-header"
@@ -256,7 +236,7 @@ const UVProtectionPage = () => {
           >
             <span className="uv__detail-banner uv__detail-banner--clay">For Sunburn</span>
             <h2 className="uv__detail-heading">
-              <em>~50%</em> less sunburn — research-grade <em>protection</em> in a foliar spray.
+              <em>~<CountUp to={50} isInView={shadeInView} duration={1.6} delay={0.2} />%</em> less sunburn — research-grade <em>protection</em> in a foliar spray.
             </h2>
             <p className="uv__detail-deck">
               Citrus and pome-fruit trials report a ~50% reduction in sunburn incidence
@@ -345,7 +325,7 @@ const UVProtectionPage = () => {
       {/* ──────────────────────────────────────────────────────────────
           4.  M-Defend detail (Pest)
           ────────────────────────────────────────────────────────────── */}
-      <section className="uv__detail uv__detail--defend" id="defend">
+      <section className="uv__detail uv__detail--defend" id="defend" ref={defendRef}>
         <div className="uv__detail-inner">
           <motion.div
             className="uv__detail-header"
@@ -356,7 +336,7 @@ const UVProtectionPage = () => {
           >
             <span className="uv__detail-banner uv__detail-banner--moss">For Pest Protection</span>
             <h2 className="uv__detail-heading">
-              Effective pest control on <em>140+ species.</em>
+              Effective pest control on <em><CountUp to={140} isInView={defendInView} duration={1.8} delay={0.2} />+ species.</em>
             </h2>
             <p className="uv__detail-deck">
               No chemical additives. Inert, harmless to humans and pollinators. Pests

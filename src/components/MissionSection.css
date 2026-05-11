@@ -82,8 +82,8 @@
 .mission-x__goal {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(110px, auto) 1fr;
-    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+    grid-template-columns: minmax(48px, auto) 1fr;
+    gap: clamp(0.85rem, 1.6vw, 1.4rem);
     align-items: center;
     padding: clamp(1.75rem, 3vw, 2.75rem) 0;
     border-bottom: 1px solid var(--ink-rule);
@@ -105,17 +105,19 @@
     width: 100%;
 }
 
-/* Display number — alternating brand colours for rhythm */
+/* Compact accent number — keeps focus on the title */
 .mission-x__goal-num {
     font-family: var(--font-display);
     font-weight: 300;
-    font-size: clamp(3.2rem, 6vw, 5.4rem);
-    line-height: 0.9;
-    letter-spacing: -0.04em;
-    font-variation-settings: "opsz" 144;
+    font-style: italic;
+    font-size: clamp(1.3rem, 1.6vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--clay);
+    font-variation-settings: "opsz" 14;
+    align-self: start;
+    padding-top: 0.35rem;
 }
-
-.mission-x__goal-num { color: var(--clay); }
 
 /* Goal body — emoji + title + gloss, all centered */
 .mission-x__goal-body {
@@ -140,20 +142,29 @@
 }
 
 .mission-x__goal-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.25rem, 1.8vw, 1.7rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-family: 'Montserrat', var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     color: #0e5a36;
+    white-space: nowrap;
 }
 
 .mission-x__goal-gloss {
     font-family: var(--font-sans);
-    font-size: 0.9rem;
-    line-height: 1.55;
+    font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+    line-height: 1.4;
     color: var(--ink-soft);
-    max-width: 36ch;
+    max-width: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 540px) {
+    .mission-x__goal-title,
+    .mission-x__goal-gloss {
+        white-space: normal;
+    }
 }
 
 /* ── RESPONSIVE ── */

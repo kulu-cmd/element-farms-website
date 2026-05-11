@@ -8,9 +8,9 @@ const REGEN_DETAIL = {
     num: '01',
     tag: 'Regenerative Systems',
     title: <>Closed-loop composting <em>on your farm.</em></>,
-    lede: "We help curated farms set up their own organic-fertiliser production area — turning farm waste and organic material into a variety of potent biological inoculants. The nutrient loop closes. The fertiliser bill drops. Soil rebuilds itself.",
-    image: '/land_rejuv/organic matter website card.png',
-    imageAlt: 'On-farm vermicompost — living biology produced from farm waste',
+    lede: "If you currently use chemical fertilizers, manure or regular compost — this is for you. Level up your fertilizer game!",
+    image: '/land_rejuv/solution1.jpg',
+    imageAlt: 'On-farm composting and vermiculture system in action',
     bullets: [
         {
             title: 'Living biology from your own waste.',
@@ -161,7 +161,7 @@ const SolutionModal = ({ detail, onClose }) => {
                             <span aria-hidden="true">×</span>
                         </button>
 
-                        <div className="nursery-modal__grid">
+                        <div className={`nursery-modal__grid ${detail.image ? '' : 'nursery-modal__grid--single'}`}>
                             <div className="nursery-modal__copy">
                                 <header className="nursery-modal__head">
                                     <span className="nursery-modal__num">{detail.num}</span>
@@ -184,13 +184,15 @@ const SolutionModal = ({ detail, onClose }) => {
                                 </ul>
                             </div>
 
-                            <figure className="nursery-modal__figure photo-frame">
-                                <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
-                                <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
-                                <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
-                                <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
-                                <img src={detail.image} alt={detail.imageAlt} loading="lazy" />
-                            </figure>
+                            {detail.image && (
+                                <figure className="nursery-modal__figure photo-frame">
+                                    <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                                    <img src={detail.image} alt={detail.imageAlt} loading="lazy" />
+                                </figure>
+                            )}
                         </div>
                     </motion.div>
                 </motion.div>

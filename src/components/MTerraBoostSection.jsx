@@ -59,40 +59,13 @@ const MTerraBoostSection = () => {
                             />
                         </figure>
 
-                        <svg className="mtb__seal" viewBox="0 0 160 160" aria-hidden="true">
-                            <defs>
-                                <path
-                                    id="mtb-seal-path"
-                                    d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"
-                                />
-                                <filter id="mtb-seal-grunge" x="-10%" y="-10%" width="120%" height="120%">
-                                    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise" />
-                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" />
-                                    <feComposite in2="noise" operator="in" />
-                                </filter>
-                                <filter id="mtb-seal-bleed" x="-5%" y="-5%" width="110%" height="110%">
-                                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.35" />
-                                </filter>
-                            </defs>
-
-                            {/* Outer scalloped ring — gives the stamp its postmark feel */}
-                            <g filter="url(#mtb-seal-grunge)">
-                                <circle cx="80" cy="80" r="74" className="mtb__seal-ring mtb__seal-ring--outer" />
-                                <circle cx="80" cy="80" r="68" className="mtb__seal-ring mtb__seal-ring--mid" />
-                                <circle cx="80" cy="80" r="54" className="mtb__seal-ring mtb__seal-ring--inner" />
-
-                                <text className="mtb__seal-text" filter="url(#mtb-seal-bleed)">
-                                    <textPath href="#mtb-seal-path" startOffset="0">
-                                        100% NATURAL · MINERAL BLEND · NO SYNTHETICS ·
-                                    </textPath>
-                                </text>
-
-                                <g className="mtb__seal-mark">
-                                    <path d="M80 56 L92 80 L80 104 L68 80 Z" />
-                                    <circle cx="80" cy="80" r="5" />
-                                </g>
-                            </g>
-                        </svg>
+                        <img
+                            className="mtb__seal"
+                            src="/land_rejuv/stamp.png"
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                        />
                     </div>
 
                     <div className="mtb__product-copy">
