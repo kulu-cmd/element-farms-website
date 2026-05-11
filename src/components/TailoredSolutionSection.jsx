@@ -4,24 +4,59 @@ import { Link } from 'react-router-dom'
 import { CircleDots } from './BrandMotifs'
 import './TailoredSolutionSection.css'
 
-const NURSERY_BULLETS = [
-    {
-        title: 'Biology activates instantly.',
-        body: 'Microbes colonise the root zone the day a seedling is potted.',
-    },
-    {
-        title: 'Minerals build the structure.',
-        body: 'Silica and calcium drive cell division and root-wall integrity from day one.',
-    },
-    {
-        title: 'Roots go deeper, faster.',
-        body: 'Plants leave the nursery with the root system of a much older seedling — transplant shock drops, survival rates rise.',
-    },
-    {
-        title: 'Works across all crop types.',
-        body: 'Vegetables, orchards, lucerne, ornamentals — the same stimulus medium accelerates every nursery stage.',
-    },
-]
+const REGEN_DETAIL = {
+    num: '01',
+    tag: 'Regenerative Systems',
+    title: <>Closed-loop composting <em>on your farm.</em></>,
+    lede: "We help curated farms set up their own organic-fertiliser production area — turning farm waste and organic material into a variety of potent biological inoculants. The nutrient loop closes. The fertiliser bill drops. Soil rebuilds itself.",
+    image: '/land_rejuv/organic matter website card.png',
+    imageAlt: 'On-farm vermicompost — living biology produced from farm waste',
+    bullets: [
+        {
+            title: 'Living biology from your own waste.',
+            body: 'Bacteria, fungi, protozoa and humic acids that unlock nutrients chemicals only mask.',
+        },
+        {
+            title: 'Plant-ready nutrients, slow-release.',
+            body: 'NPK plus micros in stable form — no leaching, no salt-burn, no shock loading.',
+        },
+        {
+            title: 'Soil structure rebuilds.',
+            body: 'Aggregate stability, water-holding capacity and aeration — the foundations of yield.',
+        },
+        {
+            title: 'Heavily-eroded land first.',
+            body: 'We target your most distressed soils and your nursery, so the babies of today become champions for the future.',
+        },
+    ],
+}
+
+const NURSERY_DETAIL = {
+    num: '03',
+    tag: 'Combined System',
+    title: <>Supercharge your <em>nurseries.</em></>,
+    lede: 'The first 30 days of root development determine the entire season. We combine composting systems and M-TerraBoost into a nursery-stage stimulus medium that gives seedlings the strongest possible start.',
+    image: '/land_rejuv/nurseries.png',
+    imageAlt: 'Nursery seedlings — root development',
+    bullets: [
+        {
+            title: 'Biology activates instantly.',
+            body: 'Microbes colonise the root zone the day a seedling is potted.',
+        },
+        {
+            title: 'Minerals build the structure.',
+            body: 'Silica and calcium drive cell division and root-wall integrity from day one.',
+        },
+        {
+            title: 'Roots go deeper, faster.',
+            body: 'Plants leave the nursery with the root system of a much older seedling — transplant shock drops, survival rates rise.',
+        },
+        {
+            title: 'Works across all crop types.',
+            body: 'Vegetables, orchards, lucerne, ornamentals — the same stimulus medium accelerates every nursery stage.',
+        },
+    ],
+}
 
 const items = [
     {
@@ -30,7 +65,7 @@ const items = [
             tag: 'Regenerative Systems',
             title: 'On-farm composting that closes the loop.',
             body: 'Closed-loop compost that rebuilds microbial life — produced on-farm from your own waste.',
-            href: '/contact/agri-farms',
+            modalKey: 'regen',
         },
     },
     {
@@ -49,16 +84,16 @@ const items = [
             tag: 'Combined System',
             title: 'A nursery-stage stimulus medium.',
             body: 'Compost biology + M-TerraBoost minerals — deeper roots, less transplant shock.',
-            isModal: true,
+            modalKey: 'nursery',
         },
     },
 ]
 
-const FindOutMore = ({ href, isAnchor, isModal, onOpen }) => {
+const FindOutMore = ({ href, isAnchor, modalKey, onOpen }) => {
     const arrow = <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
-    if (isModal) {
+    if (modalKey) {
         return (
-            <button type="button" className="solutions-x__more" onClick={onOpen}>
+            <button type="button" className="solutions-x__more" onClick={() => onOpen(modalKey)}>
                 <span>Find out more</span>
                 {arrow}
             </button>
@@ -80,9 +115,9 @@ const FindOutMore = ({ href, isAnchor, isModal, onOpen }) => {
     )
 }
 
-const NurseryModal = ({ open, onClose }) => {
+const SolutionModal = ({ detail, onClose }) => {
     useEffect(() => {
-        if (!open) return
+        if (!detail) return
         const onKey = (e) => {
             if (e.key === 'Escape') onClose()
         }
@@ -92,11 +127,11 @@ const NurseryModal = ({ open, onClose }) => {
             document.body.style.overflow = ''
             window.removeEventListener('keydown', onKey)
         }
-    }, [open, onClose])
+    }, [detail, onClose])
 
     return (
         <AnimatePresence>
-            {open && (
+            {detail && (
                 <motion.div
                     className="nursery-modal"
                     initial={{ opacity: 0 }}
@@ -106,7 +141,7 @@ const NurseryModal = ({ open, onClose }) => {
                     onClick={onClose}
                     role="dialog"
                     aria-modal="true"
-                    aria-labelledby="nursery-modal-title"
+                    aria-labelledby="solution-modal-title"
                 >
                     <motion.div
                         className="nursery-modal__panel"
@@ -129,24 +164,19 @@ const NurseryModal = ({ open, onClose }) => {
                         <div className="nursery-modal__grid">
                             <div className="nursery-modal__copy">
                                 <header className="nursery-modal__head">
-                                    <span className="nursery-modal__num">03</span>
+                                    <span className="nursery-modal__num">{detail.num}</span>
                                     <span className="nursery-modal__rule" aria-hidden="true" />
-                                    <span className="nursery-modal__tag">Combined System</span>
+                                    <span className="nursery-modal__tag">{detail.tag}</span>
                                 </header>
 
-                                <h2 id="nursery-modal-title" className="nursery-modal__title">
-                                    Supercharge your <em>nurseries.</em>
+                                <h2 id="solution-modal-title" className="nursery-modal__title">
+                                    {detail.title}
                                 </h2>
 
-                                <p className="nursery-modal__lede">
-                                    The first 30 days of root development determine the entire
-                                    season. We combine composting systems and M-TerraBoost into a
-                                    nursery-stage stimulus medium that gives seedlings the strongest
-                                    possible start.
-                                </p>
+                                <p className="nursery-modal__lede">{detail.lede}</p>
 
                                 <ul className="nursery-modal__list">
-                                    {NURSERY_BULLETS.map((b) => (
+                                    {detail.bullets.map((b) => (
                                         <li key={b.title}>
                                             <strong>{b.title}</strong> {b.body}
                                         </li>
@@ -154,12 +184,12 @@ const NurseryModal = ({ open, onClose }) => {
                                 </ul>
                             </div>
 
-                            <figure className="nursery-modal__figure">
-                                <img
-                                    src="/land_rejuv/nurseries.png"
-                                    alt="Nursery seedlings — root development"
-                                    loading="lazy"
-                                />
+                            <figure className="nursery-modal__figure photo-frame">
+                                <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                                <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                                <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                                <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                                <img src={detail.image} alt={detail.imageAlt} loading="lazy" />
                             </figure>
                         </div>
                     </motion.div>
@@ -169,8 +199,13 @@ const NurseryModal = ({ open, onClose }) => {
     )
 }
 
+const MODAL_DETAILS = {
+    regen: REGEN_DETAIL,
+    nursery: NURSERY_DETAIL,
+}
+
 const TailoredSolutionSection = () => {
-    const [modalOpen, setModalOpen] = useState(false)
+    const [modalKey, setModalKey] = useState(null)
     const slideIn = {
         hidden: { opacity: 0, y: 32 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
@@ -236,8 +271,8 @@ const TailoredSolutionSection = () => {
                                         <FindOutMore
                                             href={item.solution.href}
                                             isAnchor={item.solution.isAnchor}
-                                            isModal={item.solution.isModal}
-                                            onOpen={() => setModalOpen(true)}
+                                            modalKey={item.solution.modalKey}
+                                            onOpen={(key) => setModalKey(key)}
                                         />
                                     </div>
                                 </div>
@@ -248,7 +283,10 @@ const TailoredSolutionSection = () => {
 
             </div>
 
-            <NurseryModal open={modalOpen} onClose={() => setModalOpen(false)} />
+            <SolutionModal
+                detail={modalKey ? MODAL_DETAILS[modalKey] : null}
+                onClose={() => setModalKey(null)}
+            />
         </section>
     )
 }

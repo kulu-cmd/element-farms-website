@@ -2,3 +2,41 @@
     width: 100%;
     min-height: auto;
 }
+/* =============================================
+   Reusable photo frame — corner brackets + inset paper border
+   Apply class="photo-frame" alongside other classes on a <figure>.
+   Children: 4 spans for corners, then <img>.
+   ============================================= */
+.photo-frame {
+    position: relative;
+    padding: 10px;
+    background: rgba(244, 239, 230, 0.6);
+    border: 1px solid rgba(14, 90, 54, 0.18);
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(43, 43, 43, 0.04), 0 18px 36px -22px rgba(43, 43, 43, 0.18);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.photo-frame__corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-color: var(--clay, #f36f21);
+    border-width: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.photo-frame__corner--tl { top: 4px; left: 4px;    border-top-width: 2px; border-left-width: 2px; }
+.photo-frame__corner--tr { top: 4px; right: 4px;   border-top-width: 2px; border-right-width: 2px; }
+.photo-frame__corner--bl { bottom: 4px; left: 4px; border-bottom-width: 2px; border-left-width: 2px; }
+.photo-frame__corner--br { bottom: 4px; right: 4px; border-bottom-width: 2px; border-right-width: 2px; }

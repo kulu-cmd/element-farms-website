@@ -127,7 +127,7 @@ const AntiFloodingPage = () => {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              <div className="flood__feature-icon"><AerationIcon /></div>
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">🫧</div>
               <h4>Aeration</h4>
               <p>Permanent pore space — roots breathe, microbes thrive.</p>
             </motion.div>
@@ -139,7 +139,7 @@ const AntiFloodingPage = () => {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <div className="flood__feature-icon"><NutrientIcon /></div>
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">🥗</div>
               <h4>Nutrient retention</h4>
               <p>Locks in fertiliser and biology where roots can use it.</p>
             </motion.div>
@@ -151,7 +151,7 @@ const AntiFloodingPage = () => {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <div className="flood__feature-icon"><WaterIcon /></div>
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">💧</div>
               <h4>Water storage</h4>
               <p>Stores excess water, drains overload, releases when dry.</p>
             </motion.div>
@@ -167,16 +167,25 @@ const AntiFloodingPage = () => {
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
           <figure className="flood__leca-cell">
-            <img src="/hive/small.jpg" alt="Small LECA ball aggregate" loading="lazy" />
-            <figcaption>Small</figcaption>
+            <img src="/hive/small.png" alt="Small LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Small</span>
+              <span className="flood__leca-dia">4 – 10 mm</span>
+            </figcaption>
           </figure>
           <figure className="flood__leca-cell">
-            <img src="/hive/medium.jpg" alt="Medium LECA ball aggregate" loading="lazy" />
-            <figcaption>Medium</figcaption>
+            <img src="/hive/medium.png" alt="Medium LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Medium</span>
+              <span className="flood__leca-dia">10 – 18 mm</span>
+            </figcaption>
           </figure>
           <figure className="flood__leca-cell">
-            <img src="/hive/large.jpg" alt="Large LECA ball aggregate" loading="lazy" />
-            <figcaption>Large</figcaption>
+            <img src="/hive/large.png" alt="Large LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Large</span>
+              <span className="flood__leca-dia">18 – 25 mm</span>
+            </figcaption>
           </figure>
         </motion.div>
 
@@ -225,12 +234,16 @@ const AntiFloodingPage = () => {
 
           <div className="flood__roots-photos">
             <motion.figure
-              className="flood__roots-photo flood__roots-photo--lg"
+              className="flood__roots-photo flood__roots-photo--lg photo-frame"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
             >
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
               <img
                 src="/hive/roots-in-mhive-tree.jpg"
                 alt="Tree seedling pulled from M-Hive medium showing dense root colonisation through the LECA balls"
@@ -238,12 +251,16 @@ const AntiFloodingPage = () => {
               <figcaption>Tree roots inside M-Hive — a permanent root home.</figcaption>
             </motion.figure>
             <motion.figure
-              className="flood__roots-photo"
+              className="flood__roots-photo photo-frame"
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.95, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
               <img
                 src="/hive/roots-in-mhive-strand.jpg"
                 alt="Hand holding a single root strand wrapped around M-Hive balls — biological communities visible"
@@ -255,7 +272,7 @@ const AntiFloodingPage = () => {
       </section>
 
       {/* ──────────────────────────────────────────────────────────────
-          3.  We Have Developed a System For — three category cards
+          3.  We Have Developed a System For — two category cards
           ────────────────────────────────────────────────────────────── */}
       <section className="flood__systems">
         <div className="flood__systems-inner">
@@ -268,8 +285,12 @@ const AntiFloodingPage = () => {
           >
             <SectionLabel label="The System" />
             <h2 className="flood__systems-heading">
-              We have developed a <em>system</em> for —
+              Built for two <em>kinds of land.</em>
             </h2>
+            <p className="flood__systems-deck">
+              Two M-Hive systems, each engineered for a different rhythm of crop — one
+              permanent, one re-usable. Pick the path that fits your operation.
+            </p>
           </motion.div>
 
           <div className="flood__systems-grid">
@@ -281,26 +302,58 @@ const AntiFloodingPage = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.05 }}
             >
-              <span className="flood__system-num">01</span>
-              <div className="flood__system-icon flood__system-icon--emoji">🌳</div>
-              <h3>Orchards & Tree Crops</h3>
+              <header className="flood__system-head">
+                <span className="flood__system-num">01</span>
+                <span className="flood__system-rule" aria-hidden="true" />
+                <span className="flood__system-tag">Permanent install</span>
+              </header>
+
+              <div className="flood__system-icon flood__system-icon--emoji" aria-hidden="true">🌳</div>
+
+              <h3>Orchards &amp; Tree Crops</h3>
               <p>Avocado, citrus, dragon fruit, macadamia — deep root systems that need long-term aeration and a permanent root home.</p>
-              <span className="flood__system-link">Read more ↓</span>
+
+              <ul className="flood__system-meta">
+                <li><span>Lifespan</span><strong>Decades</strong></li>
+                <li><span>Install</span><strong>One-time</strong></li>
+                <li><span>Best for</span><strong>5+ year crops</strong></li>
+              </ul>
+
+              <span className="flood__system-link">
+                Read more
+                <span className="flood__system-link-arrow" aria-hidden="true">↓</span>
+              </span>
             </motion.a>
 
             <motion.a
               href="#herbs"
-              className="flood__system-card"
+              className="flood__system-card flood__system-card--alt"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7, delay: 0.18 }}
             >
-              <span className="flood__system-num">02</span>
-              <div className="flood__system-icon flood__system-icon--emoji">🌿</div>
-              <h3>Herbs, Tunnels & Nurseries</h3>
+              <header className="flood__system-head">
+                <span className="flood__system-num">02</span>
+                <span className="flood__system-rule" aria-hidden="true" />
+                <span className="flood__system-tag">Re-usable medium</span>
+              </header>
+
+              <div className="flood__system-icon flood__system-icon--emoji" aria-hidden="true">🌿</div>
+
+              <h3>Herbs, Tunnels &amp; Nurseries</h3>
               <p>High-value herbs, flowers and aromatics in tunnels or raised beds — re-usable, weather-proof, permanent.</p>
-              <span className="flood__system-link">Read more ↓</span>
+
+              <ul className="flood__system-meta">
+                <li><span>Lifespan</span><strong>Indefinite</strong></li>
+                <li><span>Install</span><strong>Filter &amp; re-use</strong></li>
+                <li><span>Best for</span><strong>High-value horticulture</strong></li>
+              </ul>
+
+              <span className="flood__system-link">
+                Read more
+                <span className="flood__system-link-arrow" aria-hidden="true">↓</span>
+              </span>
             </motion.a>
           </div>
         </div>

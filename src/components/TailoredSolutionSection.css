@@ -409,9 +409,6 @@
 .nursery-modal__figure {
     margin: 0;
     width: 100%;
-    border-radius: 6px;
-    overflow: hidden;
-    background: rgba(14, 90, 54, 0.04);
 }
 
 .nursery-modal__figure img {
