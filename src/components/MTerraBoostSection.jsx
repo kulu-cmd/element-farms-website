@@ -22,18 +22,22 @@ const APPLICATIONS = [
 
 const BENEFITS = [
     {
+        symbol: 'Si',
         title: 'Strengthens cell walls',
         body: 'Silica drives drought and disease resistance, lifts water-use efficiency.',
     },
     {
+        symbol: 'Ca',
         title: 'Builds root architecture',
         body: 'Calcium reduces soil acidity and unlocks micronutrient uptake.',
     },
     {
+        symbol: 'Mg',
         title: 'Powers photosynthesis',
         body: 'Magnesium and sulphur drive chlorophyll production and nitrogen efficiency.',
     },
     {
+        symbol: 'NPK',
         title: 'Lowers fertiliser load',
         body: 'The minerals do the work NPK was masking — fewer inputs, stronger response.',
     },
@@ -61,28 +65,40 @@ const MTerraBoostSection = () => {
                                     id="mtb-seal-path"
                                     d="M 80,80 m -62,0 a 62,62 0 1,1 124,0 a 62,62 0 1,1 -124,0"
                                 />
+                                <filter id="mtb-seal-grunge" x="-10%" y="-10%" width="120%" height="120%">
+                                    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise" />
+                                    <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" />
+                                    <feComposite in2="noise" operator="in" />
+                                </filter>
+                                <filter id="mtb-seal-bleed" x="-5%" y="-5%" width="110%" height="110%">
+                                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.35" />
+                                </filter>
                             </defs>
-                            <circle cx="80" cy="80" r="74" className="mtb__seal-ring" />
-                            <circle cx="80" cy="80" r="60" className="mtb__seal-ring mtb__seal-ring--inner" />
-                            <text className="mtb__seal-text">
-                                <textPath href="#mtb-seal-path" startOffset="0">
-                                    100% NATURAL · MINERAL BLEND · NO SYNTHETICS ·
-                                </textPath>
-                            </text>
-                            <g className="mtb__seal-mark">
-                                <path d="M80 56 L92 80 L80 104 L68 80 Z" />
-                                <circle cx="80" cy="80" r="5" />
+
+                            {/* Outer scalloped ring — gives the stamp its postmark feel */}
+                            <g filter="url(#mtb-seal-grunge)">
+                                <circle cx="80" cy="80" r="74" className="mtb__seal-ring mtb__seal-ring--outer" />
+                                <circle cx="80" cy="80" r="68" className="mtb__seal-ring mtb__seal-ring--mid" />
+                                <circle cx="80" cy="80" r="54" className="mtb__seal-ring mtb__seal-ring--inner" />
+
+                                <text className="mtb__seal-text" filter="url(#mtb-seal-bleed)">
+                                    <textPath href="#mtb-seal-path" startOffset="0">
+                                        100% NATURAL · MINERAL BLEND · NO SYNTHETICS ·
+                                    </textPath>
+                                </text>
+
+                                <g className="mtb__seal-mark">
+                                    <path d="M80 56 L92 80 L80 104 L68 80 Z" />
+                                    <circle cx="80" cy="80" r="5" />
+                                </g>
                             </g>
                         </svg>
                     </div>
 
                     <div className="mtb__product-copy">
                         <div className="mtb__tags">
-                            <span className="mtb__product-tag">Mineral Blend · Pre-plant &amp; Banded</span>
-                            <span className="mtb__origin">
-                                <span className="mtb__origin-dot" aria-hidden="true" />
-                                Built for South African soils
-                            </span>
+                            <span className="mtb__product-tag">Mineral Blend</span>
+                            <span className="mtb__product-tag">Highly Suitable for South African Soils</span>
                         </div>
 
                         <h3 className="mtb__product-name">M-TerraBoost</h3>
@@ -90,17 +106,17 @@ const MTerraBoostSection = () => {
                         <p className="mtb__lede">
                             A granular mineral blend formulated for the leached, acidic,
                             mineral-poor soils that dominate South African farmland.
-                            Slow-release silica, calcium, magnesium and sulphur — in forms
-                            roots can actually absorb — to put back what decades of NPK has
-                            stripped out.
+                            Slow-release silica, calcium, magnesium and sulphur, in forms
+                            roots can actually absorb <em>to put back what decades of NPK
+                            has stripped out.</em>
                         </p>
 
                         <div className="mtb__deficiency">
-                            <span className="mtb__deficiency-eyebrow">Targets SA's most common deficiencies</span>
+                            <span className="mtb__deficiency-eyebrow">Targets South Africa's most common deficiencies</span>
                             <p className="mtb__deficiency-body">
                                 Calcium, magnesium and sulphur are three of the most widely
                                 depleted minerals across South Africa's acidic, leached
-                                soils. M-TerraBoost replaces all three — and adds plant-available
+                                soils. M-TerraBoost replaces all three and adds plant-available
                                 silica for crop resilience.
                             </p>
                             <ul className="mtb__minerals" aria-label="Minerals included">
@@ -128,10 +144,13 @@ const MTerraBoostSection = () => {
 
                         <div className="mtb__benefits">
                             <span className="mtb__section-eyebrow">What it does in the soil</span>
-                            <ul className="mtb__list">
-                                {BENEFITS.map((b) => (
-                                    <li key={b.title}>
-                                        <strong>{b.title}.</strong> {b.body}
+                            <ul className="mtb__benefits-grid">
+                                {BENEFITS.map((b, i) => (
+                                    <li key={b.title} className="mtb__benefit">
+                                        <span className="mtb__benefit-num">{String(i + 1).padStart(2, '0')}</span>
+                                        <span className="mtb__benefit-symbol" aria-hidden="true">{b.symbol}</span>
+                                        <h4 className="mtb__benefit-title">{b.title}</h4>
+                                        <p className="mtb__benefit-body">{b.body}</p>
                                     </li>
                                 ))}
                             </ul>

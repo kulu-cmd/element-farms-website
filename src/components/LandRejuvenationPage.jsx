@@ -4,7 +4,6 @@ import KZNMapSection from './KZNMapSection'
 import TailoredSolutionSection from './TailoredSolutionSection'
 import MTerraBoostSection from './MTerraBoostSection'
 import VideoSection from './VideoSection'
-import WhatToExpectSection from './WhatToExpectSection'
 import FAQSection from './FAQSection'
 import CTABand from './CTABand'
 import Footer from './Footer'
@@ -37,9 +36,6 @@ const LandRejuvenationPage = () => {
 
             {/* Video — Why it matters */}
             <VideoSection />
-
-            {/* Soil doesn't recover overnight — pull quote */}
-            <WhatToExpectSection />
 
             {/* FAQs */}
             <FAQSection />
