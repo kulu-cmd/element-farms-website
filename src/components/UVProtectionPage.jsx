@@ -122,10 +122,10 @@ const Placeholder = ({ tone = 'clay', label, aspect = '4 / 3', className = '' })
 )
 
 const UVProtectionPage = () => {
+  const factsRef = useRef(null)
+  const factsInView = useInView(factsRef, { once: true, amount: 0.15 })
   const shadeRef = useRef(null)
   const shadeInView = useInView(shadeRef, { once: true, amount: 0.3 })
-  const shadeStatsRef = useRef(null)
-  const shadeStatsInView = useInView(shadeStatsRef, { once: true, amount: 0.4 })
   const defendRef = useRef(null)
   const defendInView = useInView(defendRef, { once: true, amount: 0.3 })
   const pillarsRef = useRef(null)
@@ -142,7 +142,68 @@ const UVProtectionPage = () => {
       />
 
       {/* ──────────────────────────────────────────────────────────────
-          1.  Two-pillar overview — sunburn vs pest
+          1.  Editorial facts — the problem, with quote
+          ────────────────────────────────────────────────────────────── */}
+      <section className="uv__facts" ref={factsRef}>
+        <div className="uv__facts-inner">
+          <div className="uv__facts-header">
+            <SectionLabel label="The Problem" />
+            <motion.h2
+              className="uv__facts-statement"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              The sun and the swarm — <em>two silent</em> tax-collectors on every harvest.
+            </motion.h2>
+          </div>
+
+          <ol className="uv__facts-index">
+            {facts.map((stat, i) => {
+              const decimals = String(stat.display).includes('.') ? 1 : 0
+              return (
+                <motion.li
+                  key={`${stat.display}-${i}`}
+                  className="uv__facts-row"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.75, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="uv__facts-row-n">0{i + 1}</span>
+
+                  <div className="uv__facts-row-figures">
+                    <span className="uv__facts-row-value">
+                      {stat.prefix && (
+                        <span className="uv__facts-row-prefix">{stat.prefix}</span>
+                      )}
+                      <CountUp
+                        to={stat.value}
+                        decimals={decimals}
+                        delay={0.3 + i * 0.08}
+                        isInView={factsInView}
+                      />
+                      {stat.suffix && (
+                        <span className="uv__facts-row-suffix">{stat.suffix}</span>
+                      )}
+                    </span>
+                    <span className="uv__facts-row-unit">{stat.unit}</span>
+                  </div>
+
+                  <div className="uv__facts-row-text">
+                    <p className="uv__facts-row-label">{stat.label}</p>
+                    <span className="uv__facts-row-source">— {stat.source}</span>
+                  </div>
+                </motion.li>
+              )
+            })}
+          </ol>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          2.  Two-pillar overview — sunburn vs pest
           ────────────────────────────────────────────────────────────── */}
       <section className="uv__pillars" ref={pillarsRef}>
         <div className="uv__pillars-inner">
@@ -247,45 +308,6 @@ const UVProtectionPage = () => {
               and washable at packing.
             </p>
           </motion.div>
-
-          <div className="uv__shade-stats" ref={shadeStatsRef}>
-            <motion.div
-              className="uv__shade-stat"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="uv__shade-stat-value">~50<span className="uv__shade-stat-suffix">%</span></span>
-              <span className="uv__shade-stat-label">reduction in sunburn incidence per tree in citrus &amp; pome-fruit trials.</span>
-            </motion.div>
-            <motion.div
-              className="uv__shade-stat"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="uv__shade-stat-value">
-                <CountUp to={40} delay={0.3} isInView={shadeStatsInView} />
-                <span className="uv__shade-stat-suffix">%</span>
-              </span>
-              <span className="uv__shade-stat-label">of 'Granny Smith' apples cannot be exported due to sunburn damage.</span>
-            </motion.div>
-            <motion.div
-              className="uv__shade-stat"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="uv__shade-stat-value">
-                <CountUp to={20} delay={0.4} isInView={shadeStatsInView} />
-                <span className="uv__shade-stat-suffix">%</span>
-              </span>
-              <span className="uv__shade-stat-label">of 'Golden Delicious' apples lost to sunburn surface damage at grading.</span>
-            </motion.div>
-          </div>
 
           <div className="uv__detail-product">
             <figure className="uv__detail-product-img photo-frame">
