@@ -559,18 +559,58 @@
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
+.uv__detail-media {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+}
+
 .uv__detail-product-img {
   display: block;
   width: 100%;
-  max-width: 360px;
   height: auto;
   margin: 0;
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+  overflow: hidden;
+  background:
+    radial-gradient(closest-side at 50% 60%, rgba(217, 205, 184, 0.55), transparent 75%),
+    linear-gradient(180deg, #efeae0 0%, #e8e1d3 100%);
+  box-shadow: 0 1px 0 rgba(43, 43, 43, 0.06), 0 30px 60px -40px rgba(43, 43, 43, 0.18);
+  position: relative;
+}
+
+.uv__detail-product-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 .uv__detail-product-img img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  object-fit: contain;
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.uv__detail-seal {
+  position: absolute;
+  width: clamp(120px, 14vw, 160px);
+  height: auto;
+  left: clamp(-1rem, -1vw, -0.5rem);
+  bottom: clamp(-1rem, -1vw, -0.5rem);
+  z-index: 3;
+  filter: drop-shadow(0 8px 16px rgba(14, 90, 54, 0.22));
+  transform: rotate(-8deg);
+  transform-origin: 50% 50%;
+  pointer-events: none;
 }
 
 .uv__detail-product-copy {
@@ -708,6 +748,16 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.uv__thermal-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .uv__thermal-grid--three {
+    grid-template-columns: 1fr;
+  }
 }
 
 .uv__thermal-card {
