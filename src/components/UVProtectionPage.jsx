@@ -124,6 +124,8 @@ const Placeholder = ({ tone = 'clay', label, aspect = '4 / 3', className = '' })
 const UVProtectionPage = () => {
   const shadeRef = useRef(null)
   const shadeInView = useInView(shadeRef, { once: true, amount: 0.3 })
+  const shadeStatsRef = useRef(null)
+  const shadeStatsInView = useInView(shadeStatsRef, { once: true, amount: 0.4 })
   const defendRef = useRef(null)
   const defendInView = useInView(defendRef, { once: true, amount: 0.3 })
   const pillarsRef = useRef(null)
@@ -246,7 +248,7 @@ const UVProtectionPage = () => {
             </p>
           </motion.div>
 
-          <div className="uv__shade-stats">
+          <div className="uv__shade-stats" ref={shadeStatsRef}>
             <motion.div
               className="uv__shade-stat"
               initial={{ opacity: 0, y: 24 }}
@@ -265,7 +267,7 @@ const UVProtectionPage = () => {
               transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="uv__shade-stat-value">
-                <CountUp to={40} delay={0.3} isInView={shadeInView} />
+                <CountUp to={40} delay={0.3} isInView={shadeStatsInView} />
                 <span className="uv__shade-stat-suffix">%</span>
               </span>
               <span className="uv__shade-stat-label">of 'Granny Smith' apples cannot be exported due to sunburn damage.</span>
@@ -278,7 +280,7 @@ const UVProtectionPage = () => {
               transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="uv__shade-stat-value">
-                <CountUp to={20} delay={0.4} isInView={shadeInView} />
+                <CountUp to={20} delay={0.4} isInView={shadeStatsInView} />
                 <span className="uv__shade-stat-suffix">%</span>
               </span>
               <span className="uv__shade-stat-label">of 'Golden Delicious' apples lost to sunburn surface damage at grading.</span>
