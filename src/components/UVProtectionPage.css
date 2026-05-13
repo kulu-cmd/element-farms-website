@@ -498,6 +498,58 @@
   color: var(--ink);
 }
 
+/* Stats row under M-GeoShade heading */
+.uv__shade-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin: clamp(2.5rem, 5vw, 4rem) 0;
+  padding: clamp(2rem, 4vw, 3rem) 0;
+  border-top: 1px solid var(--ink-rule);
+  border-bottom: 1px solid var(--ink-rule);
+}
+
+.uv__shade-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  text-align: center;
+  align-items: center;
+}
+
+.uv__shade-stat-value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--clay);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.05em;
+}
+
+.uv__shade-stat-suffix {
+  font-size: 0.55em;
+  margin-left: 0.05em;
+  color: var(--clay);
+}
+
+.uv__shade-stat-label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 28ch;
+}
+
+@media (max-width: 760px) {
+  .uv__shade-stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 /* Product row — placeholder + body */
 .uv__detail-product {
   display: grid;
@@ -512,7 +564,13 @@
   width: 100%;
   max-width: 360px;
   height: auto;
-  border-radius: 4px;
+  margin: 0;
+}
+
+.uv__detail-product-img img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .uv__detail-product-copy {
@@ -659,18 +717,24 @@
   gap: 0.85rem;
 }
 
-.uv__thermal-card img {
+.uv__thermal-img {
+  width: 100%;
+  margin: 0;
+}
+
+.uv__thermal-img img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 2px;
   display: block;
-  box-shadow: 0 14px 32px rgba(14, 24, 18, 0.16);
 }
 
 .uv__thermal-card figcaption {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 0.4rem;
   font-family: var(--font-display);
   font-style: italic;
@@ -680,7 +744,7 @@
 }
 
 .uv__thermal-tag {
-  align-self: flex-start;
+  align-self: center;
   padding: 0.3rem 0.8rem;
   border-radius: 999px;
   font-family: var(--font-sans);
@@ -769,20 +833,23 @@
 
 .uv__apply-figure {
   display: block;
+  margin: 0;
 }
 
-.uv__apply-figure img {
+.uv__apply-figure-frame {
+  width: 100%;
+}
+
+.uv__apply-figure-frame img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 2px;
   object-fit: cover;
 }
 
 .uv__apply-figure figcaption {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
+  display: block;
   margin-top: 0.8rem;
   font-family: var(--font-sans);
   font-size: 0.68rem;
@@ -790,15 +857,12 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-faint);
+  text-align: center;
 }
 
 .uv__apply-figure figcaption::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: currentColor;
-  flex-shrink: 0;
+  content: none;
+  display: none;
 }
 
 /* Specific named pests grid */

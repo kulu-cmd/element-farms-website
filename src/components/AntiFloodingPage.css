@@ -331,6 +331,7 @@
   font-size: 0.85rem;
   line-height: 1.4;
   color: var(--ink-faint);
+  text-align: center;
 }
 
 /* ============================================================
@@ -733,6 +734,7 @@ a.flood__system-card:hover .flood__system-link-arrow {
   font-size: 0.82rem;
   line-height: 1.4;
   color: var(--ink-faint);
+  text-align: center;
 }
 
 /* Key-benefit cards under each detail section */
@@ -740,7 +742,9 @@ a.flood__system-card:hover .flood__system-link-arrow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 2vw, 1.5rem);
-  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--ink-rule);
 }
 
 .flood__detail-bullets > div {
@@ -778,18 +782,18 @@ a.flood__system-card:hover .flood__system-link-arrow {
 }
 
 .flood__detail-bullet-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
+  display: inline;
+  width: auto;
+  height: auto;
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 1.25rem;
   color: var(--clay);
-  background: rgba(243, 111, 33, 0.1);
-  border-radius: 50%;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
   letter-spacing: 0;
   margin-bottom: 0.4rem;
 }

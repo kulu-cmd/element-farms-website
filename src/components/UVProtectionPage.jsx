@@ -236,7 +236,7 @@ const UVProtectionPage = () => {
           >
             <span className="uv__detail-banner uv__detail-banner--clay">For Sunburn</span>
             <h2 className="uv__detail-heading">
-              <em>~<CountUp to={50} isInView={shadeInView} duration={1.6} delay={0.2} />%</em> less sunburn — research-grade <em>protection</em> in a foliar spray.
+              <em>~50%</em> less sunburn — research-grade <em>protection</em> in a foliar spray.
             </h2>
             <p className="uv__detail-deck">
               Citrus and pome-fruit trials report a ~50% reduction in sunburn incidence
@@ -246,12 +246,56 @@ const UVProtectionPage = () => {
             </p>
           </motion.div>
 
+          <div className="uv__shade-stats">
+            <motion.div
+              className="uv__shade-stat"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="uv__shade-stat-value">~50<span className="uv__shade-stat-suffix">%</span></span>
+              <span className="uv__shade-stat-label">reduction in sunburn incidence per tree in citrus &amp; pome-fruit trials.</span>
+            </motion.div>
+            <motion.div
+              className="uv__shade-stat"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="uv__shade-stat-value">
+                <CountUp to={40} delay={0.3} isInView={shadeInView} />
+                <span className="uv__shade-stat-suffix">%</span>
+              </span>
+              <span className="uv__shade-stat-label">of 'Granny Smith' apples cannot be exported due to sunburn damage.</span>
+            </motion.div>
+            <motion.div
+              className="uv__shade-stat"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="uv__shade-stat-value">
+                <CountUp to={20} delay={0.4} isInView={shadeInView} />
+                <span className="uv__shade-stat-suffix">%</span>
+              </span>
+              <span className="uv__shade-stat-label">of 'Golden Delicious' apples lost to sunburn surface damage at grading.</span>
+            </motion.div>
+          </div>
+
           <div className="uv__detail-product">
-            <img
-              src="/geoshield/apple_covered.png"
-              alt="Apple coated with M-GeoShade — visible reflective mineral layer on the fruit skin"
-              className="uv__detail-product-img"
-            />
+            <figure className="uv__detail-product-img photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img
+                src="/geoshield/apple_covered.png"
+                alt="Apple coated with M-GeoShade — visible reflective mineral layer on the fruit skin"
+              />
+            </figure>
             <div className="uv__detail-product-copy">
               <span className="uv__detail-product-tag">Mineral Sunscreen · Foliar Spray</span>
               <h3 className="uv__detail-product-name">M-GeoShade</h3>
@@ -298,7 +342,13 @@ const UVProtectionPage = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7 }}
               >
-                <img src="/geoshield/uv-1.jpg" alt="Lower fruit-surface temperatures with M-GeoShade applied" />
+                <div className="uv__thermal-img photo-frame">
+                  <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                  <img src="/geoshield/uv-1.jpg" alt="Lower fruit-surface temperatures with M-GeoShade applied" />
+                </div>
                 <figcaption>
                   <span className="uv__thermal-tag uv__thermal-tag--cool">With M-GeoShade</span>
                   Lower fruit-surface temperatures — sunburn incidence drops by half.
@@ -311,7 +361,13 @@ const UVProtectionPage = () => {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7, delay: 0.15 }}
               >
-                <img src="/geoshield/uv-2.jpg" alt="Higher fruit-surface temperatures without M-GeoShade applied" />
+                <div className="uv__thermal-img photo-frame">
+                  <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                  <img src="/geoshield/uv-2.jpg" alt="Higher fruit-surface temperatures without M-GeoShade applied" />
+                </div>
                 <figcaption>
                   <span className="uv__thermal-tag uv__thermal-tag--hot">Without M-GeoShade</span>
                   Higher fruit-surface temperatures — sunburn risk peaks here.
@@ -451,10 +507,16 @@ const UVProtectionPage = () => {
               </ol>
             </aside>
             <figure className="uv__apply-figure">
-              <img
-                src="/geoshield/defend_before_After.png"
-                alt="Before / after M-Defend application — visible mineral coating on fruit"
-              />
+              <div className="uv__apply-figure-frame photo-frame">
+                <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                <img
+                  src="/geoshield/defend_before_After.png"
+                  alt="Before / after M-Defend application — visible mineral coating on fruit"
+                />
+              </div>
               <figcaption>Before · After M-Defend</figcaption>
             </figure>
           </div>

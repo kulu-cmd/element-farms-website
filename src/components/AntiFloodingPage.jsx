@@ -428,8 +428,6 @@ const AntiFloodingPage = () => {
               <figcaption>Young trees planted directly into the snorkel.</figcaption>
             </figure>
           </div>
-
-          <EnquiryButton product="M-Hive for Orchards" />
         </div>
       </section>
 

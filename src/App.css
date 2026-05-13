@@ -2,6 +2,10 @@
     width: 100%;
     min-height: auto;
 }
+
+figcaption {
+    text-align: center;
+}
 /* =============================================
    Reusable photo frame — corner brackets + inset paper border
    Apply class="photo-frame" alongside other classes on a <figure>.
