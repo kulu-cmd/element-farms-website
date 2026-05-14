@@ -55,12 +55,21 @@ const PoultryPage = () => {
           </motion.div>
 
           <div className="poultry__detail-product">
-            <Placeholder
-              tone="clay"
-              label="M-TerraDry product bag — front label"
-              aspect="4 / 5"
-              className="poultry__detail-product-img"
-            />
+            <div className="poultry__detail-media">
+              <figure className="poultry__detail-product-img">
+                <img
+                  src="/poultry/M-TerraDry.png"
+                  alt="M-TerraDry product bag — mineral bedding treatment"
+                />
+              </figure>
+              <img
+                className="poultry__detail-seal"
+                src="/land_rejuv/stamp.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+              />
+            </div>
             <div className="poultry__detail-product-copy">
               <span className="poultry__detail-product-tag">Mineral Blend · Bedding Treatment</span>
               <h3 className="poultry__detail-product-name">M-TerraDry</h3>

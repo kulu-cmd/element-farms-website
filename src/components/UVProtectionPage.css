@@ -874,11 +874,15 @@
 /* Headline pest callout — Citrus Leaf Miner */
 .uv__apply-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.05fr 1fr;
   gap: clamp(2rem, 5vw, 5rem);
   align-items: center;
-  border-top: 1px solid var(--ink-rule);
-  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+@media (max-width: 900px) {
+  .uv__apply-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .uv__apply-figure {
@@ -988,7 +992,123 @@
   max-width: 60ch;
 }
 
-/* Application aside */
+/* Application section — colour + design pass */
+.uv__apply {
+  border-top: 1px solid var(--ink-rule);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.uv__apply-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.uv__apply-heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.uv__apply-heading em {
+  font-style: italic;
+  color: var(--moss-deep, #0e5a36);
+  font-weight: 300;
+}
+
+.uv__app-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.uv__app-card {
+  --card-accent: var(--moss-deep, #0e5a36);
+  --card-tint: rgba(14, 90, 54, 0.06);
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 1.1rem;
+  align-items: stretch;
+  padding: 1.1rem 1.25rem 1.1rem 1rem;
+  background: var(--card-tint);
+  border-left: 3px solid var(--card-accent);
+  border-radius: 6px;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.uv__app-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 14px 28px -18px rgba(14, 24, 18, 0.18);
+}
+
+.uv__app-card--mix   { --card-accent: var(--moss-deep, #0e5a36); --card-tint: rgba(14, 90, 54, 0.07); }
+.uv__app-card--spray { --card-accent: var(--clay, #c14a2a);     --card-tint: rgba(193, 74, 42, 0.07); }
+.uv__app-card--coat  { --card-accent: var(--ochre, #c19e64);    --card-tint: rgba(193, 158, 100, 0.12); }
+
+.uv__app-card-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--card-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  position: relative;
+  box-shadow: 0 0 0 6px var(--card-tint);
+}
+
+.uv__app-card-num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--card-accent);
+  letter-spacing: 0.02em;
+}
+
+.uv__app-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-self: center;
+}
+
+.uv__app-card-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--card-accent);
+  margin: 0;
+}
+
+.uv__app-card-text {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.uv__app-card-text em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* Application aside (legacy, kept for fallback) */
 .uv__app-note {
   display: flex;
   flex-direction: column;

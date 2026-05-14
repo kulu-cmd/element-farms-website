@@ -231,10 +231,7 @@ const UVProtectionPage = () => {
                 <p className="uv__pillar-desc">
                   A reflective mineral sunscreen — drops fruit-surface temperature,
                   prevents UV scarring, and protects exportable grade.{' '}
-                  <strong>
-                    ~<CountUp to={50} isInView={pillarsInView} duration={1.6} delay={0.25} />%
-                  </strong>{' '}
-                  sunburn reduction in trial.
+                  <strong>~50%</strong> sunburn reduction in trial.
                 </p>
 
                 <span className="uv__pillar-link">
@@ -267,11 +264,8 @@ const UVProtectionPage = () => {
 
                 <p className="uv__pillar-desc">
                   A physical pest dehydrator — pests landing on the coating lose moisture
-                  rapidly. Works on{' '}
-                  <strong>
-                    <CountUp to={140} isInView={pillarsInView} duration={1.8} delay={0.3} />+ species
-                  </strong>
-                  . No immunity, no withdrawal period.
+                  rapidly. Works on <strong>140+ species</strong>. No immunity, no
+                  withdrawal period.
                 </p>
 
                 <span className="uv__pillar-link">
@@ -296,7 +290,10 @@ const UVProtectionPage = () => {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="uv__detail-banner uv__detail-banner--clay">For Sunburn</span>
+            <SectionLabel label="For Sunburn" />
+            <h2 className="uv__detail-heading">
+              Built to <em>shield exportable fruit.</em>
+            </h2>
             <p className="uv__detail-deck">
               Citrus and pome-fruit trials report a ~50% reduction in sunburn incidence
               per tree, alongside measurable canopy and fruit-surface temperature drops.
@@ -434,9 +431,9 @@ const UVProtectionPage = () => {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="uv__detail-banner uv__detail-banner--moss">For Pest Protection</span>
+            <SectionLabel label="For Pest Protection" />
             <h2 className="uv__detail-heading">
-              Effective pest control on <em><CountUp to={140} isInView={defendInView} duration={1.8} delay={0.2} />+ species.</em>
+              Effective pest control on <em>140+ species.</em>
             </h2>
             <p className="uv__detail-deck">
               No chemical additives. Inert, harmless to humans and pollinators. Pests
@@ -540,38 +537,70 @@ const UVProtectionPage = () => {
             </p>
           </div>
 
-          {/* Application note + before/after photo */}
-          <div className="uv__apply-row">
-            <aside className="uv__app-note">
-              <span className="uv__app-note-label">— Application</span>
-              <ol className="uv__app-steps">
-                <li>
-                  <span className="uv__app-step-n">01</span>
-                  <span className="uv__app-step-text">Mix M-Defend concentrate into water at the recommended dilution rate.</span>
+          {/* Application steps + before/after photo */}
+          <div className="uv__apply">
+            <header className="uv__apply-header">
+              <SectionLabel label="Application" />
+              <h3 className="uv__apply-heading">
+                Three steps, <em>nothing chemical.</em>
+              </h3>
+            </header>
+
+            <div className="uv__apply-row">
+              <ol className="uv__app-cards">
+                <li className="uv__app-card uv__app-card--mix">
+                  <span className="uv__app-card-badge" aria-hidden="true">
+                    <span className="uv__app-card-num">01</span>
+                  </span>
+                  <div className="uv__app-card-body">
+                    <h4 className="uv__app-card-title">Mix</h4>
+                    <p className="uv__app-card-text">
+                      Mix M-Defend concentrate into water at the recommended
+                      dilution rate.
+                    </p>
+                  </div>
                 </li>
-                <li>
-                  <span className="uv__app-step-n">02</span>
-                  <span className="uv__app-step-text">Spray onto the canopy using standard foliar equipment until coverage is complete.</span>
+                <li className="uv__app-card uv__app-card--spray">
+                  <span className="uv__app-card-badge" aria-hidden="true">
+                    <span className="uv__app-card-num">02</span>
+                  </span>
+                  <div className="uv__app-card-body">
+                    <h4 className="uv__app-card-title">Spray</h4>
+                    <p className="uv__app-card-text">
+                      Spray onto the canopy using standard foliar equipment
+                      until coverage is complete.
+                    </p>
+                  </div>
                 </li>
-                <li>
-                  <span className="uv__app-step-n">03</span>
-                  <span className="uv__app-step-text">A visible white mineral layer settles on leaves and fruit — <em>the coating is the working barrier.</em> Re-apply when no longer visible.</span>
+                <li className="uv__app-card uv__app-card--coat">
+                  <span className="uv__app-card-badge" aria-hidden="true">
+                    <span className="uv__app-card-num">03</span>
+                  </span>
+                  <div className="uv__app-card-body">
+                    <h4 className="uv__app-card-title">Coat</h4>
+                    <p className="uv__app-card-text">
+                      A white mineral layer settles on leaves and fruit —
+                      <em> the coating is the working barrier.</em> Re-apply
+                      when no longer visible.
+                    </p>
+                  </div>
                 </li>
               </ol>
-            </aside>
-            <figure className="uv__apply-figure">
-              <div className="uv__apply-figure-frame photo-frame">
-                <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
-                <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
-                <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
-                <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
-                <img
-                  src="/geoshield/defend_before_After.png"
-                  alt="Before / after M-Defend application — visible mineral coating on fruit"
-                />
-              </div>
-              <figcaption>Before · After M-Defend</figcaption>
-            </figure>
+
+              <figure className="uv__apply-figure">
+                <div className="uv__apply-figure-frame photo-frame">
+                  <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                  <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                  <img
+                    src="/geoshield/defend_before_After.png"
+                    alt="Before / after M-Defend application — visible mineral coating on fruit"
+                  />
+                </div>
+                <figcaption>Before · After M-Defend</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
