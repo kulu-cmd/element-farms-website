@@ -41,6 +41,8 @@ const HoverLink = ({ children, ...props }) => (
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(null) // 'solutions' | 'contact' | null
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const [mobileSection, setMobileSection] = useState(null) // 'solutions' | 'contact' | null
     const headerRef = useRef(null)
     const location = useLocation()
 
@@ -53,6 +55,8 @@ const Header = () => {
 
     useEffect(() => {
         setMenuOpen(null)
+        setMobileOpen(false)
+        setMobileSection(null)
     }, [location.pathname])
 
     useEffect(() => {
@@ -120,6 +124,16 @@ const Header = () => {
                         <span className={`ef-header__caret ${menuOpen === 'contact' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
                     </button>
                 </nav>
+
+                <button
+                    type="button"
+                    className={`ef-header__burger ${mobileOpen ? 'is-open' : ''}`}
+                    onClick={() => setMobileOpen(prev => !prev)}
+                    aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={mobileOpen}
+                >
+                    <span /><span /><span />
+                </button>
             </motion.div>
 
             {/* Mega-menus */}
@@ -215,6 +229,89 @@ const Header = () => {
                                     ))}
                                 </ul>
                             </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {mobileOpen && (
+                    <motion.div
+                        key="mob-menu"
+                        className="ef-mob"
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <button
+                            type="button"
+                            className={`ef-mob__row ef-mob__row--toggle ${mobileSection === 'solutions' ? 'is-open' : ''}`}
+                            onClick={() => setMobileSection(s => s === 'solutions' ? null : 'solutions')}
+                        >
+                            <span>Solutions</span>
+                            <span className={`ef-mob__caret ${mobileSection === 'solutions' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
+                        </button>
+                        <AnimatePresence>
+                            {mobileSection === 'solutions' && (
+                                <motion.ul
+                                    key="mob-solutions"
+                                    className="ef-mob__sub"
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                >
+                                    {solutionGroups.map(group => group.items.map(item => (
+                                        <li key={item.to}>
+                                            <Link to={item.to} className="ef-mob__sub-link">
+                                                <span className="ef-mob__sub-label">{group.label}</span>
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    )))}
+                                </motion.ul>
+                            )}
+                        </AnimatePresence>
+
+                        <Link to="/education" className="ef-mob__row">Education</Link>
+
+                        <Link to="/cropfit" className="ef-mob__row ef-mob__row--feature">
+                            CropFit
+                            <span className="ef-header__dot" aria-hidden="true" />
+                        </Link>
+
+                        <button
+                            type="button"
+                            className={`ef-mob__row ef-mob__row--toggle ${mobileSection === 'contact' ? 'is-open' : ''}`}
+                            onClick={() => setMobileSection(s => s === 'contact' ? null : 'contact')}
+                        >
+                            <span>Contact</span>
+                            <span className={`ef-mob__caret ${mobileSection === 'contact' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
+                        </button>
+                        <AnimatePresence>
+                            {mobileSection === 'contact' && (
+                                <motion.ul
+                                    key="mob-contact"
+                                    className="ef-mob__sub"
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                >
+                                    {contactItems.map(item => (
+                                        <li key={item.to}>
+                                            <Link to={item.to} className="ef-mob__sub-link">
+                                                <span>{item.title}</span>
+                                                <span className="ef-mob__sub-hint">{item.hint}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </motion.ul>
+                            )}
+                        </AnimatePresence>
+
+                        <div className="ef-mob__meta">
+                            <span>kamil@elementfarmsolutions.co.za</span>
+                            <span>+27 61 388 9339</span>
                         </div>
                     </motion.div>
                 )}
