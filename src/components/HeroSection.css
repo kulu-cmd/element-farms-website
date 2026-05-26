@@ -256,9 +256,9 @@
 }
 
 @media (max-width: 640px) {
-    .hero-x { min-height: 90vh; padding-top: 90px; }
-    .hero-x__grid { padding: 2rem 1.25rem 3rem; }
-    .hero-x__headline { font-size: clamp(2.3rem, 12vw, 4rem); }
+    .hero-x { min-height: auto; padding-top: 100px; padding-bottom: 2rem; }
+    .hero-x__grid { padding: 0.5rem 1.25rem 1.5rem; }
+    .hero-x__headline { font-size: clamp(2.1rem, 9.5vw, 3.4rem); word-break: break-word; }
     .hero-x__eyebrow { font-size: 0.6rem; flex-wrap: wrap; gap: 0.5rem; }
     .hero-x__eyebrow-rule { width: 28px; }
     .hero-x__cta { font-size: 0.72rem; padding: 0.85rem 1.4rem; }

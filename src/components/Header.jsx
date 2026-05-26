@@ -309,10 +309,6 @@ const Header = () => {
                             )}
                         </AnimatePresence>
 
-                        <div className="ef-mob__meta">
-                            <span>kamil@elementfarmsolutions.co.za</span>
-                            <span>+27 61 388 9339</span>
-                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

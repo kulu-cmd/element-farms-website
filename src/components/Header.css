@@ -571,13 +571,13 @@
 
     /* Logo: always compact on mobile */
     .ef-header__brand {
-        height: 52px;
+        height: 96px;
     }
     .ef-header--scrolled .ef-header__brand,
     .ef-header--menu-open .ef-header__brand {
-        height: 52px;
+        height: 96px;
     }
-    .ef-header__logo { max-width: 220px; }
+    .ef-header__logo { max-width: 340px; }
 
     .ef-header__bar { padding: 0 1.25rem; }
     .ef-header--scrolled .ef-header__bar { padding: 0 1.25rem; }
