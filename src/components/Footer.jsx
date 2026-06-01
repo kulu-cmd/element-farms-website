@@ -14,9 +14,6 @@ const Footer = () => {
                         src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
                         alt="Element Farm Solutions"
                     />
-                    <span className="footer-x__tagline">
-                        Regenerating soil.<br/>Restoring profitability.
-                    </span>
                 </div>
 
                 <nav className="footer-x__cols" aria-label="Footer">
