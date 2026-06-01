@@ -168,7 +168,7 @@
 }
 
 @media (max-width: 1024px) {
-    .footer-x__inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-x__inner { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; }
     .footer-x__cols { grid-template-columns: 1fr 1fr; gap: 2rem; }
 }
 
