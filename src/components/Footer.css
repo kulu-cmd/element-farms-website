@@ -3,7 +3,7 @@
 .footer-x {
     background: var(--ink);
     color: var(--paper);
-    padding: clamp(3rem, 6vw, 4.5rem) 0 1.5rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0 1.5rem;
     position: relative;
     overflow: hidden;
 }
@@ -26,7 +26,7 @@
     display: grid;
     grid-template-columns: 1.2fr 2fr;
     gap: 3rem;
-    align-items: start;
+    align-items: center;
 }
 
 .footer-x__brand {
@@ -135,7 +135,7 @@
 
 .footer-x__colophon {
     max-width: 1500px;
-    margin: clamp(2.25rem, 4.5vw, 3.4rem) auto 0;
+    margin: clamp(1rem, 2vw, 1.5rem) auto 0;
     padding: 1.25rem var(--rail-padding) 0;
     border-top: 1px solid rgba(244, 239, 230, 0.12);
     display: flex;
