@@ -23,9 +23,9 @@ const solutionGroups = [
 ]
 
 const contactItems = [
-    { to: '/contact/agri-farms',    title: 'Commercial Agriculture Farms', hint: 'Land, UV, flooding & soil' },
-    { to: '/contact/dairy-horses',  title: 'Dairy and Horses',             hint: 'Pasture, manure & water' },
-    { to: '/contact/poultry',       title: 'Poultry Farms',                hint: 'Biogas, broiler & litter' },
+    { to: '/contact/agri-farms',    title: 'Agriculture',       hint: 'Land, UV, flooding & soil' },
+    { to: '/contact/dairy-horses',  title: 'Dairy and Stables', hint: 'Pasture, manure & water' },
+    { to: '/contact/poultry',       title: 'Poultry Farms',     hint: 'Biogas, broiler & litter' },
 ]
 
 /* Character-level hover link — two stacked copies sliding in/out */
@@ -114,15 +114,9 @@ const Header = () => {
                         <span className="ef-header__dot" aria-hidden="true" />
                     </Link>
 
-                    <button
-                        type="button"
-                        className={`ef-header__nav-item ${menuOpen === 'contact' ? 'is-open' : ''}`}
-                        onClick={() => toggle('contact')}
-                        aria-expanded={menuOpen === 'contact'}
-                    >
+                    <Link to="/contact" className="ef-header__nav-item">
                         <HoverLink>Contact</HoverLink>
-                        <span className={`ef-header__caret ${menuOpen === 'contact' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
-                    </button>
+                    </Link>
                 </nav>
 
                 <button
@@ -215,10 +209,9 @@ const Header = () => {
                             </div>
                             <div className="ef-mega__groups ef-mega__groups--single">
                                 <ul className="ef-mega__list">
-                                    {contactItems.map((item, i) => (
+                                    {contactItems.map((item) => (
                                         <li key={item.to} className="ef-mega__item">
                                             <Link to={item.to} className="ef-mega__link ef-mega__link--paper">
-                                                <span className="ef-mega__link-num">0{i + 1}</span>
                                                 <span className="ef-mega__link-body">
                                                     <span className="ef-mega__link-title">{item.title}</span>
                                                     <span className="ef-mega__link-hint">{item.hint}</span>
@@ -279,35 +272,7 @@ const Header = () => {
                             <span className="ef-header__dot" aria-hidden="true" />
                         </Link>
 
-                        <button
-                            type="button"
-                            className={`ef-mob__row ef-mob__row--toggle ${mobileSection === 'contact' ? 'is-open' : ''}`}
-                            onClick={() => setMobileSection(s => s === 'contact' ? null : 'contact')}
-                        >
-                            <span>Contact</span>
-                            <span className={`ef-mob__caret ${mobileSection === 'contact' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
-                        </button>
-                        <AnimatePresence>
-                            {mobileSection === 'contact' && (
-                                <motion.ul
-                                    key="mob-contact"
-                                    className="ef-mob__sub"
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                                >
-                                    {contactItems.map(item => (
-                                        <li key={item.to}>
-                                            <Link to={item.to} className="ef-mob__sub-link">
-                                                <span>{item.title}</span>
-                                                <span className="ef-mob__sub-hint">{item.hint}</span>
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </motion.ul>
-                            )}
-                        </AnimatePresence>
+                        <Link to="/contact" className="ef-mob__row">Contact</Link>
 
                     </motion.div>
                 )}

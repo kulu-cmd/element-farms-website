@@ -1,0 +1,249 @@
+/* =============================================
+   WHATSAPP WIDGET — floating chat launcher
+   ============================================= */
+
+.wa-widget {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+}
+
+/* ── FAB button ──────────────────────────────── */
+.wa-widget__fab {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 2px 8px rgba(0,0,0,0.15);
+    color: #fff;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+}
+
+.wa-widget__fab--open {
+    background: var(--ink, #2b2b2b);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+.wa-widget__fab-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* Pulse ring */
+.wa-widget__pulse {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.5);
+    animation: wa-pulse 2.2s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes wa-pulse {
+    0%   { transform: scale(1); opacity: 0.7; }
+    70%  { transform: scale(1.35); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ── Chat card ───────────────────────────────── */
+.wa-widget__card {
+    width: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+    background: #f7f5f0;
+    border: 1px solid rgba(43,43,43,0.08);
+    transform-origin: bottom right;
+}
+
+/* Header */
+.wa-widget__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1rem 0.9rem;
+    background: #0e5a36;
+    color: #f7f5f0;
+}
+
+.wa-widget__avatar {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.wa-widget__avatar svg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: block;
+}
+
+.wa-widget__online-dot {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #25d366;
+    border: 2px solid #0e5a36;
+}
+
+.wa-widget__header-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.wa-widget__name {
+    font-family: var(--font-display, 'Montserrat', sans-serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #f7f5f0;
+}
+
+.wa-widget__status {
+    font-family: var(--font-sans, 'Source Sans 3', sans-serif);
+    font-size: 0.68rem;
+    color: rgba(247, 245, 240, 0.7);
+    letter-spacing: 0.01em;
+}
+
+.wa-widget__close {
+    background: none;
+    border: none;
+    color: rgba(247, 245, 240, 0.7);
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    transition: color 0.2s;
+    flex-shrink: 0;
+}
+
+.wa-widget__close:hover { color: #f7f5f0; }
+
+/* Body */
+.wa-widget__body {
+    padding: 1rem;
+    background: #e5ddd5;
+    /* subtle whatsapp-style chat bg */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' opacity='0.04'><path d='M0 0h40v40H0zM40 40h40v40H40z' fill='%23000'/></svg>");
+}
+
+.wa-widget__bubble {
+    max-width: 85%;
+    padding: 0.65rem 0.85rem 0.5rem;
+    border-radius: 12px 12px 12px 2px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.wa-widget__bubble--in {
+    margin-right: auto;
+}
+
+.wa-widget__bubble p {
+    font-family: var(--font-sans, 'Source Sans 3', sans-serif);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #303030;
+    margin-bottom: 0.25rem;
+}
+
+.wa-widget__bubble p:last-of-type { margin-bottom: 0; }
+
+.wa-widget__time {
+    display: block;
+    font-size: 0.62rem;
+    color: rgba(0,0,0,0.38);
+    text-align: right;
+    margin-top: 0.3rem;
+    font-family: var(--font-sans, 'Source Sans 3', sans-serif);
+}
+
+/* Compose */
+.wa-widget__compose {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 0.85rem;
+    background: #f7f5f0;
+    border-top: 1px solid rgba(43,43,43,0.08);
+}
+
+.wa-widget__input {
+    width: 100%;
+    resize: none;
+    border: 1px solid rgba(43,43,43,0.15);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    font-family: var(--font-sans, 'Source Sans 3', sans-serif);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink, #2b2b2b);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.wa-widget__input:focus {
+    border-color: #25d366;
+}
+
+.wa-widget__send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    background: #25d366;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--font-sans, 'Source Sans 3', sans-serif);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    letter-spacing: 0.03em;
+}
+
+.wa-widget__send:hover {
+    background: #1ebe5d;
+    transform: translateY(-1px);
+}
+
+.wa-widget__send:active {
+    transform: translateY(0);
+}
+
+/* ── Mobile ──────────────────────────────────── */
+@media (max-width: 480px) {
+    .wa-widget {
+        bottom: 1.25rem;
+        right: 1.25rem;
+    }
+
+    .wa-widget__card {
+        width: calc(100vw - 2.5rem);
+    }
+}
