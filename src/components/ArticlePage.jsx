@@ -51,6 +51,21 @@ const renderBlock = (block, i) => {
         </div>
       )
 
+    case 'image':
+      return (
+        <figure key={i} className="article-page__figure">
+          <img
+            src={block.src}
+            alt={block.alt || ''}
+            className="article-page__img"
+            loading="lazy"
+          />
+          {block.caption && (
+            <figcaption className="article-page__caption">{block.caption}</figcaption>
+          )}
+        </figure>
+      )
+
     case 'references':
       return (
         <div key={i} className="article-page__references">
@@ -124,13 +139,7 @@ const ArticlePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
         >
-          {content.length > 0 ? (
-            content.map((block, i) => renderBlock(block, i))
-          ) : (
-            <p className="article-page__coming-soon">
-              Full article content is being prepared. Check back soon.
-            </p>
-          )}
+          {content.map((block, i) => renderBlock(block, i))}
         </motion.article>
 
         <aside className="article-page__sidebar">

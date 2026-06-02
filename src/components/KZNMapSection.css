@@ -1,0 +1,225 @@
+/* ============================================================
+   EROSION HOTSPOTS — light editorial map of South Africa
+   Real outline + 9 province hairlines + 3 vibrating orange dots
+   ============================================================ */
+
+.erosion {
+  background: var(--paper-deep, #efeadf);
+  color: var(--ink);
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.erosion::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.erosion__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--rail-padding);
+  display: grid;
+  grid-template-columns: 0.85fr 1.3fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Header ===== */
+
+.erosion__head {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.erosion__lede {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.erosion__lede em {
+  font-style: italic;
+  color: var(--clay);
+  font-weight: 300;
+}
+
+/* ===== Map ===== */
+
+.erosion__map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 680px;
+  margin-left: auto;
+}
+
+.erosion__map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ===== Hotspot overlays ===== */
+
+.erosion__spot {
+  --core-size: clamp(96px, 14vw, 180px);
+  --ring-size: clamp(180px, 28vw, 340px);
+  position: absolute;
+  width: var(--core-size);
+  height: var(--core-size);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.erosion__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid var(--clay);
+  box-shadow: none;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.7s ease, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.erosion__spot.is-active .erosion__core {
+  opacity: 0.96;
+  transform: scale(1);
+  transition-delay: var(--spot-delay);
+}
+
+.erosion__spot-label {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(0.78rem, 1.2vw, 1.05rem);
+  letter-spacing: -0.01em;
+  color: #000;
+  text-align: center;
+  padding: 0 0.4rem;
+  line-height: 1.05;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.6s ease, transform 0.7s ease;
+  pointer-events: none;
+}
+
+.erosion__spot.is-active .erosion__spot-label {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: calc(var(--spot-delay) + 0.25s);
+}
+
+/* Vibration rings */
+.erosion__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ring-size);
+  height: var(--ring-size);
+  border-radius: 50%;
+  border: 2px solid var(--clay);
+  background: radial-gradient(
+    circle,
+    rgba(243, 111, 33, 0.06) 0%,
+    rgba(243, 111, 33, 0) 65%
+  );
+  transform: translate(-50%, -50%) scale(0.18);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.erosion__spot.is-active .erosion__ring {
+  animation: erosionPulse 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.erosion__spot.is-active .erosion__ring--1 {
+  animation-delay: var(--spot-delay);
+}
+
+.erosion__spot.is-active .erosion__ring--2 {
+  animation-delay: calc(var(--spot-delay) + 1.2s);
+}
+
+.erosion__spot.is-active .erosion__ring--3 {
+  animation-delay: calc(var(--spot-delay) + 2.4s);
+}
+
+@keyframes erosionPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.22);
+    opacity: 0;
+    border-width: 3px;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.18;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .erosion__spot.is-active .erosion__ring {
+    animation: none;
+    opacity: 0.18;
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1000px) {
+  .erosion__inner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .erosion__map {
+    margin: 0 auto;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 560px) {
+  .erosion__spot {
+    --core-size: clamp(48px, 16vw, 80px);
+    --ring-size: clamp(110px, 36vw, 180px);
+  }
+  .erosion__spot-label {
+    font-size: clamp(0.7rem, 2.6vw, 0.88rem);
+  }
+}

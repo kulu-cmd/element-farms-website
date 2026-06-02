@@ -1,159 +1,301 @@
-.approach {
-  background: white;
-  padding-bottom: 3rem;
+/* =============================================
+   OUR APPROACH — photo cards with hover flip
+   FRONT (resting): photo + dark gradient
+                    big number TL · kicker TR · centred title with underline
+   BACK  (hover):   moss panel + meta header + body with highlights
+   ============================================= */
+
+.approach-x {
+    background: var(--paper);
+    color: var(--ink);
+    padding: clamp(5rem, 10vw, 9rem) 0 clamp(5rem, 10vw, 9rem);
+    position: relative;
+    overflow: hidden;
 }
 
-.approach__header {
-  background-color: #e6e6e6;
-  padding: 1.25rem 2rem;
-  margin-bottom: 2.5rem;
+.approach-x__inner {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 var(--rail-padding);
 }
 
-.approach__title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.26rem, 2.1vw, 1.75rem);
-  font-weight: 800;
-  color: var(--orange-main);
-  margin: 0 auto;
-  max-width: 1500px;
-}
-
-/* Steps row */
-.approach__steps {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0;
-}
-
-/* Arrow connector */
-.approach__connector {
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0.5rem;
-  /* Vertically align with the top portion of the card — roughly at step number + title height */
-  margin-top: 2.75rem;
-}
-
-/* Step card */
-.approach__step {
-  flex: 1;
-  background: white;
-  border: 2px solid rgba(243, 111, 33, 0.25);
-  border-radius: 20px;
-  padding: 1.75rem 1.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  /* Prevent layout jump when description opens */
-  min-height: 110px;
-}
-
-.approach__step:hover {
-  border-color: var(--orange-main);
-  box-shadow: 0 6px 24px rgba(243, 111, 33, 0.12);
-}
-
-.approach__step--active {
-  background: var(--orange-main);
-  border-color: var(--orange-main);
-  box-shadow: 0 8px 32px rgba(243, 111, 33, 0.25);
-}
-
-/* Step number */
-.approach__step-number {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--orange-main);
-  margin-bottom: 0.6rem;
-  transition: color 0.3s ease;
-}
-
-.approach__step--active .approach__step-number {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Step title */
-.approach__step-title {
-  font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-  font-weight: 800;
-  color: var(--charcoal);
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-.approach__step--active .approach__step-title {
-  color: white;
-}
-
-/* Step description (animated in/out) */
-.approach__step-desc {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--charcoal);
-  margin: 0;
-  overflow: hidden;
-  transition: color 0.3s ease;
-}
-
-.approach__step--active .approach__step-desc {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .approach__steps {
+/* ── HEADER ── */
+.approach-x__header {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .approach__connector {
-    margin-top: 0;
-    padding: 0.4rem 0;
-    transform: rotate(90deg);
-    align-self: center;
-  }
-
-  .approach__step {
-    min-height: auto;
-  }
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
 }
 
-@media (max-width: 640px) {
-  .approach__header {
-    padding: 1rem 1.25rem;
-  }
-
-  .approach__steps {
-    padding: 0 1.25rem 1rem;
-  }
-
-  .approach__step {
-    /* Full width is already guaranteed by flex column + align-items: stretch */
-    padding: 1.25rem 1rem;
-  }
-
-  .approach__step-title {
-    font-size: 1.1rem;
-  }
+.approach-x__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--clay);
 }
 
-@media (max-width: 400px) {
-  .approach__steps {
-    padding: 0 0.75rem 1rem;
-  }
+.approach-x__heading {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 5.4vw, 4.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+    text-wrap: balance;
+}
 
-  .approach__step {
-    padding: 1rem 0.875rem;
-  }
+.approach-x__heading em {
+    font-style: italic;
+    color: var(--clay);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+/* ── CARDS GRID ── */
+.approach-x__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+/* ── SINGLE CARD ── */
+.approach-x__card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--ink);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 1px 2px rgba(17, 42, 29, 0);
+}
+
+.approach-x__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 38px rgba(17, 42, 29, 0.18);
+}
+
+/* Photo */
+.approach-x__card-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.6s ease;
+    filter: brightness(0.78);
+}
+
+.approach-x__card:hover .approach-x__card-photo {
+    transform: scale(1.04);
+    filter: brightness(0.45) saturate(0.85);
+}
+
+/* Front gradient overlay — fades on hover */
+.approach-x__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.45) 0%,
+        rgba(0, 0, 0, 0.05) 32%,
+        rgba(0, 0, 0, 0.18) 55%,
+        rgba(0, 0, 0, 0.85) 100%
+    );
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.approach-x__card:hover .approach-x__card-overlay {
+    opacity: 0;
+}
+
+/* ── FRONT (resting) ── */
+.approach-x__card-front {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1.4rem, 2.4vw, 1.9rem);
+    color: var(--paper);
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.approach-x__card:hover .approach-x__card-front {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+}
+
+/* Top row — big number left + kicker right */
+.approach-x__card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.approach-x__card-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 4.6vw, 4.2rem);
+    line-height: 0.85;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+}
+
+.approach-x__card-kicker {
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 230, 0.78);
+    line-height: 1.4;
+    text-align: right;
+    max-width: 60%;
+    padding-top: 0.55rem;
+}
+
+/* Centred title with underline at bottom */
+.approach-x__card-titleblock {
+    text-align: center;
+    margin-bottom: clamp(0.5rem, 1vw, 1rem);
+}
+
+.approach-x__card-label {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.65rem, 3.6vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    margin: 0;
+    font-variation-settings: "opsz" 144;
+    display: inline-block;
+    padding-bottom: clamp(0.55rem, 1vw, 0.85rem);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.4);
+}
+
+/* ── BACK (hover) — moss panel + meta + body ── */
+.approach-x__card-back {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: linear-gradient(
+        180deg,
+        rgba(14, 90, 54, 0.94) 0%,
+        rgba(8, 60, 38, 0.97) 100%
+    );
+    color: var(--paper);
+    padding: clamp(1.4rem, 2.6vw, 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 1.8vw, 1.4rem);
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.approach-x__card:hover .approach-x__card-back {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.approach-x__card-back-meta {
+    display: flex;
+    align-items: baseline;
+    gap: clamp(0.55rem, 1vw, 0.85rem);
+    padding-bottom: clamp(0.85rem, 1.4vw, 1.1rem);
+    border-bottom: 1px solid rgba(244, 239, 230, 0.28);
+    width: 100%;
+    max-width: 18ch;
+    justify-content: center;
+}
+
+.approach-x__card-back-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--ochre);
+    font-variation-settings: "opsz" 144;
+}
+
+.approach-x__card-back-label {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 3.4vw, 2.9rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 144;
+}
+
+.approach-x__card-body {
+    font-family: var(--font-sans);
+    font-size: clamp(0.92rem, 1.1vw, 1.1rem);
+    line-height: 1.6;
+    color: rgba(244, 239, 230, 0.85);
+    margin: 0;
+    max-width: 38ch;
+    text-wrap: balance;
+}
+
+.approach-x__card-body mark {
+    background: transparent;
+    color: var(--ochre);
+    font-weight: 500;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .approach-x__cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.875rem;
+    }
+
+    .approach-x__card {
+        aspect-ratio: 4 / 3.6;
+    }
+}
+
+@media (max-width: 580px) {
+    .approach-x__cards {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .approach-x__card {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* On touch devices the hover state can't be reached, so always show
+   the back so the body and highlights are still readable. */
+@media (hover: none) {
+    .approach-x__card-back {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .approach-x__card-front {
+        opacity: 0;
+    }
 }

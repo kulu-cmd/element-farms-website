@@ -1,240 +1,283 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
+
+const solutionGroups = [
+    {
+        label: 'Agriculture',
+        tone: 'moss',
+        items: [
+            { to: '/solutions/land-rejuvenation', title: 'Land Rejuvenation', hint: 'Soil restoration & organic matter' },
+            { to: '/solutions/anti-flooding',    title: 'Anti-Flooding',     hint: 'Water retention & drainage' },
+            { to: '/solutions/uv-protection',    title: 'Sun & Pest Shield', hint: 'UV protection for orchards' },
+        ],
+    },
+    {
+        label: 'Livestock',
+        tone: 'ochre',
+        items: [
+            { to: '/solutions/poultry', title: 'Poultry Solutions', hint: 'Mineral bedding treatment' },
+        ],
+    },
+]
+
+const contactItems = [
+    { to: '/contact/agri-farms',    title: 'Agriculture',       hint: 'Land, UV, flooding & soil' },
+    { to: '/contact/dairy-horses',  title: 'Dairy and Stables', hint: 'Pasture, manure & water' },
+    { to: '/contact/poultry',       title: 'Poultry Farms',     hint: 'Biogas, broiler & litter' },
+]
+
+/* Character-level hover link — two stacked copies sliding in/out */
+const HoverLink = ({ children, ...props }) => (
+    <span className="hover-link" {...props}>
+        <span className="hover-link__inner">
+            <span className="hover-link__copy hover-link__copy--a">{children}</span>
+            <span className="hover-link__copy hover-link__copy--b" aria-hidden="true">{children}</span>
+        </span>
+    </span>
+)
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
-    const [solutionsOpen, setSolutionsOpen] = useState(false)
-    const [contactOpen, setContactOpen] = useState(false)
-    const triggerRef = useRef(null)
-    const contactTriggerRef = useRef(null)
+    const [menuOpen, setMenuOpen] = useState(null) // 'solutions' | 'contact' | null
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const [mobileSection, setMobileSection] = useState(null) // 'solutions' | 'contact' | null
+    const headerRef = useRef(null)
+    const location = useLocation()
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 20)
-        window.addEventListener('scroll', onScroll)
+        const onScroll = () => setScrolled(window.scrollY > 40)
+        onScroll()
+        window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
     useEffect(() => {
-        if (!solutionsOpen && !contactOpen) return
+        setMenuOpen(null)
+        setMobileOpen(false)
+        setMobileSection(null)
+    }, [location.pathname])
 
-        const onDocMouseDown = (e) => {
-            if (triggerRef.current && triggerRef.current.contains(e.target)) return
-            if (contactTriggerRef.current && contactTriggerRef.current.contains(e.target)) return
-            setSolutionsOpen(false)
-            setContactOpen(false)
+    useEffect(() => {
+        if (!menuOpen) return
+        const onDocClick = (e) => {
+            if (headerRef.current && !headerRef.current.contains(e.target)) setMenuOpen(null)
         }
+        const onKey = (e) => { if (e.key === 'Escape') setMenuOpen(null) }
+        document.addEventListener('mousedown', onDocClick)
+        document.addEventListener('keydown', onKey)
+        return () => {
+            document.removeEventListener('mousedown', onDocClick)
+            document.removeEventListener('keydown', onKey)
+        }
+    }, [menuOpen])
 
-        document.addEventListener('mousedown', onDocMouseDown)
-        return () => document.removeEventListener('mousedown', onDocMouseDown)
-    }, [solutionsOpen, contactOpen])
-
-    const handleSolutionsClick = () => {
-        setSolutionsOpen(prev => !prev)
-        setContactOpen(false)
-    }
-
-    const handleContactClick = () => {
-        setContactOpen(prev => !prev)
-        setSolutionsOpen(false)
-    }
+    const toggle = (id) => setMenuOpen(prev => prev === id ? null : id)
 
     return (
-        <motion.header
-            className={`header ${scrolled ? 'header--scrolled' : ''}`}
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+        <header
+            ref={headerRef}
+            className={`ef-header ${scrolled ? 'ef-header--scrolled' : ''} ${menuOpen ? 'ef-header--menu-open' : ''}`}
         >
-            <div className="header__inner">
-            {/* Logo */}
             <motion.div
-                className="header__logo-link"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                className="ef-header__bar"
+                initial={{ y: -30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-                <Link to="/" className="header__logo">
+                <Link to="/" className="ef-header__brand" aria-label="Element Farm Solutions — Home">
                     <img
                         src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
                         alt="Element Farm Solutions"
+                        className="ef-header__logo"
                     />
                 </Link>
+
+                <nav className="ef-header__nav" aria-label="Primary">
+                    <button
+                        type="button"
+                        className={`ef-header__nav-item ${menuOpen === 'solutions' ? 'is-open' : ''}`}
+                        onClick={() => toggle('solutions')}
+                        aria-expanded={menuOpen === 'solutions'}
+                    >
+                        <HoverLink>Solutions</HoverLink>
+                        <span className={`ef-header__caret ${menuOpen === 'solutions' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
+                    </button>
+
+                    <Link to="/education" className="ef-header__nav-item">
+                        <HoverLink>Education</HoverLink>
+                    </Link>
+
+                    <Link to="/cropfit" className="ef-header__nav-item ef-header__nav-item--feature">
+                        <HoverLink>CropFit</HoverLink>
+                        <span className="ef-header__dot" aria-hidden="true" />
+                    </Link>
+
+                    <Link to="/contact" className="ef-header__nav-item">
+                        <HoverLink>Contact</HoverLink>
+                    </Link>
+                </nav>
+
+                <button
+                    type="button"
+                    className={`ef-header__burger ${mobileOpen ? 'is-open' : ''}`}
+                    onClick={() => setMobileOpen(prev => !prev)}
+                    aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={mobileOpen}
+                >
+                    <span /><span /><span />
+                </button>
             </motion.div>
 
-            {/* Navigation */}
-            <nav className="header__nav">
-                <div className="header__nav-pill">
+            {/* Mega-menus */}
+            <AnimatePresence>
+                {menuOpen === 'solutions' && (
                     <motion.div
-                        ref={triggerRef}
-                        className={`header__nav-dropdown-wrapper${solutionsOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}
-                        initial={{ opacity: 0, y: -10 }}
+                        key="mega-solutions"
+                        className="ef-mega"
+                        initial={{ opacity: 0, y: -12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.28 }}
-                        onClick={handleSolutionsClick}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault()
-                                handleSolutionsClick()
-                            }
-                        }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <span className="header__nav-link header__nav-link--dropdown">
-                            Solutions <span className="header__dropdown-icon">▾</span>
-                        </span>
-
-                        {solutionsOpen && (
-                            <div className="header__dropdown-menu header__dropdown-menu--wide header__dropdown-menu--visible">
-
-                                {/* Agriculture */}
-                                <div className="header__dropdown-section">
-                                    <span className="header__dropdown-section-label header__dropdown-section-label--green">
-                                        Agriculture
-                                    </span>
-                                    <Link to="/solutions/land-rejuvenation" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
-                                        <span className="header__dropdown-item-icon">🌱</span>
-                                        <span className="header__dropdown-item-body">
-                                            <strong>Land Rejuvenation</strong>
-                                            <span>Soil restoration &amp; organic matter</span>
-                                        </span>
-                                    </Link>
-                                    <Link to="/solutions/anti-flooding" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
-                                        <span className="header__dropdown-item-icon">💧</span>
-                                        <span className="header__dropdown-item-body">
-                                            <strong>Anti-Flooding Systems</strong>
-                                            <span>Water retention &amp; drainage</span>
-                                        </span>
-                                    </Link>
-                                    <Link to="/solutions/uv-protection" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
-                                        <span className="header__dropdown-item-icon">☀️</span>
-                                        <span className="header__dropdown-item-body">
-                                            <strong>Sun &amp; Pest Protection</strong>
-                                            <span>UV shielding for crops &amp; orchards</span>
-                                        </span>
-                                    </Link>
-                                </div>
-
-                                <div className="header__dropdown-divider" />
-
-                                {/* Renewable Energy */}
-                                <div className="header__dropdown-section">
-                                    <span className="header__dropdown-section-label header__dropdown-section-label--orange">
-                                        Renewable Energy
-                                    </span>
-                                    <Link to="/solutions/waste-management" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
-                                        <span className="header__dropdown-item-icon">⚡</span>
-                                        <span className="header__dropdown-item-body">
-                                            <strong>Waste Management</strong>
-                                            <span>Biogas &amp; organic fertiliser</span>
-                                        </span>
-                                    </Link>
-                                </div>
-
-                                <div className="header__dropdown-divider" />
-
-                                {/* Broiler Farms */}
-                                <div className="header__dropdown-section">
-                                    <span className="header__dropdown-section-label header__dropdown-section-label--charcoal">
-                                        Broiler Farms
-                                    </span>
-                                    <Link to="/solutions/poultry" className="header__dropdown-item header__dropdown-item--rich" onClick={() => setSolutionsOpen(false)}>
-                                        <span className="header__dropdown-item-icon">🐔</span>
-                                        <span className="header__dropdown-item-body">
-                                            <strong>Poultry Solutions</strong>
-                                            <span>Ammonia control &amp; litter management</span>
-                                        </span>
-                                    </Link>
-                                </div>
-
+                        <div className="ef-mega__inner">
+                            <div className="ef-mega__aside">
+                                <span className="ef-mega__kicker">— Our Solutions</span>
+                                <p className="ef-mega__quote">
+                                    Regenerative systems,<br/>
+                                    <em>tailored to your land.</em>
+                                </p>
                             </div>
-                        )}
+                            <div className="ef-mega__groups">
+                                {solutionGroups.map((group) => (
+                                    <div key={group.label} className="ef-mega__group">
+                                        <span className={`ef-mega__group-label ef-mega__group-label--${group.tone}`}>{group.label}</span>
+                                        <ul className="ef-mega__list">
+                                            {group.items.map((item, i) => (
+                                                <li key={item.to} className="ef-mega__item">
+                                                    {item.disabled ? (
+                                                        <span className="ef-mega__link ef-mega__link--disabled" aria-disabled="true">
+                                                            <span className="ef-mega__link-num">0{i + 1}</span>
+                                                            <span className="ef-mega__link-body">
+                                                                <span className="ef-mega__link-title">
+                                                                    {item.title}
+                                                                </span>
+                                                                <span className="ef-mega__link-hint">{item.hint}</span>
+                                                            </span>
+                                                        </span>
+                                                    ) : (
+                                                        <Link to={item.to} className="ef-mega__link">
+                                                            <span className="ef-mega__link-num">0{i + 1}</span>
+                                                            <span className="ef-mega__link-body">
+                                                                <span className="ef-mega__link-title">{item.title}</span>
+                                                                <span className="ef-mega__link-hint">{item.hint}</span>
+                                                            </span>
+                                                            <span className="ef-mega__link-arrow" aria-hidden="true">→</span>
+                                                        </Link>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </motion.div>
+                )}
 
+                {menuOpen === 'contact' && (
                     <motion.div
-                        initial={{ opacity: 0, y: -10 }}
+                        key="mega-contact"
+                        className="ef-mega ef-mega--dark"
+                        initial={{ opacity: 0, y: -12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.32 }}
+                        exit={{ opacity: 0, y: -12 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <Link to="/education" className="header__nav-link">
-                            Education
-                        </Link>
+                        <div className="ef-mega__inner">
+                            <div className="ef-mega__aside">
+                                <span className="ef-mega__kicker ef-mega__kicker--paper">— Start a conversation</span>
+                                <p className="ef-mega__quote ef-mega__quote--paper">
+                                    Every field is different.<br/>
+                                    <em>Tell us about yours.</em>
+                                </p>
+                                <div className="ef-mega__meta">
+                                    <span>kamil@elementfarmsolutions.co.za</span>
+                                    <span>+27 61 388 9339</span>
+                                </div>
+                            </div>
+                            <div className="ef-mega__groups ef-mega__groups--single">
+                                <ul className="ef-mega__list">
+                                    {contactItems.map((item) => (
+                                        <li key={item.to} className="ef-mega__item">
+                                            <Link to={item.to} className="ef-mega__link ef-mega__link--paper">
+                                                <span className="ef-mega__link-body">
+                                                    <span className="ef-mega__link-title">{item.title}</span>
+                                                    <span className="ef-mega__link-hint">{item.hint}</span>
+                                                </span>
+                                                <span className="ef-mega__link-arrow" aria-hidden="true">→</span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
                     </motion.div>
+                )}
 
+                {mobileOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -10 }}
+                        key="mob-menu"
+                        className="ef-mob"
+                        initial={{ opacity: 0, y: -8 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.40 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <Link to="/cropfit" className="header__nav-link">
+                        <button
+                            type="button"
+                            className={`ef-mob__row ef-mob__row--toggle ${mobileSection === 'solutions' ? 'is-open' : ''}`}
+                            onClick={() => setMobileSection(s => s === 'solutions' ? null : 'solutions')}
+                        >
+                            <span>Solutions</span>
+                            <span className={`ef-mob__caret ${mobileSection === 'solutions' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
+                        </button>
+                        <AnimatePresence>
+                            {mobileSection === 'solutions' && (
+                                <motion.ul
+                                    key="mob-solutions"
+                                    className="ef-mob__sub"
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                                >
+                                    {solutionGroups.map(group => group.items.map(item => (
+                                        <li key={item.to}>
+                                            <Link to={item.to} className="ef-mob__sub-link">
+                                                <span className="ef-mob__sub-label">{group.label}</span>
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    )))}
+                                </motion.ul>
+                            )}
+                        </AnimatePresence>
+
+                        <Link to="/education" className="ef-mob__row">Education</Link>
+
+                        <Link to="/cropfit" className="ef-mob__row ef-mob__row--feature">
                             CropFit
+                            <span className="ef-header__dot" aria-hidden="true" />
                         </Link>
-                    </motion.div>
 
-                    <motion.div
-                        ref={contactTriggerRef}
-                        className={`header__nav-dropdown-wrapper${contactOpen ? ' header__nav-dropdown-wrapper--open' : ''}`}
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.36 }}
-                        onClick={handleContactClick}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault()
-                                handleContactClick()
-                            }
-                        }}
-                    >
-                        <span className="header__nav-link header__nav-link--dropdown">
-                            Contact Us <span className="header__dropdown-icon">▾</span>
-                        </span>
+                        <Link to="/contact" className="ef-mob__row">Contact</Link>
 
-                        {contactOpen && (
-                            <div className="header__dropdown-menu header__dropdown-menu--orange header__dropdown-menu--visible">
-                                <Link
-                                    to="/contact/poultry-dairy"
-                                    className="header__dropdown-item header__dropdown-item--orange"
-                                    onClick={() => setContactOpen(false)}
-                                >
-                                    <span className="header__dropdown-item-icon">🐔</span>
-                                    <span className="header__dropdown-item-body">
-                                        <strong>Poultry &amp; Dairies</strong>
-                                        <span>Biogas, broiler &amp; waste solutions</span>
-                                    </span>
-                                </Link>
-                                <Link
-                                    to="/contact/agri-farms"
-                                    className="header__dropdown-item header__dropdown-item--orange"
-                                    onClick={() => setContactOpen(false)}
-                                >
-                                    <span className="header__dropdown-item-icon">🌾</span>
-                                    <span className="header__dropdown-item-body">
-                                        <strong>Agri Farms</strong>
-                                        <span>Land, UV, flooding &amp; soil solutions</span>
-                                    </span>
-                                </Link>
-                                <Link
-                                    to="/contact/organic"
-                                    className="header__dropdown-item header__dropdown-item--orange"
-                                    onClick={() => setContactOpen(false)}
-                                >
-                                    <span className="header__dropdown-item-icon">🌿</span>
-                                    <span className="header__dropdown-item-body">
-                                        <strong>Grow Organically</strong>
-                                        <span>Natural pest control &amp; fertiliser</span>
-                                    </span>
-                                </Link>
-                            </div>
-                        )}
                     </motion.div>
-                </div>
-            </nav>
-            </div>
-        </motion.header>
+                )}
+            </AnimatePresence>
+        </header>
     )
 }
 

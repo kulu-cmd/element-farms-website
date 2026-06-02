@@ -1,0 +1,216 @@
+/* =============================================
+   CTA BAND — editorial full-width call-to-action
+   ============================================= */
+
+.cta-band {
+  position: relative;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Tone variants */
+.cta-band--moss  { background: var(--moss-deep); color: var(--paper); }
+.cta-band--clay  { background: var(--clay); color: var(--paper); }
+.cta-band--ink   { background: var(--ink); color: var(--paper); }
+
+/* Grain overlay */
+.cta-band__grain {
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain-url);
+  opacity: 0.25;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow accent */
+.cta-band__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-band--moss .cta-band__glow {
+  background: radial-gradient(ellipse at 0% 50%, rgba(243, 111, 33, 0.15) 0%, transparent 55%);
+}
+.cta-band--clay .cta-band__glow {
+  background: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+.cta-band--ink .cta-band__glow {
+  background: radial-gradient(ellipse at 50% 100%, rgba(63, 174, 90, 0.12) 0%, transparent 55%);
+}
+
+/* Brand motifs */
+.cta-band__motif {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-band__motif--circle {
+  left: clamp(2rem, 5vw, 5rem);
+  top: clamp(1.75rem, 3vw, 2.5rem);
+  opacity: 0.85;
+}
+
+/* Diagonal decorative rule */
+.cta-band__rule {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.08) 50%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Inner layout */
+.cta-band__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 var(--rail-padding);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+}
+
+/* Copy */
+.cta-band__copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.cta-band__heading {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: inherit;
+  margin: 0;
+  font-variation-settings: "opsz" 144;
+  text-wrap: balance;
+}
+
+.cta-band__heading em {
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.cta-band--moss .cta-band__heading em { color: var(--ochre); }
+.cta-band--clay .cta-band__heading em { color: rgba(255,255,255,0.75); }
+.cta-band--ink  .cta-band__heading em { color: var(--moss); }
+
+.cta-band__subtext {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+  line-height: 1.7;
+  color: rgba(244, 239, 230, 0.6);
+  max-width: 58ch;
+  margin: 0;
+}
+
+.cta-band--clay .cta-band__subtext {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Action buttons */
+.cta-band__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex-shrink: 0;
+  align-items: stretch;
+  min-width: 220px;
+}
+
+.cta-band__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.1rem 2rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cta-band__btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Primary — orange pill matching the hero "Start a farm trial" CTA */
+.cta-band__btn--primary {
+  background: #f36f21;
+  color: #fffcf3;
+  border-color: #f36f21;
+}
+
+.cta-band__btn--primary:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--paper);
+}
+
+/* Secondary — outlined ghost pill */
+.cta-band__btn--secondary {
+  background: transparent;
+  color: rgba(244, 239, 230, 0.85);
+  border-color: rgba(244, 239, 230, 0.4);
+}
+
+.cta-band__btn--secondary:hover {
+  border-color: var(--paper);
+  color: var(--paper);
+  background: rgba(244, 239, 230, 0.06);
+}
+
+/* Arrow */
+.cta-band__btn-arrow {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.cta-band__btn:hover .cta-band__btn-arrow {
+  transform: translateX(4px);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  .cta-band__inner {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .cta-band__actions {
+    flex-direction: row;
+    min-width: unset;
+  }
+
+  .cta-band__btn {
+    flex: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .cta-band__actions {
+    flex-direction: column;
+  }
+}

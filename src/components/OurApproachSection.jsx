@@ -1,86 +1,127 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { CircleDots } from './BrandMotifs'
 import './OurApproachSection.css'
 
 const steps = [
-  {
-    number: '01',
-    title: 'Diagnose',
-    description: "We evaluate your farm's soil health, crop conditions, and environmental pressures including flooding, sun stress, and nutrient imbalance to understand exactly what your land needs.",
-  },
-  {
-    number: '02',
-    title: 'Design',
-    description: "Based on the diagnosis, we design a targeted regenerative plan recommending specific soil amendments, organic inputs, and protective treatments suited to your farm.",
-  },
-  {
-    number: '03',
-    title: 'Recycle',
-    description: "Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs — closing the nutrient loop and cutting your input costs.",
-  },
-  {
-    number: '04',
-    title: 'Restore',
-    description: "We implement the system, monitor results, and adjust. Soil biology rebuilds season by season, reducing chemical dependency and increasing long-term farm profitability.",
-  },
+    {
+        num: '01',
+        label: 'Diagnose',
+        kicker: 'Pinpoint Issues',
+        body: (
+            <>
+                We walk the fields, sample the soil, assess flooding, sun stress, biology, mineral balance, and the wider environmental pressures acting on your farm. <mark>Nothing is prescribed before the diagnosis.</mark>
+            </>
+        ),
+        image: '/approach/diagnose.jpg',
+    },
+    {
+        num: '02',
+        label: 'Design',
+        kicker: 'A plan, not a product',
+        body: (
+            <>
+                From the diagnosis we design a regenerative plan — <mark>targeted soil amendments, biological inputs and protective treatments</mark> — shaped by what this specific land needs to return to health.
+            </>
+        ),
+        image: '/approach/design.jpg',
+    },
+    {
+        num: '03',
+        label: 'Recycle',
+        kicker: 'Close the nutrient loop',
+        body: (
+            <>
+                Where possible, we convert your own agricultural waste into high-value compost and regenerative inputs. <mark>The nutrient loop closes, the input cost decreases, and the farm begins to feed itself.</mark>
+            </>
+        ),
+        image: '/approach/recycle.jpg',
+    },
+    {
+        num: '04',
+        label: 'Restore',
+        kicker: 'Sustainable Farming',
+        body: (
+            <>
+                We implement, monitor, and adjust so that soil biology rebuilds season by season. <mark>Chemical dependence drops; resilience and profitability compounds year over year.</mark>
+            </>
+        ),
+        image: '/approach/restore.jpg',
+    },
 ]
 
 const OurApproachSection = () => {
-  const [activeStep, setActiveStep] = useState(0)
+    return (
+        <section className="approach-x" id="about-us">
+            <div className="approach-x__inner">
 
-  return (
-    <section className="approach" id="about-us">
-      {/* Grey header bar */}
-      <div className="approach__header">
-        <h2 className="approach__title">Our Approach</h2>
-      </div>
+                {/* Header */}
+                <motion.header
+                    className="approach-x__header"
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <span className="approach-x__eyebrow">
+                        <CircleDots size={22} strokeWidth={11} />
+                        Our Approach
+                    </span>
+                    <h2 className="approach-x__heading">
+                        A practical <em>four-step framework</em><br />
+                        for the <em>long run</em>.
+                    </h2>
+                </motion.header>
 
-      {/* Steps row */}
-      <div className="approach__steps">
-        {steps.map((step, index) => (
-          <React.Fragment key={step.number}>
-            {/* Step card */}
-            <motion.div
-              className={`approach__step ${activeStep === index ? 'approach__step--active' : ''}`}
-              onClick={() => setActiveStep(index)}
-              whileHover={{ y: -4 }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.12 }}
-            >
-              <span className="approach__step-number">{step.number}</span>
-              <h3 className="approach__step-title">{step.title}</h3>
+                {/* Photo cards grid */}
+                <div className="approach-x__cards">
+                    {steps.map((step, i) => (
+                        <motion.div
+                            key={step.num}
+                            className="approach-x__card"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.18 }}
+                            transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            {/* Full-bleed photo */}
+                            <img
+                                src={step.image}
+                                alt={`${step.label} — Element Farm Solutions`}
+                                className="approach-x__card-photo"
+                                loading="lazy"
+                            />
 
-              <AnimatePresence>
-                {activeStep === index && (
-                  <motion.p
-                    className="approach__step-desc"
-                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                    animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
-                    exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                    transition={{ duration: 0.35, ease: 'easeInOut' }}
-                  >
-                    {step.description}
-                  </motion.p>
-                )}
-              </AnimatePresence>
-            </motion.div>
+                            {/* Dark gradient overlay (front) */}
+                            <div className="approach-x__card-overlay" aria-hidden="true" />
 
-            {/* Arrow connector between steps (not after last) */}
-            {index < steps.length - 1 && (
-              <div className="approach__connector">
-                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 14 H22" stroke="#f36f21" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16 8 L22 14 L16 20" stroke="#f36f21" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-            )}
-          </React.Fragment>
-        ))}
-      </div>
-    </section>
-  )
+                            {/* FRONT (resting) */}
+                            <div className="approach-x__card-front">
+                                <div className="approach-x__card-top">
+                                    <span className="approach-x__card-num">{step.num}</span>
+                                    <span className="approach-x__card-kicker">{step.kicker}</span>
+                                </div>
+
+                                <div className="approach-x__card-titleblock">
+                                    <h3 className="approach-x__card-label">{step.label}</h3>
+                                </div>
+                            </div>
+
+                            {/* BACK (hover) — moss panel + body */}
+                            <div className="approach-x__card-back" aria-hidden="true">
+                                <div className="approach-x__card-back-meta">
+                                    <span className="approach-x__card-back-num">{step.num}</span>
+                                    <span className="approach-x__card-back-label">{step.label}</span>
+                                </div>
+                                <p className="approach-x__card-body">{step.body}</p>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+            </div>
+        </section>
+    )
 }
 
 export default OurApproachSection

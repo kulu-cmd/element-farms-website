@@ -8,6 +8,7 @@
 
 import { useState, useReducer, useCallback } from 'react'
 import { getRegionFromLatLng } from '../engine/regions.js'
+import { API } from '../../api.js'
 
 // ─── INPUTS REDUCER ──────────────────────────────────────────────────────
 const DEFAULT_INPUTS = {
@@ -126,7 +127,7 @@ export function useCropFitState() {
     setAnalysisError(null)
 
     try {
-      const response = await fetch('/api/cropfit/analyze', {
+      const response = await fetch(API.analyze, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ inputs }),

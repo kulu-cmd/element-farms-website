@@ -1,213 +1,296 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { CircleDots } from './BrandMotifs'
 import './TailoredSolutionSection.css'
 
-const cards = [
-  {
-    accentColor: '#3fae5a',
-    icon: '🌱',
-    label: 'ORGANIC MATTER',
-    heading: "Rebuild Your Soil's Biodiversity",
-    teaser:
-      'Depleted soils lack the microbial activity needed to feed crops naturally. We restore it from the ground up.',
-    modal: {
-      title: 'Vermicomposting Systems',
-      subtitle: null,
-      body: (
-        <p>
-          We teach and implement farm-scale vermicomposting systems that convert agricultural
-          waste — manure, crop residues, organic off-cuts — into high-quality worm castings.
-          These castings are rich in plant-available nutrients, beneficial microbes, and humic
-          acids that rebuild soil structure and biology season by season. The result is a
-          closed-loop system where your farm feeds itself.
-        </p>
-      ),
+const REGEN_DETAIL = {
+    num: '01',
+    tag: 'Regenerative Systems',
+    title: <>Closed-loop composting <em>on your farm.</em></>,
+    lede: "If you currently use chemical fertilizers, manure or regular compost — this is for you. Level up your fertilizer game!",
+    image: '/land_rejuv/solution1.jpg',
+    imageAlt: 'On-farm composting and vermiculture system in action',
+    bullets: [
+        {
+            title: 'Living biology from your own waste.',
+            body: 'Bacteria, fungi, protozoa and humic acids that unlock nutrients chemicals only mask.',
+        },
+        {
+            title: 'Plant-ready nutrients, slow-release.',
+            body: 'NPK plus micros in stable form — no leaching, no salt-burn, no shock loading.',
+        },
+        {
+            title: 'Soil structure rebuilds.',
+            body: 'Aggregate stability, water-holding capacity and aeration — the foundations of yield.',
+        },
+        {
+            title: 'Heavily-eroded land first.',
+            body: 'We target your most distressed soils and your nursery, so the babies of today become champions for the future.',
+        },
+    ],
+}
+
+const NURSERY_DETAIL = {
+    num: '03',
+    tag: 'Combined System',
+    title: <>Supercharge your <em>nurseries.</em></>,
+    lede: 'The first 30 days of root development determine the entire season. We combine composting systems and M-TerraBoost into a nursery-stage stimulus medium that gives seedlings the strongest possible start.',
+    image: '/land_rejuv/nurseries.png',
+    imageAlt: 'Nursery seedlings — root development',
+    bullets: [
+        {
+            title: 'Biology activates instantly.',
+            body: 'Microbes colonise the root zone the day a seedling is potted.',
+        },
+        {
+            title: 'Minerals build the structure.',
+            body: 'Silica and calcium drive cell division and root-wall integrity from day one.',
+        },
+        {
+            title: 'Roots go deeper, faster.',
+            body: 'Plants leave the nursery with the root system of a much older seedling — transplant shock drops, survival rates rise.',
+        },
+        {
+            title: 'Works across all crop types.',
+            body: 'Vegetables, orchards, lucerne, ornamentals — the same stimulus medium accelerates every nursery stage.',
+        },
+    ],
+}
+
+const items = [
+    {
+        problem: "My soils are dead. Nothing holds moisture, yields are dropping, and I can't afford to keep buying inputs that don't work.",
+        solution: {
+            tag: 'Regenerative Systems',
+            title: 'On-farm composting that closes the loop.',
+            body: 'Closed-loop compost that rebuilds microbial life — produced on-farm from your own waste.',
+            modalKey: 'regen',
+        },
     },
-  },
-  {
-    accentColor: '#c49a3c',
-    icon: '⚗️',
-    label: 'MINERAL DEFICIENCIES',
-    heading: "Restore What's Missing",
-    teaser:
-      'Soil mineral imbalances silently reduce yields, water retention, and crop quality. M-TerraBoost targets the root cause.',
-    modal: {
-      title: 'M-TerraBoost — Silica Mineral Fertiliser',
-      subtitle: 'Scientifically formulated blend of minerals to target nutrient uptake and water retention.',
-      body: (
-        <>
-          <p>M-TerraBoost delivers four critical minerals your soil may be lacking:</p>
-          <ul className="tailored__modal-list">
-            <li>
-              <strong>Silica</strong> — Strengthens plant cell walls, improves drought and
-              disease resistance, and increases water use efficiency.
-            </li>
-            <li>
-              <strong>Calcium</strong> — Essential for root development, cell wall integrity,
-              and reducing soil acidity.
-            </li>
-            <li>
-              <strong>Magnesium</strong> — The core of chlorophyll; drives photosynthesis,
-              energy transfer, and phosphorus uptake.
-            </li>
-            <li>
-              <strong>Sulphur</strong> — Key for protein synthesis, enzyme function, and
-              nitrogen efficiency.
-            </li>
-          </ul>
-          <p>
-            Together these minerals improve crop quality, increase yield potential, and reduce
-            long-term input dependency.
-          </p>
-        </>
-      ),
+    {
+        problem: "I've done soil tests but can't figure out what's actually missing — and I keep throwing money at more urea or NPK fertilisers.",
+        solution: {
+            tag: 'M-TerraBoost',
+            title: 'A mineral blend built for our soils.',
+            body: 'A slow-release blend restoring the four minerals South African soils are missing.',
+            href: '#mterra-detail',
+            isAnchor: true,
+        },
     },
-  },
-  {
-    accentColor: '#b5451b',
-    icon: '🌿',
-    label: 'NURSERY ROOTS',
-    heading: 'Supercharge Early Growth',
-    teaser:
-      'The first 30 days of root development determine the entire season. Give your seedlings the strongest possible start.',
-    modal: {
-      title: 'Vermicompost + Mineral Blend',
-      subtitle: null,
-      body: (
-        <p>
-          Combining our vermicompost inoculation with M-TerraBoost creates an exceptional root
-          stimulus medium. The biological life in worm castings activates immediately around the
-          seedling root zone, while the mineral blend provides the structural nutrients needed
-          for rapid cell division and root elongation. Plants establish faster, show stronger
-          early growth, and enter the season with a resilient, deep root system — reducing
-          transplant shock and improving survival rates across all crop types.
-        </p>
-      ),
+    {
+        problem: "We're losing seedlings to transplant shock. By the time roots establish, we've already lost the season.",
+        solution: {
+            tag: 'Combined System',
+            title: 'A nursery-stage stimulus medium.',
+            body: 'Compost biology + M-TerraBoost minerals — deeper roots, less transplant shock.',
+            modalKey: 'nursery',
+        },
     },
-  },
 ]
 
-const TailoredSolutionSection = () => {
-  const [activeModal, setActiveModal] = useState(null)
+const FindOutMore = ({ href, isAnchor, modalKey, onOpen }) => {
+    const arrow = <span className="solutions-x__more-arrow" aria-hidden="true">→</span>
+    if (modalKey) {
+        return (
+            <button type="button" className="solutions-x__more" onClick={() => onOpen(modalKey)}>
+                <span>Find out more</span>
+                {arrow}
+            </button>
+        )
+    }
+    if (isAnchor) {
+        return (
+            <a href={href} className="solutions-x__more">
+                <span>Find out more</span>
+                {arrow}
+            </a>
+        )
+    }
+    return (
+        <Link to={href} className="solutions-x__more">
+            <span>Find out more</span>
+            {arrow}
+        </Link>
+    )
+}
 
-  const openModal = (index) => setActiveModal(index)
-  const closeModal = () => setActiveModal(null)
+const SolutionModal = ({ detail, onClose }) => {
+    useEffect(() => {
+        if (!detail) return
+        const onKey = (e) => {
+            if (e.key === 'Escape') onClose()
+        }
+        document.body.style.overflow = 'hidden'
+        window.addEventListener('keydown', onKey)
+        return () => {
+            document.body.style.overflow = ''
+            window.removeEventListener('keydown', onKey)
+        }
+    }, [detail, onClose])
 
-  return (
-    <section className="tailored">
-      <div className="tailored__inner">
-
-        {/* Section header */}
-        <motion.div
-          className="tailored__header"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          <h2 className="tailored__heading">Your Tailored Solution</h2>
-          <p className="tailored__subheading">
-            We identify what's holding your farm back and apply the right solution.
-          </p>
-        </motion.div>
-
-        {/* Cards grid */}
-        <div className="tailored__grid">
-          {cards.map((card, index) => (
-            <motion.div
-              key={card.label}
-              className="tailored__card"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.12 }}
-              whileHover={{ y: -4 }}
-              onClick={() => openModal(index)}
-            >
-              {/* Accent bar */}
-              <div
-                className="tailored__card-bar"
-                style={{ background: card.accentColor }}
-              />
-
-              {/* Card body */}
-              <div className="tailored__card-body">
-                <div className="tailored__card-icon" aria-hidden="true">
-                  {card.icon}
-                </div>
-                <span className="tailored__card-label" style={{ color: card.accentColor }}>
-                  {card.label}
-                </span>
-                <h3 className="tailored__card-heading">{card.heading}</h3>
-                <p className="tailored__card-teaser">{card.teaser}</p>
-                <span className="tailored__card-link">Learn more →</span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-      </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {activeModal !== null && (
-          <motion.div
-            className="tailored__overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={closeModal}
-          >
-            <motion.div
-              className="tailored__modal"
-              initial={{ opacity: 0, scale: 0.92, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.92, y: 20 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Accent bar inside modal */}
-              <div
-                className="tailored__modal-bar"
-                style={{ background: cards[activeModal].accentColor }}
-              />
-
-              {/* Close button */}
-              <button
-                className="tailored__modal-close"
-                onClick={closeModal}
-                aria-label="Close"
-              >
-                ✕
-              </button>
-
-              {/* Modal content */}
-              <div className="tailored__modal-content">
-                <span
-                  className="tailored__modal-label"
-                  style={{ color: cards[activeModal].accentColor }}
+    return (
+        <AnimatePresence>
+            {detail && (
+                <motion.div
+                    className="nursery-modal"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={onClose}
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="solution-modal-title"
                 >
-                  {cards[activeModal].label}
-                </span>
-                <h3 className="tailored__modal-title">
-                  {cards[activeModal].modal.title}
-                </h3>
-                {cards[activeModal].modal.subtitle && (
-                  <p className="tailored__modal-subtitle">
-                    {cards[activeModal].modal.subtitle}
-                  </p>
-                )}
-                <div className="tailored__modal-body">
-                  {cards[activeModal].modal.body}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </section>
-  )
+                    <motion.div
+                        className="nursery-modal__panel"
+                        initial={{ opacity: 0, y: 30, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 30, scale: 0.97 }}
+                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            type="button"
+                            className="nursery-modal__close"
+                            onClick={onClose}
+                            aria-label="Close"
+                        >
+                            <span>Close</span>
+                            <span aria-hidden="true">×</span>
+                        </button>
+
+                        <div className={`nursery-modal__grid ${detail.image ? '' : 'nursery-modal__grid--single'}`}>
+                            <div className="nursery-modal__copy">
+                                <header className="nursery-modal__head">
+                                    <span className="nursery-modal__num">{detail.num}</span>
+                                    <span className="nursery-modal__rule" aria-hidden="true" />
+                                    <span className="nursery-modal__tag">{detail.tag}</span>
+                                </header>
+
+                                <h2 id="solution-modal-title" className="nursery-modal__title">
+                                    {detail.title}
+                                </h2>
+
+                                <p className="nursery-modal__lede">{detail.lede}</p>
+
+                                <ul className="nursery-modal__list">
+                                    {detail.bullets.map((b) => (
+                                        <li key={b.title}>
+                                            <strong>{b.title}</strong> {b.body}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            {detail.image && (
+                                <figure className="nursery-modal__figure photo-frame">
+                                    <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+                                    <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+                                    <img src={detail.image} alt={detail.imageAlt} loading="lazy" />
+                                </figure>
+                            )}
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
+    )
+}
+
+const MODAL_DETAILS = {
+    regen: REGEN_DETAIL,
+    nursery: NURSERY_DETAIL,
+}
+
+const TailoredSolutionSection = () => {
+    const [modalKey, setModalKey] = useState(null)
+    const slideIn = {
+        hidden: { opacity: 0, y: 32 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    }
+
+    return (
+        <section className="solutions-x" id="solutions">
+            <div className="solutions-x__inner">
+
+                {/* Section eyebrow only — no left lede column */}
+                <motion.div
+                    className="solutions-x__eyebrow-row"
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <CircleDots size={26} strokeWidth={9} />
+                    <span className="solutions-x__eyebrow-label">Our Solutions</span>
+                </motion.div>
+
+                {/* Problem → Solution rows */}
+                <motion.ol
+                    className="solutions-x__list"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
+                    }}
+                >
+                    {items.map((item, i) => (
+                        <motion.li
+                            key={item.solution.tag}
+                            className="solutions-x__row"
+                            variants={slideIn}
+                        >
+                            <span className="solutions-x__num">{String(i + 1).padStart(2, '0')}</span>
+
+                            <div className="solutions-x__pair">
+                                <div className="solutions-x__col solutions-x__col--problem">
+                                    <span className="solutions-x__col-tag">Problem</span>
+                                    <p className="solutions-x__quote">
+                                        <span className="solutions-x__quote-mark" aria-hidden="true">“</span>
+                                        {item.problem}
+                                        <span className="solutions-x__quote-mark solutions-x__quote-mark--close" aria-hidden="true">”</span>
+                                    </p>
+                                </div>
+
+                                <div className="solutions-x__arrow" aria-hidden="true">
+                                    <svg viewBox="0 0 40 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M2 8 H36" />
+                                        <path d="M28 2 L36 8 L28 14" />
+                                    </svg>
+                                </div>
+
+                                <div className="solutions-x__col solutions-x__col--solution">
+                                    <span className="solutions-x__col-tag solutions-x__col-tag--solution">{item.solution.tag}</span>
+                                    <h3 className="solutions-x__col-title">{item.solution.title}</h3>
+                                    <p className="solutions-x__col-body">{item.solution.body}</p>
+                                    <div className="solutions-x__col-cta">
+                                        <FindOutMore
+                                            href={item.solution.href}
+                                            isAnchor={item.solution.isAnchor}
+                                            modalKey={item.solution.modalKey}
+                                            onOpen={(key) => setModalKey(key)}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.li>
+                    ))}
+                </motion.ol>
+
+            </div>
+
+            <SolutionModal
+                detail={modalKey ? MODAL_DETAILS[modalKey] : null}
+                onClose={() => setModalKey(null)}
+            />
+        </section>
+    )
 }
 
 export default TailoredSolutionSection

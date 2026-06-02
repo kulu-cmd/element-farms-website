@@ -1,318 +1,523 @@
-import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
+import PageHero from './PageHero'
+import CTABand from './CTABand'
+import EnquiryButton from './ui/EnquiryButton'
+import SectionLabel from './ui/SectionLabel'
 import './AntiFloodingPage.css'
 
+/* ----------------------------------------------------------------------------
+   Inline icons — match site's editorial/line-drawn style
+   --------------------------------------------------------------------------- */
+const AerationIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="22" cy="22" r="6" />
+    <circle cx="44" cy="20" r="4" />
+    <circle cx="32" cy="38" r="5" />
+    <circle cx="18" cy="44" r="3.5" />
+    <circle cx="46" cy="44" r="4.5" />
+    <path d="M8 56 H56" />
+  </svg>
+)
+
+const NutrientIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M32 8 V36" />
+    <path d="M32 22 C24 22 18 18 14 14" />
+    <path d="M32 22 C40 22 46 18 50 14" />
+    <path d="M22 36 C22 46 28 52 32 56 C36 52 42 46 42 36" />
+  </svg>
+)
+
+const WaterIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M32 8 C24 22 16 32 16 42 C16 51 23 56 32 56 C41 56 48 51 48 42 C48 32 40 22 32 8 Z" />
+    <path d="M22 42 C24 46 28 48 32 48" />
+  </svg>
+)
+
+const OrchardIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="32" cy="22" r="14" />
+    <path d="M32 36 V56" />
+    <path d="M32 44 L24 38" />
+    <path d="M32 44 L40 38" />
+  </svg>
+)
+
+const FieldIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 56 V32 C16 24 22 18 26 12" />
+    <path d="M28 56 V32 C28 24 34 18 38 12" />
+    <path d="M40 56 V32 C40 24 46 18 50 12" />
+    <path d="M8 56 H56" />
+  </svg>
+)
+
+const HerbsIcon = () => (
+  <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M16 50 H48 L46 56 H18 Z" />
+    <path d="M22 50 V36 C22 30 26 26 32 26 C38 26 42 30 42 36 V50" />
+    <path d="M32 26 V14" />
+    <path d="M32 18 C28 18 26 16 26 12" />
+    <path d="M32 22 C36 22 38 20 38 16" />
+  </svg>
+)
+
+/* ----------------------------------------------------------------------------
+   Photo placeholder for assets the user will fill later
+   --------------------------------------------------------------------------- */
+const PhotoPlaceholder = ({ label, aspect = '4 / 3', className = '' }) => (
+  <div
+    className={`flood__placeholder ${className}`}
+    style={{ aspectRatio: aspect }}
+    role="img"
+    aria-label={label}
+  >
+    <span className="flood__placeholder-corner flood__placeholder-corner--tl" />
+    <span className="flood__placeholder-corner flood__placeholder-corner--tr" />
+    <span className="flood__placeholder-corner flood__placeholder-corner--bl" />
+    <span className="flood__placeholder-corner flood__placeholder-corner--br" />
+    <span className="flood__placeholder-mark">PHOTO</span>
+    <span className="flood__placeholder-caption">{label}</span>
+  </div>
+)
+
 const AntiFloodingPage = () => {
-    const [activeModal, setActiveModal] = useState(null)
+  return (
+    <div className="flood">
+      <Header />
 
-    const stats = [
-        {
-            value: '20 – 30 %',
-            label: 'reduction in compaction and waterlogging in treated soils',
-        },
-        {
-            value: '40 tonnes',
-            label: 'of water stored per hectare in saturated conditions',
-        },
-        {
-            value: '4 000 +',
-            label: 'hectares of KwaZulu-Natal farmland at high flooding risk annually',
-        },
-    ]
+      <PageHero
+        title="Anti-Flooding __Systems__"
+        subtitle="Manufactured for aeration, nutrient and water retention."
+        tone="moss"
+      />
 
-    const systems = [
-        {
-            icon: '🍊',
-            name: 'Orchards',
-            desc: 'Deep root systems benefit most from improved aeration and drainage at the root zone.',
-            modalTitle: 'M-Hive in Orchards',
-            modalImage: '/hive/root%20snorkel.jpg',
-            modalImageAlt: 'Root Snorkel installed in orchard soil',
-            modalImageCaption: 'Root Snorkel — subsurface aeration system',
-            modalBody: 'The M-Hive Root Snorkel is designed specifically for orchard environments. Installed vertically into the root zone, it allows oxygen to reach deep into compacted, waterlogged soils — directly where fruit tree roots need it most. The honeycomb clay structure stores and slowly releases water and nutrients even during dry spells following flood events, keeping root health stable season to season. Particularly effective for mango, citrus, avocado, and stone fruit orchards across KwaZulu-Natal.',
-        },
-        {
-            icon: '🌾',
-            name: 'Field Crops',
-            desc: 'Prevent seasonal waterlogging that costs yield on maize, soya, and vegetable crops.',
-            modalTitle: 'M-Hive for Field Crops',
-            modalImage: '/hive/cross-section.png',
-            modalImageAlt: 'Cross-section diagram of M-Hive in field soil',
-            modalImageCaption: 'Subsurface cross-section — water drainage pathway',
-            modalBody: 'For row crops like maize, soya, and vegetables, waterlogging during the KwaZulu-Natal wet season is one of the leading causes of yield loss. M-Hive units are placed at row intervals below the plough layer, creating a subsurface drainage network that pulls excess water away from the root zone. The clay structure retains nutrients that would otherwise leach out, ensuring crops continue to access what they need even after heavy rainfall.',
-        },
-        {
-            icon: '🌿',
-            name: 'Herbs & Sprouts',
-            desc: 'Sensitive root systems thrive in well-aerated, consistently moist growing media.',
-            modalTitle: 'M-Hive for Herbs & Sprouts',
-            modalImage: '/hive/small.jpg',
-            modalImageAlt: 'Small M-Hive unit for nursery use',
-            modalImageCaption: 'Small M-Hive unit — ideal for nursery beds',
-            modalBody: 'Herbs, sprouts, and seedlings have highly sensitive root systems that are easily damaged by both waterlogging and drought. The small M-Hive unit is sized for nursery beds and propagation trays, providing a consistent moisture buffer around developing roots. By maintaining optimal aeration and preventing standing water, M-Hive reduces damping-off, root rot, and transplant failure — giving young plants the strongest possible start.',
-        },
-    ]
+      {/* ──────────────────────────────────────────────────────────────
+          1.  Manufactured banner + intro + 3 feature thumbnails
+          ────────────────────────────────────────────────────────────── */}
+      <section className="flood__intro">
+        <div className="flood__intro-inner">
+          <motion.div
+            className="flood__intro-copy"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <SectionLabel label="Meet M-Hive" />
+            <h2 className="flood__intro-statement">
+              Our LECA ball, engineered for farms with <em>waterlogged soils</em> — and crops that crave aeration.
+            </h2>
+            <p className="flood__intro-deck">
+              M-Hive is a permanent addition to your soil. Each ball stores water and fertiliser
+              while draining excess moisture, becoming a long-term home for roots and the
+              biological communities that feed them.
+            </p>
+          </motion.div>
 
-    const applicationImages = [
-        { src: '/hive/cross-section.png', caption: 'Soil Cross-Section View' },
-        { src: '/hive/root%20snorkel.jpg', caption: 'Root Snorkel Integration' },
-        { src: '/hive/hive_open.jpg', caption: 'Honeycomb Structure' },
-    ]
+          <div className="flood__intro-features">
+            <motion.div
+              className="flood__feature"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">🫧</div>
+              <h4>Aeration</h4>
+              <p>Permanent pore space — roots breathe, microbes thrive.</p>
+            </motion.div>
 
-    return (
-        <div className="flood">
-            <Header />
+            <motion.div
+              className="flood__feature"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">🥗</div>
+              <h4>Nutrient retention</h4>
+              <p>Locks in fertiliser and biology where roots can use it.</p>
+            </motion.div>
 
-            {/* Hero */}
-            <section className="flood__hero">
-                <div className="flood__hero-inner">
-                    <div className="flood__hero-text">
-                        <motion.h1
-                            className="flood__hero-title"
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            Anti-Flooding Systems
-                        </motion.h1>
-                        <motion.p
-                            className="flood__hero-subtitle"
-                            initial={{ opacity: 0, y: 28 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.65, delay: 0.18, ease: 'easeOut' }}
-                        >
-                            Engineered to protect waterlogged farmland — draining excess water while locking in the nutrients your crops need.
-                        </motion.p>
-                        <motion.div
-                            className="flood__hero-scroll-hint"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1, delay: 1.1 }}
-                        >
-                            <motion.span
-                                animate={{ y: [0, 6, 0] }}
-                                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-                            >↓</motion.span>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Stats intro */}
-            <section className="flood__stats-intro">
-                <div className="flood__stats-intro-inner">
-                    <motion.h2
-                        className="flood__stats-headline"
-                        initial={{ opacity: 0, y: 32 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
-                    >
-                        Flooding is becoming increasingly more deadly.
-                    </motion.h2>
-                    <motion.div
-                        className="flood__stats-rule"
-                        initial={{ scaleX: 0 }}
-                        whileInView={{ scaleX: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                </div>
-            </section>
-
-            {/* Stats */}
-            <section className="flood__stats">
-                <div className="flood__stats-grid">
-                    {stats.map((stat, i) => (
-                        <motion.div
-                            key={i}
-                            className="flood__stat-card"
-                            initial={{ opacity: 0, y: 50, scale: 0.94 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            <span className="flood__stat-value">{stat.value}</span>
-                            <p className="flood__stat-label">{stat.label}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Product Intro + Sizes */}
-            <section className="flood__solution">
-                <div className="flood__solution-header">
-                    <h2 className="flood__solution-title">Our Solution</h2>
-                    <div className="flood__solution-tags">
-                        <span className="flood__tag">Aeration</span>
-                        <span className="flood__tag-dot">●</span>
-                        <span className="flood__tag">Nutrient Retention</span>
-                        <span className="flood__tag-dot">●</span>
-                        <span className="flood__tag">Drainage</span>
-                    </div>
-                </div>
-
-                <div className="flood__solution-body">
-                    <p className="flood__eyebrow">MANUFACTURED FOR AERATION, NUTRIENT AND WATER RETENTION</p>
-
-                    <motion.p
-                        className="flood__intro-text"
-                        initial={{ opacity: 0, y: 24 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        M-Hive is made from clay with a hardened honeycomb structure — engineered to store nutrients and water whilst providing drainage during flooding. For water-logged soils we have found this to be particularly effective for draining and maintaining soil structure.
-                    </motion.p>
-
-                    <div className="flood__product-row">
-                        <motion.img
-                            className="flood__product-img"
-                            src="/hive/hive_open.jpg"
-                            alt="M-Hive clay honeycomb unit"
-                            initial={{ opacity: 0, x: -40, scale: 0.96 }}
-                            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.25 }}
-                            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                        <motion.p
-                            className="flood__product-desc"
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true, amount: 0.25 }}
-                            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                        >
-                            The M-Hive system uses a fired clay honeycomb design that acts as a subsurface reservoir — absorbing excess water during flood events and slowly releasing it back into the root zone. The structure promotes drainage through the soil profile while retaining nutrients that would otherwise be lost to runoff. Suitable for a wide range of crop types and soil conditions, M-Hive is installed below the surface and requires no ongoing maintenance once placed.
-                        </motion.p>
-                    </div>
-
-                    {/* Sizes Table */}
-                    <h3 className="flood__section-heading">Available Sizes</h3>
-                    <div className="flood__table-wrap">
-                        <table className="flood__table">
-                            <thead>
-                                <tr>
-                                    <th>Size</th>
-                                    <th>Dimensions</th>
-                                    <th>Best For</th>
-                                    <th>Pricing</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Small</td>
-                                    <td>10cm diameter</td>
-                                    <td>Nursery beds &amp; seedling trays</td>
-                                    <td>Contact for quote</td>
-                                </tr>
-                                <tr>
-                                    <td>Medium</td>
-                                    <td>20cm diameter</td>
-                                    <td>Row crops &amp; vegetables</td>
-                                    <td>Contact for quote</td>
-                                </tr>
-                                <tr>
-                                    <td>Large</td>
-                                    <td>35cm diameter</td>
-                                    <td>Orchards &amp; field crops</td>
-                                    <td>Contact for quote</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            {/* Application Images */}
-            <section className="flood__applications">
-                <div className="flood__applications-inner">
-                    <h2 className="flood__section-heading">Where M-Hive Works Best</h2>
-                    <div className="flood__image-grid">
-                        {applicationImages.map((item, i) => (
-                            <motion.div
-                                key={i}
-                                className="flood__image-card"
-                                initial={{ opacity: 0, y: 40, scale: 0.96 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                viewport={{ once: true, amount: 0.2 }}
-                                transition={{ duration: 0.6, delay: i * 0.13, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <img src={item.src} alt={item.caption} />
-                                <p className="flood__image-caption">{item.caption}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Systems */}
-            <section className="flood__systems">
-                <div className="flood__systems-inner">
-                    <h2 className="flood__section-heading">We Have Developed a System For</h2>
-                    <div className="flood__systems-grid">
-                        {systems.map((item, i) => (
-                            <motion.div
-                                key={i}
-                                className="flood__system-card"
-                                initial={{ opacity: 0, y: 40 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.2 }}
-                                transition={{ duration: 0.55, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                                onClick={() => setActiveModal(i)}
-                                whileHover={{ y: -4 }}
-                            >
-                                <div className="flood__system-icon">{item.icon}</div>
-                                <h3 className="flood__system-name">{item.name}</h3>
-                                <p className="flood__system-desc">{item.desc}</p>
-                                <span className="flood__system-cta">Learn more →</span>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <Footer />
-
-            {/* System card modals */}
-            <AnimatePresence>
-                {activeModal !== null && (
-                    <motion.div
-                        className="flood__overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                        onClick={() => setActiveModal(null)}
-                    >
-                        <motion.div
-                            className="flood__modal"
-                            initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.92, y: 20 }}
-                            transition={{ duration: 0.3, ease: 'easeOut' }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            <div className="flood__modal-bar" />
-                            <button className="flood__modal-close" onClick={() => setActiveModal(null)} aria-label="Close">✕</button>
-                            <img
-                                src={systems[activeModal].modalImage}
-                                alt={systems[activeModal].modalImageAlt}
-                                className="flood__modal-img"
-                            />
-                            <p className="flood__modal-img-caption">{systems[activeModal].modalImageCaption}</p>
-                            <div className="flood__modal-content">
-                                <span className="flood__modal-icon">{systems[activeModal].icon}</span>
-                                <h3 className="flood__modal-title">{systems[activeModal].modalTitle}</h3>
-                                <p className="flood__modal-body">{systems[activeModal].modalBody}</p>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            <motion.div
+              className="flood__feature"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
+              <div className="flood__feature-icon flood__feature-icon--emoji" aria-hidden="true">💧</div>
+              <h4>Water storage</h4>
+              <p>Stores excess water, drains overload, releases when dry.</p>
+            </motion.div>
+          </div>
         </div>
-    )
+
+        {/* LECA ball size strip — small / medium / large */}
+        <motion.div
+          className="flood__leca-strip"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <figure className="flood__leca-cell">
+            <img src="/hive/small.png" alt="Small LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Small</span>
+              <span className="flood__leca-dia">4 – 10 mm</span>
+            </figcaption>
+          </figure>
+          <figure className="flood__leca-cell">
+            <img src="/hive/medium.png" alt="Medium LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Medium</span>
+              <span className="flood__leca-dia">10 – 18 mm</span>
+            </figcaption>
+          </figure>
+          <figure className="flood__leca-cell">
+            <img src="/hive/large.png" alt="Large LECA ball aggregate" loading="lazy" />
+            <figcaption>
+              <span className="flood__leca-label">Large</span>
+              <span className="flood__leca-dia">18 – 25 mm</span>
+            </figcaption>
+          </figure>
+        </motion.div>
+
+        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1.5rem' }}>
+          <EnquiryButton product="M-Hive" />
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          2.  "Plant roots find a home" — explanation + 2-photo grid
+              Uses the new WhatsApp pics moved into /hive/
+          ────────────────────────────────────────────────────────────── */}
+      <section className="flood__roots">
+        <div className="flood__roots-inner">
+          <motion.div
+            className="flood__roots-copy"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <h2 className="flood__roots-heading">
+              Plant roots find a <em>home.</em>
+            </h2>
+            <p className="flood__roots-lede">
+              Roots move into M-Hive because each ball stores fertiliser and water while
+              draining excess moisture. Organic matter and beneficial microbes form
+              communities inside every ball — building a complex network of biological
+              activity working alongside your roots.
+            </p>
+            <ul className="flood__roots-list">
+              <li>
+                <span className="flood__roots-num">01</span>
+                Stores water and fertiliser inside each ball.
+              </li>
+              <li>
+                <span className="flood__roots-num">02</span>
+                Microbes and organic matter colonise the cavities.
+              </li>
+              <li>
+                <span className="flood__roots-num">03</span>
+                Roots find a permanent home — and stay there.
+              </li>
+            </ul>
+          </motion.div>
+
+          <div className="flood__roots-photos">
+            <motion.figure
+              className="flood__roots-photo flood__roots-photo--lg photo-frame"
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img
+                src="/hive/roots-in-mhive-tree.jpg"
+                alt="Tree seedling pulled from M-Hive medium showing dense root colonisation through the LECA balls"
+              />
+              <figcaption>Tree roots inside M-Hive — a permanent root home.</figcaption>
+            </motion.figure>
+            <motion.figure
+              className="flood__roots-photo photo-frame"
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.95, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img
+                src="/hive/roots-in-mhive-strand.jpg"
+                alt="Hand holding a single root strand wrapped around M-Hive balls — biological communities visible"
+              />
+              <figcaption>A single root strand, woven through M-Hive.</figcaption>
+            </motion.figure>
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          3.  We Have Developed a System For — two category cards
+          ────────────────────────────────────────────────────────────── */}
+      <section className="flood__systems">
+        <div className="flood__systems-inner">
+          <motion.div
+            className="flood__systems-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.7 }}
+          >
+            <SectionLabel label="The System" />
+            <h2 className="flood__systems-heading">
+              Built for two <em>kinds of land.</em>
+            </h2>
+
+            <p className="flood__systems-deck">
+              Two M-Hive systems, each engineered for a different rhythm of crop — one
+              permanent, one re-usable. Pick the path that fits your operation.
+            </p>
+          </motion.div>
+
+          <div className="flood__systems-grid">
+            <motion.a
+              href="#orchards"
+              className="flood__system-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+            >
+              <header className="flood__system-head">
+                <span className="flood__system-num">01</span>
+                <span className="flood__system-rule" aria-hidden="true" />
+                <span className="flood__system-tag">Permanent install</span>
+              </header>
+
+              <div className="flood__system-icon flood__system-icon--emoji" aria-hidden="true">🌳</div>
+
+              <h3>Orchards &amp; Tree Crops</h3>
+              <p>Avocado, citrus, dragon fruit, macadamia — deep root systems that need long-term aeration and a permanent root home.</p>
+
+              <ul className="flood__system-meta">
+                <li><span>Lifespan</span><strong>Decades</strong></li>
+                <li><span>Install</span><strong>One-time</strong></li>
+                <li><span>Best for</span><strong>5+ year crops</strong></li>
+              </ul>
+
+              <span className="flood__system-link">
+                Read more
+                <span className="flood__system-link-arrow" aria-hidden="true">↓</span>
+              </span>
+            </motion.a>
+
+            <motion.a
+              href="#herbs"
+              className="flood__system-card flood__system-card--alt"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.7, delay: 0.18 }}
+            >
+              <header className="flood__system-head">
+                <span className="flood__system-num">02</span>
+                <span className="flood__system-rule" aria-hidden="true" />
+                <span className="flood__system-tag">Re-usable medium</span>
+              </header>
+
+              <div className="flood__system-icon flood__system-icon--emoji" aria-hidden="true">🌿</div>
+
+              <h3>Herbs, Tunnels &amp; Nurseries</h3>
+              <p>High-value herbs, flowers and aromatics in tunnels or raised beds — re-usable, weather-proof, permanent.</p>
+
+              <ul className="flood__system-meta">
+                <li><span>Lifespan</span><strong>Indefinite</strong></li>
+                <li><span>Install</span><strong>Filter &amp; re-use</strong></li>
+                <li><span>Best for</span><strong>High-value horticulture</strong></li>
+              </ul>
+
+              <span className="flood__system-link">
+                Read more
+                <span className="flood__system-link-arrow" aria-hidden="true">↓</span>
+              </span>
+            </motion.a>
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          4.  For Orchards & Tree Crops — detail section + 4 photos
+              Includes the Root Snorkel content (was previously a modal)
+          ────────────────────────────────────────────────────────────── */}
+      <section className="flood__detail flood__detail--orchards" id="orchards">
+        <div className="flood__detail-inner">
+          <motion.div
+            className="flood__detail-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="flood__detail-banner flood__detail-banner--header">For Orchards &amp; Tree Crops</span>
+            <h2 className="flood__detail-heading flood__detail-heading--inline">
+              One install. Decades of <em>flood-protection.</em>
+            </h2>
+            <p className="flood__detail-deck">
+              For crops bearing fruit for more than five years, M-Hive is a one-time
+              install that protects against flood and compaction for the orchard's full
+              commercial lifespan — air, water and biology delivered straight to the root zone.
+            </p>
+          </motion.div>
+
+          <div className="flood__detail-bullets">
+            <div>
+              <span className="flood__detail-bullet-num">01</span>
+              <h4>Permanent root home</h4>
+              <p>Once installed, M-Hive stays in the soil for the life of the tree.</p>
+            </div>
+            <div>
+              <span className="flood__detail-bullet-num">02</span>
+              <h4>Zero compaction risk</h4>
+              <p>The structure resists collapse — air space stays open, year after year.</p>
+            </div>
+            <div>
+              <span className="flood__detail-bullet-num">03</span>
+              <h4>Fertiliser stays put</h4>
+              <p>Nutrients lock into the M-Hive cavities instead of leaching past the root zone.</p>
+            </div>
+          </div>
+
+          <div className="flood__detail-photos flood__detail-photos--three">
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/root snorkel.jpg" alt="M-Hive Root Snorkel installed at orchard tree base" />
+              <figcaption>Root Snorkel installed under the canopy.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/snorkel_Dragonfruit.png" alt="Snorkel installed at dragon fruit base" />
+              <figcaption>Dragon fruit — flood-prone crop, permanent fix.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/root_snorkel_baby.png" alt="Young tree planted into M-Hive Root Snorkel" />
+              <figcaption>Young trees planted directly into the snorkel.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* ──────────────────────────────────────────────────────────────
+          5.  For Herbs / Tunnels / Nurseries
+          ────────────────────────────────────────────────────────────── */}
+      <section className="flood__detail flood__detail--herbs" id="herbs">
+        <div className="flood__detail-inner">
+          <motion.div
+            className="flood__detail-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="flood__detail-banner flood__detail-banner--header">For Herbs, Tunnels &amp; Nurseries</span>
+            <h2 className="flood__detail-heading">
+              Re-usable. Weatherproof. <em>Permanent.</em>
+            </h2>
+            <p className="flood__detail-deck">
+              Built to weather any storm — perfect for high-value horticulture, herbs,
+              flowers and aromatics grown in tunnels or raised beds. Because you rarely
+              change soil in tunnel production, M-Hive locks into your medium and becomes
+              a permanent addition. When you do swap soil, simply filter the M-Hive out
+              and re-use it in the next batch.
+            </p>
+          </motion.div>
+
+          <div className="flood__detail-bullets">
+            <div>
+              <span className="flood__detail-bullet-num">01</span>
+              <h4>Built to last</h4>
+              <p>UV-stable, weatherproof — won't break down in the tunnel environment.</p>
+            </div>
+            <div>
+              <span className="flood__detail-bullet-num">02</span>
+              <h4>100% re-usable</h4>
+              <p>Filter, rinse, drop into the next planting cycle. Indefinite working life.</p>
+            </div>
+            <div>
+              <span className="flood__detail-bullet-num">03</span>
+              <h4>High-value crops, low-risk medium</h4>
+              <p>Stable aeration and water-holding for the crops where every plant counts.</p>
+            </div>
+          </div>
+
+          <div className="flood__detail-photos flood__detail-photos--three">
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/herbs.jpg" alt="Herbs grown with M-Hive medium" />
+              <figcaption>Herbs — high-value crops, low-risk medium.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/proteas.jpg" alt="Proteas grown in M-Hive medium" />
+              <figcaption>Proteas — stable aeration, all-weather rooting.</figcaption>
+            </figure>
+            <figure className="flood__detail-photo photo-frame">
+              <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--tr" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
+              <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
+              <img src="/hive/canna.jpg" alt="Canna grown in M-Hive medium" />
+              <figcaption>Canna — long-season production, permanent medium.</figcaption>
+            </figure>
+          </div>
+
+        </div>
+      </section>
+
+
+      <CTABand
+        heading="Secure your soil against the next flood."
+        subtext="We design water-management systems that work with your terrain — protecting yield, soil structure, and infrastructure together."
+        primaryLabel="Book an assessment"
+        primaryTo="/contact/agri-farms"
+        secondaryLabel="All solutions"
+        secondaryTo="/"
+        tone="moss"
+      />
+
+      <Footer />
+    </div>
+  )
 }
 
 export default AntiFloodingPage

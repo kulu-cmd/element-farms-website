@@ -1,66 +1,84 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { CircleDots } from './BrandMotifs'
 import './MissionSection.css'
 
-const pillars = [
+const goals = [
     {
-        title: 'Restore Soil Health',
-        body: "We rebuild depleted farmland using regenerative inputs that revive soil biology, restore organic matter, and unlock nutrients that costly fertilisers have been masking for years.",
-        icon: '🌍',
+        title: 'Rejuvenate heavily eroded soils',
+        gloss: 'Restore biology, structure, and mineral balance.',
+        glyph: '🏜️',
     },
     {
-        title: 'Empower Farmers',
-        body: "We give farmers the knowledge, tools, and systems to take control of their land — creating real independence from the chemical supply chains that erode margins season after season.",
-        icon: '🌱',
+        title: 'Break the chemical cycle',
+        gloss: 'Move farms off synthetic dependency.',
+        glyph: '🧪',
     },
     {
-        title: 'Sustain Future Generations',
-        body: "We farm for tomorrow. Our systems improve soil quality with every harvest, building land that grows more fertile, more profitable, and more resilient with each passing season.",
-        icon: '🌾',
+        title: 'Empower farms to be self-sufficient',
+        gloss: 'Closed-loop systems for long term sustainability.',
+        glyph: '♻️',
     },
 ]
 
 const MissionSection = () => {
-    return (
-        <section className="mission">
-            <div className="mission__inner">
+    const slideIn = {
+        hidden: { opacity: 0, y: 32 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    }
 
-                {/* Part 1 — Centered header block */}
+    return (
+        <section className="mission-x" id="mission">
+            <div className="mission-x__inner">
+                {/* LEFT — eyebrow + display heading */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    style={{ textAlign: 'center' }}
+                    className="mission-x__lede"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+                    }}
                 >
-                    <span className="mission__eyebrow">OUR MISSION</span>
-                    <h2 className="mission__heading">How we help farmers</h2>
-                    <div className="mission__rule" />
-                    <p className="mission__intro">
-                        We are agriculture farm consultants with a singular focus; <strong>rebuild South Africa's soil health at scale.</strong> Through proven regenerative systems, we help small to medium commercial farms break their dependence on chemical fertilisers, saving money each season while <strong>creating land that sustains future generations</strong>.
-                    </p>
+                    <motion.div className="mission-x__eyebrow-row" variants={slideIn}>
+                        <CircleDots size={28} strokeWidth={9} />
+                        <span className="mission-x__eyebrow-label">Our mission is to</span>
+                    </motion.div>
+
+                    <motion.h2 className="mission-x__quote-heading" variants={slideIn}>
+                        Empower farms to adopt<br />
+                        <em>regenerative</em><br />
+                        farming systems.
+                    </motion.h2>
                 </motion.div>
 
-                {/* Part 2 — Three pillars grid */}
-                <div className="mission__pillars">
-                    {pillars.map((pillar, index) => (
-                        <motion.div
-                            key={pillar.title}
-                            className="mission__pillar"
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.55, ease: 'easeOut', delay: index * 0.14 }}
+                {/* RIGHT — vertical numbered list */}
+                <motion.ol
+                    className="mission-x__goals"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{
+                        hidden: {},
+                        visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+                    }}
+                >
+                    {goals.map((goal, i) => (
+                        <motion.li
+                            key={goal.title}
+                            className="mission-x__goal"
+                            variants={slideIn}
                         >
-                            <div className="mission__pillar-icon">
-                                {pillar.icon}
+                            <span className="mission-x__goal-num">{String(i + 1).padStart(2, '0')}</span>
+                            <div className="mission-x__goal-body">
+                                <span className="mission-x__goal-glyph" aria-hidden="true">{goal.glyph}</span>
+                                <span className="mission-x__goal-title">{goal.title}</span>
+                                <span className="mission-x__goal-gloss">{goal.gloss}</span>
                             </div>
-                            <h3 className="mission__pillar-title">{pillar.title}</h3>
-                            <p className="mission__pillar-body">{pillar.body}</p>
-                        </motion.div>
+                        </motion.li>
                     ))}
-                </div>
-
+                </motion.ol>
             </div>
         </section>
     )

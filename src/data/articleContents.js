@@ -16,6 +16,12 @@ export const articleContents = {
       text: 'For most of the twentieth century, agricultural science treated soil primarily as a chemical system — a matrix of minerals, pH, and nutrient concentrations that could be adjusted with the right inputs. That framing produced real gains in yield. It also produced declining soil structure, fertiliser dependence, and in many cases, a progressive loss of the very capacity that makes soil productive in the first place. The biology.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=900&q=80&fit=crop&auto=format',
+      alt: 'Hands holding rich, dark farmland soil',
+      caption: 'A handful of healthy soil contains more living organisms than there are people on Earth.',
+    },
+    {
       type: 'h2',
       text: 'More Organisms Than People',
     },
@@ -70,6 +76,12 @@ export const articleContents = {
     {
       type: 'p',
       text: 'It is important to be precise here: a biologically diverse soil statistically reduces the probability of pathogen establishment and spread. It does not eliminate disease risk, and it does not replace appropriate crop management in high-pressure situations. But farm after farm has found that as soil biology improves, fungicide dependence decreases — not because the biology was applied as a product, but because the conditions that support it were restored.',
+    },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=900&q=80&fit=crop&auto=format',
+      alt: 'Earthworms in rich dark compost soil',
+      caption: 'Earthworms are visible indicators of a thriving soil food web — their presence signals biological health below the surface.',
     },
     {
       type: 'h2',
@@ -163,6 +175,12 @@ export const articleContents = {
       text: 'Root tips are not passive either. They contain specialised cells that perceive gravity (ensuring downward growth), moisture gradients (hydrotropism), mechanical resistance (adjusting growth angle around obstacles), and localised nutrient concentration. The root does not grow randomly through the soil — it navigates.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&fit=crop&auto=format',
+      alt: 'Plant root system growing through soil',
+      caption: 'Root systems are active foraging organs — navigating toward moisture and nutrients, not simply growing downward.',
+    },
+    {
       type: 'h2',
       text: 'The Rhizosphere — Where the Action Is',
     },
@@ -222,6 +240,12 @@ export const articleContents = {
     {
       type: 'p',
       text: 'The practical implication of root foraging is significant for how fertilisers and amendments are placed. Broadcast applications of organic material spread evenly across the soil surface produce a different root response than banded or localised placement. When vermicompost is banded in the root zone rather than broadcast, the concentrated nutrient and biological signal stimulates localised root proliferation — bringing more root surface area into contact with the amendment. The total amount of material applied may be lower, but the root response — and the nutrient uptake efficiency — is higher.',
+    },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1508780709619-79562169bc64?w=900&q=80&fit=crop&auto=format',
+      alt: 'Cracked dry soil showing moisture stress',
+      caption: 'Compacted or drought-stressed soil restricts root exploration — the crop loses access to water and nutrients in the deeper profile.',
     },
     {
       type: 'h2',
@@ -315,6 +339,12 @@ export const articleContents = {
       text: 'There are several types of mycorrhizal associations, but two are most relevant to agriculture. Arbuscular mycorrhizal fungi (AMF) penetrate inside root cells and form branching structures called arbuscules — the site of nutrient exchange. AMF are associated with the majority of agricultural crops: grasses, legumes, vegetables, fruit crops. Ectomycorrhizal fungi (ECM) form a sheath around the outside of root cells and are primarily associated with forest trees — pine, oak, beech. This article focuses on AMF, which is where the agricultural relevance is strongest.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1504807417934-b89f7cf903e5?w=900&q=80&fit=crop&auto=format',
+      alt: 'Fungal mycelium growing through forest soil',
+      caption: 'Mycorrhizal fungi extend the root system\'s reach by orders of magnitude — their fine hyphae penetrate spaces roots cannot access.',
+    },
+    {
       type: 'h2',
       text: 'How the Symbiosis Works',
     },
@@ -383,6 +413,12 @@ export const articleContents = {
       text: 'What is still debated: the extent to which resource transfer between plants is ecologically significant in field conditions, and whether it constitutes anything like intentional communication or sharing. Several researchers have raised methodological concerns about the key forest studies, and evidence for meaningful resource transfer in cropping systems specifically remains limited. This is an active area of research, and the science is still developing. The interesting question is real — the confident conclusions in popular accounts are somewhat ahead of the data.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=900&q=80&fit=crop&auto=format',
+      alt: 'Healthy crop field with strong plant establishment',
+      caption: 'Crops with intact mycorrhizal associations show stronger establishment, better drought tolerance, and lower phosphorus requirements.',
+    },
+    {
       type: 'h2',
       text: 'What Destroys Mycorrhizal Populations',
     },
@@ -444,6 +480,12 @@ export const articleContents = {
     {
       type: 'p',
       text: 'This is not about plant consciousness or intelligence. Plants have evolved complex biochemical signaling systems — hormonal, hydraulic, electrical — that allow coordinated responses to environmental challenges. These are well-characterised chemical and physical processes, not evidence of awareness. But they are real, and they have direct implications for how you manage crops under stress.',
+    },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=900&q=80&fit=crop&auto=format',
+      alt: 'Aerial view of farmland showing crop rows',
+      caption: 'Stress signals travel throughout the entire plant — a visible symptom on the leaf often began as a signal from the root system days earlier.',
     },
     {
       type: 'h2',
@@ -573,6 +615,12 @@ export const articleContents = {
       text: 'None of this means you can stop managing pests. It means there is a biological layer of protection that either exists in your crop or does not, depending on how the crop is managed. What you do with soil, nutrition, and inputs directly determines how functional that layer is.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1560493676-04071c5f467b?w=900&q=80&fit=crop&auto=format',
+      alt: 'Close-up of healthy green crop leaves with strong surface texture',
+      caption: 'Healthy leaf surfaces — with intact waxy cuticle and trichomes — form the first physical barrier in plant defense.',
+    },
+    {
       type: 'h2',
       text: 'Two Layers of Plant Defense',
     },
@@ -587,6 +635,12 @@ export const articleContents = {
     {
       type: 'p',
       text: 'The distinction matters for management. Constitutive defenses reflect the plant\'s genetic potential combined with its overall physical condition. Induced defenses reflect its capacity to respond rapidly and effectively under attack — a capacity that depends on its physiological state, its nutritional balance, and the microbial community around its roots.',
+    },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1595351475754-8a9e5b2b2b0a?w=900&q=80&fit=crop&auto=format',
+      alt: 'Pest damage visible on crop leaves',
+      caption: 'Visible pest damage triggers induced defense responses — but a plant under nutritional stress cannot mount those responses effectively.',
     },
     {
       type: 'h2',
@@ -711,6 +765,12 @@ export const articleContents = {
       text: 'It is also worth being honest about what vermicompost is not. It is not a miracle input, it does not work in every context, and it is not a replacement for a functional soil management system. What it is — when used correctly in biologically active soil — is one of the most effective biological amendments available. This article explains the biology behind that.',
     },
     {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=900&q=80&fit=crop&auto=format',
+      alt: 'Hands working with rich vermicompost and earthworms',
+      caption: 'Vermicompost is transformed by earthworms and their gut microbiome — producing something qualitatively different from conventional compost.',
+    },
+    {
       type: 'h2',
       text: 'What Vermicompost Actually Is',
     },
@@ -741,6 +801,12 @@ export const articleContents = {
     {
       type: 'callout',
       text: 'In a soil with no biological activity, adding vermicompost is like opening a shop in an empty town. The potential is there, but the ecosystem needed to support it is not. Soil conditions must be able to sustain biological activity before biological amendments can deliver their full benefit.',
+    },
+    {
+      type: 'image',
+      src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80&fit=crop&auto=format',
+      alt: 'Young healthy crop seedlings emerging from rich dark soil',
+      caption: 'Crops established in biologically active soil show stronger early root development — the foundation of long-term yield performance.',
     },
     {
       type: 'h2',

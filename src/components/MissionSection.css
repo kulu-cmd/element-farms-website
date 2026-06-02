@@ -1,139 +1,196 @@
-/* ===== MissionSection ===== */
+/* =============================================
+   MISSION — asymmetric editorial layout
+   left lede / right vertical numbered list
+   ============================================= */
 
-.mission {
-    background: var(--off-white);
-    padding: 4.5rem 2rem;
+.mission-x {
+    background: var(--paper-soft);
+    color: var(--ink);
+    padding: clamp(5rem, 10vw, 9rem) 0 clamp(5rem, 10vw, 9rem);
+    position: relative;
+    overflow: hidden;
 }
 
-.mission__inner {
-    max-width: 1400px;
+/* Inner — true asymmetric split */
+.mission-x__inner {
+    max-width: 1500px;
     margin: 0 auto;
-}
-
-/* --- Header block --- */
-
-.mission__eyebrow {
-    display: block;
-    font-family: var(--font-heading);
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--orange-main);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-}
-
-.mission__heading {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 800;
-    color: var(--charcoal);
-    margin: 0;
-}
-
-.mission__rule {
-    width: 48px;
-    height: 3px;
-    background: var(--orange-main);
-    border-radius: 2px;
-    margin: 1.25rem auto 1.75rem;
-}
-
-.mission__intro {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 1.3vw, 1.3rem);
-    line-height: 1.75;
-    color: rgba(43, 43, 43, 0.82);
-    max-width: 100%;
-    margin: 0 auto 3.5rem;
-    text-align: left;
-}
-
-/* --- Pillars grid --- */
-
-.mission__pillars {
+    padding: 0 var(--rail-padding);
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    column-gap: clamp(2.5rem, 6vw, 7rem);
+    row-gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: start;
+    position: relative;
+    z-index: 1;
 }
 
-.mission__pillar {
+/* ── LEFT LEDE ── */
+.mission-x__lede {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 2rem;
-    background: white;
-    border-radius: 16px;
-    border: 2px solid var(--orange-main);
-    box-shadow: 0 8px 32px rgba(243, 111, 33, 0.18), 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    gap: clamp(1.25rem, 2vw, 1.75rem);
+    position: sticky;
+    top: clamp(6rem, 10vh, 8rem);
 }
 
-.mission__pillar:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(243, 111, 33, 0.24), 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.mission__pillar-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(243, 111, 33, 0.1);
+.mission-x__eyebrow-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-bottom: 1.25rem;
-    flex-shrink: 0;
+    gap: 0.85rem;
 }
 
-.mission__pillar-title {
-    font-family: var(--font-heading);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--charcoal);
-    margin: 0 0 0.6rem;
+.mission-x__eyebrow-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--clay);
 }
 
-.mission__pillar-body {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    line-height: 1.65;
-    color: rgba(43, 43, 43, 0.78);
+.mission-x__quote-heading {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 6.4vw, 5.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--ink);
     margin: 0;
+    font-variation-settings: "opsz" 144;
+    text-wrap: balance;
 }
 
-/* --- Responsive --- */
+.mission-x__quote-heading em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--clay);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+}
 
-@media (max-width: 768px) {
-    .mission__pillars {
-        grid-template-columns: 1fr 1fr;
-    }
+/* ── RIGHT VERTICAL NUMBERED LIST ── */
+.mission-x__goals {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ink-rule);
+}
 
-    .mission {
-        padding: 3rem 1.5rem;
+.mission-x__goal {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(48px, auto) 1fr;
+    gap: clamp(0.85rem, 1.6vw, 1.4rem);
+    align-items: center;
+    padding: clamp(1.75rem, 3vw, 2.75rem) 0;
+    border-bottom: 1px solid var(--ink-rule);
+    transition: padding 0.4s ease;
+}
+
+.mission-x__goal::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 1px;
+    background: var(--clay);
+    transition: width 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.mission-x__goal:hover::before {
+    width: 100%;
+}
+
+/* Compact accent number — keeps focus on the title */
+.mission-x__goal-num {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.3rem, 1.6vw, 1.6rem);
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--clay);
+    font-variation-settings: "opsz" 14;
+    align-self: start;
+    padding-top: 0.35rem;
+}
+
+/* Goal body — emoji + title + gloss, all centered */
+.mission-x__goal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.mission-x__goal-glyph {
+    display: block;
+    font-size: 1.85rem;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mission-x__goal:hover .mission-x__goal-glyph {
+    transform: translateY(-3px);
+}
+
+.mission-x__goal-title {
+    font-family: 'Montserrat', var(--font-sans), system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #0e5a36;
+    white-space: nowrap;
+}
+
+.mission-x__goal-gloss {
+    font-family: var(--font-sans);
+    font-size: clamp(0.78rem, 0.9vw, 0.9rem);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 540px) {
+    .mission-x__goal-title,
+    .mission-x__goal-gloss {
+        white-space: normal;
     }
 }
 
-@media (max-width: 520px) {
-    .mission {
-        padding: 2.5rem 1rem;
-    }
-
-    .mission__pillars {
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+    .mission-x__inner {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
     }
 
-    .mission__pillar {
-        padding: 1.5rem;
+    .mission-x__lede {
+        position: static;
+    }
+}
+
+@media (max-width: 540px) {
+    .mission-x__goal {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+        text-align: center;
+        justify-items: center;
     }
 
-    .mission__intro {
-        font-size: 0.95rem;
-        margin-bottom: 2rem;
+    .mission-x__goal-num {
+        font-size: 3.4rem;
     }
 
-    .mission__heading {
-        font-size: clamp(1.6rem, 6vw, 2rem);
+    .mission-x__goal-body {
+        padding-right: 0;
     }
 }
