@@ -113,22 +113,27 @@
 .bp-head__brand {
     display: inline-flex;
     align-items: center;
-    padding: 6px 14px 6px 10px;
-    background: rgba(251, 246, 233, 0.78);
-    backdrop-filter: blur(10px) saturate(1.05);
-    -webkit-backdrop-filter: blur(10px) saturate(1.05);
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-    transition: box-shadow 0.35s ease;
+    position: relative;
+    padding: 6px 10px;
 }
-.bp-head__brand:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+/* soft dark haze behind logo for readability — no hard-edged box */
+.bp-head__brand::before {
+    content: '';
+    position: absolute;
+    inset: -14px -24px;
+    border-radius: 32px;
+    background: radial-gradient(ellipse at center,
+        rgba(15, 30, 8, 0.35) 0%,
+        rgba(15, 30, 8, 0.15) 55%,
+        transparent 80%);
+    pointer-events: none;
+    z-index: -1;
 }
 .bp-head__logo {
     width: clamp(140px, 11vw, 190px);
     height: auto;
     display: block;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
 .bp-head__tag {

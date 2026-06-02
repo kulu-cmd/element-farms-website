@@ -54,32 +54,58 @@
     padding: 0.7rem var(--rail-padding);
 }
 
-/* Brand — 3x size, scaled down on scroll/mobile so the bar stays usable */
+/* Brand — full logo at top, icon-only on scroll */
 .ef-header__brand {
     display: inline-flex;
     align-items: center;
+    position: relative;
     height: 240px;
     transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .ef-header--scrolled .ef-header__brand,
 .ef-header--menu-open .ef-header__brand {
-    height: 110px;
+    height: 48px;
 }
 
 .ef-header__logo {
+    object-fit: contain;
+    transition: opacity 0.4s ease, transform 0.35s ease, filter 0.4s ease;
+}
+
+/* Full sideways logo — visible at top */
+.ef-header__logo--full {
     height: 100%;
     width: auto;
     max-width: 720px;
-    object-fit: contain;
     object-position: left center;
-    transition: transform 0.35s ease, filter 0.4s ease;
     filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
 }
 
-.ef-header--scrolled .ef-header__logo,
-.ef-header--menu-open .ef-header__logo {
+.ef-header--scrolled .ef-header__logo--full,
+.ef-header--menu-open .ef-header__logo--full {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
     filter: none;
+}
+
+/* Icon logo — fades in on scroll */
+.ef-header__logo--icon {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: auto;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ef-header--scrolled .ef-header__logo--icon,
+.ef-header--menu-open .ef-header__logo--icon {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
 }
 
 .ef-header__brand:hover .ef-header__logo {
@@ -569,15 +595,26 @@
     .ef-header__burger { display: flex; }
     .ef-header__nav { display: none; }
 
-    /* Logo: always compact on mobile */
+    /* Logo: always compact on mobile — show icon only */
     .ef-header__brand {
-        height: 96px;
+        height: 42px;
     }
     .ef-header--scrolled .ef-header__brand,
     .ef-header--menu-open .ef-header__brand {
-        height: 96px;
+        height: 42px;
     }
-    .ef-header__logo { max-width: 340px; }
+    .ef-header__logo--full {
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        max-width: 340px;
+    }
+    .ef-header__logo--icon {
+        opacity: 1;
+        position: relative;
+        pointer-events: auto;
+    }
 
     .ef-header__bar { padding: 0 1.25rem; }
     .ef-header--scrolled .ef-header__bar { padding: 0 1.25rem; }

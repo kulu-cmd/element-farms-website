@@ -90,7 +90,12 @@ const Header = () => {
                     <img
                         src="/EFS_Sideways.png"
                         alt="Element Farm Solutions"
-                        className="ef-header__logo"
+                        className="ef-header__logo ef-header__logo--full"
+                    />
+                    <img
+                        src="/EFS_Icon.png"
+                        alt="Element Farm Solutions"
+                        className="ef-header__logo ef-header__logo--icon"
                     />
                 </Link>
 
