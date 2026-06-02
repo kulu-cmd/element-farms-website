@@ -88,7 +88,7 @@ const Header = () => {
             >
                 <Link to="/" className="ef-header__brand" aria-label="Element Farm Solutions — Home">
                     <img
-                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                        src="/EFS_Sideways.png"
                         alt="Element Farm Solutions"
                         className="ef-header__logo"
                     />

@@ -11,7 +11,7 @@ const Footer = () => {
                 <div className="footer-x__brand">
                     <img
                         className="footer-x__logo"
-                        src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                        src="/EFS_NewLogo_Square.png"
                         alt="Element Farm Solutions"
                     />
                 </div>

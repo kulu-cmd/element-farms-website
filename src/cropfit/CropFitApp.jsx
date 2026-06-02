@@ -101,7 +101,7 @@ export default function CropFitApp() {
           <div className="cf-header__brand">
             <Link to="/" className="cf-header__home-logo">
               <img
-                src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                src="/EFS_Sideways.png"
                 alt="Element Farm Solutions"
                 className="cf-header__logo-img"
               />

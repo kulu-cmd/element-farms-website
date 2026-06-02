@@ -1,604 +1,493 @@
-/* =============================================
-   FARM MAP HERO — Interactive Aerial Navigation
-   Radial farm = website navigation.
-   Centre hub → Solutions · Four quadrants → sections.
-   ============================================= */
+/* ==========================================================
+   BIRD OF PARADISE BLOOM — Landing Hero
+   The logo abstracted to canvas scale: a swaying bird at the
+   center, five sage-green organic pods unfolding like petals.
+   ========================================================== */
 
-/* ── Section shell ─────────────────────────────── */
-.farm-hero {
+:root {
+    --bp-sage-1: #3d5524;
+    --bp-sage-2: #4a6b2a;
+    --bp-sage-3: #557a32;
+    --bp-forest: #1f3010;
+    --bp-olive:  #8aa442;
+    --bp-cream:  #f6efd8;
+    --bp-orange: #f08027;
+    --bp-blue:   #2952a3;
+    --bp-paper:  #fbf6e9;
+}
+
+/* ── Section shell ─────────────────────────────────────── */
+.hero-bloom {
     --mx: 0;
     --my: 0;
     position: relative;
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    min-height: 600px;
+    min-height: 680px;
     overflow: hidden;
     isolation: isolate;
-    background: #0a2818;
+    background: #243516;
+    font-family: 'Montserrat', system-ui, sans-serif;
 }
 
-/* ── Background layers ─────────────────────────── */
-.fh-bg {
+/* Hidden SVG defs for filters */
+.bp-defs { position: absolute; width: 0; height: 0; pointer-events: none; }
+
+/* ── Background stack ──────────────────────────────────── */
+.bp-bg {
     position: absolute;
-    inset: -8% -5% -8% -5%;           /* breathing room for parallax + scale */
+    inset: -6% -4% -6% -4%;
     z-index: 0;
-    transform: translate(
-        calc(var(--mx) * -10px),
-        calc(var(--my) * -10px)
-    );
-    transition: transform 0.12s ease-out;
+    transform: translate(calc(var(--mx) * -8px), calc(var(--my) * -8px));
+    transition: transform 0.18s ease-out;
     will-change: transform;
 }
 
-/* aerial photo — clearing is near-centred in the new image,
-   so only a small nudge is needed.                                  */
-.fh-bg__photo {
+.bp-bg__photo {
     position: absolute;
     inset: 0;
-    background: url('/landing_card_land.png') center / cover no-repeat;
-    transform: translate(0%, 0%);
-    animation: fh-breathe 28s ease-in-out infinite;
+    background: url('/landing_card_land.png') center 55% / cover no-repeat;
+    animation: bp-breathe 32s ease-in-out infinite;
+    filter: saturate(1.05) brightness(0.96);
+}
+@keyframes bp-breathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.025); }
 }
 
-@keyframes fh-breathe {
-    0%, 100% { transform: translate(0%, 0%) scale(1); }
-    50%      { transform: translate(0%, 0%) scale(1.022); }
-}
-
-/* warm radial highlight at centre */
-.fh-bg__warm {
+/* warm golden-hour sun glow, upper centre-right */
+.bp-bg__sun {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(ellipse at 50% 48%, rgba(255, 240, 200, 0.06), transparent 48%),
-        linear-gradient(180deg, rgba(0, 30, 15, 0.10) 0%, transparent 35%);
-}
-
-/* premium vignette depth */
-.fh-bg__vig {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 22%, rgba(0, 20, 10, 0.44) 100%);
+        radial-gradient(ellipse 65% 50% at 68% 22%,
+            rgba(255, 220, 150, 0.32) 0%,
+            rgba(255, 200, 130, 0.14) 35%,
+            transparent 65%);
+    mix-blend-mode: screen;
     pointer-events: none;
 }
 
-/* ── Pathway glow (per quadrant, lit on card hover) */
-.fh-bg__glow {
+/* atmospheric cream haze near horizon */
+.bp-bg__warm {
     position: absolute;
     inset: 0;
-    opacity: 0;
-    transition: opacity 0.55s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.fh-bg__glow.lit { opacity: 1; }
-
-.fh-bg__glow--tl {
-    background: linear-gradient(315deg, transparent 18%, rgba(255, 248, 220, 0.065) 48%, rgba(255, 248, 220, 0.12) 72%, rgba(255, 248, 220, 0.04) 100%);
-}
-.fh-bg__glow--tr {
-    background: linear-gradient(45deg, transparent 18%, rgba(255, 248, 220, 0.065) 48%, rgba(255, 248, 220, 0.12) 72%, rgba(255, 248, 220, 0.04) 100%);
-}
-.fh-bg__glow--bl {
-    background: linear-gradient(225deg, transparent 18%, rgba(255, 248, 220, 0.065) 48%, rgba(255, 248, 220, 0.12) 72%, rgba(255, 248, 220, 0.04) 100%);
-}
-.fh-bg__glow--br {
-    background: linear-gradient(135deg, transparent 18%, rgba(255, 248, 220, 0.065) 48%, rgba(255, 248, 220, 0.12) 72%, rgba(255, 248, 220, 0.04) 100%);
-}
-
-/* ── Zoom transition ───────────────────────────── */
-.farm-hero--zooming { pointer-events: none; }
-
-.farm-hero--zooming .fh-bg {
-    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.farm-hero--zoom-tl .fh-bg { transform: translate(30%,  30%)  scale(3); }
-.farm-hero--zoom-tr .fh-bg { transform: translate(-30%, 30%)  scale(3); }
-.farm-hero--zoom-bl .fh-bg { transform: translate(30%, -20%)  scale(3); }
-.farm-hero--zoom-br .fh-bg { transform: translate(-30%, -20%) scale(3); }
-
-.farm-hero--zooming .fh-hub,
-.farm-hero--zooming .fz,
-.farm-hero--zooming .fh-tag {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-/* white-out curtain */
-.fh-whiteout {
-    position: absolute;
-    inset: 0;
-    z-index: 50;
-    background: var(--paper);
-    opacity: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(255, 235, 200, 0.10) 0%,
+            transparent 30%,
+            transparent 60%,
+            rgba(20, 35, 12, 0.18) 100%);
     pointer-events: none;
 }
 
-.farm-hero--zooming .fh-whiteout {
-    animation: fh-wo 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+/* deep premium vignette */
+.bp-bg__vig {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 32%, rgba(8, 18, 6, 0.55) 100%);
+    pointer-events: none;
 }
 
-@keyframes fh-wo { to { opacity: 1; } }
-
-/* ═══════════════════════════════════════════════
-   CENTRAL HUB  (transparent — lives on the dirt clearing)
-   ═══════════════════════════════════════════════ */
-
-.fh-hub {
+/* film grain for warmth */
+.bp-bg__grain {
     position: absolute;
-    top: 32%;
-    left: 45%;
-    transform: translate(-50%, -50%) translate(
-        calc(var(--mx) * 3px),
-        calc(var(--my) * 3px)
-    );
-    z-index: 15;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.bp-head {
+    position: absolute;
+    top: clamp(20px, 3.4vh, 38px);
+    left: clamp(28px, 4vw, 64px);
+    right: clamp(28px, 4vw, 64px);
+    z-index: 5;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    gap: 0.15rem;
+    gap: 24px;
+    pointer-events: none;
 }
+.bp-head > * { pointer-events: auto; }
 
-.fh-hub__logo {
-    height: clamp(68px, 8vw, 110px);
-    width: auto;
-    margin-bottom: 0.4rem;
-    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.25));
-}
-
-.fh-hub__title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.1rem, 1.6vw, 1.6rem);
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: #fff;
-    line-height: 1;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35), 0 4px 20px rgba(0, 0, 0, 0.18);
-}
-
-.fh-hub__sub {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(0.52rem, 0.7vw, 0.78rem);
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.70);
-    line-height: 1;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* glassmorphic Solutions card */
-.fh-hub__sol {
+.bp-head__brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    margin-top: clamp(0.9rem, 1.3vw, 1.4rem);
-    padding: 0.85rem 1.6rem 0.8rem;
-    background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03)),
-        rgba(14, 58, 36, 0.50);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 14px;
-    backdrop-filter: blur(22px) saturate(1.35);
-    -webkit-backdrop-filter: blur(22px) saturate(1.35);
-    cursor: pointer;
-    box-shadow:
-        0 4px 14px rgba(0, 0, 0, 0.14),
-        0 10px 36px rgba(0, 0, 0, 0.08);
-    transition:
-        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        background 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    padding: 8px 18px 8px 12px;
+    background: rgba(251, 246, 233, 0.78);
+    backdrop-filter: blur(10px) saturate(1.05);
+    -webkit-backdrop-filter: blur(10px) saturate(1.05);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+.bp-head__logo {
+    width: clamp(180px, 15vw, 250px);
+    height: auto;
+    display: block;
 }
 
-.fh-hub__sol:hover {
-    transform: translateY(-3px) scale(1.04);
-    background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
-        rgba(14, 58, 36, 0.65);
-    border-color: rgba(243, 111, 33, 0.50);
-    box-shadow:
-        0 8px 28px rgba(0, 0, 0, 0.18),
-        0 18px 55px rgba(0, 0, 0, 0.10),
-        0 0 30px rgba(243, 111, 33, 0.08);
+.bp-head__tag {
+    position: relative;
+    text-align: right;
+    color: var(--bp-paper);
+    font-family: 'Fraunces', 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(16px, 1.45vw, 22px);
+    letter-spacing: 0.005em;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+    padding-bottom: 8px;
 }
-
-.fh-hub__sol-text {
-    font-family: var(--font-sans);
-    font-size: clamp(0.68rem, 0.8vw, 0.82rem);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #fff;
-}
-
-.fh-hub__sol-arrow {
-    font-size: 0.95rem;
-    color: var(--clay);
-    transition: transform 0.3s ease;
-}
-
-.fh-hub__sol:hover .fh-hub__sol-arrow {
-    transform: translateX(4px);
-}
-
-/* ═══════════════════════════════════════════════
-   ZONE CARDS  (glassmorphism floating panels)
-   ═══════════════════════════════════════════════ */
-
-.fz {
+.bp-head__tag em { font-style: italic; }
+.bp-head__underline {
     position: absolute;
-    z-index: 12;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 64%;
+    background: linear-gradient(90deg, transparent 0%, var(--bp-orange) 35%, var(--bp-orange) 100%);
+    border-radius: 2px;
+    opacity: 0.92;
+    transform-origin: right center;
+    animation: bp-underline 1.4s var(--bp-ease, cubic-bezier(0.22, 1, 0.36, 1)) 0.9s both;
+}
+@keyframes bp-underline {
+    0%   { transform: scaleX(0); opacity: 0; }
+    100% { transform: scaleX(1); opacity: 0.92; }
 }
 
-.fz--tl { top: 10%;    left: 4%; }
-.fz--tr { top: 10%;    right: 4%; }
-.fz--bl { bottom: 13%; left: 4%; }
-.fz--br { bottom: 13%; right: 4%; }
+/* ── Flying bird mark ──────────────────────────────────── */
+.bp-fly {
+    position: absolute;
+    top: clamp(115px, 17vh, 175px);
+    left: clamp(48px, 7vw, 110px);
+    width: clamp(46px, 5vw, 64px);
+    height: auto;
+    z-index: 4;
+    opacity: 0.92;
+    animation: bp-fly 9s ease-in-out infinite;
+    color: var(--bp-orange);
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+}
+.bp-fly svg path { stroke: var(--bp-orange); }
+@keyframes bp-fly {
+    0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+    50%      { transform: translate(6px, -4px) rotate(3deg); }
+}
 
-.fz__card {
+/* ── Central bird of paradise ──────────────────────────── */
+.bp-bird {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    z-index: 5;
+    transform: translateX(-50%);
+    width: clamp(520px, 62vw, 980px);
+    aspect-ratio: 3 / 2;
     display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 1.25rem;
-    min-width: 205px;
-    text-decoration: none;
-    color: #fff;
-    cursor: pointer;
-
-    /* deep-moss glassmorphism */
-    background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
-        rgba(14, 58, 36, 0.48);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 16px;
-    backdrop-filter: blur(22px) saturate(1.35);
-    -webkit-backdrop-filter: blur(22px) saturate(1.35);
-
-    box-shadow:
-        0 4px 14px  rgba(0, 0, 0, 0.12),
-        0 10px 36px rgba(0, 0, 0, 0.07);
-
-    transition:
-        transform   0.5s cubic-bezier(0.22, 1, 0.36, 1),
-        background  0.4s ease,
-        border-color 0.4s ease,
-        box-shadow  0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.fz__card:hover {
-    transform: translateY(-5px) scale(1.04);
-    background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
-        rgba(14, 58, 36, 0.62);
-    border-color: rgba(255, 255, 255, 0.30);
-    box-shadow:
-        0 8px 26px  rgba(0, 0, 0, 0.17),
-        0 18px 55px rgba(0, 0, 0, 0.09),
-        0 0 36px    rgba(63, 174, 90, 0.10);
-}
-
-/* icon box */
-.fz__icon {
-    display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    flex-shrink: 0;
-    transition: background 0.35s ease;
+    pointer-events: none;
 }
 
-.fz__card:hover .fz__icon {
-    background: rgba(255, 255, 255, 0.16);
+/* soft halo glow behind the bird */
+.bp-bird__halo {
+    position: absolute;
+    inset: 10% 14% 14% 14%;
+    background: radial-gradient(ellipse at 50% 55%,
+        rgba(255, 200, 130, 0.32) 0%,
+        rgba(255, 175, 90, 0.15) 32%,
+        transparent 64%);
+    filter: blur(28px);
+    z-index: -1;
+    animation: bp-halo 6s ease-in-out infinite;
+}
+@keyframes bp-halo {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50%      { transform: scale(1.1); opacity: 1; }
 }
 
-.fz__icon svg {
-    color: rgba(255, 255, 255, 0.80);
-    transition: color 0.3s ease;
+.bp-bird__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform-origin: 50% 96%;
+    filter: drop-shadow(0 22px 38px rgba(0, 0, 0, 0.42))
+            drop-shadow(0 6px 14px rgba(255, 130, 40, 0.18))
+            url(#leafWind);
+    animation: bp-sway 7.5s ease-in-out infinite;
+    will-change: transform, filter;
+}
+@keyframes bp-sway {
+    0%   { transform: rotate(-1.3deg) translateY(0); }
+    25%  { transform: rotate(0.6deg)  translateY(-2px); }
+    50%  { transform: rotate(1.4deg)  translateY(0); }
+    75%  { transform: rotate(0deg)    translateY(-1px); }
+    100% { transform: rotate(-1.3deg) translateY(0); }
 }
 
-.fz__card:hover .fz__icon svg { color: #fff; }
+/* ── Pod grid (desktop) ────────────────────────────────── */
+.bp-pods {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
 
-/* text */
-.fz__body {
+.bp-pod {
+    position: absolute;
+    pointer-events: auto;
+    width: clamp(220px, 21vw, 320px);
+    aspect-ratio: 1.55 / 1;
+    filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.32));
+}
+
+/* organic asymmetric leaf-blob shape per pod */
+.bp-pod__card {
     display: flex;
     flex-direction: column;
-    gap: 0.18rem;
-}
-
-.fz__label {
-    display: flex;
     align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: #fff;
-    line-height: 1;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 9% 11% 11%;
+    text-align: center;
+    text-decoration: none;
+    color: var(--bp-cream);
+    background:
+        radial-gradient(ellipse at 55% 30%, rgba(255, 240, 200, 0.10) 0%, transparent 55%),
+        linear-gradient(135deg, var(--bp-sage-2) 0%, var(--bp-sage-1) 70%, var(--bp-forest) 100%);
+    border: 1.5px solid rgba(246, 239, 216, 0.16);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.5s ease,
+                background 0.5s ease;
+    position: relative;
+    isolation: isolate;
 }
 
-.fz__dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--moss);
-    flex-shrink: 0;
-    box-shadow: 0 0 6px rgba(63, 174, 90, 0.6);
-}
-
-.fz__hint {
-    font-family: var(--font-sans);
-    font-size: 0.66rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.48);
-    line-height: 1.3;
-}
-
-/* arrow */
-.fz__arrow {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.28);
-    margin-left: auto;
-    flex-shrink: 0;
-    transition: transform 0.35s ease, color 0.35s ease;
-}
-
-.fz__card:hover .fz__arrow {
-    transform: translateX(4px);
-    color: rgba(255, 255, 255, 0.70);
-}
-
-/* ═══════════════════════════════════════════════
-   BOTTOM TAGLINE
-   ═══════════════════════════════════════════════ */
-
-.fh-tag {
+/* inner cream rim — like the white-rim look of the logo blobs */
+.bp-pod__card::before {
+    content: '';
     position: absolute;
-    bottom: 2rem;
+    inset: 4px;
+    border-radius: inherit;
+    border: 1px solid rgba(246, 239, 216, 0.18);
+    pointer-events: none;
+}
+
+/* per-pod organic radii (each blob slightly different) */
+.bp-pod--tl .bp-pod__card { border-radius: 58% 42% 64% 36% / 52% 60% 40% 48%; }
+.bp-pod--tr .bp-pod__card { border-radius: 42% 58% 36% 64% / 60% 48% 52% 40%; }
+.bp-pod--bl .bp-pod__card { border-radius: 64% 36% 48% 52% / 38% 56% 44% 62%; }
+.bp-pod--bc .bp-pod__card { border-radius: 50% 50% 56% 44% / 56% 44% 56% 44%; }
+.bp-pod--br .bp-pod__card { border-radius: 36% 64% 52% 48% / 56% 44% 62% 38%; }
+
+/* hover lift */
+.bp-pod__card:hover {
+    transform: translateY(-6px) scale(1.035);
+    box-shadow: 0 28px 44px rgba(0, 0, 0, 0.4);
+    background:
+        radial-gradient(ellipse at 55% 30%, rgba(255, 240, 200, 0.18) 0%, transparent 55%),
+        linear-gradient(135deg, var(--bp-sage-3) 0%, var(--bp-sage-2) 70%, var(--bp-sage-1) 100%);
+}
+
+.bp-pod__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    background: rgba(246, 239, 216, 0.12);
+    border: 1px solid rgba(246, 239, 216, 0.25);
+    color: var(--bp-cream);
+}
+
+.bp-pod__label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(15px, 1.25vw, 19px);
+    letter-spacing: 0.02em;
+    color: var(--bp-cream);
+    margin-bottom: 6px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+.bp-pod__desc {
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    font-size: clamp(11px, 0.85vw, 13px);
+    line-height: 1.4;
+    color: rgba(246, 239, 216, 0.85);
+    max-width: 20ch;
+}
+
+/* ── Pod positions (orbiting the bird) ─────────────────── */
+.bp-pod--tl { top: 14%; left: 6%;  transform: rotate(-3deg); }
+.bp-pod--tr { top: 14%; right: 6%; transform: rotate(3deg); }
+.bp-pod--bl { bottom: 12%; left: 4%;  transform: rotate(2deg); }
+.bp-pod--br { bottom: 12%; right: 4%; transform: rotate(-2deg); }
+.bp-pod--bc {
+    bottom: 7%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 12;
+    width: clamp(200px, 18vw, 280px);
+}
+
+/* ── Hint footer ───────────────────────────────────────── */
+.bp-hint {
+    position: absolute;
+    bottom: clamp(10px, 1.5vh, 18px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.65rem;
-    white-space: nowrap;
-    font-family: var(--font-sans);
-    font-size: 0.60rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+    gap: 4px;
+    color: var(--bp-paper);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.48);
+    opacity: 0.78;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+.bp-hint svg { animation: bp-chev 2.2s ease-in-out infinite; }
+@keyframes bp-chev {
+    0%, 100% { transform: translateY(0); opacity: 0.78; }
+    50%      { transform: translateY(3px); opacity: 1; }
 }
 
-.fh-tag__sep {
-    display: inline-block;
-    width: 18px;
-    height: 1px;
-    background: rgba(255, 255, 255, 0.18);
-}
+/* ── Mobile layout ─────────────────────────────────────── */
+.bp-mob { display: none; }
 
-/* ═══════════════════════════════════════════════
-   MOBILE LAYOUT  (hidden on desktop)
-   ═══════════════════════════════════════════════ */
-
-.fh-mob { display: none; }
-
-/* ═══════════════════════════════════════════════
-   RESPONSIVE
-   ═══════════════════════════════════════════════ */
-
-/* ── tablets / small laptops ── */
-@media (max-width: 1100px) {
-    .fz--tl { top: 8%;    left: 2%; }
-    .fz--tr { top: 8%;    right: 2%; }
-    .fz--bl { bottom: 11%; left: 2%; }
-    .fz--br { bottom: 11%; right: 2%; }
-
-    .fz__card {
-        min-width: 170px;
-        padding: 0.85rem 1rem;
-        gap: 0.65rem;
-    }
-
-    .fz__icon { width: 35px; height: 35px; }
-    .fz__icon svg { width: 19px; height: 19px; }
-    .fz__label { font-size: 0.70rem; }
-    .fz__hint  { font-size: 0.60rem; }
-}
-
-/* ── mobile: vertical stack over fixed background ── */
-@media (max-width: 768px) {
-    .farm-hero {
+@media (max-width: 880px) {
+    .hero-bloom {
         height: auto;
-        min-height: 100vh;
         min-height: 100dvh;
+        padding-bottom: 32px;
     }
+    .bp-head,
+    .bp-fly,
+    .bp-bird,
+    .bp-pods,
+    .bp-hint { display: none; }
 
-    /* hide desktop elements */
-    .fh-hub, .fz, .fh-tag { display: none; }
-
-    /* beautiful fixed background */
-    .fh-bg {
-        position: fixed;
-        inset: 0;
-        transform: none !important;
-    }
-
-    .fh-bg__photo { animation: none; }
-
-    /* stronger vignette for mobile text contrast */
-    .fh-bg__vig {
-        background:
-            radial-gradient(ellipse at center, transparent 5%, rgba(0, 20, 10, 0.55) 100%),
-            linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, transparent 18%, transparent 82%, rgba(0, 0, 0, 0.28) 100%);
-    }
-
-    /* show mobile layout */
-    .fh-mob {
+    .bp-mob {
         display: flex;
         flex-direction: column;
-        gap: 0.65rem;
+        gap: 18px;
+        padding: 24px 18px 16px;
         position: relative;
-        z-index: 15;
-        padding: 2.5rem 1.15rem 2rem;
-        min-height: 100vh;
-        min-height: 100dvh;
-        justify-content: center;
+        z-index: 2;
     }
-
-    /* logo hub — transparent, matches desktop feel */
-    .fh-mob__hub {
+    .bp-mob__head {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
-        padding: 1.5rem 1.3rem 1rem;
-        margin-bottom: 0.6rem;
+        gap: 10px;
+        text-align: center;
     }
-
-    .fh-mob__logo {
-        height: 85px;
+    .bp-mob__logo {
+        height: 48px;
         width: auto;
-        filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.25));
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    .bp-mob__tag {
+        color: var(--bp-paper);
+        font-family: 'Fraunces', serif;
+        font-style: italic;
+        font-size: 16px;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
     }
 
-    .fh-mob__sol {
+    .bp-mob__bird {
+        display: flex;
+        justify-content: center;
+        margin: -8px 0;
+    }
+    .bp-mob__bird img {
+        width: 72vw;
+        max-width: 340px;
+        height: auto;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35)) url(#leafWind);
+        transform-origin: 50% 92%;
+        animation: bp-sway 7.5s ease-in-out infinite;
+    }
+
+    .bp-mob__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .bp-mob__card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        background: linear-gradient(135deg, var(--bp-sage-2), var(--bp-sage-1));
+        border: 1px solid rgba(246, 239, 216, 0.16);
+        border-radius: 18px;
+        color: var(--bp-cream);
+        text-decoration: none;
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
+    }
+    .bp-mob__icon {
+        flex: 0 0 36px;
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: rgba(246, 239, 216, 0.12);
+        border: 1px solid rgba(246, 239, 216, 0.22);
         display: inline-flex;
         align-items: center;
-        gap: 0.55rem;
-        margin-top: 0.3rem;
-        font-family: var(--font-sans);
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: #fff;
-        padding: 0.7rem 1.4rem;
-        background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.03)),
-            rgba(14, 58, 36, 0.50);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 999px;
-        cursor: pointer;
-        transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    .fh-mob__sol:active {
-        background: var(--clay);
-        color: #fff;
-    }
-
-    /* nav cards */
-    .fh-mob__nav {
-        display: flex;
-        flex-direction: column;
-        gap: 0.55rem;
-    }
-
-    .fh-mob__card {
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-        padding: 0.95rem 1.05rem;
-        background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
-            rgba(14, 58, 36, 0.52);
-        border: 1px solid rgba(255, 255, 255, 0.13);
-        border-radius: 14px;
-        backdrop-filter: blur(18px) saturate(1.3);
-        -webkit-backdrop-filter: blur(18px) saturate(1.3);
-        text-decoration: none;
-        color: #fff;
-        transition: transform 0.18s ease, background 0.18s ease;
-    }
-
-    .fh-mob__card:active {
-        transform: scale(0.98);
-        background:
-            linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
-            rgba(14, 58, 36, 0.68);
-    }
-
-    .fh-mob__icon {
-        display: flex;
-        align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 9px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        flex-shrink: 0;
     }
-
-    .fh-mob__icon svg {
-        width: 20px;
-        height: 20px;
-        color: rgba(255, 255, 255, 0.80);
-    }
-
-    .fh-mob__body {
+    .bp-mob__cardbody {
         display: flex;
         flex-direction: column;
-        gap: 0.12rem;
+        gap: 2px;
+        flex: 1;
     }
-
-    .fh-mob__label {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        font-family: var(--font-display);
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #fff;
-        line-height: 1;
+    .bp-mob__label {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.02em;
     }
-
-    .fh-mob__hint {
-        font-family: var(--font-sans);
-        font-size: 0.62rem;
-        color: rgba(255, 255, 255, 0.42);
+    .bp-mob__desc {
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 12px;
+        color: rgba(246, 239, 216, 0.82);
+        line-height: 1.35;
     }
-
-    .fh-mob__arrow {
-        margin-left: auto;
-        color: rgba(255, 255, 255, 0.28);
-        font-size: 0.9rem;
-    }
-
-    .fh-mob__tag {
-        text-align: center;
-        font-family: var(--font-sans);
-        font-size: 0.52rem;
-        font-weight: 500;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.35);
-        margin-top: 0.6rem;
+    .bp-mob__arrow {
+        font-size: 18px;
+        color: var(--bp-cream);
+        opacity: 0.65;
     }
 }
 
-/* ── reduced motion ────────────────────────────── */
+/* ── Reduced-motion fallback ──────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-    .fh-bg__photo { animation: none; }
-    .fh-hub       { animation: none; }
-    .fh-bg        { transition: none !important; }
-    .farm-hero--zooming .fh-bg       { transition: none !important; }
-    .farm-hero--zooming .fh-whiteout { animation: none; opacity: 1; }
+    .bp-bird__img,
+    .bp-bg__photo,
+    .bp-bird__halo,
+    .bp-fly,
+    .bp-hint svg,
+    .bp-mob__bird img {
+        animation: none !important;
+    }
+    .bp-bird__img,
+    .bp-mob__bird img { filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.35)); }
 }
