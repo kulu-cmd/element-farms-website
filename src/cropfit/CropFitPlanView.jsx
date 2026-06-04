@@ -94,7 +94,7 @@ export default function CropFitPlanView() {
   }, [id])
 
   return (
-    <div className="app">
+    <div className="app compact-header">
       <Header />
       <main className="cpv-main">
 

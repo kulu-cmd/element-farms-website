@@ -23,7 +23,7 @@ const cardVariants = {
 
 const EducationPage = () => {
   return (
-    <div className="education">
+    <div className="education compact-header">
       <Header />
 
       <PageHero

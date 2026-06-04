@@ -27,7 +27,7 @@ const Placeholder = ({ tone = 'clay', label, aspect = '4 / 3', className = '' })
 
 const PoultryPage = () => {
   return (
-    <div className="poultry">
+    <div className="poultry compact-header">
       <Header />
 
       <PageHero

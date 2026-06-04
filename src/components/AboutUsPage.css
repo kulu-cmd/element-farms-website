@@ -1,0 +1,398 @@
+/* =============================================
+   ABOUT US PAGE — Element Farm Solutions
+   ============================================= */
+
+.about-us-page {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ef-dark);
+}
+
+/* ---- Shared ---- */
+.au-section-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* ---- SECTION 1: Chemicals ---- */
+.au-chemicals {
+  background: var(--ef-cream-light);
+  padding: 148px 64px 64px; /* 80px design padding + ~68px header clearance */
+}
+.au-chem-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+.au-chem-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: baseline;
+  margin-bottom: 40px;
+}
+.au-chem-cloud span {
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 1.2;
+  transition: opacity 0.3s;
+}
+.au-chem-cloud:hover span {
+  opacity: 0.3;
+}
+.au-chem-cloud span:hover {
+  opacity: 1 !important;
+  color: var(--ef-orange);
+}
+.au-chem-caption {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #444;
+  max-width: 640px;
+}
+
+/* ---- SECTION 2: Pivot ---- */
+.au-pivot {
+  background: var(--ef-orange);
+  padding: 56px 64px;
+}
+.au-pivot-headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 72px;
+  line-height: 0.9;
+  color: #fff;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+.au-pivot-sub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ---- SECTION 3: Story ---- */
+.au-story {
+  background: var(--ef-cream);
+  padding: 80px 64px;
+}
+.au-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-bottom: 40px;
+  align-items: start;
+}
+.au-story-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ef-green);
+}
+.au-story-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+}
+.au-story-body + .au-story-body {
+  margin-top: 14px;
+}
+.au-deployed-strip {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.au-deployed-strip .au-label {
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #999;
+  flex-shrink: 0;
+}
+.au-deployed-strip .au-country {
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+}
+.au-deployed-strip .au-country.au-active {
+  color: var(--ef-orange);
+}
+.au-deployed-strip .au-dot {
+  color: var(--ef-orange);
+  font-size: 12px;
+}
+
+/* ---- SECTION 4: Mission ---- */
+.au-mission {
+  background: var(--ef-green);
+  padding: 64px;
+}
+.au-mission-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+.au-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.au-mission-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--ef-orange);
+  margin-bottom: 10px;
+}
+.au-mission-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.5;
+}
+
+/* ---- SECTION 5: Products ---- */
+.au-products {
+  background: var(--ef-cream);
+  padding: 64px;
+}
+.au-products-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.au-products-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 32px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ef-dark);
+  margin-top: 6px;
+}
+.au-products-sub {
+  font-size: 14px;
+  color: #777;
+  line-height: 1.65;
+  max-width: 300px;
+  text-align: right;
+}
+
+/* Flagship card */
+.au-card-flagship {
+  background: #fff;
+  border: 2px solid var(--ef-orange);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 32px;
+  align-items: start;
+  transition: box-shadow 0.2s;
+}
+.au-card-flagship:hover {
+  box-shadow: 0 4px 24px rgba(232, 114, 44, 0.12);
+}
+
+/* Shared product elements */
+.au-product-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.au-product-name {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
+  color: var(--ef-dark);
+}
+.au-badge {
+  background: var(--ef-orange);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.au-product-type {
+  font-size: 11px;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.au-product-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #333;
+}
+
+/* Card aside */
+.au-card-aside {
+  border-radius: 8px;
+  padding: 16px;
+}
+.au-card-aside-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.au-card-aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.au-card-aside li {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.7;
+  padding-left: 12px;
+  position: relative;
+}
+.au-card-aside li::before {
+  content: '\00B7';
+  position: absolute;
+  left: 0;
+  color: var(--ef-orange);
+}
+
+/* Trio cards */
+.au-card-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.au-card-sm {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 22px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.au-card-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+}
+.au-card-sm-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--ef-dark);
+  margin-bottom: 4px;
+}
+.au-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 5px;
+}
+.au-card-sm .au-product-desc {
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* M-Hive card */
+.au-card-hive {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.au-hive-header {
+  background: #B5570F;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.au-hive-header-text {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+.au-hive-body {
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 32px;
+  align-items: start;
+  transition: box-shadow 0.2s;
+}
+.au-card-hive:hover .au-hive-body {
+  box-shadow: inset 0 0 0 1px rgba(181, 87, 15, 0.15);
+}
+
+/* SVG icon */
+.au-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 820px) {
+  .au-chemicals {
+    padding: 120px 32px 56px;
+  }
+  .au-pivot,
+  .au-story,
+  .au-mission,
+  .au-products {
+    padding: 56px 32px;
+  }
+  .au-story-grid,
+  .au-card-flagship,
+  .au-hive-body {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .au-card-trio {
+    grid-template-columns: 1fr 1fr;
+  }
+  .au-mission-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .au-pivot-headline {
+    font-size: 52px;
+  }
+  .au-products-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .au-products-sub {
+    text-align: left;
+  }
+}
+
+@media (max-width: 560px) {
+  .au-card-trio {
+    grid-template-columns: 1fr;
+  }
+  .au-chem-cloud {
+    gap: 8px 16px;
+  }
+}

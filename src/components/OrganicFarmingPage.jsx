@@ -80,7 +80,7 @@ const OrganicFarmingPage = () => {
     }
 
     return (
-        <div className="organic">
+        <div className="organic compact-header">
             <Header />
 
             <PageHero

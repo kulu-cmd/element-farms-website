@@ -69,7 +69,7 @@ const ContactPage = () => {
     }
 
     return (
-        <div className="contact-page">
+        <div className="contact-page compact-header">
             <Header />
 
             <PageHero

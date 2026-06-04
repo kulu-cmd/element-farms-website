@@ -13,7 +13,7 @@ import './LandRejuvenationPage.css'
 
 const LandRejuvenationPage = () => {
     return (
-        <div className="land-regen">
+        <div className="land-regen compact-header">
             <Header />
 
             <PageHero

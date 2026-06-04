@@ -114,9 +114,8 @@ const Header = () => {
                         <HoverLink>Education</HoverLink>
                     </Link>
 
-                    <Link to="/cropfit" className="ef-header__nav-item ef-header__nav-item--feature">
-                        <HoverLink>CropFit</HoverLink>
-                        <span className="ef-header__dot" aria-hidden="true" />
+                    <Link to="/about" className="ef-header__nav-item">
+                        <HoverLink>Our Essence</HoverLink>
                     </Link>
 
                     <Link to="/contact" className="ef-header__nav-item">
@@ -272,10 +271,7 @@ const Header = () => {
 
                         <Link to="/education" className="ef-mob__row">Education</Link>
 
-                        <Link to="/cropfit" className="ef-mob__row ef-mob__row--feature">
-                            CropFit
-                            <span className="ef-header__dot" aria-hidden="true" />
-                        </Link>
+                        <Link to="/about" className="ef-mob__row">Our Essence</Link>
 
                         <Link to="/contact" className="ef-mob__row">Contact</Link>
 
