@@ -18,7 +18,7 @@ const ErosionRiskSection = () => {
                         viewport={{ once: true, amount: 0.4 }}
                         transition={{ duration: 0.7 }}
                     >
-                        <p className="erosion__stat-text">Farmers can lose <span className="erosion__highlight">~2–5%</span> yield annually</p>
+                        <p className="erosion__stat-text">Farmers can lose <span className="erosion__highlight">~ 2–5 %</span> yield annually</p>
                         <p className="erosion__stat-subtext">on moderately eroding land without conservation practices.</p>
                     </motion.div>
 
@@ -30,7 +30,7 @@ const ErosionRiskSection = () => {
                         transition={{ duration: 0.7, delay: 0.35 }}
                     >
                         <p className="erosion__stat-text">Soil degradation in Africa causes</p>
-                        <p className="erosion__highlight-large">~$68 billion</p>
+                        <p className="erosion__highlight-large">~ $ 68 billion</p>
                         <p className="erosion__stat-subtext text-center">annual losses in crop productivity.</p>
                     </motion.div>
                 </div>
@@ -44,10 +44,10 @@ const ErosionRiskSection = () => {
                         transition={{ duration: 0.7 }}
                     >
                         <img src="/erode_map.png" alt="South Africa Map with Erosion Risk" className="erosion__map-img" />
+                        <p className="erosion__source">
+                            Source: South African Dept. of Agriculture / Agricultural Research Council (ARC)
+                        </p>
                     </motion.div>
-                    <p className="erosion__source" style={{ textAlign: 'right', fontSize: '0.8rem', color: 'rgba(43,43,43,0.45)', marginTop: '20px' }}>
-                        South African Dept. of Agriculture / Agricultural Research Council (ARC)
-                    </p>
                 </div>
             </div>
         </section>

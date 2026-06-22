@@ -87,7 +87,7 @@ const PhotoPlaceholder = ({ label, aspect = '4 / 3', className = '' }) => (
 
 const AntiFloodingPage = () => {
   return (
-    <div className="flood">
+    <div className="flood compact-header">
       <Header />
 
       <PageHero

@@ -131,7 +131,7 @@ const UVProtectionPage = () => {
   const pillarsInView = useInView(pillarsRef, { once: true, amount: 0.3 })
 
   return (
-    <div className="uv">
+    <div className="uv compact-header">
       <Header />
 
       <PageHero

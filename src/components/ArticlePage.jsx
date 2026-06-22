@@ -92,7 +92,7 @@ const ArticlePage = () => {
   /* Article not found */
   if (!meta) {
     return (
-      <div className="article-page">
+      <div className="article-page compact-header">
         <Header />
         <div className="article-page__not-found">
           <h1>Article not found</h1>
@@ -112,7 +112,7 @@ const ArticlePage = () => {
   const related = articles.filter((a) => a.slug !== slug).slice(0, 3)
 
   return (
-    <div className="article-page">
+    <div className="article-page compact-header">
       <Header />
 
       {/* Hero */}

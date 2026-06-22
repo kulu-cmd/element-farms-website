@@ -4,7 +4,6 @@
 }
 
 .erosion__header {
-    background-color: #e6e6e6;
     padding: 1.5rem 2rem;
     text-align: center;
     margin-bottom: 2rem;
@@ -36,7 +35,7 @@
 
 .erosion__stat-text {
     font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: 1.49rem;
     color: var(--charcoal);
     margin-bottom: 1rem;
     display: flex;
@@ -46,27 +45,29 @@
 }
 
 .erosion__highlight {
-    font-family: var(--font-heading);
-    font-size: 2.45rem;
+    font-family: var(--font-body);
+    font-size: 3.07rem;
     font-weight: 900;
     color: var(--orange-main);
     line-height: 1;
+    letter-spacing: -0.07em;
 }
 
 .erosion__highlight-large {
-    font-family: var(--font-heading);
-    font-size: 3.15rem;
+    font-family: var(--font-body);
+    font-size: 3.77rem;
     font-weight: 900;
     color: var(--orange-main);
     margin: 1rem 0;
     text-align: center;
     line-height: 1;
+    letter-spacing: -0.07em;
 }
 
 .erosion__stat-subtext {
     font-family: var(--font-body);
-    font-size: 0.84rem;
-    color: rgba(43, 43, 43, 0.65);
+    font-size: 1.28rem;
+    color: var(--charcoal);
     margin: 0;
 }
 
@@ -80,10 +81,19 @@
     justify-content: center;
 }
 
+.erosion__source {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: rgba(43, 43, 43, 0.45);
+    text-align: left;
+    margin-top: 0.6rem;
+    font-style: italic;
+}
+
 .erosion__map-container {
     position: relative;
     width: 100%;
-    max-width: 550px;
+    max-width: 370px;
 }
 
 .erosion__map-img {

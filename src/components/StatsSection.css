@@ -41,17 +41,18 @@
 }
 
 .stats__value {
-    font-family: var(--font-heading);
-    font-size: clamp(1.4rem, 2.45vw, 2.24rem);
+    font-family: var(--font-body);
+    font-size: clamp(1.7rem, 2.75vw, 2.55rem);
     font-weight: 900;
     color: var(--orange-main);
     margin-bottom: 1.5rem;
     line-height: 1.1;
+    letter-spacing: -0.07em;
 }
 
 .stats__label {
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 1rem;
     line-height: 1.5;
     color: var(--charcoal);
     max-width: 220px;

@@ -94,7 +94,7 @@ export default function CropFitPlanView() {
   }, [id])
 
   return (
-    <div className="app">
+    <div className="app compact-header">
       <Header />
       <main className="cpv-main">
 
@@ -122,7 +122,7 @@ export default function CropFitPlanView() {
               <div className="cpv-hero__inner">
                 <div className="cpv-hero__header">
                   <img
-                    src="/Element Farm Solutions_Final_Logo_Side_PNG.png"
+                    src="/EFS_Sideways.png"
                     alt="Element Farm Solutions"
                     className="cpv-hero__logo"
                   />

@@ -17,25 +17,16 @@ import EducationPage from './components/EducationPage'
 import ArticlePage from './components/ArticlePage'
 import CropFitApp from './cropfit/CropFitApp'
 import CropFitPlanView from './cropfit/CropFitPlanView'
+import AboutPage from './components/AboutPage'
+import AboutUsPage from './components/AboutUsPage'
+import SolutionsPage from './components/SolutionsPage'
 import './App.css'
 
 function HomePage() {
     return (
         <div className="app">
-            <Header />
             <main>
                 <HeroSection />
-                <MissionSection />
-                <OurApproachSection />
-                <CTABand
-                    heading={<>Ready to <em>regenerate</em><br />your land?</>}
-                    subtext="Start with a no-obligation farm assessment."
-                    primaryLabel="Start a farm trial"
-                    primaryTo="https://docs.google.com/forms/d/18f14G-hCciPDNnAgy9ITvT8iedrzmZ5K3zb37G_ca5Q/edit"
-                    secondaryLabel="Talk to us first"
-                    secondaryTo="/contact/agri-farms"
-                    tone="moss"
-                />
             </main>
             <Footer />
         </div>
@@ -61,13 +52,12 @@ function App() {
                 <Route path="/solutions/uv-protection" element={<UVProtectionPage />} />
                 <Route path="/solutions/anti-flooding" element={<AntiFloodingPage />} />
                 <Route path="/solutions/poultry" element={<PoultryPage />} />
-                <Route path="/contact/agri-farms" element={<ContactPage type="agri-farms" />} />
-                <Route path="/contact/dairy-horses" element={<ContactPage type="dairy-horses" />} />
-                <Route path="/contact/poultry" element={<ContactPage type="poultry" />} />
-                <Route path="/contact/poultry-dairy" element={<ContactPage type="dairy-horses" />} />
-                <Route path="/contact/organic" element={<OrganicFarmingPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/contact/:type" element={<ContactPage />} />
                 <Route path="/education" element={<EducationPage />} />
                 <Route path="/education/:slug" element={<ArticlePage />} />
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/solutions" element={<SolutionsPage />} />
                 <Route path="/cropfit" element={<CropFitApp />} />
                 <Route path="/cropfit/plan/:id" element={<CropFitPlanView />} />
                 <Route path="*" element={<HomePage />} />

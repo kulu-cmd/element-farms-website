@@ -1,0 +1,277 @@
+/* =============================================
+   SOLUTIONS SECTION — homepage inline panel
+   ============================================= */
+
+.ss {
+    position: relative;
+    background: var(--moss-deep);
+    color: var(--paper);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* grain */
+.ss::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--grain-url);
+    background-repeat: repeat;
+    background-size: 260px 260px;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* clay corner glow */
+.ss__glow {
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(ellipse at center, rgba(193,74,42,0.18) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.ss__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 4vw, 4rem) clamp(3rem, 6vw, 5rem);
+}
+
+/* ── Divider line ────────────────────────────── */
+.ss__divider {
+    width: 100%;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ss__divider svg {
+    width: 100%;
+    height: 2px;
+    display: block;
+    overflow: visible;
+}
+
+/* ── Section header ──────────────────────────── */
+.ss__head {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ss__eyebrow {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    margin-bottom: 1rem;
+}
+
+.ss__heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+}
+
+.ss__heading em {
+    font-style: italic;
+    color: var(--ochre);
+}
+
+/* ── Cards grid ──────────────────────────────── */
+.ss__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ── Card ────────────────────────────────────── */
+.ss__card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ss__card-link {
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+    padding: 1.6rem 1.5rem 1.5rem;
+    background:
+        var(--grain-url),
+        linear-gradient(160deg, rgba(255,255,255,0.025) 0%, transparent 50%),
+        rgba(8, 22, 14, 0.72);
+    background-repeat: repeat, no-repeat, no-repeat;
+    background-size: 260px 260px, 100% 100%, 100% 100%;
+    border: 1px solid rgba(217, 205, 184, 0.15);
+    border-radius: 10px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition:
+        background-color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+/* top shimmer on hover */
+.ss__card-link::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(243,111,33,0.6), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.ss__card-link:hover {
+    background-color: rgba(14, 58, 36, 0.88);
+    border-color: rgba(243, 111, 33, 0.45);
+    box-shadow:
+        0 0 0 1px rgba(243, 111, 33, 0.1),
+        0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+.ss__card-link:hover::after {
+    opacity: 1;
+}
+
+.ss__card-link:hover .ss__card-title {
+    color: var(--ochre);
+}
+
+.ss__card-link:hover .ss__card-cta {
+    color: var(--clay);
+}
+
+.ss__card-link:hover .ss__card-underline {
+    width: 100%;
+}
+
+.ss__card-link:hover .ss__card-arrow {
+    transform: translateX(5px);
+}
+
+/* top */
+.ss__card-top {
+    margin-bottom: auto;
+}
+
+.ss__card-tag {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, 0.35);
+    border: 1px solid rgba(247, 245, 240, 0.1);
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+/* body */
+.ss__card-body {
+    padding: 2rem 0 1.5rem;
+}
+
+.ss__card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--paper);
+    margin-bottom: 0.55rem;
+    transition: color 0.35s ease;
+}
+
+.ss__card-sub {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    color: rgba(247, 245, 240, 0.4);
+    line-height: 1.55;
+}
+
+/* foot */
+.ss__card-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: auto;
+}
+
+.ss__card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-sans);
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, 0.4);
+    transition: color 0.3s ease;
+}
+
+.ss__card-arrow {
+    width: 22px;
+    height: 10px;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ss__card-underline {
+    display: block;
+    height: 1px;
+    width: 28px;
+    background: rgba(243, 111, 33, 0.45);
+    border-radius: 1px;
+    transition: width 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Tagline ─────────────────────────────────── */
+.ss__tagline {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(247, 245, 240, 0.25);
+    text-align: center;
+    border-top: 1px solid rgba(217, 205, 184, 0.1);
+    padding-top: 2rem;
+}
+
+.ss__tagline em {
+    font-style: normal;
+    color: rgba(247, 245, 240, 0.45);
+}
+
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 1024px) {
+    .ss__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .ss__grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .ss__card-link {
+        min-height: 220px;
+        padding: 1.3rem 1.25rem 1.2rem;
+    }
+}

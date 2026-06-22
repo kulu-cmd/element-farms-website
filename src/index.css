@@ -37,6 +37,14 @@
   --light-grey:  var(--cool-grey);
   --pure-cream:  var(--paper-soft);
 
+  /* About Us brand tokens */
+  --ef-orange:      #E8722C;
+  --ef-green:       #1F5234;
+  --ef-cream:       #F0EDE3;
+  --ef-cream-light: #F5F4F0;
+  --ef-paper:       #FEFAEE;
+  --ef-dark:        #1C1C1C;
+
   /* Fonts */
   --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
   --font-sans:    'Source Sans 3', system-ui, -apple-system, sans-serif;
@@ -146,6 +154,33 @@ p { font-family: var(--font-sans); }
 }
 .reveal-mask > * {
   display: inline-block;
+}
+
+/* ── Compact header — full logo initially, icon-only on scroll ── */
+.compact-header .ef-header {
+  background: rgba(244, 239, 230, 0.92);
+  backdrop-filter: blur(12px) saturate(1.1);
+  -webkit-backdrop-filter: blur(12px) saturate(1.1);
+  border-bottom-color: var(--ink-rule);
+  color: var(--ink);
+}
+.compact-header .ef-header::before {
+  opacity: 0;
+}
+.compact-header .ef-header__brand {
+  height: 160px;
+}
+.compact-header .ef-header__logo--full {
+  filter: none;
+}
+.compact-header .ef-header .hover-link__copy--b {
+  color: var(--clay);
+}
+
+@media (max-width: 768px) {
+  .compact-header .ef-header__brand {
+    height: 42px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
