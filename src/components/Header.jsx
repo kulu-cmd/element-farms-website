@@ -40,24 +40,39 @@ const HoverLink = ({ children, ...props }) => (
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
+    const [hidden, setHidden] = useState(false)
     const [menuOpen, setMenuOpen] = useState(null) // 'solutions' | 'contact' | null
     const [mobileOpen, setMobileOpen] = useState(false)
     const [mobileSection, setMobileSection] = useState(null) // 'solutions' | 'contact' | null
     const headerRef = useRef(null)
+    const lastY = useRef(0)
     const location = useLocation()
 
+    /* Shrink past the fold; hide on scroll down, reveal on scroll up */
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40)
+        const onScroll = () => {
+            const y = window.scrollY
+            setScrolled(y > 40)
+
+            const delta = y - lastY.current
+            if (y < 140) setHidden(false)
+            else if (delta > 6) setHidden(true)
+            else if (delta < -6) setHidden(false)
+            lastY.current = y
+        }
         onScroll()
         window.addEventListener('scroll', onScroll, { passive: true })
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
+    /* A link may request a mega-menu on arrival via <Link state={{ openMenu }}> */
     useEffect(() => {
-        setMenuOpen(null)
+        setMenuOpen(location.state?.openMenu ?? null)
         setMobileOpen(false)
         setMobileSection(null)
-    }, [location.pathname])
+        setHidden(false)
+        lastY.current = window.scrollY
+    }, [location.pathname, location.state])
 
     useEffect(() => {
         if (!menuOpen) return
@@ -75,10 +90,13 @@ const Header = () => {
 
     const toggle = (id) => setMenuOpen(prev => prev === id ? null : id)
 
+    /* Never slide away while a menu is open */
+    const isHidden = hidden && !menuOpen && !mobileOpen
+
     return (
         <header
             ref={headerRef}
-            className={`ef-header ${scrolled ? 'ef-header--scrolled' : ''} ${menuOpen ? 'ef-header--menu-open' : ''}`}
+            className={`ef-header ${scrolled ? 'ef-header--scrolled' : ''} ${menuOpen ? 'ef-header--menu-open' : ''} ${isHidden ? 'ef-header--hidden' : ''}`}
         >
             <motion.div
                 className="ef-header__bar"
@@ -88,7 +106,7 @@ const Header = () => {
             >
                 <Link to="/" className="ef-header__brand" aria-label="Element Farm Solutions — Home">
                     <img
-                        src="/EFS_Sideways.png"
+                        src="/EFS_Sideways_Trim.png"
                         alt="Element Farm Solutions"
                         className="ef-header__logo ef-header__logo--full"
                     />
@@ -112,10 +130,6 @@ const Header = () => {
 
                     <Link to="/education" className="ef-header__nav-item">
                         <HoverLink>Education</HoverLink>
-                    </Link>
-
-                    <Link to="/about" className="ef-header__nav-item">
-                        <HoverLink>Our Essence</HoverLink>
                     </Link>
 
                     <Link to="/contact" className="ef-header__nav-item">
@@ -270,8 +284,6 @@ const Header = () => {
                         </AnimatePresence>
 
                         <Link to="/education" className="ef-mob__row">Education</Link>
-
-                        <Link to="/about" className="ef-mob__row">Our Essence</Link>
 
                         <Link to="/contact" className="ef-mob__row">Contact</Link>
 

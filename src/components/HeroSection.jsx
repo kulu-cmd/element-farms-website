@@ -19,7 +19,8 @@ import './HeroSection.css'
 const HOTSPOTS = [
     { id: 'about',     to: '/about',     label: 'About us',      style: { left: '14.4%', top: '18.5%', width: '16.2%', height: '15.2%' } },
     { id: 'contact',   to: '/contact',   label: 'Contact us',    style: { left: '66.9%', top: '28.3%', width: '17.5%', height: '15.2%' } },
-    { id: 'solutions', to: '/solutions', label: 'Our solutions', style: { left: '12.2%', top: '55.1%', width: '14.4%', height: '18.5%' } },
+    // Lands on About us with the Solutions mega-menu already open.
+    { id: 'solutions', to: '/about', label: 'Our solutions', state: { openMenu: 'solutions' }, style: { left: '12.2%', top: '55.1%', width: '14.4%', height: '18.5%' } },
     { id: 'education',  to: '/education', label: 'Education',     style: { left: '65.4%', top: '61.1%', width: '16.3%', height: '15.2%' } },
 ]
 
@@ -40,6 +41,7 @@ const HeroSection = () => (
                     <Link
                         key={h.id}
                         to={h.to}
+                        state={h.state}
                         className={`lp__hot lp__hot--${h.id}`}
                         style={h.style}
                         aria-label={h.label}

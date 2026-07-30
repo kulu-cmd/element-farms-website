@@ -6,10 +6,17 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 900;
-    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease;
+    transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease,
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     background: transparent;
     border-bottom: 1px solid transparent;
     color: var(--paper);
+    will-change: transform;
+}
+
+/* Slides out of view on scroll down, back in on scroll up */
+.ef-header--hidden {
+    transform: translateY(-100%);
 }
 
 /* Soft gradient wash at top — keeps nav legible over light imagery too */
@@ -59,13 +66,13 @@
     display: inline-flex;
     align-items: center;
     position: relative;
-    height: 240px;
+    height: 64px;
     transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .ef-header--scrolled .ef-header__brand,
 .ef-header--menu-open .ef-header__brand {
-    height: 42px;
+    height: 40px;
 }
 
 .ef-header__logo {
@@ -74,10 +81,13 @@
 }
 
 /* Full sideways logo — visible at top */
+/* Tight-cropped asset (5.12:1) — height drives the lockup size exactly.
+   max-width lets object-fit:contain scale it down rather than crowd the burger. */
 .ef-header__logo--full {
     height: 100%;
     width: auto;
-    max-width: 720px;
+    flex: none;
+    max-width: min(260px, 52vw);
     object-position: left center;
     filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
 }

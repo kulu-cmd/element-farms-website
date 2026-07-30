@@ -1633,7 +1633,7 @@
   background: var(--cf-surface-2);
   border: 1px solid var(--cf-border);
   border-radius: 4px;
-  font-family: 'Courier New', monospace;
+  font-family: var(--cf-font-body);
   font-size: 0.78rem;
   color: var(--cf-accent);
   padding: 0.05rem 0.4rem;
@@ -2223,7 +2223,7 @@
   background: var(--cf-bg); border: 1px solid var(--cf-border);
   border-radius: 4px; padding: 0.3rem 0.6rem;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-  font-family: monospace;
+  font-family: var(--cf-font-body);
 }
 
 .cf-plan-share__copy { flex-shrink: 0; font-size: 0.75rem; }
