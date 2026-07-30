@@ -28,7 +28,6 @@ function HomePage() {
             <main>
                 <HeroSection />
             </main>
-            <Footer />
         </div>
     )
 }
