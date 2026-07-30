@@ -6,85 +6,6 @@
     background: white;
 }
 
-/* ── Farm type selector ──────────────────────── */
-.contact-page__type-select {
-    background: var(--paper-deep);
-    border-top: 1px solid var(--bone);
-    border-bottom: 1px solid var(--bone);
-    padding: 2.5rem clamp(1.5rem, 4vw, 4rem);
-}
-
-.contact-page__type-inner {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.contact-page__type-label {
-    font-family: var(--font-sans);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 1.25rem;
-}
-
-.contact-page__type-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-}
-
-.contact-page__type-pill {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-    padding: 0.85rem 1.4rem;
-    border: 1px solid var(--bone);
-    border-radius: 10px;
-    background: var(--paper);
-    cursor: pointer;
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-    text-align: left;
-}
-
-.contact-page__type-pill:hover {
-    border-color: var(--moss-deep);
-    background: var(--paper-soft);
-    box-shadow: 0 4px 16px rgba(14, 90, 54, 0.1);
-}
-
-.contact-page__type-pill--active {
-    border-color: var(--moss-deep);
-    background: var(--moss-deep);
-    box-shadow: 0 4px 20px rgba(14, 90, 54, 0.25);
-}
-
-.contact-page__type-pill-label {
-    font-family: var(--font-display);
-    font-size: 0.88rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    transition: color 0.2s;
-}
-
-.contact-page__type-pill--active .contact-page__type-pill-label {
-    color: var(--paper);
-}
-
-.contact-page__type-pill-hint {
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    color: var(--ink-faint);
-    transition: color 0.2s;
-}
-
-.contact-page__type-pill--active .contact-page__type-pill-hint {
-    color: rgba(247, 245, 240, 0.6);
-}
-
 /* ----------------------------------------------------------
    Hero
    ---------------------------------------------------------- */
@@ -156,7 +77,7 @@
     max-width: var(--page-max-width);
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 380px;
     gap: 3rem;
     align-items: start;
 }
@@ -169,6 +90,18 @@
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.07);
+}
+
+/* Eyebrow, not a display heading — the embedded form carries its own title,
+   so a big h2 here would repeat the same words twice. Matches __info-eyebrow. */
+.contact-page__section-title {
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--orange-main);
+    margin: 0;
 }
 
 .contact-page__gform {
@@ -377,8 +310,70 @@
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    position: sticky;
-    top: 6rem;
+}
+
+/* ── Operation-type dropdown (dairy / poultry) ──────────────── */
+.contact-page__op-card {
+    background: var(--paper-deep);
+    border: 1px solid var(--bone);
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem;
+}
+
+.contact-page__op-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.75rem;
+}
+
+.contact-page__op-select-wrap {
+    position: relative;
+}
+
+.contact-page__op-select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--bone);
+    border-radius: 10px;
+    padding: 0.8rem 2.5rem 0.8rem 1rem;
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-page__op-select:hover,
+.contact-page__op-select:focus {
+    border-color: var(--moss-deep);
+    outline: none;
+    box-shadow: 0 4px 16px rgba(14, 90, 54, 0.1);
+}
+
+.contact-page__op-caret {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+}
+
+/* AnimatePresence animates height — keep children from spilling mid-collapse */
+.contact-page__op-body {
+    overflow: hidden;
+}
+
+.contact-page__op-body .contact-page__form {
+    padding-top: 1.5rem;
 }
 
 .contact-page__info-card {

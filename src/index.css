@@ -168,7 +168,13 @@ p { font-family: var(--font-sans); }
   opacity: 0;
 }
 .compact-header .ef-header__brand {
-  height: 160px;
+  height: 48px;
+}
+/* Must out-specify .ef-header--scrolled .ef-header__brand, or the icon
+   inflates to the full brand height instead of shrinking. */
+.compact-header .ef-header--scrolled .ef-header__brand,
+.compact-header .ef-header--menu-open .ef-header__brand {
+  height: 42px;
 }
 .compact-header .ef-header__logo--full {
   filter: none;

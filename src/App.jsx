@@ -17,9 +17,7 @@ import EducationPage from './components/EducationPage'
 import ArticlePage from './components/ArticlePage'
 import CropFitApp from './cropfit/CropFitApp'
 import CropFitPlanView from './cropfit/CropFitPlanView'
-import AboutPage from './components/AboutPage'
 import AboutUsPage from './components/AboutUsPage'
-import SolutionsPage from './components/SolutionsPage'
 import './App.css'
 
 function HomePage() {
@@ -56,7 +54,6 @@ function App() {
                 <Route path="/education" element={<EducationPage />} />
                 <Route path="/education/:slug" element={<ArticlePage />} />
                 <Route path="/about" element={<AboutUsPage />} />
-                <Route path="/solutions" element={<SolutionsPage />} />
                 <Route path="/cropfit" element={<CropFitApp />} />
                 <Route path="/cropfit/plan/:id" element={<CropFitPlanView />} />
                 <Route path="*" element={<HomePage />} />
