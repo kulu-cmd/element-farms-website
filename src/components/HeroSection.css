@@ -40,6 +40,51 @@
     border-radius: 16px;
 }
 
+/* ── Wind ─────────────────────────────────────────────────────
+   The foliage clusters and the Bird of Paradise petals are wrapped /
+   tagged inside the svg (see LandingPageFULL.svg). Each one pivots about
+   its own root point in view-box coordinates and rocks between -amp and
+   +amp, so a cluster split across two <g>s still moves as one piece.
+   Petals on opposite sides of the flower carry opposite amplitudes,
+   which reads as the fan slowly opening and closing.
+   ────────────────────────────────────────────────────────────── */
+@keyframes lp-sway {
+    from { transform: rotate(calc(var(--amp) * -1)); }
+    to   { transform: rotate(var(--amp)); }
+}
+
+.lp-sway,
+.lp__art [class*="lp-petal"] {
+    transform-box: view-box;
+    will-change: transform;
+    animation: lp-sway var(--dur) cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Clusters — pivot where the plants leave the frame, so they lean rather
+   than slide. Slow and shallow; this should register as life, not motion. */
+.lp-sway--herbs    { transform-origin: 280px 1090px; --amp: 1.6deg; --dur: 7.5s; --delay: -2s; }
+.lp-sway--branch-l { transform-origin: 0 330px;      --amp: 1.4deg; --dur: 8.5s; --delay: -4s; }
+.lp-sway--branch-r { transform-origin: 1920px 90px;  --amp: 1.1deg; --dur: 8s;   --delay: -6s; }
+
+/* Petals — all pivot at the point where the flower's stems converge. */
+.lp__art [class*="lp-petal"] { transform-origin: 905px 770px; }
+.lp-petal--1 { --amp: -4deg;   --dur: 6.4s; --delay: 0s; }
+.lp-petal--2 { --amp: -3deg;   --dur: 5.8s; --delay: -1.2s; }
+.lp-petal--3 { --amp: -1.6deg; --dur: 7.2s; --delay: -0.6s; }
+.lp-petal--4 { --amp: 1.8deg;  --dur: 6.8s; --delay: -1.8s; }
+.lp-petal--5 { --amp: 3.2deg;  --dur: 6s;   --delay: -0.4s; }
+.lp-petal--6 { --amp: 4.2deg;  --dur: 7.6s; --delay: -2.4s; }
+.lp-petal--7 { --amp: 3.6deg;  --dur: 6.2s; --delay: -1.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-sway,
+    .lp__art [class*="lp-petal"] {
+        animation: none;
+        will-change: auto;
+    }
+}
+
 /* visually-hidden label for screen readers */
 .lp__sr {
     position: absolute;
