@@ -40,6 +40,88 @@
     border-radius: 16px;
 }
 
+/* ── Wind ─────────────────────────────────────────────────────
+   The foliage clusters and the Bird of Paradise petals are wrapped /
+   tagged inside the svg (see LandingPageFULL.svg). Each one pivots about
+   its own root point in view-box coordinates and rocks between -amp and
+   +amp, so a cluster split across two <g>s still moves as one piece.
+   Petals on opposite sides of the flower carry opposite amplitudes,
+   which reads as the fan slowly opening and closing.
+   ────────────────────────────────────────────────────────────── */
+@keyframes lp-sway {
+    from { transform: rotate(calc(var(--amp) * -1)); }
+    to   { transform: rotate(var(--amp)); }
+}
+
+.lp-sway,
+.lp__art [class*="lp-petal"] {
+    transform-box: view-box;
+    will-change: transform;
+    animation: lp-sway var(--dur) cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--delay, 0s);
+}
+
+/* Clusters — pivot where the plants leave the frame, so they lean rather
+   than slide. Slow and shallow; this should register as life, not motion. */
+.lp-sway--herbs    { transform-origin: 280px 1090px; --amp: 1.6deg; --dur: 5.3s; --delay: -2s; }
+/* branch-l is the blueberry plant behind the "About Us" label. Its big flat
+   card underlays are now static (see LandingPageFULL.svg) so only the plant
+   sways — no more seam sweeping the text. Pivot sits at the plant's base. */
+.lp-sway--branch-l { transform-origin: 200px 470px;  --amp: 1deg;   --dur: 5.6s; --delay: -4s; }
+.lp-sway--branch-r { transform-origin: 1920px 90px;  --amp: 1.1deg; --dur: 5.6s; --delay: -6s; }
+
+/* Cows graze in the Education scene. They rock a hair about their feet, which
+   reads as a gentle weight-shift / breathing rather than a plant sway. */
+.lp-sway--cow-a    { transform-origin: 1510px 890px;  --amp: 0.4deg;  --dur: 6s;   --delay: -1s; }
+.lp-sway--cow-b    { transform-origin: 1703px 1010px; --amp: 0.35deg; --dur: 6.6s; --delay: -3s; }
+
+/* Petals — all pivot at the point where the flower's stems converge.
+   Amplitudes grow monotonically outward along each fan side and neighbours
+   share close durations/phases, so the fan opens and closes as one piece and
+   adjacent petals stay parallel instead of scissoring across each other. */
+.lp__art [class*="lp-petal"] { transform-origin: 905px 770px; }
+.lp-petal--1 { --amp: -2deg;   --dur: 4.6s; --delay: -0.2s; }
+.lp-petal--2 { --amp: -1.6deg; --dur: 4.6s; --delay: -0.4s; }
+.lp-petal--3 { --amp: -1.1deg; --dur: 4.6s; --delay: -0.6s; }
+.lp-petal--4 { --amp: 1.1deg;  --dur: 4.8s; --delay: -0.6s; }
+.lp-petal--5 { --amp: 1.6deg;  --dur: 4.8s; --delay: -0.4s; }
+.lp-petal--6 { --amp: 2deg;    --dur: 4.9s; --delay: -0.3s; }
+.lp-petal--7 { --amp: 1.7deg;  --dur: 4.9s; --delay: -0.5s; }
+
+/* ── Interaction ──────────────────────────────────────────────
+   When a section's hotspot is hovered/focused, its word and arrow pop
+   together with an organic, springy scale — each about its own centre so
+   nothing drifts, and the arrow keeps its dark fill so it never vanishes.
+   The .is-active class is toggled from HeroSection.jsx because the hotspots
+   overlay the svg subtree. The wind sway is untouched.
+   ────────────────────────────────────────────────────────────── */
+.lp__art .lp-navpop,
+.lp__art [id^="efs-btn-"] {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform .32s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lp__art .lp-navpop.is-active,
+.lp__art [id^="efs-btn-"].is-active {
+    transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-sway,
+    .lp__art [class*="lp-petal"] {
+        animation: none;
+        will-change: auto;
+    }
+    .lp__art .lp-navpop,
+    .lp__art [id^="efs-btn-"] {
+        transition: none;
+    }
+    .lp__art .lp-navpop.is-active,
+    .lp__art [id^="efs-btn-"].is-active {
+        transform: none;
+    }
+}
+
 /* visually-hidden label for screen readers */
 .lp__sr {
     position: absolute;
