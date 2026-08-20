@@ -484,7 +484,6 @@ const AntiFloodingPage = () => {
               <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
               <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
               <img src="/hive/herbs.jpg" alt="Herbs grown with M-Hive medium" />
-              <figcaption>Herbs — high-value crops, low-risk medium.</figcaption>
             </figure>
             <figure className="flood__detail-photo photo-frame">
               <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
@@ -492,7 +491,6 @@ const AntiFloodingPage = () => {
               <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
               <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
               <img src="/hive/proteas.jpg" alt="Proteas grown in M-Hive medium" />
-              <figcaption>Proteas — stable aeration, all-weather rooting.</figcaption>
             </figure>
             <figure className="flood__detail-photo photo-frame">
               <span className="photo-frame__corner photo-frame__corner--tl" aria-hidden="true" />
@@ -500,7 +498,6 @@ const AntiFloodingPage = () => {
               <span className="photo-frame__corner photo-frame__corner--bl" aria-hidden="true" />
               <span className="photo-frame__corner photo-frame__corner--br" aria-hidden="true" />
               <img src="/hive/canna.jpg" alt="Canna grown in M-Hive medium" />
-              <figcaption>Canna — long-season production, permanent medium.</figcaption>
             </figure>
           </div>
 

@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Header from './Header'
 import SolutionsTabs from './SolutionsTabs'
 import ResultsMetrics from './ResultsMetrics'
-import OurProcessSection from './OurProcessSection'
 import CTABand from './CTABand'
 import Footer from './Footer'
 import { SOLUTION_CATEGORIES, solutionsByCategory } from '../data/solutionsData'
@@ -32,7 +31,12 @@ const SolutionCard = ({ solution, index, prefersReduced }) => (
     >
         <Link to={solution.to} className="os-card__link">
             <div className="os-card__media">
-                <img src={solution.image} alt="" loading="lazy" />
+                <img
+                    src={solution.image}
+                    alt=""
+                    loading="lazy"
+                    style={solution.imagePosition ? { objectPosition: solution.imagePosition } : undefined}
+                />
             </div>
             <div className="os-card__body">
                 <span className="os-card__num">{solution.num}</span>
@@ -120,8 +124,6 @@ const OurSolutionsPage = () => {
             </section>
 
             <ResultsMetrics />
-
-            <OurProcessSection />
 
             <CTABand
                 heading="Not sure which system fits?"

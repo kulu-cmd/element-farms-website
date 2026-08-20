@@ -32,6 +32,9 @@ const EducationPage = () => {
         tone="ink"
       />
 
+      {/* Soil Profiles — moved from home page */}
+      <SoilTypesSection />
+
       {/* Article Grid */}
       <section className="education__grid-section">
         <div className="education__grid">
@@ -79,9 +82,6 @@ const EducationPage = () => {
           ))}
         </div>
       </section>
-
-      {/* Soil Profiles — moved from home page */}
-      <SoilTypesSection />
 
       <Footer />
     </div>

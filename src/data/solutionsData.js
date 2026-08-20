@@ -51,9 +51,9 @@ export const SOLUTIONS = [
         tabLabel: 'Poultry',
         hint: 'Mineral bedding treatment',
         blurb: 'Mineral bedding treatment that dries litter, cuts ammonia, and keeps broiler and layer houses healthy.',
-        // NOTE: no poultry photograph exists in /public — this is the product
-        // render, and is the one image here that isn't a field photo.
-        image: '/poultry/M-TerraDry.png',
+        image: '/poultry/poultry.jpg',
+        // Portrait photo — pull the crop up so the chick sits centre-frame.
+        imagePosition: 'center 25%',
     },
 ]
 

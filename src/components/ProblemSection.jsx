@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
-import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import SectionLabel from './ui/SectionLabel'
+import StatIndex from './ui/StatIndex'
 import './ProblemSection.css'
 
 const stats = [
@@ -38,32 +39,6 @@ const stats = [
     },
 ]
 
-/* ---- count-up component ---- */
-const CountUp = ({ to, duration = 1.8, decimals = 0, delay = 0 }) => {
-    const ref = useRef(null)
-    const isInView = useInView(ref, { once: true, amount: 0.5 })
-    const mv = useMotionValue(0)
-    const rounded = useTransform(mv, (v) => v.toFixed(decimals))
-
-    React.useEffect(() => {
-        if (!isInView) return
-        const controls = animate(mv, to, {
-            duration,
-            delay,
-            ease: [0.22, 1, 0.36, 1],
-        })
-        const unsub = rounded.on('change', (latest) => {
-            if (ref.current) ref.current.textContent = latest
-        })
-        return () => {
-            controls.stop()
-            unsub()
-        }
-    }, [isInView, to, duration, delay, mv, rounded])
-
-    return <span ref={ref}>0{decimals > 0 ? '.0' : ''}</span>
-}
-
 const ProblemSection = () => {
     return (
         <section className="problem-x" id="problem">
@@ -81,40 +56,7 @@ const ProblemSection = () => {
                     </motion.h2>
                 </div>
 
-                <ol className="problem-x__index">
-                    {stats.map((stat, i) => {
-                        const decimals = String(stat.display).includes('.') ? 1 : 0
-                        return (
-                            <motion.li
-                                key={stat.display}
-                                className="problem-x__row"
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                transition={{ duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                            >
-                                <span className="problem-x__row-n">0{i + 1}</span>
-
-                                <div className="problem-x__row-figures">
-                                    <span className="problem-x__row-value">
-                                        <CountUp
-                                            to={stat.value}
-                                            decimals={decimals}
-                                            delay={0.15}
-                                        />
-                                        <span className="problem-x__row-suffix">{stat.suffix}</span>
-                                    </span>
-                                    <span className="problem-x__row-unit">{stat.unit}</span>
-                                </div>
-
-                                <div className="problem-x__row-text">
-                                    <p className="problem-x__row-label">{stat.label}</p>
-                                    <span className="problem-x__row-source">— {stat.source}</span>
-                                </div>
-                            </motion.li>
-                        )
-                    })}
-                </ol>
+                <StatIndex stats={stats} className="problem-x__index" />
             </div>
         </section>
     )

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import StatIndex from './ui/StatIndex'
 import './OrganicFarmingPage.css'
 
 const SPRING = [0.22, 1, 0.36, 1]
@@ -23,9 +24,24 @@ const offerings = [
 ]
 
 const reasons = [
-    { value: '40%', label: 'lower input costs reported by farms that transition to organic systems within 3 years' },
-    { value: '2×', label: 'longer soil water retention with improved organic matter — reducing irrigation dependency' },
-    { value: '100%', label: 'natural, zero-chemical formulations — safe for workers, consumers, and ecosystems' },
+    {
+        value: 40,
+        suffix: '%',
+        unit: 'lower input costs',
+        label: 'lower input costs reported by farms that transition to organic systems within 3 years',
+    },
+    {
+        value: 2,
+        suffix: '×',
+        unit: 'water retention',
+        label: 'longer soil water retention with improved organic matter — reducing irrigation dependency',
+    },
+    {
+        value: 100,
+        suffix: '%',
+        unit: 'natural formulation',
+        label: 'natural, zero-chemical formulations — safe for workers, consumers, and ecosystems',
+    },
 ]
 
 const whoFor = [
@@ -120,21 +136,7 @@ const OrganicFarmingPage = () => {
                         style={{ transformOrigin: 'left' }}
                     />
                 </div>
-                <div className="organic__stats-grid">
-                    {reasons.map((r, i) => (
-                        <motion.div
-                            key={i}
-                            className="organic__stat-card"
-                            initial={{ opacity: 0, y: 40, scale: 0.94 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.3 }}
-                            transition={{ duration: 0.6, delay: i * 0.12, ease: SPRING }}
-                        >
-                            <span className="organic__stat-value">{r.value}</span>
-                            <p className="organic__stat-label">{r.label}</p>
-                        </motion.div>
-                    ))}
-                </div>
+                <StatIndex stats={reasons} className="organic__stats-index" />
             </section>
 
             {/* Offerings */}

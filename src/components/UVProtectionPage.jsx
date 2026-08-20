@@ -1,39 +1,13 @@
 import React, { useRef } from 'react'
-import { motion, useInView, useMotionValue, useTransform, animate } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
 import SolutionsTabs from './SolutionsTabs'
 import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
+import StatIndex from './ui/StatIndex'
 import './UVProtectionPage.css'
-
-/* ----------------------------------------------------------------------------
-   Count-up — same primitive used in ProblemSection
-   --------------------------------------------------------------------------- */
-const CountUp = ({ to, duration = 2.4, decimals = 0, delay = 0, isInView }) => {
-  const mv = useMotionValue(0)
-  const rounded = useTransform(mv, (v) => v.toFixed(decimals))
-  const ref = useRef(null)
-
-  React.useEffect(() => {
-    if (!isInView) return
-    const controls = animate(mv, to, {
-      duration,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-    })
-    const unsub = rounded.on('change', (latest) => {
-      if (ref.current) ref.current.textContent = latest
-    })
-    return () => {
-      controls.stop()
-      unsub()
-    }
-  }, [isInView, to, duration, delay, mv, rounded])
-
-  return <span ref={ref}>0{decimals > 0 ? '.0' : ''}</span>
-}
 
 /* ----------------------------------------------------------------------------
    Editorial facts — sourced from the EFS pitch deck (Pitch Deck Agriculture)
@@ -122,8 +96,6 @@ const Placeholder = ({ tone = 'clay', label, aspect = '4 / 3', className = '' })
 )
 
 const UVProtectionPage = () => {
-  const factsRef = useRef(null)
-  const factsInView = useInView(factsRef, { once: true, amount: 0.15 })
   const shadeRef = useRef(null)
   const shadeInView = useInView(shadeRef, { once: true, amount: 0.3 })
   const defendRef = useRef(null)
@@ -146,10 +118,9 @@ const UVProtectionPage = () => {
       {/* ──────────────────────────────────────────────────────────────
           1.  Editorial facts — the problem, with quote
           ────────────────────────────────────────────────────────────── */}
-      <section className="uv__facts" ref={factsRef}>
+      <section className="uv__facts">
         <div className="uv__facts-inner">
           <div className="uv__facts-header">
-            <SectionLabel label="The Problem" />
             <motion.h2
               className="uv__facts-statement"
               initial={{ opacity: 0, y: 24 }}
@@ -161,46 +132,7 @@ const UVProtectionPage = () => {
             </motion.h2>
           </div>
 
-          <ol className="uv__facts-index">
-            {facts.map((stat, i) => {
-              const decimals = String(stat.display).includes('.') ? 1 : 0
-              return (
-                <motion.li
-                  key={`${stat.display}-${i}`}
-                  className="uv__facts-row"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.75, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <span className="uv__facts-row-n">0{i + 1}</span>
-
-                  <div className="uv__facts-row-figures">
-                    <span className="uv__facts-row-value">
-                      {stat.prefix && (
-                        <span className="uv__facts-row-prefix">{stat.prefix}</span>
-                      )}
-                      <CountUp
-                        to={stat.value}
-                        decimals={decimals}
-                        delay={0.3 + i * 0.08}
-                        isInView={factsInView}
-                      />
-                      {stat.suffix && (
-                        <span className="uv__facts-row-suffix">{stat.suffix}</span>
-                      )}
-                    </span>
-                    <span className="uv__facts-row-unit">{stat.unit}</span>
-                  </div>
-
-                  <div className="uv__facts-row-text">
-                    <p className="uv__facts-row-label">{stat.label}</p>
-                    <span className="uv__facts-row-source">— {stat.source}</span>
-                  </div>
-                </motion.li>
-              )
-            })}
-          </ol>
+          <StatIndex stats={facts} className="uv__facts-index" />
         </div>
       </section>
 

@@ -15,8 +15,6 @@ const VideoSection = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="vid-x__eyebrow">— Why It Matters</span>
-
           <h2 className="vid-x__heading">
             The case for <em>soil&#8209;first</em><br /> farming.
           </h2>
