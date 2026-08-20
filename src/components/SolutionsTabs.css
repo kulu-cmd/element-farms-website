@@ -1,0 +1,87 @@
+/* =============================================
+   SOLUTIONS TABS — section nav shared by /solutions
+   and the four solution pages.
+   ============================================= */
+
+.sol-tabs {
+    position: sticky;
+    /* pins just below the compact fixed header */
+    top: 64px;
+    z-index: 800;
+    background: rgba(244, 239, 230, 0.94);
+    backdrop-filter: blur(12px) saturate(1.1);
+    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    border-bottom: 1px solid var(--ink-rule);
+}
+
+.sol-tabs__inner {
+    padding: 0 var(--rail-padding);
+}
+
+.sol-tabs__list {
+    list-style: none;
+    display: flex;
+    align-items: stretch;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    /* horizontal scroll rather than wrap — keeps the bar one line deep */
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sol-tabs__list::-webkit-scrollbar { display: none; }
+
+.sol-tabs__tab {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 1rem 1.1rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.28s ease, border-color 0.28s ease;
+    /* comfortable touch target */
+    min-height: 48px;
+}
+
+.sol-tabs__tab:hover,
+.sol-tabs__tab:focus-visible {
+    color: var(--ink);
+}
+
+.sol-tabs__tab.is-active {
+    color: var(--clay);
+    border-bottom-color: var(--clay);
+}
+
+.sol-tabs__tab:focus-visible {
+    outline: 2px solid var(--moss-deep);
+    outline-offset: -4px;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .sol-tabs {
+        top: 56px;
+    }
+    .sol-tabs__inner {
+        /* let tabs run to the screen edge so the scroll affordance reads */
+        padding: 0 0.75rem;
+    }
+    .sol-tabs__tab {
+        padding: 0.9rem 0.85rem;
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sol-tabs__tab { transition: none; }
+}

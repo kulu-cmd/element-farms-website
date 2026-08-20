@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { CircleDots } from './BrandMotifs'
 import './TailoredSolutionSection.css'
 
 const REGEN_DETAIL = {
@@ -225,7 +224,6 @@ const TailoredSolutionSection = () => {
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 >
-                    <CircleDots size={26} strokeWidth={9} />
                     <span className="solutions-x__eyebrow-label">Our Solutions</span>
                 </motion.div>
 

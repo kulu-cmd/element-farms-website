@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import SolutionsTabs from './SolutionsTabs'
 import CTABand from './CTABand'
 import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
@@ -95,6 +96,8 @@ const AntiFloodingPage = () => {
         subtitle="Manufactured for aeration, nutrient and water retention."
         tone="moss"
       />
+
+      <SolutionsTabs />
 
       {/* ──────────────────────────────────────────────────────────────
           1.  Manufactured banner + intro + 3 feature thumbnails

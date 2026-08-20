@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CircleDots } from './BrandMotifs'
 import './OurApproachSection.css'
 
 const steps = [
@@ -64,7 +63,6 @@ const OurApproachSection = () => {
                     transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
                 >
                     <span className="approach-x__eyebrow">
-                        <CircleDots size={22} strokeWidth={11} />
                         Our Approach
                     </span>
                     <h2 className="approach-x__heading">

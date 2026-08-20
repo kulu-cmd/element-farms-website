@@ -4,35 +4,9 @@ import React from 'react'
  * BrandMotifs — decorative SVG marks taken from the Element Farm Solutions
  * logo so we can echo brand shapes throughout the site.
  *
- * Both components accept `size`, `className`, and any other svg props
- * (e.g. style for opacity or rotation overrides).
+ * Accepts `size`, `className`, and any other svg props (e.g. style for
+ * opacity or rotation overrides).
  */
-
-/* The 4-dot circle — green ring with four orange dots at NSEW. */
-export const CircleDots = ({
-    size = 48,
-    ringColor = 'var(--moss)',
-    dotColor = 'var(--clay)',
-    strokeWidth = 6,
-    className = '',
-    ...rest
-}) => (
-    <svg
-        viewBox="0 0 100 100"
-        width={size}
-        height={size}
-        className={`brand-motif brand-motif--circle ${className}`}
-        aria-hidden="true"
-        focusable="false"
-        {...rest}
-    >
-        <circle cx="50" cy="50" r="34" fill="none" stroke={ringColor} strokeWidth={strokeWidth} />
-        <circle cx="50" cy="16" r="7" fill={dotColor} />
-        <circle cx="84" cy="50" r="7" fill={dotColor} />
-        <circle cx="50" cy="84" r="7" fill={dotColor} />
-        <circle cx="16" cy="50" r="7" fill={dotColor} />
-    </svg>
-)
 
 /* The argyle diamond — overlapping diamonds with crossed lines, drawn in
    a soft tan that reads as a watermark over light backgrounds. */
@@ -64,4 +38,4 @@ export const ArgyleDiamond = ({
     </svg>
 )
 
-export default { CircleDots, ArgyleDiamond }
+export default { ArgyleDiamond }

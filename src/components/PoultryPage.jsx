@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import SolutionsTabs from './SolutionsTabs'
 import SectionLabel from './ui/SectionLabel'
 import EnquiryButton from './ui/EnquiryButton'
 import './PoultryPage.css'
@@ -35,6 +36,8 @@ const PoultryPage = () => {
         subtitle="A scientifically formulated mineral blend designed for use as a poultry bedding treatment."
         tone="clay"
       />
+
+      <SolutionsTabs />
 
       {/* ──────────────────────────────────────────────────────────────
           Product detail

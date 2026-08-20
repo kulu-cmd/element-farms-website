@@ -44,18 +44,6 @@
 }
 
 /* Brand motifs */
-.cta-band__motif {
-  position: absolute;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.cta-band__motif--circle {
-  left: clamp(2rem, 5vw, 5rem);
-  top: clamp(1.75rem, 3vw, 2.5rem);
-  opacity: 0.85;
-}
-
 /* Diagonal decorative rule */
 .cta-band__rule {
   position: absolute;

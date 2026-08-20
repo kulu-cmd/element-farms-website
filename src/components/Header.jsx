@@ -3,25 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 
-const solutionGroups = [
-    {
-        label: 'Agriculture',
-        tone: 'moss',
-        items: [
-            { to: '/solutions/land-rejuvenation', title: 'Land Rejuvenation', hint: 'Soil restoration & organic matter' },
-            { to: '/solutions/anti-flooding',    title: 'Anti-Flooding',     hint: 'Water retention & drainage' },
-            { to: '/solutions/uv-protection',    title: 'Sun & Pest Shield', hint: 'UV protection for orchards' },
-        ],
-    },
-    {
-        label: 'Livestock',
-        tone: 'ochre',
-        items: [
-            { to: '/solutions/poultry', title: 'Poultry Solutions', hint: 'Mineral bedding treatment' },
-        ],
-    },
-]
-
 const contactItems = [
     { to: '/contact/agri-farms',    title: 'Agriculture',       hint: 'Land, UV, flooding & soil' },
     { to: '/contact/dairy-horses',  title: 'Dairy and Stables', hint: 'Pasture, manure & water' },
@@ -41,9 +22,8 @@ const HoverLink = ({ children, ...props }) => (
 const Header = () => {
     const [scrolled, setScrolled] = useState(false)
     const [hidden, setHidden] = useState(false)
-    const [menuOpen, setMenuOpen] = useState(null) // 'solutions' | 'contact' | null
+    const [menuOpen, setMenuOpen] = useState(null) // 'contact' | null
     const [mobileOpen, setMobileOpen] = useState(false)
-    const [mobileSection, setMobileSection] = useState(null) // 'solutions' | 'contact' | null
     const headerRef = useRef(null)
     const lastY = useRef(0)
     const location = useLocation()
@@ -65,11 +45,10 @@ const Header = () => {
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
-    /* A link may request a mega-menu on arrival via <Link state={{ openMenu }}> */
+    /* A link may request the contact mega-menu on arrival via <Link state={{ openMenu }}> */
     useEffect(() => {
         setMenuOpen(location.state?.openMenu ?? null)
         setMobileOpen(false)
-        setMobileSection(null)
         setHidden(false)
         lastY.current = window.scrollY
     }, [location.pathname, location.state])
@@ -87,8 +66,6 @@ const Header = () => {
             document.removeEventListener('keydown', onKey)
         }
     }, [menuOpen])
-
-    const toggle = (id) => setMenuOpen(prev => prev === id ? null : id)
 
     /* Never slide away while a menu is open */
     const isHidden = hidden && !menuOpen && !mobileOpen
@@ -118,15 +95,9 @@ const Header = () => {
                 </Link>
 
                 <nav className="ef-header__nav" aria-label="Primary">
-                    <button
-                        type="button"
-                        className={`ef-header__nav-item ${menuOpen === 'solutions' ? 'is-open' : ''}`}
-                        onClick={() => toggle('solutions')}
-                        aria-expanded={menuOpen === 'solutions'}
-                    >
+                    <Link to="/solutions" className="ef-header__nav-item">
                         <HoverLink>Solutions</HoverLink>
-                        <span className={`ef-header__caret ${menuOpen === 'solutions' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
-                    </button>
+                    </Link>
 
                     <Link to="/education" className="ef-header__nav-item">
                         <HoverLink>Education</HoverLink>
@@ -150,60 +121,6 @@ const Header = () => {
 
             {/* Mega-menus */}
             <AnimatePresence>
-                {menuOpen === 'solutions' && (
-                    <motion.div
-                        key="mega-solutions"
-                        className="ef-mega"
-                        initial={{ opacity: 0, y: -12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -12 }}
-                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                        <div className="ef-mega__inner">
-                            <div className="ef-mega__aside">
-                                <span className="ef-mega__kicker">— Our Solutions</span>
-                                <p className="ef-mega__quote">
-                                    Regenerative systems,<br/>
-                                    <em>tailored to your land.</em>
-                                </p>
-                            </div>
-                            <div className="ef-mega__groups">
-                                {solutionGroups.map((group) => (
-                                    <div key={group.label} className="ef-mega__group">
-                                        <span className={`ef-mega__group-label ef-mega__group-label--${group.tone}`}>{group.label}</span>
-                                        <ul className="ef-mega__list">
-                                            {group.items.map((item, i) => (
-                                                <li key={item.to} className="ef-mega__item">
-                                                    {item.disabled ? (
-                                                        <span className="ef-mega__link ef-mega__link--disabled" aria-disabled="true">
-                                                            <span className="ef-mega__link-num">0{i + 1}</span>
-                                                            <span className="ef-mega__link-body">
-                                                                <span className="ef-mega__link-title">
-                                                                    {item.title}
-                                                                </span>
-                                                                <span className="ef-mega__link-hint">{item.hint}</span>
-                                                            </span>
-                                                        </span>
-                                                    ) : (
-                                                        <Link to={item.to} className="ef-mega__link">
-                                                            <span className="ef-mega__link-num">0{i + 1}</span>
-                                                            <span className="ef-mega__link-body">
-                                                                <span className="ef-mega__link-title">{item.title}</span>
-                                                                <span className="ef-mega__link-hint">{item.hint}</span>
-                                                            </span>
-                                                            <span className="ef-mega__link-arrow" aria-hidden="true">→</span>
-                                                        </Link>
-                                                    )}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.div>
-                )}
-
                 {menuOpen === 'contact' && (
                     <motion.div
                         key="mega-contact"
@@ -253,35 +170,7 @@ const Header = () => {
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <button
-                            type="button"
-                            className={`ef-mob__row ef-mob__row--toggle ${mobileSection === 'solutions' ? 'is-open' : ''}`}
-                            onClick={() => setMobileSection(s => s === 'solutions' ? null : 'solutions')}
-                        >
-                            <span>Solutions</span>
-                            <span className={`ef-mob__caret ${mobileSection === 'solutions' ? 'is-flipped' : ''}`} aria-hidden="true">↓</span>
-                        </button>
-                        <AnimatePresence>
-                            {mobileSection === 'solutions' && (
-                                <motion.ul
-                                    key="mob-solutions"
-                                    className="ef-mob__sub"
-                                    initial={{ height: 0, opacity: 0 }}
-                                    animate={{ height: 'auto', opacity: 1 }}
-                                    exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                                >
-                                    {solutionGroups.map(group => group.items.map(item => (
-                                        <li key={item.to}>
-                                            <Link to={item.to} className="ef-mob__sub-link">
-                                                <span className="ef-mob__sub-label">{group.label}</span>
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        </li>
-                                    )))}
-                                </motion.ul>
-                            )}
-                        </AnimatePresence>
+                        <Link to="/solutions" className="ef-mob__row">Solutions</Link>
 
                         <Link to="/education" className="ef-mob__row">Education</Link>
 

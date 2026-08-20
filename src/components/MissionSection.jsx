@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { CircleDots } from './BrandMotifs'
 import './MissionSection.css'
 
 const goals = [
@@ -42,7 +41,6 @@ const MissionSection = () => {
                     }}
                 >
                     <motion.div className="mission-x__eyebrow-row" variants={slideIn}>
-                        <CircleDots size={28} strokeWidth={9} />
                         <span className="mission-x__eyebrow-label">Our mission is to</span>
                     </motion.div>
 

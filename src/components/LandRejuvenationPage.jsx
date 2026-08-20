@@ -9,6 +9,7 @@ import CTABand from './CTABand'
 import Footer from './Footer'
 import Header from './Header'
 import PageHero from './PageHero'
+import SolutionsTabs from './SolutionsTabs'
 import './LandRejuvenationPage.css'
 
 const LandRejuvenationPage = () => {
@@ -21,6 +22,8 @@ const LandRejuvenationPage = () => {
                 subtitle="Regenerative farming systems for small and medium-sized farms — empowering growers to step off the expensive chemical fertiliser supply chain."
                 tone="moss"
             />
+
+            <SolutionsTabs />
 
             {/* Problem (trimmed copy) */}
             <ProblemSection />

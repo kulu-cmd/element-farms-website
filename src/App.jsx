@@ -18,6 +18,7 @@ import ArticlePage from './components/ArticlePage'
 import CropFitApp from './cropfit/CropFitApp'
 import CropFitPlanView from './cropfit/CropFitPlanView'
 import AboutUsPage from './components/AboutUsPage'
+import OurSolutionsPage from './components/OurSolutionsPage'
 import './App.css'
 
 function HomePage() {
@@ -45,6 +46,7 @@ function App() {
             <ScrollToTop />
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/solutions" element={<OurSolutionsPage />} />
                 <Route path="/solutions/land-rejuvenation" element={<LandRejuvenationPage />} />
                 <Route path="/solutions/uv-protection" element={<UVProtectionPage />} />
                 <Route path="/solutions/anti-flooding" element={<AntiFloodingPage />} />

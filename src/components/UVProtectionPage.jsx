@@ -3,6 +3,7 @@ import { motion, useInView, useMotionValue, useTransform, animate } from 'framer
 import Header from './Header'
 import Footer from './Footer'
 import PageHero from './PageHero'
+import SolutionsTabs from './SolutionsTabs'
 import EnquiryButton from './ui/EnquiryButton'
 import SectionLabel from './ui/SectionLabel'
 import './UVProtectionPage.css'
@@ -139,6 +140,8 @@ const UVProtectionPage = () => {
         subtitle="Two mineral foliar coatings for high-value crops — M-GeoShade for sunburn, M-Defend for 140+ pest species. Physical, non-chemical, resistance-proof."
         tone="clay"
       />
+
+      <SolutionsTabs />
 
       {/* ──────────────────────────────────────────────────────────────
           1.  Editorial facts — the problem, with quote

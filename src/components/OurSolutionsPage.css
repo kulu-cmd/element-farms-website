@@ -1,0 +1,253 @@
+/* =============================================
+   /solutions — standalone Solutions overview
+   ============================================= */
+
+.our-solutions {
+    background: var(--paper);
+}
+
+/* ── Hero ─────────────────────────────────────
+   Carries the mega-menu's editorial composition: small tracked kicker,
+   light display headline, clay italic on the second line.
+   Top padding clears the fixed compact header.
+   ───────────────────────────────────────────── */
+.os-hero {
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--ink-rule);
+    padding: clamp(7rem, 14vh, 11rem) var(--rail-padding) clamp(3rem, 7vh, 5rem);
+}
+
+.os-hero__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+.os-hero__kicker {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.4rem;
+}
+
+.os-hero__heading {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    line-height: 1.03;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-variation-settings: "opsz" 144;
+    margin: 0;
+}
+
+.os-hero__heading em {
+    font-style: italic;
+    color: var(--clay);
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.os-hero__lede {
+    max-width: 46ch;
+    margin-top: 1.8rem;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.4vw, 1.12rem);
+    line-height: 1.65;
+    color: var(--ink-soft);
+}
+
+/* ── Solution groups ───────────────────────── */
+.os-solutions {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: clamp(3.5rem, 8vh, 6rem) var(--rail-padding);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(3rem, 7vh, 5rem);
+}
+
+.os-group__header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--ink-rule);
+    margin-bottom: clamp(1.5rem, 3vh, 2.4rem);
+    flex-wrap: wrap;
+}
+
+.os-group__label {
+    font-family: var(--font-sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.os-group__label--moss  { color: var(--moss); }
+.os-group__label--clay  { color: var(--clay); }
+.os-group__label--ochre { color: var(--ochre); }
+
+.os-group__desc {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+}
+
+.os-group__grid {
+    display: grid;
+    /* auto-fill, not auto-fit: Livestock has a single card, and auto-fit would
+       collapse the empty tracks and stretch it across the full row. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: clamp(1.2rem, 2.5vw, 2rem);
+}
+
+/* ── Cards ─────────────────────────────────── */
+.os-card {
+    /* the whole card is one link target */
+    display: flex;
+}
+
+.os-card__link {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    background: var(--paper-soft);
+    border: 1px solid var(--ink-rule);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
+}
+
+.os-card__link:hover,
+.os-card__link:focus-visible {
+    transform: translateY(-4px);
+    border-color: rgba(243, 111, 33, 0.45);
+    box-shadow: 0 22px 44px -28px rgba(43, 43, 43, 0.42);
+}
+
+.os-card__link:focus-visible {
+    outline: 2px solid var(--moss-deep);
+    outline-offset: 3px;
+}
+
+.os-card__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--cool-grey);
+}
+
+.os-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.os-card__link:hover .os-card__media img {
+    transform: scale(1.045);
+}
+
+.os-card__body {
+    padding: 1.4rem 1.5rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.os-card__num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--clay);
+    font-variation-settings: "opsz" 14;
+    margin-bottom: 0.4rem;
+}
+
+.os-card__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0;
+}
+
+.os-card__hint {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 0.45rem;
+}
+
+.os-card__blurb {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: 0.9rem;
+}
+
+.os-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--clay);
+}
+
+.os-card__arrow {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.os-card__link:hover .os-card__arrow {
+    transform: translateX(5px);
+}
+
+/* ── Mobile ────────────────────────────────── */
+@media (max-width: 768px) {
+    .os-hero {
+        padding-top: clamp(5.5rem, 12vh, 8rem);
+    }
+    .os-group__grid {
+        grid-template-columns: 1fr;
+    }
+    .os-card__media {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .os-card__link,
+    .os-card__media img,
+    .os-card__arrow {
+        transition: none;
+    }
+    .os-card__link:hover {
+        transform: none;
+    }
+    .os-card__link:hover .os-card__media img {
+        transform: none;
+    }
+    .os-card__link:hover .os-card__arrow {
+        transform: none;
+    }
+}

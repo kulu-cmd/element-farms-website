@@ -11,6 +11,46 @@
     justify-content: center;
 }
 
+/* ── Mobile: portrait artboard, full-bleed ──────────────────
+   The 402x874 artwork covers the viewport (no letterbox, no cream void),
+   and the hotspot layer is transformed to match by HeroSection.jsx.
+   ───────────────────────────────────────────────────────────── */
+.lp--mobile {
+    /* the artwork sets its own height — see .lp__stage--mobile */
+    height: auto;
+}
+
+/* The artboard's exact ratio: fills the width edge to edge (no letterbox,
+   no cream void) while keeping the whole image visible, tagline included.
+   On a viewport shorter than the artwork the page simply scrolls. */
+/* Doubled class: .lp__stage below sets aspect-ratio 1920/1080 and, at equal
+   specificity, would win on source order and squash this to 16:9. */
+.lp__stage.lp__stage--mobile {
+    width: 100%;
+    aspect-ratio: 402 / 874;
+    height: auto;
+}
+
+/* fetched at runtime — fade in so there is no hard pop */
+.lp__art.lp__art--mobile {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.lp__art--mobile.is-ready { opacity: 1; }
+
+/* Sized 402x874 in JS and transformed with the svg's own cover mapping,
+   so hotspots track the artwork at any phone aspect ratio. */
+.lp__nav--mobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+}
+.lp__nav--mobile .lp__hot {
+    /* positions come from MOBILE_HOTSPOTS, in artboard px */
+    border-radius: 14px;
+}
+
 /* 16:9 stage — the svg fills it, hotspots are positioned in % of it */
 .lp__stage {
     position: relative;
@@ -63,16 +103,16 @@
 
 /* Clusters — pivot where the plants leave the frame, so they lean rather
    than slide. Slow and shallow; this should register as life, not motion. */
-.lp-sway--herbs    { transform-origin: 280px 1090px; --amp: 1.6deg; --dur: 5.3s; --delay: -2s; }
+.lp-sway--herbs    { transform-origin: 280px 1090px; --amp: 0.8deg; --dur: 5.3s; --delay: -2s; }
 /* branch-l is the blueberry plant behind the "About Us" label. Its big flat
    card underlays are now static (see LandingPageFULL.svg) so only the plant
    sways — no more seam sweeping the text. Pivot sits at the plant's base. */
-.lp-sway--branch-l { transform-origin: 200px 470px;  --amp: 1deg;   --dur: 5.6s; --delay: -4s; }
+.lp-sway--branch-l { transform-origin: 200px 470px;  --amp: 0.5deg; --dur: 5.6s; --delay: -4s; }
 .lp-sway--branch-r { transform-origin: 1920px 90px;  --amp: 1.1deg; --dur: 5.6s; --delay: -6s; }
 
 /* Cows graze in the Education scene. They rock a hair about their feet, which
    reads as a gentle weight-shift / breathing rather than a plant sway. */
-.lp-sway--cow-a    { transform-origin: 1510px 890px;  --amp: 0.4deg;  --dur: 6s;   --delay: -1s; }
+.lp-sway--cow-a    { transform-origin: 1510px 890px;  --amp: 0.3deg;  --dur: 6s;   --delay: -1s; }
 .lp-sway--cow-b    { transform-origin: 1703px 1010px; --amp: 0.35deg; --dur: 6.6s; --delay: -3s; }
 
 /* Petals — all pivot at the point where the flower's stems converge.
@@ -87,6 +127,38 @@
 .lp-petal--5 { --amp: 1.6deg;  --dur: 4.8s; --delay: -0.4s; }
 .lp-petal--6 { --amp: 2deg;    --dur: 4.9s; --delay: -0.3s; }
 .lp-petal--7 { --amp: 1.7deg;  --dur: 4.9s; --delay: -0.5s; }
+
+/* ── Mobile petals ────────────────────────────────────────────
+   Same fan motion as desktop, roughly a third of the travel. The mobile
+   export has no groups, so HeroSection.jsx wraps each petal in a clean <g>
+   and numbers them left-to-right; amplitudes grow outward along each side so
+   the fan opens and closes as one piece. Only these 7 elements animate —
+   the plant clusters are ~380 scattered paths in this export and would cost
+   far more than they'd show at phone scale.
+   ───────────────────────────────────────────────────────────── */
+.lp__art--mobile .lp-mpetal {
+    /* transform-origin is set per-petal in JS, measured from each petal's own
+       bounding box — see tagPetals for why fill-box is the reliable choice. */
+    transform-box: fill-box;
+    will-change: transform;
+    animation: lp-sway var(--dur) cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+    animation-delay: var(--delay, 0s);
+}
+
+.lp-mpetal--1 { --amp: -0.55deg;  --dur: 5.6s; --delay: -0.2s; }
+.lp-mpetal--2 { --amp: -0.45deg; --dur: 5.6s; --delay: -0.4s; }
+.lp-mpetal--3 { --amp: -0.3deg;  --dur: 5.6s; --delay: -0.6s; }
+.lp-mpetal--4 { --amp: 0.3deg;   --dur: 5.8s; --delay: -0.6s; }
+.lp-mpetal--5 { --amp: 0.45deg;  --dur: 5.8s; --delay: -0.4s; }
+.lp-mpetal--6 { --amp: 0.55deg;   --dur: 5.8s; --delay: -0.3s; }
+.lp-mpetal--7 { --amp: 0.5deg;   --dur: 5.8s; --delay: -0.5s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .lp__art--mobile .lp-mpetal {
+        animation: none;
+        will-change: auto;
+    }
+}
 
 /* ── Interaction ──────────────────────────────────────────────
    When a section's hotspot is hovered/focused, its word and arrow pop

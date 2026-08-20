@@ -10,10 +10,6 @@
     color: #f36f21;
 }
 
-.section-label__motif {
-    flex-shrink: 0;
-}
-
 .section-label--paper { color: rgba(244, 239, 230, 0.75); }
 
 .section-label__num {
